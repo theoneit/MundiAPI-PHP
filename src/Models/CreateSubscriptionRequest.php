@@ -32,10 +32,9 @@ class CreateSubscriptionRequest implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @required
-     * @maps credit_card
-     * @var CreateCreditCardRequest $creditCard public property
+     * @var CreateCardRequest $card public property
      */
-    public $creditCard;
+    public $card;
 
     /**
      * @todo Write general description for this property
@@ -201,7 +200,7 @@ class CreateSubscriptionRequest implements JsonSerializable
      * Constructor to set initial or default values of member properties
      * @param string                     $planId              Initialization value for $this->planId
      * @param CreateCustomerRequest      $customer            Initialization value for $this->customer
-     * @param CreateCreditCardRequest    $creditCard          Initialization value for $this->creditCard
+     * @param CreateCardRequest          $card                Initialization value for $this->card
      * @param string                     $code                Initialization value for $this->code
      * @param string                     $customerId          Initialization value for $this->customerId
      * @param string                     $creditCardId        Initialization value for $this->creditCardId
@@ -230,7 +229,7 @@ class CreateSubscriptionRequest implements JsonSerializable
         if (25 == func_num_args()) {
             $this->planId              = func_get_arg(0);
             $this->customer            = func_get_arg(1);
-            $this->creditCard          = func_get_arg(2);
+            $this->card                = func_get_arg(2);
             $this->code                = func_get_arg(3);
             $this->customerId          = func_get_arg(4);
             $this->creditCardId        = func_get_arg(5);
@@ -265,7 +264,7 @@ class CreateSubscriptionRequest implements JsonSerializable
         $json = array();
         $json['plan_id']                = $this->planId;
         $json['customer']               = $this->customer;
-        $json['credit_card']            = $this->creditCard;
+        $json['card']                   = $this->card;
         $json['code']                   = $this->code;
         $json['customer_id']            = $this->customerId;
         $json['credit_card_id']         = $this->creditCardId;

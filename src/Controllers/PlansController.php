@@ -97,7 +97,7 @@ class PlansController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\ListPlanItemsResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListPlanItemsResponse');
     }
 
     /**
@@ -162,7 +162,7 @@ class PlansController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetPlanItemResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetPlanItemResponse');
     }
 
     /**
@@ -278,7 +278,7 @@ class PlansController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetPlanResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetPlanResponse');
     }
 
     /**
@@ -340,7 +340,7 @@ class PlansController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetPlanItemResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetPlanItemResponse');
     }
 
     /**
@@ -402,7 +402,7 @@ class PlansController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetPlanResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetPlanResponse');
     }
 
     /**
@@ -457,7 +457,7 @@ class PlansController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetPlanResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetPlanResponse');
     }
 
     /**
@@ -509,7 +509,7 @@ class PlansController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\ListPlansResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListPlansResponse');
     }
 
     /**
@@ -568,7 +568,7 @@ class PlansController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetPlanResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetPlanResponse');
     }
 
     /**
@@ -630,7 +630,7 @@ class PlansController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetPlanItemResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetPlanItemResponse');
     }
 
     /**
@@ -692,6 +692,6 @@ class PlansController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetPlanItemResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetPlanItemResponse');
     }
 }

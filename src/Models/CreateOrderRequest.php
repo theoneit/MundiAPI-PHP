@@ -31,9 +31,9 @@ class CreateOrderRequest implements JsonSerializable
     /**
      * Payment data
      * @required
-     * @var CreatePaymentRequest $payment public property
+     * @var CreatePaymentRequest[] $payments public property
      */
-    public $payment;
+    public $payments;
 
     /**
      * The order code
@@ -68,7 +68,7 @@ class CreateOrderRequest implements JsonSerializable
      * Constructor to set initial or default values of member properties
      * @param array                 $items      Initialization value for $this->items
      * @param CreateCustomerRequest $customer   Initialization value for $this->customer
-     * @param CreatePaymentRequest  $payment    Initialization value for $this->payment
+     * @param array                 $payments   Initialization value for $this->payments
      * @param string                $code       Initialization value for $this->code
      * @param string                $customerId Initialization value for $this->customerId
      * @param CreateShippingRequest $shipping   Initialization value for $this->shipping
@@ -79,7 +79,7 @@ class CreateOrderRequest implements JsonSerializable
         if (7 == func_num_args()) {
             $this->items      = func_get_arg(0);
             $this->customer   = func_get_arg(1);
-            $this->payment    = func_get_arg(2);
+            $this->payments   = func_get_arg(2);
             $this->code       = func_get_arg(3);
             $this->customerId = func_get_arg(4);
             $this->shipping   = func_get_arg(5);
@@ -96,7 +96,7 @@ class CreateOrderRequest implements JsonSerializable
         $json = array();
         $json['items']       = $this->items;
         $json['customer']    = $this->customer;
-        $json['payment']     = $this->payment;
+        $json['payments']    = $this->payments;
         $json['code']        = $this->code;
         $json['customer_id'] = $this->customerId;
         $json['shipping']    = $this->shipping;

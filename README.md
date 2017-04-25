@@ -246,13 +246,13 @@ $result = $charges->createCharge($request);
 ```
 
 
-#### <a name="update_charge_credit_card"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.updateChargeCreditCard") updateChargeCreditCard
+#### <a name="update_charge_card"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.updateChargeCard") updateChargeCard
 
-> Updates the credit card from a charge
+> Updates the card from a charge
 
 
 ```php
-function updateChargeCreditCard(
+function updateChargeCard(
         $chargeId,
         $request)
 ```
@@ -262,7 +262,7 @@ function updateChargeCreditCard(
 | Parameter | Tags | Description |
 |-----------|------|-------------|
 | chargeId |  ``` Required ```  | Charge id |
-| request |  ``` Required ```  | Request for updating a charge's credit card |
+| request |  ``` Required ```  | Request for updating a charge's card |
 
 
 
@@ -270,9 +270,9 @@ function updateChargeCreditCard(
 
 ```php
 $chargeId = 'charge_id';
-$request = new UpdateChargeCreditCardRequest();
+$request = new UpdateChargeCardRequest();
 
-$result = $charges->updateChargeCreditCard($chargeId, $request);
+$result = $charges->updateChargeCard($chargeId, $request);
 
 ```
 
@@ -409,13 +409,13 @@ $result = $customers->getAddresses($customerId);
 ```
 
 
-#### <a name="get_credit_cards"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getCreditCards") getCreditCards
+#### <a name="get_cards"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getCards") getCards
 
-> Get all credit cards from a customer
+> Get all cards from a customer
 
 
 ```php
-function getCreditCards($customerId)
+function getCards($customerId)
 ```
 
 #### Parameters
@@ -431,7 +431,7 @@ function getCreditCards($customerId)
 ```php
 $customerId = 'customer_id';
 
-$result = $customers->getCreditCards($customerId);
+$result = $customers->getCards($customerId);
 
 ```
 
@@ -542,13 +542,13 @@ $result = $customers->updateAddress($customerId, $addressId, $request);
 ```
 
 
-#### <a name="update_credit_card"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.updateCreditCard") updateCreditCard
+#### <a name="update_card"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.updateCard") updateCard
 
-> Updates a credit card
+> Updates a card
 
 
 ```php
-function updateCreditCard(
+function updateCard(
         $customerId,
         $cardId,
         $request)
@@ -559,8 +559,8 @@ function updateCreditCard(
 | Parameter | Tags | Description |
 |-----------|------|-------------|
 | customerId |  ``` Required ```  | Customer Id |
-| cardId |  ``` Required ```  | Credit card id |
-| request |  ``` Required ```  | Request for updating a credit card |
+| cardId |  ``` Required ```  | Card id |
+| request |  ``` Required ```  | Request for updating a card |
 
 
 
@@ -569,9 +569,9 @@ function updateCreditCard(
 ```php
 $customerId = 'customer_id';
 $cardId = 'card_id';
-$request = new UpdateCreditCardRequest();
+$request = new UpdateCardRequest();
 
-$result = $customers->updateCreditCard($customerId, $cardId, $request);
+$result = $customers->updateCard($customerId, $cardId, $request);
 
 ```
 
@@ -638,13 +638,13 @@ $result = $customers->deleteAddress($customerId, $addressId);
 ```
 
 
-#### <a name="delete_credit_card"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.deleteCreditCard") deleteCreditCard
+#### <a name="delete_card"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.deleteCard") deleteCard
 
-> Delete a customer's credit card
+> Delete a customer's card
 
 
 ```php
-function deleteCreditCard(
+function deleteCard(
         $customerId,
         $cardId)
 ```
@@ -664,7 +664,7 @@ function deleteCreditCard(
 $customerId = 'customer_id';
 $cardId = 'card_id';
 
-$result = $customers->deleteCreditCard($customerId, $cardId);
+$result = $customers->deleteCard($customerId, $cardId);
 
 ```
 
@@ -700,13 +700,13 @@ $result = $customers->createAddress($customerId, $request);
 ```
 
 
-#### <a name="get_credit_card"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getCreditCard") getCreditCard
+#### <a name="get_card"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getCard") getCard
 
-> Get a customer's credit card
+> Get a customer's card
 
 
 ```php
-function getCreditCard(
+function getCard(
         $customerId,
         $cardId)
 ```
@@ -726,18 +726,18 @@ function getCreditCard(
 $customerId = 'customer_id';
 $cardId = 'card_id';
 
-$result = $customers->getCreditCard($customerId, $cardId);
+$result = $customers->getCard($customerId, $cardId);
 
 ```
 
 
-#### <a name="create_credit_card"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.createCreditCard") createCreditCard
+#### <a name="create_card"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.createCard") createCard
 
-> Creates a new credit card for a customer
+> Creates a new card for a customer
 
 
 ```php
-function createCreditCard(
+function createCard(
         $customerId,
         $request)
 ```
@@ -747,7 +747,7 @@ function createCreditCard(
 | Parameter | Tags | Description |
 |-----------|------|-------------|
 | customerId |  ``` Required ```  | Customer id |
-| request |  ``` Required ```  | Request for creating a credit card |
+| request |  ``` Required ```  | Request for creating a card |
 
 
 
@@ -755,9 +755,9 @@ function createCreditCard(
 
 ```php
 $customerId = 'customer_id';
-$request = new CreateCreditCardRequest();
+$request = new CreateCardRequest();
 
-$result = $customers->createCreditCard($customerId, $request);
+$result = $customers->createCard($customerId, $request);
 
 ```
 
@@ -1026,7 +1026,7 @@ function updateSubscriptionCreditCard(
 #### Example Usage
 
 ```php
-$body = new UpdateSubscriptionCreditCardRequest();
+$body = new UpdateSubscriptionCardRequest();
 $subscriptionId = 'subscription_id';
 
 $result = $subscriptions->updateSubscriptionCreditCard($body, $subscriptionId);

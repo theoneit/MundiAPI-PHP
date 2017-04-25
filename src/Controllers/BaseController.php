@@ -55,6 +55,10 @@ class BaseController
     protected function getJsonMapper()
     {
         $mapper = new JsonMapper();
+        $mapper->arChildClasses['MundiAPILib\\Models\\GetTransactionResponse'] = array(
+            'MundiAPILib\\Models\\GetBoletoTransactionResponse', 
+            'MundiAPILib\\Models\\GetCreditCardTransactionResponse'
+        );
         return $mapper;
     }
 

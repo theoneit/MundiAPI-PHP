@@ -97,17 +97,17 @@ class CustomersController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\ListAddressesResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListAddressesResponse');
     }
 
     /**
-     * Get all credit cards from a customer
+     * Get all cards from a customer
      *
      * @param string $customerId  Customer Id
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function getCreditCards(
+    public function getCards(
         $customerId
     ) {
 
@@ -115,7 +115,7 @@ class CustomersController extends BaseController
         $_queryBuilder = Configuration::$BASEURI;
         
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/customers/{customer_id}/credit_cards';
+        $_queryBuilder = $_queryBuilder.'/customers/{customer_id}/cards';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -156,7 +156,7 @@ class CustomersController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\ListCardsResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListCardsResponse');
     }
 
     /**
@@ -208,7 +208,7 @@ class CustomersController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\ListCustomersResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListCustomersResponse');
     }
 
     /**
@@ -263,7 +263,7 @@ class CustomersController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetCustomerResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetCustomerResponse');
     }
 
     /**
@@ -322,7 +322,7 @@ class CustomersController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetCustomerResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetCustomerResponse');
     }
 
     /**
@@ -387,19 +387,19 @@ class CustomersController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetAddressResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetAddressResponse');
     }
 
     /**
-     * Updates a credit card
+     * Updates a card
      *
-     * @param string                         $customerId  Customer Id
-     * @param string                         $cardId      Credit card id
-     * @param Models\UpdateCreditCardRequest $request     Request for updating a credit card
+     * @param string                   $customerId  Customer Id
+     * @param string                   $cardId      Card id
+     * @param Models\UpdateCardRequest $request     Request for updating a card
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function updateCreditCard(
+    public function updateCard(
         $customerId,
         $cardId,
         $request
@@ -409,7 +409,7 @@ class CustomersController extends BaseController
         $_queryBuilder = Configuration::$BASEURI;
         
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/customers/{customer_id}/credit_cards/{card_id}';
+        $_queryBuilder = $_queryBuilder.'/customers/{customer_id}/cards/{card_id}';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -452,7 +452,7 @@ class CustomersController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetCreditCardResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetCardResponse');
     }
 
     /**
@@ -514,7 +514,7 @@ class CustomersController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetAddressResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetAddressResponse');
     }
 
     /**
@@ -576,18 +576,18 @@ class CustomersController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetAddressResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetAddressResponse');
     }
 
     /**
-     * Delete a customer's credit card
+     * Delete a customer's card
      *
      * @param string $customerId  Customer Id
      * @param string $cardId      Card Id
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function deleteCreditCard(
+    public function deleteCard(
         $customerId,
         $cardId
     ) {
@@ -596,7 +596,7 @@ class CustomersController extends BaseController
         $_queryBuilder = Configuration::$BASEURI;
         
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/customers/{customer_id}/credit_cards/{card_id}';
+        $_queryBuilder = $_queryBuilder.'/customers/{customer_id}/cards/{card_id}';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -638,7 +638,7 @@ class CustomersController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetCreditCardResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetCardResponse');
     }
 
     /**
@@ -700,18 +700,18 @@ class CustomersController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetAddressResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetAddressResponse');
     }
 
     /**
-     * Get a customer's credit card
+     * Get a customer's card
      *
      * @param string $customerId  Customer id
      * @param string $cardId      Card id
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function getCreditCard(
+    public function getCard(
         $customerId,
         $cardId
     ) {
@@ -720,7 +720,7 @@ class CustomersController extends BaseController
         $_queryBuilder = Configuration::$BASEURI;
         
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/customers/{customer_id}/credit_cards/{card_id}';
+        $_queryBuilder = $_queryBuilder.'/customers/{customer_id}/cards/{card_id}';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -762,18 +762,18 @@ class CustomersController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetCreditCardResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetCardResponse');
     }
 
     /**
-     * Creates a new credit card for a customer
+     * Creates a new card for a customer
      *
-     * @param string                         $customerId  Customer id
-     * @param Models\CreateCreditCardRequest $request     Request for creating a credit card
+     * @param string                   $customerId  Customer id
+     * @param Models\CreateCardRequest $request     Request for creating a card
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function createCreditCard(
+    public function createCard(
         $customerId,
         $request
     ) {
@@ -782,7 +782,7 @@ class CustomersController extends BaseController
         $_queryBuilder = Configuration::$BASEURI;
         
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/customers/{customer_id}/credit_cards';
+        $_queryBuilder = $_queryBuilder.'/customers/{customer_id}/cards';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -824,7 +824,7 @@ class CustomersController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetCreditCardResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetCardResponse');
     }
 
     /**
@@ -886,6 +886,6 @@ class CustomersController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetCustomerResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetCustomerResponse');
     }
 }

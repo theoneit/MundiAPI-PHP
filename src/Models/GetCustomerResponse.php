@@ -75,10 +75,9 @@ class GetCustomerResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @required
-     * @maps person_type
-     * @var string $personType public property
+     * @var string $type public property
      */
-    public $personType;
+    public $type;
 
     /**
      * @todo Write general description for this property
@@ -119,7 +118,7 @@ class GetCustomerResponse implements JsonSerializable
      * @param string             $updatedAt     Initialization value for $this->updatedAt
      * @param string             $phone         Initialization value for $this->phone
      * @param string             $document      Initialization value for $this->document
-     * @param string             $personType    Initialization value for $this->personType
+     * @param string             $type          Initialization value for $this->type
      * @param string             $fbAccessToken Initialization value for $this->fbAccessToken
      * @param GetAddressResponse $address       Initialization value for $this->address
      * @param array              $metadata      Initialization value for $this->metadata
@@ -136,7 +135,7 @@ class GetCustomerResponse implements JsonSerializable
             $this->updatedAt     = func_get_arg(5);
             $this->phone         = func_get_arg(6);
             $this->document      = func_get_arg(7);
-            $this->personType    = func_get_arg(8);
+            $this->type          = func_get_arg(8);
             $this->fbAccessToken = func_get_arg(9);
             $this->address       = func_get_arg(10);
             $this->metadata      = func_get_arg(11);
@@ -159,7 +158,7 @@ class GetCustomerResponse implements JsonSerializable
         $json['updated_at']      = $this->updatedAt;
         $json['phone']           = $this->phone;
         $json['document']        = $this->document;
-        $json['person_type']     = $this->personType;
+        $json['type']            = $this->type;
         $json['fb_access_token'] = $this->fbAccessToken;
         $json['address']         = $this->address;
         $json['metadata']        = $this->metadata;

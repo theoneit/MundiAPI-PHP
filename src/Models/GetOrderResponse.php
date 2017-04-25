@@ -75,9 +75,9 @@ class GetOrderResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @required
-     * @var GetChargeResponse $charge public property
+     * @var GetChargeResponse[] $charges public property
      */
-    public $charge;
+    public $charges;
 
     /**
      * @todo Write general description for this property
@@ -111,7 +111,7 @@ class GetOrderResponse implements JsonSerializable
      * @param string              $status     Initialization value for $this->status
      * @param string              $createdAt  Initialization value for $this->createdAt
      * @param string              $updatedAt  Initialization value for $this->updatedAt
-     * @param GetChargeResponse   $charge     Initialization value for $this->charge
+     * @param array               $charges    Initialization value for $this->charges
      * @param string              $invoiceUrl Initialization value for $this->invoiceUrl
      * @param GetShippingResponse $shipping   Initialization value for $this->shipping
      * @param array               $metadata   Initialization value for $this->metadata
@@ -127,7 +127,7 @@ class GetOrderResponse implements JsonSerializable
             $this->status     = func_get_arg(5);
             $this->createdAt  = func_get_arg(6);
             $this->updatedAt  = func_get_arg(7);
-            $this->charge     = func_get_arg(8);
+            $this->charges    = func_get_arg(8);
             $this->invoiceUrl = func_get_arg(9);
             $this->shipping   = func_get_arg(10);
             $this->metadata   = func_get_arg(11);
@@ -149,7 +149,7 @@ class GetOrderResponse implements JsonSerializable
         $json['status']      = $this->status;
         $json['created_at']  = $this->createdAt;
         $json['updated_at']  = $this->updatedAt;
-        $json['charge']      = $this->charge;
+        $json['charges']     = $this->charges;
         $json['invoice_url'] = $this->invoiceUrl;
         $json['shipping']    = $this->shipping;
         $json['metadata']    = $this->metadata;

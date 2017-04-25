@@ -7,10 +7,10 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Mehdi Jaffery",
-            "email": "mehdi.jaffery@apimatic.io",
-            "homepage": "https://github.com/apimatic",
-            "role": "Developer"
+            "name": "APIMatic SDK Generator",
+            "email": "support@apimatic.io",
+            "homepage": "https://apimatic.io",
+            "role": "API Tool"
         }
     ],
     "require": {
@@ -19,10 +19,10 @@
         "ext-json": "*",
         "ext-mbstring": "*",
         "mashape/unirest-php": "~3.0.1",
-        "apimatic/jsonmapper": "~1.0.0"
+        "apimatic/jsonmapper": "~1.2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.8.*"
+        "squizlabs/php_codesniffer": "^2.7"
     },
     "autoload": {
         "psr-4": {

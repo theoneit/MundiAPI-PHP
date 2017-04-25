@@ -97,7 +97,7 @@ class ChargesController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetChargeResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetChargeResponse');
     }
 
     /**
@@ -156,7 +156,7 @@ class ChargesController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetChargeResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetChargeResponse');
     }
 
     /**
@@ -208,7 +208,7 @@ class ChargesController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\ListChargesResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListChargesResponse');
     }
 
     /**
@@ -263,18 +263,18 @@ class ChargesController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetChargeResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetChargeResponse');
     }
 
     /**
-     * Updates the credit card from a charge
+     * Updates the card from a charge
      *
-     * @param string                               $chargeId  Charge id
-     * @param Models\UpdateChargeCreditCardRequest $request   Request for updating a charge's credit card
+     * @param string                         $chargeId  Charge id
+     * @param Models\UpdateChargeCardRequest $request   Request for updating a charge's card
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function updateChargeCreditCard(
+    public function updateChargeCard(
         $chargeId,
         $request
     ) {
@@ -283,7 +283,7 @@ class ChargesController extends BaseController
         $_queryBuilder = Configuration::$BASEURI;
         
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/charges/{charge_id}/credit-card';
+        $_queryBuilder = $_queryBuilder.'/charges/{charge_id}/card';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -325,7 +325,7 @@ class ChargesController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetChargeResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetChargeResponse');
     }
 
     /**
@@ -387,7 +387,7 @@ class ChargesController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetChargeResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetChargeResponse');
     }
 
     /**
@@ -449,7 +449,7 @@ class ChargesController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetChargeResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetChargeResponse');
     }
 
     /**
@@ -511,6 +511,6 @@ class ChargesController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetChargeResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetChargeResponse');
     }
 }

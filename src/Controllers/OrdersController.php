@@ -97,7 +97,7 @@ class OrdersController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetOrderResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetOrderResponse');
     }
 
     /**
@@ -149,7 +149,7 @@ class OrdersController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\ListOrderResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListOrderResponse');
     }
 
     /**
@@ -204,6 +204,6 @@ class OrdersController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetOrderResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetOrderResponse');
     }
 }

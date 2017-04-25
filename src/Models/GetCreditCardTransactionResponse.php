@@ -73,7 +73,7 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
      * @todo Write general description for this property
      * @required
      * @maps credit_card
-     * @var GetCreditCardResponse $creditCard public property
+     * @var GetCardResponse $creditCard public property
      */
     public $creditCard;
 
@@ -85,15 +85,15 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                $statementDescriptor     Initialization value for $this->statementDescriptor
-     * @param string                $acquirer                Initialization value for $this->acquirer
-     * @param string                $acquirerAffiliationCode Initialization value for $this->acquirerAffiliationCode
-     * @param string                $acquirerTid             Initialization value for $this->acquirerTid
-     * @param string                $acquirerNsu             Initialization value for $this->acquirerNsu
-     * @param string                $acquirerAuthCode        Initialization value for $this->acquirerAuthCode
-     * @param string                $operationType           Initialization value for $this->operationType
-     * @param GetCreditCardResponse $creditCard              Initialization value for $this->creditCard
-     * @param integer               $installments            Initialization value for $this->installments
+     * @param string          $statementDescriptor     Initialization value for $this->statementDescriptor
+     * @param string          $acquirer                Initialization value for $this->acquirer
+     * @param string          $acquirerAffiliationCode Initialization value for $this->acquirerAffiliationCode
+     * @param string          $acquirerTid             Initialization value for $this->acquirerTid
+     * @param string          $acquirerNsu             Initialization value for $this->acquirerNsu
+     * @param string          $acquirerAuthCode        Initialization value for $this->acquirerAuthCode
+     * @param string          $operationType           Initialization value for $this->operationType
+     * @param GetCardResponse $creditCard              Initialization value for $this->creditCard
+     * @param integer         $installments            Initialization value for $this->installments
      */
     public function __construct()
     {

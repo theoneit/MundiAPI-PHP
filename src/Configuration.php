@@ -17,7 +17,7 @@ class Configuration
      * The base Uri for API calls
      * @var string
      */
-    public static $BASEURI = 'https://api.mundipagg.com/core/v1.0';
+    public static $BASEURI = 'https://api.mundipagg.com/core/v1';
 
     /**
      * The username to use with basic authentication

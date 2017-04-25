@@ -12,7 +12,7 @@ use JsonSerializable;
 /**
  * Response object for getting a credit card
  */
-class GetCreditCardResponse implements JsonSerializable
+class GetCardResponse implements JsonSerializable
 {
     /**
      * @todo Write general description for this property
@@ -106,6 +106,13 @@ class GetCreditCardResponse implements JsonSerializable
     public $metadata;
 
     /**
+     * Card type
+     * @required
+     * @var string $type public property
+     */
+    public $type;
+
+    /**
      * @todo Write general description for this property
      * @maps deleted_at
      * @var string|null $deletedAt public property
@@ -126,11 +133,12 @@ class GetCreditCardResponse implements JsonSerializable
      * @param GetBillingAddressResponse $billingAddress Initialization value for $this->billingAddress
      * @param GetCustomerResponse       $customer       Initialization value for $this->customer
      * @param array                     $metadata       Initialization value for $this->metadata
+     * @param string                    $type           Initialization value for $this->type
      * @param string                    $deletedAt      Initialization value for $this->deletedAt
      */
     public function __construct()
     {
-        if (13 == func_num_args()) {
+        if (14 == func_num_args()) {
             $this->id             = func_get_arg(0);
             $this->lastFourDigits = func_get_arg(1);
             $this->brand          = func_get_arg(2);
@@ -143,7 +151,8 @@ class GetCreditCardResponse implements JsonSerializable
             $this->billingAddress = func_get_arg(9);
             $this->customer       = func_get_arg(10);
             $this->metadata       = func_get_arg(11);
-            $this->deletedAt      = func_get_arg(12);
+            $this->type           = func_get_arg(12);
+            $this->deletedAt      = func_get_arg(13);
         }
     }
 
@@ -166,6 +175,7 @@ class GetCreditCardResponse implements JsonSerializable
         $json['billing_address']  = $this->billingAddress;
         $json['customer']         = $this->customer;
         $json['metadata']         = $this->metadata;
+        $json['type']             = $this->type;
         $json['deleted_at']       = $this->deletedAt;
 
         return $json;

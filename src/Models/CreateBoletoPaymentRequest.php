@@ -36,17 +36,27 @@ class CreateBoletoPaymentRequest implements JsonSerializable
     public $instructions;
 
     /**
+     * Boleto due date
+     * @required
+     * @maps due_at
+     * @var string $dueAt public property
+     */
+    public $dueAt;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param integer $retries      Initialization value for $this->retries
      * @param string  $bank         Initialization value for $this->bank
      * @param string  $instructions Initialization value for $this->instructions
+     * @param string  $dueAt        Initialization value for $this->dueAt
      */
     public function __construct()
     {
-        if (3 == func_num_args()) {
+        if (4 == func_num_args()) {
             $this->retries      = func_get_arg(0);
             $this->bank         = func_get_arg(1);
             $this->instructions = func_get_arg(2);
+            $this->dueAt        = func_get_arg(3);
         }
     }
 
@@ -60,6 +70,7 @@ class CreateBoletoPaymentRequest implements JsonSerializable
         $json['retries']      = $this->retries;
         $json['bank']         = $this->bank;
         $json['instructions'] = $this->instructions;
+        $json['due_at']       = $this->dueAt;
 
         return $json;
     }

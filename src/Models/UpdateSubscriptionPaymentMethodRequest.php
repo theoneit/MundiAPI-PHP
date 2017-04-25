@@ -42,16 +42,16 @@ class UpdateSubscriptionPaymentMethodRequest implements JsonSerializable
      * Credit card data
      * @required
      * @maps credit_card
-     * @var CreateCreditCardRequest $creditCard public property
+     * @var CreateCardRequest $creditCard public property
      */
     public $creditCard;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                  $paymentMethod       Initialization value for $this->paymentMethod
-     * @param string                  $creditCardId        Initialization value for $this->creditCardId
-     * @param string                  $creditCardGatewayId Initialization value for $this->creditCardGatewayId
-     * @param CreateCreditCardRequest $creditCard          Initialization value for $this->creditCard
+     * @param string            $paymentMethod       Initialization value for $this->paymentMethod
+     * @param string            $creditCardId        Initialization value for $this->creditCardId
+     * @param string            $creditCardGatewayId Initialization value for $this->creditCardGatewayId
+     * @param CreateCardRequest $creditCard          Initialization value for $this->creditCard
      */
     public function __construct()
     {

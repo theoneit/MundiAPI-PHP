@@ -97,7 +97,7 @@ class SubscriptionsController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetSubscriptionResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetSubscriptionResponse');
     }
 
     /**
@@ -156,7 +156,7 @@ class SubscriptionsController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\ListInvoicesResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListInvoicesResponse');
     }
 
     /**
@@ -215,7 +215,7 @@ class SubscriptionsController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\ListSubscriptionItemsResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListSubscriptionItemsResponse');
     }
 
     /**
@@ -278,7 +278,7 @@ class SubscriptionsController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetSubscriptionResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetSubscriptionResponse');
     }
 
     /**
@@ -343,7 +343,7 @@ class SubscriptionsController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetUsageResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetUsageResponse');
     }
 
     /**
@@ -408,7 +408,7 @@ class SubscriptionsController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetSubscriptionItemResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetSubscriptionItemResponse');
     }
 
     /**
@@ -460,14 +460,14 @@ class SubscriptionsController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\ListSubscriptionsResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListSubscriptionsResponse');
     }
 
     /**
      * Updates the credit card from a subscription
      *
-     * @param Models\UpdateSubscriptionCreditCardRequest $body            Request for updating a credit card
-     * @param string                                     $subscriptionId  Subscription id
+     * @param Models\UpdateSubscriptionCardRequest $body            Request for updating a credit card
+     * @param string                               $subscriptionId  Subscription id
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
@@ -522,7 +522,7 @@ class SubscriptionsController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetSubscriptionResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetSubscriptionResponse');
     }
 
     /**
@@ -577,7 +577,7 @@ class SubscriptionsController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetSubscriptionResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetSubscriptionResponse');
     }
 
     /**
@@ -639,7 +639,7 @@ class SubscriptionsController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetSubscriptionItemResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetSubscriptionItemResponse');
     }
 
     /**
@@ -701,7 +701,7 @@ class SubscriptionsController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetDiscountResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetDiscountResponse');
     }
 
     /**
@@ -760,7 +760,7 @@ class SubscriptionsController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetSubscriptionResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetSubscriptionResponse');
     }
 
     /**
@@ -823,7 +823,7 @@ class SubscriptionsController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetSubscriptionResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetSubscriptionResponse');
     }
 
     /**
@@ -885,7 +885,7 @@ class SubscriptionsController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\ListUsagesResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListUsagesResponse');
     }
 
     /**
@@ -907,7 +907,8 @@ class SubscriptionsController extends BaseController
         $_queryBuilder = Configuration::$BASEURI;
         
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/subscriptions/{subscription_id}/items/{item_id}/usages/{usage_id}';
+        $_queryBuilder = $_queryBuilder.
+            '/subscriptions/{subscription_id}/items/{item_id}/usages/{usage_id}';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -950,7 +951,7 @@ class SubscriptionsController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetUsageResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetUsageResponse');
     }
 
     /**
@@ -1012,7 +1013,7 @@ class SubscriptionsController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetDiscountResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetDiscountResponse');
     }
 
     /**
@@ -1074,7 +1075,7 @@ class SubscriptionsController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetSubscriptionResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetSubscriptionResponse');
     }
 
     /**
@@ -1094,7 +1095,8 @@ class SubscriptionsController extends BaseController
         $_queryBuilder = Configuration::$BASEURI;
         
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/subscriptions/{subscription_id}/items/{subscription_item_id}';
+        $_queryBuilder = $_queryBuilder.
+            '/subscriptions/{subscription_id}/items/{subscription_item_id}';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -1136,6 +1138,6 @@ class SubscriptionsController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetSubscriptionItemResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetSubscriptionItemResponse');
     }
 }

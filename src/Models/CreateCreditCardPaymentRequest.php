@@ -32,10 +32,9 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
     /**
      * Credit card data
      * @required
-     * @maps credit_card_info
-     * @var CreateCreditCardRequest $creditCardInfo public property
+     * @var CreateCardRequest $card public property
      */
-    public $creditCardInfo;
+    public $card;
 
     /**
      * Number of retries
@@ -55,10 +54,18 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
     /**
      * The credit card id
      * @required
-     * @maps credit_card_id
-     * @var string $creditCardId public property
+     * @maps card_id
+     * @var string $cardId public property
      */
-    public $creditCardId;
+    public $cardId;
+
+    /**
+     * @todo Write general description for this property
+     * @required
+     * @maps card_token
+     * @var string $cardToken public property
+     */
+    public $cardToken;
 
     /**
      * Indicates if the operation should be only authorization or auth and capture.
@@ -68,25 +75,27 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param integer                 $installments           Initialization value for $this->installments
-     * @param string                  $statementDescriptor    Initialization value for $this->statementDescriptor
-     * @param CreateCreditCardRequest $creditCardInfo         Initialization value for $this->creditCardInfo
-     * @param integer                 $retries                Initialization value for $this->retries
-     * @param bool                    $updateSubscriptionCard Initialization value for $this->updateSubscriptionCard
-     * @param string                  $creditCardId           Initialization value for $this->creditCardId
-     * @param bool                    $capture                Initialization value for $this->capture
+     * @param integer           $installments           Initialization value for $this->installments
+     * @param string            $statementDescriptor    Initialization value for $this->statementDescriptor
+     * @param CreateCardRequest $card                   Initialization value for $this->card
+     * @param integer           $retries                Initialization value for $this->retries
+     * @param bool              $updateSubscriptionCard Initialization value for $this->updateSubscriptionCard
+     * @param string            $cardId                 Initialization value for $this->cardId
+     * @param string            $cardToken              Initialization value for $this->cardToken
+     * @param bool              $capture                Initialization value for $this->capture
      */
     public function __construct()
     {
         switch (func_num_args()) {
-            case 7:
+            case 8:
                 $this->installments           = func_get_arg(0);
                 $this->statementDescriptor    = func_get_arg(1);
-                $this->creditCardInfo         = func_get_arg(2);
+                $this->card                   = func_get_arg(2);
                 $this->retries                = func_get_arg(3);
                 $this->updateSubscriptionCard = func_get_arg(4);
-                $this->creditCardId           = func_get_arg(5);
-                $this->capture                = func_get_arg(6);
+                $this->cardId                 = func_get_arg(5);
+                $this->cardToken              = func_get_arg(6);
+                $this->capture                = func_get_arg(7);
                 break;
 
             default:
@@ -105,10 +114,11 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
         $json = array();
         $json['installments']             = $this->installments;
         $json['statement_descriptor']     = $this->statementDescriptor;
-        $json['credit_card_info']         = $this->creditCardInfo;
+        $json['card']                     = $this->card;
         $json['retries']                  = $this->retries;
         $json['update_subscription_card'] = $this->updateSubscriptionCard;
-        $json['credit_card_id']           = $this->creditCardId;
+        $json['card_id']                  = $this->cardId;
+        $json['card_token']               = $this->cardToken;
         $json['capture']                  = $this->capture;
 
         return $json;

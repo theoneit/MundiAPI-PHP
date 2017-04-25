@@ -17,7 +17,7 @@ class ListCardsResponse implements JsonSerializable
     /**
      * The card objects
      * @required
-     * @var GetCreditCardResponse[] $data public property
+     * @var GetCardResponse[] $data public property
      */
     public $data;
 

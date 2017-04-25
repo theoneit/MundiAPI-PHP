@@ -97,7 +97,7 @@ class InvoicesController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetInvoiceResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetInvoiceResponse');
     }
 
     /**
@@ -156,7 +156,7 @@ class InvoicesController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetChargeResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetChargeResponse');
     }
 
     /**
@@ -208,7 +208,7 @@ class InvoicesController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\ListInvoicesResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListInvoicesResponse');
     }
 
     /**
@@ -267,6 +267,6 @@ class InvoicesController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->map($response->body, new Models\GetInvoiceResponse());
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetInvoiceResponse');
     }
 }

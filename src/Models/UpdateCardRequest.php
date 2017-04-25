@@ -10,9 +10,9 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Request for updating a credit card
+ * Request for updating a card
  */
-class UpdateCreditCardRequest implements JsonSerializable
+class UpdateCardRequest implements JsonSerializable
 {
     /**
      * Holder name

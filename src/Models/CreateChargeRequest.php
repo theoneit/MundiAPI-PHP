@@ -29,14 +29,6 @@ class CreateChargeRequest implements JsonSerializable
     public $amount;
 
     /**
-     * The charge due date
-     * @required
-     * @maps due_at
-     * @var string $dueAt public property
-     */
-    public $dueAt;
-
-    /**
      * The customer's id
      * @required
      * @maps customer_id
@@ -66,25 +58,32 @@ class CreateChargeRequest implements JsonSerializable
     public $metadata;
 
     /**
+     * The charge due date
+     * @maps due_at
+     * @var string|null $dueAt public property
+     */
+    public $dueAt;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string                $code       Initialization value for $this->code
      * @param integer               $amount     Initialization value for $this->amount
-     * @param string                $dueAt      Initialization value for $this->dueAt
      * @param string                $customerId Initialization value for $this->customerId
      * @param CreateCustomerRequest $customer   Initialization value for $this->customer
      * @param CreatePaymentRequest  $payment    Initialization value for $this->payment
      * @param array                 $metadata   Initialization value for $this->metadata
+     * @param string                $dueAt      Initialization value for $this->dueAt
      */
     public function __construct()
     {
         if (7 == func_num_args()) {
             $this->code       = func_get_arg(0);
             $this->amount     = func_get_arg(1);
-            $this->dueAt      = func_get_arg(2);
-            $this->customerId = func_get_arg(3);
-            $this->customer   = func_get_arg(4);
-            $this->payment    = func_get_arg(5);
-            $this->metadata   = func_get_arg(6);
+            $this->customerId = func_get_arg(2);
+            $this->customer   = func_get_arg(3);
+            $this->payment    = func_get_arg(4);
+            $this->metadata   = func_get_arg(5);
+            $this->dueAt      = func_get_arg(6);
         }
     }
 
@@ -97,11 +96,11 @@ class CreateChargeRequest implements JsonSerializable
         $json = array();
         $json['code']        = $this->code;
         $json['amount']      = $this->amount;
-        $json['due_at']      = $this->dueAt;
         $json['customer_id'] = $this->customerId;
         $json['customer']    = $this->customer;
         $json['payment']     = $this->payment;
         $json['metadata']    = $this->metadata;
+        $json['due_at']      = $this->dueAt;
 
         return $json;
     }
