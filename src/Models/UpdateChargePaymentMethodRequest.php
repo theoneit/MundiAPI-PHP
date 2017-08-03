@@ -46,19 +46,28 @@ class UpdateChargePaymentMethodRequest implements JsonSerializable
     public $boleto;
 
     /**
+     * Voucher data
+     * @required
+     * @var CreateVoucherPaymentRequest $voucher public property
+     */
+    public $voucher;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param bool                           $updateSubscription Initialization value for $this->updateSubscription
      * @param string                         $paymentMethod      Initialization value for $this->paymentMethod
      * @param CreateCreditCardPaymentRequest $creditCard         Initialization value for $this->creditCard
      * @param CreateBoletoPaymentRequest     $boleto             Initialization value for $this->boleto
+     * @param CreateVoucherPaymentRequest    $voucher            Initialization value for $this->voucher
      */
     public function __construct()
     {
-        if (4 == func_num_args()) {
+        if (5 == func_num_args()) {
             $this->updateSubscription = func_get_arg(0);
             $this->paymentMethod      = func_get_arg(1);
             $this->creditCard         = func_get_arg(2);
             $this->boleto             = func_get_arg(3);
+            $this->voucher            = func_get_arg(4);
         }
     }
 
@@ -73,6 +82,7 @@ class UpdateChargePaymentMethodRequest implements JsonSerializable
         $json['payment_method']      = $this->paymentMethod;
         $json['credit_card']         = $this->creditCard;
         $json['boleto']              = $this->boleto;
+        $json['voucher']             = $this->voucher;
 
         return $json;
     }

@@ -23,43 +23,32 @@ class UpdateSubscriptionPaymentMethodRequest implements JsonSerializable
     public $paymentMethod;
 
     /**
-     * Credit card's id
+     * Card id
      * @required
-     * @maps credit_card_id
-     * @var string $creditCardId public property
+     * @maps card_id
+     * @var string $cardId public property
      */
-    public $creditCardId;
+    public $cardId;
 
     /**
-     * Credit card's gateway id
+     * Card data
      * @required
-     * @maps credit_card_gateway_id
-     * @var string $creditCardGatewayId public property
+     * @var CreateCardRequest $card public property
      */
-    public $creditCardGatewayId;
-
-    /**
-     * Credit card data
-     * @required
-     * @maps credit_card
-     * @var CreateCardRequest $creditCard public property
-     */
-    public $creditCard;
+    public $card;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string            $paymentMethod       Initialization value for $this->paymentMethod
-     * @param string            $creditCardId        Initialization value for $this->creditCardId
-     * @param string            $creditCardGatewayId Initialization value for $this->creditCardGatewayId
-     * @param CreateCardRequest $creditCard          Initialization value for $this->creditCard
+     * @param string            $paymentMethod Initialization value for $this->paymentMethod
+     * @param string            $cardId        Initialization value for $this->cardId
+     * @param CreateCardRequest $card          Initialization value for $this->card
      */
     public function __construct()
     {
-        if (4 == func_num_args()) {
-            $this->paymentMethod       = func_get_arg(0);
-            $this->creditCardId        = func_get_arg(1);
-            $this->creditCardGatewayId = func_get_arg(2);
-            $this->creditCard          = func_get_arg(3);
+        if (3 == func_num_args()) {
+            $this->paymentMethod = func_get_arg(0);
+            $this->cardId        = func_get_arg(1);
+            $this->card          = func_get_arg(2);
         }
     }
 
@@ -70,10 +59,9 @@ class UpdateSubscriptionPaymentMethodRequest implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['payment_method']         = $this->paymentMethod;
-        $json['credit_card_id']         = $this->creditCardId;
-        $json['credit_card_gateway_id'] = $this->creditCardGatewayId;
-        $json['credit_card']            = $this->creditCard;
+        $json['payment_method'] = $this->paymentMethod;
+        $json['card_id']        = $this->cardId;
+        $json['card']           = $this->card;
 
         return $json;
     }

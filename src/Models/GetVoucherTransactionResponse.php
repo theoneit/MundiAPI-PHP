@@ -10,12 +10,12 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Response object for getting a credit card transaction
+ * Response for voucher transactions
  */
-class GetCreditCardTransactionResponse extends GetTransactionResponse implements JsonSerializable
+class GetVoucherTransactionResponse extends GetTransactionResponse implements JsonSerializable
 {
     /**
-     * Text that will appear on the credit card's statement
+     * Text that will appear on the voucher's statement
      * @required
      * @maps statement_descriptor
      * @var string $statementDescriptor public property
@@ -31,7 +31,7 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
     public $acquirerName;
 
     /**
-     * Aquirer affiliation code
+     * Acquirer affiliation code
      * @required
      * @maps acquirer_affiliation_code
      * @var string $acquirerAffiliationCode public property
@@ -63,6 +63,22 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
     public $acquirerAuthCode;
 
     /**
+     * acquirer_message
+     * @required
+     * @maps acquirer_message
+     * @var string $acquirerMessage public property
+     */
+    public $acquirerMessage;
+
+    /**
+     * Acquirer return code
+     * @required
+     * @maps acquirer_return_code
+     * @var string $acquirerReturnCode public property
+     */
+    public $acquirerReturnCode;
+
+    /**
      * Operation type
      * @required
      * @maps operation_type
@@ -78,12 +94,6 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
     public $card;
 
     /**
-     * Number of installments
-     * @var integer|null $installments public property
-     */
-    public $installments;
-
-    /**
      * Constructor to set initial or default values of member properties
      * @param string          $statementDescriptor     Initialization value for $this->statementDescriptor
      * @param string          $acquirerName            Initialization value for $this->acquirerName
@@ -91,22 +101,24 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
      * @param string          $acquirerTid             Initialization value for $this->acquirerTid
      * @param string          $acquirerNsu             Initialization value for $this->acquirerNsu
      * @param string          $acquirerAuthCode        Initialization value for $this->acquirerAuthCode
+     * @param string          $acquirerMessage         Initialization value for $this->acquirerMessage
+     * @param string          $acquirerReturnCode      Initialization value for $this->acquirerReturnCode
      * @param string          $operationType           Initialization value for $this->operationType
      * @param GetCardResponse $card                    Initialization value for $this->card
-     * @param integer         $installments            Initialization value for $this->installments
      */
     public function __construct()
     {
-        if (9 == func_num_args()) {
+        if (10 == func_num_args()) {
             $this->statementDescriptor     = func_get_arg(0);
             $this->acquirerName            = func_get_arg(1);
             $this->acquirerAffiliationCode = func_get_arg(2);
             $this->acquirerTid             = func_get_arg(3);
             $this->acquirerNsu             = func_get_arg(4);
             $this->acquirerAuthCode        = func_get_arg(5);
-            $this->operationType           = func_get_arg(6);
-            $this->card                    = func_get_arg(7);
-            $this->installments            = func_get_arg(8);
+            $this->acquirerMessage         = func_get_arg(6);
+            $this->acquirerReturnCode      = func_get_arg(7);
+            $this->operationType           = func_get_arg(8);
+            $this->card                    = func_get_arg(9);
         }
     }
 
@@ -123,9 +135,10 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
         $json['acquirer_tid']              = $this->acquirerTid;
         $json['acquirer_nsu']              = $this->acquirerNsu;
         $json['acquirer_auth_code']        = $this->acquirerAuthCode;
+        $json['acquirer_message']          = $this->acquirerMessage;
+        $json['acquirer_return_code']      = $this->acquirerReturnCode;
         $json['operation_type']            = $this->operationType;
         $json['card']                      = $this->card;
-        $json['installments']              = $this->installments;
         $json = array_merge($json, parent::jsonSerialize());
 
         return $json;

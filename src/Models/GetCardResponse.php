@@ -113,6 +113,14 @@ class GetCardResponse implements JsonSerializable
     public $type;
 
     /**
+     * Document number for the card's holder
+     * @required
+     * @maps holder_document
+     * @var string $holderDocument public property
+     */
+    public $holderDocument;
+
+    /**
      * @todo Write general description for this property
      * @maps deleted_at
      * @var string|null $deletedAt public property
@@ -134,11 +142,12 @@ class GetCardResponse implements JsonSerializable
      * @param GetCustomerResponse       $customer       Initialization value for $this->customer
      * @param array                     $metadata       Initialization value for $this->metadata
      * @param string                    $type           Initialization value for $this->type
+     * @param string                    $holderDocument Initialization value for $this->holderDocument
      * @param string                    $deletedAt      Initialization value for $this->deletedAt
      */
     public function __construct()
     {
-        if (14 == func_num_args()) {
+        if (15 == func_num_args()) {
             $this->id             = func_get_arg(0);
             $this->lastFourDigits = func_get_arg(1);
             $this->brand          = func_get_arg(2);
@@ -152,7 +161,8 @@ class GetCardResponse implements JsonSerializable
             $this->customer       = func_get_arg(10);
             $this->metadata       = func_get_arg(11);
             $this->type           = func_get_arg(12);
-            $this->deletedAt      = func_get_arg(13);
+            $this->holderDocument = func_get_arg(13);
+            $this->deletedAt      = func_get_arg(14);
         }
     }
 
@@ -176,6 +186,7 @@ class GetCardResponse implements JsonSerializable
         $json['customer']         = $this->customer;
         $json['metadata']         = $this->metadata;
         $json['type']             = $this->type;
+        $json['holder_document']  = $this->holderDocument;
         $json['deleted_at']       = $this->deletedAt;
 
         return $json;

@@ -44,19 +44,39 @@ class CreateBoletoPaymentRequest implements JsonSerializable
     public $dueAt;
 
     /**
+     * Card's billing address
+     * @required
+     * @maps billing_address
+     * @var CreateAddressRequest $billingAddress public property
+     */
+    public $billingAddress;
+
+    /**
+     * The address id for the billing address
+     * @required
+     * @maps billing_address_id
+     * @var string $billingAddressId public property
+     */
+    public $billingAddressId;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param integer $retries      Initialization value for $this->retries
-     * @param string  $bank         Initialization value for $this->bank
-     * @param string  $instructions Initialization value for $this->instructions
-     * @param string  $dueAt        Initialization value for $this->dueAt
+     * @param integer              $retries          Initialization value for $this->retries
+     * @param string               $bank             Initialization value for $this->bank
+     * @param string               $instructions     Initialization value for $this->instructions
+     * @param string               $dueAt            Initialization value for $this->dueAt
+     * @param CreateAddressRequest $billingAddress   Initialization value for $this->billingAddress
+     * @param string               $billingAddressId Initialization value for $this->billingAddressId
      */
     public function __construct()
     {
-        if (4 == func_num_args()) {
-            $this->retries      = func_get_arg(0);
-            $this->bank         = func_get_arg(1);
-            $this->instructions = func_get_arg(2);
-            $this->dueAt        = func_get_arg(3);
+        if (6 == func_num_args()) {
+            $this->retries          = func_get_arg(0);
+            $this->bank             = func_get_arg(1);
+            $this->instructions     = func_get_arg(2);
+            $this->dueAt            = func_get_arg(3);
+            $this->billingAddress   = func_get_arg(4);
+            $this->billingAddressId = func_get_arg(5);
         }
     }
 
@@ -67,10 +87,12 @@ class CreateBoletoPaymentRequest implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['retries']      = $this->retries;
-        $json['bank']         = $this->bank;
-        $json['instructions'] = $this->instructions;
-        $json['due_at']       = $this->dueAt;
+        $json['retries']            = $this->retries;
+        $json['bank']               = $this->bank;
+        $json['instructions']       = $this->instructions;
+        $json['due_at']             = $this->dueAt;
+        $json['billing_address']    = $this->billingAddress;
+        $json['billing_address_id'] = $this->billingAddressId;
 
         return $json;
     }

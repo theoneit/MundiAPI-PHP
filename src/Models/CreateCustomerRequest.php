@@ -29,13 +29,6 @@ class CreateCustomerRequest implements JsonSerializable
     public $email;
 
     /**
-     * Phone number. Only numbers, no special characters.
-     * @required
-     * @var string $phone public property
-     */
-    public $phone;
-
-    /**
      * Document number. Only numbers, no special characters.
      * @required
      * @var string $document public property
@@ -64,25 +57,41 @@ class CreateCustomerRequest implements JsonSerializable
     public $metadata;
 
     /**
+     * @todo Write general description for this property
+     * @required
+     * @var CreatePhonesRequest $phones public property
+     */
+    public $phones;
+
+    /**
+     * Customer code
+     * @required
+     * @var string $code public property
+     */
+    public $code;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string               $name     Initialization value for $this->name
      * @param string               $email    Initialization value for $this->email
-     * @param string               $phone    Initialization value for $this->phone
      * @param string               $document Initialization value for $this->document
      * @param string               $type     Initialization value for $this->type
      * @param CreateAddressRequest $address  Initialization value for $this->address
      * @param array                $metadata Initialization value for $this->metadata
+     * @param CreatePhonesRequest  $phones   Initialization value for $this->phones
+     * @param string               $code     Initialization value for $this->code
      */
     public function __construct()
     {
-        if (7 == func_num_args()) {
+        if (8 == func_num_args()) {
             $this->name     = func_get_arg(0);
             $this->email    = func_get_arg(1);
-            $this->phone    = func_get_arg(2);
-            $this->document = func_get_arg(3);
-            $this->type     = func_get_arg(4);
-            $this->address  = func_get_arg(5);
-            $this->metadata = func_get_arg(6);
+            $this->document = func_get_arg(2);
+            $this->type     = func_get_arg(3);
+            $this->address  = func_get_arg(4);
+            $this->metadata = func_get_arg(5);
+            $this->phones   = func_get_arg(6);
+            $this->code     = func_get_arg(7);
         }
     }
 
@@ -95,11 +104,12 @@ class CreateCustomerRequest implements JsonSerializable
         $json = array();
         $json['name']     = $this->name;
         $json['email']    = $this->email;
-        $json['phone']    = $this->phone;
         $json['document'] = $this->document;
         $json['type']     = $this->type;
         $json['address']  = $this->address;
         $json['metadata'] = $this->metadata;
+        $json['phones']   = $this->phones;
+        $json['code']     = $this->code;
 
         return $json;
     }

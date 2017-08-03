@@ -15,6 +15,13 @@ use JsonSerializable;
 class CreateCaptureChargeRequest implements JsonSerializable
 {
     /**
+     * Code for the charge. Sending this field will update the code send on the charge and order creation.
+     * @required
+     * @var string $code public property
+     */
+    public $code;
+
+    /**
      * The amount that will be captured
      * @var integer|null $amount public property
      */
@@ -22,12 +29,14 @@ class CreateCaptureChargeRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
+     * @param string  $code   Initialization value for $this->code
      * @param integer $amount Initialization value for $this->amount
      */
     public function __construct()
     {
-        if (1 == func_num_args()) {
-            $this->amount = func_get_arg(0);
+        if (2 == func_num_args()) {
+            $this->code   = func_get_arg(0);
+            $this->amount = func_get_arg(1);
         }
     }
 
@@ -38,6 +47,7 @@ class CreateCaptureChargeRequest implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
+        $json['code']   = $this->code;
         $json['amount'] = $this->amount;
 
         return $json;

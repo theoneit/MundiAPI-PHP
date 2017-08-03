@@ -24,7 +24,6 @@ class MundiAPIClient
         Configuration::$basicAuthUserName = $basicAuthUserName ? $basicAuthUserName : Configuration::$basicAuthUserName;
         Configuration::$basicAuthPassword = $basicAuthPassword ? $basicAuthPassword : Configuration::$basicAuthPassword;
     }
- 
     /**
      * Singleton access to Charges controller
      * @return Controllers\ChargesController The *Singleton* instance
@@ -33,7 +32,6 @@ class MundiAPIClient
     {
         return Controllers\ChargesController::getInstance();
     }
- 
     /**
      * Singleton access to Customers controller
      * @return Controllers\CustomersController The *Singleton* instance
@@ -42,7 +40,6 @@ class MundiAPIClient
     {
         return Controllers\CustomersController::getInstance();
     }
- 
     /**
      * Singleton access to Subscriptions controller
      * @return Controllers\SubscriptionsController The *Singleton* instance
@@ -51,7 +48,6 @@ class MundiAPIClient
     {
         return Controllers\SubscriptionsController::getInstance();
     }
- 
     /**
      * Singleton access to Plans controller
      * @return Controllers\PlansController The *Singleton* instance
@@ -60,7 +56,6 @@ class MundiAPIClient
     {
         return Controllers\PlansController::getInstance();
     }
- 
     /**
      * Singleton access to Invoices controller
      * @return Controllers\InvoicesController The *Singleton* instance
@@ -69,7 +64,6 @@ class MundiAPIClient
     {
         return Controllers\InvoicesController::getInstance();
     }
- 
     /**
      * Singleton access to Orders controller
      * @return Controllers\OrdersController The *Singleton* instance

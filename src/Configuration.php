@@ -23,17 +23,11 @@ class Configuration
      * The username to use with basic authentication
      * @var string
      */
-    /**
-     * @todo Replace the $basicAuthUserName with an appropriate value
-     */
     public static $basicAuthUserName = 'TODO: Replace';
 
     /**
      * The password to use with basic authentication
      * @var string
-     */
-    /**
-     * @todo Replace the $basicAuthPassword with an appropriate value
      */
     public static $basicAuthPassword = 'TODO: Replace';
 }

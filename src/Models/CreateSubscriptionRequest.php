@@ -15,60 +15,28 @@ use JsonSerializable;
 class CreateSubscriptionRequest implements JsonSerializable
 {
     /**
-     * @todo Write general description for this property
-     * @required
-     * @maps plan_id
-     * @var string $planId public property
-     */
-    public $planId;
-
-    /**
-     * @todo Write general description for this property
+     * Customer
      * @required
      * @var CreateCustomerRequest $customer public property
      */
     public $customer;
 
     /**
-     * @todo Write general description for this property
+     * Card
      * @required
      * @var CreateCardRequest $card public property
      */
     public $card;
 
     /**
-     * @todo Write general description for this property
+     * Subscription code
      * @required
      * @var string $code public property
      */
     public $code;
 
     /**
-     * @todo Write general description for this property
-     * @required
-     * @maps customer_id
-     * @var string $customerId public property
-     */
-    public $customerId;
-
-    /**
-     * @todo Write general description for this property
-     * @required
-     * @maps credit_card_id
-     * @var string $creditCardId public property
-     */
-    public $creditCardId;
-
-    /**
-     * @todo Write general description for this property
-     * @required
-     * @maps credit_card_gateway_id
-     * @var string $creditCardGatewayId public property
-     */
-    public $creditCardGatewayId;
-
-    /**
-     * @todo Write general description for this property
+     * Payment method
      * @required
      * @maps payment_method
      * @var string $paymentMethod public property
@@ -76,7 +44,7 @@ class CreateSubscriptionRequest implements JsonSerializable
     public $paymentMethod;
 
     /**
-     * @todo Write general description for this property
+     * Billing type
      * @required
      * @maps billing_type
      * @var string $billingType public property
@@ -84,7 +52,7 @@ class CreateSubscriptionRequest implements JsonSerializable
     public $billingType;
 
     /**
-     * @todo Write general description for this property
+     * Statement descriptor for credit card subscriptions
      * @required
      * @maps statement_descriptor
      * @var string $statementDescriptor public property
@@ -92,28 +60,28 @@ class CreateSubscriptionRequest implements JsonSerializable
     public $statementDescriptor;
 
     /**
-     * @todo Write general description for this property
+     * Subscription description
      * @required
      * @var string $description public property
      */
     public $description;
 
     /**
-     * @todo Write general description for this property
+     * Currency
      * @required
      * @var string $currency public property
      */
     public $currency;
 
     /**
-     * @todo Write general description for this property
+     * Interval
      * @required
      * @var string $interval public property
      */
     public $interval;
 
     /**
-     * @todo Write general description for this property
+     * Interval count
      * @required
      * @maps interval_count
      * @var integer $intervalCount public property
@@ -121,7 +89,7 @@ class CreateSubscriptionRequest implements JsonSerializable
     public $intervalCount;
 
     /**
-     * @todo Write general description for this property
+     * Subscription pricing scheme
      * @required
      * @maps pricing_scheme
      * @var CreatePricingSchemeRequest $pricingScheme public property
@@ -129,82 +97,106 @@ class CreateSubscriptionRequest implements JsonSerializable
     public $pricingScheme;
 
     /**
-     * @todo Write general description for this property
+     * Subscription items
      * @required
      * @var CreateSubscriptionItemRequest[] $items public property
      */
     public $items;
 
     /**
-     * @todo Write general description for this property
+     * Shipping
      * @required
      * @var CreateShippingRequest $shipping public property
      */
     public $shipping;
 
     /**
-     * @todo Write general description for this property
+     * Discounts
      * @required
      * @var CreateDiscountRequest[] $discounts public property
      */
     public $discounts;
 
     /**
-     * @todo Write general description for this property
+     * Metadata
      * @required
      * @var array $metadata public property
      */
     public $metadata;
 
     /**
-     * @todo Write general description for this property
+     * Setup data
      * @required
      * @var CreateSetupRequest $setup public property
      */
     public $setup;
 
     /**
-     * @todo Write general description for this property
+     * Plan id
+     * @maps plan_id
+     * @var string|null $planId public property
+     */
+    public $planId;
+
+    /**
+     * Customer id
+     * @maps customer_id
+     * @var string|null $customerId public property
+     */
+    public $customerId;
+
+    /**
+     * Card id
+     * @maps card_id
+     * @var string|null $cardId public property
+     */
+    public $cardId;
+
+    /**
+     * Billing day
      * @maps billing_day
      * @var integer|null $billingDay public property
      */
     public $billingDay;
 
     /**
-     * @todo Write general description for this property
+     * Number of installments
      * @var integer|null $installments public property
      */
     public $installments;
 
     /**
-     * @todo Write general description for this property
+     * Subscription start date
      * @maps start_at
      * @var string|null $startAt public property
      */
     public $startAt;
 
     /**
-     * @todo Write general description for this property
+     * Subscription minimum price
      * @maps minimum_price
      * @var integer|null $minimumPrice public property
      */
     public $minimumPrice;
 
     /**
-     * @todo Write general description for this property
+     * Number of cycles
      * @var integer|null $cycles public property
      */
     public $cycles;
 
     /**
+     * Card token
+     * @maps card_token
+     * @var string|null $cardToken public property
+     */
+    public $cardToken;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param string                     $planId              Initialization value for $this->planId
      * @param CreateCustomerRequest      $customer            Initialization value for $this->customer
      * @param CreateCardRequest          $card                Initialization value for $this->card
      * @param string                     $code                Initialization value for $this->code
-     * @param string                     $customerId          Initialization value for $this->customerId
-     * @param string                     $creditCardId        Initialization value for $this->creditCardId
-     * @param string                     $creditCardGatewayId Initialization value for $this->creditCardGatewayId
      * @param string                     $paymentMethod       Initialization value for $this->paymentMethod
      * @param string                     $billingType         Initialization value for $this->billingType
      * @param string                     $statementDescriptor Initialization value for $this->statementDescriptor
@@ -218,40 +210,44 @@ class CreateSubscriptionRequest implements JsonSerializable
      * @param array                      $discounts           Initialization value for $this->discounts
      * @param array                      $metadata            Initialization value for $this->metadata
      * @param CreateSetupRequest         $setup               Initialization value for $this->setup
+     * @param string                     $planId              Initialization value for $this->planId
+     * @param string                     $customerId          Initialization value for $this->customerId
+     * @param string                     $cardId              Initialization value for $this->cardId
      * @param integer                    $billingDay          Initialization value for $this->billingDay
      * @param integer                    $installments        Initialization value for $this->installments
      * @param string                     $startAt             Initialization value for $this->startAt
      * @param integer                    $minimumPrice        Initialization value for $this->minimumPrice
      * @param integer                    $cycles              Initialization value for $this->cycles
+     * @param string                     $cardToken           Initialization value for $this->cardToken
      */
     public function __construct()
     {
         if (25 == func_num_args()) {
-            $this->planId              = func_get_arg(0);
-            $this->customer            = func_get_arg(1);
-            $this->card                = func_get_arg(2);
-            $this->code                = func_get_arg(3);
-            $this->customerId          = func_get_arg(4);
-            $this->creditCardId        = func_get_arg(5);
-            $this->creditCardGatewayId = func_get_arg(6);
-            $this->paymentMethod       = func_get_arg(7);
-            $this->billingType         = func_get_arg(8);
-            $this->statementDescriptor = func_get_arg(9);
-            $this->description         = func_get_arg(10);
-            $this->currency            = func_get_arg(11);
-            $this->interval            = func_get_arg(12);
-            $this->intervalCount       = func_get_arg(13);
-            $this->pricingScheme       = func_get_arg(14);
-            $this->items               = func_get_arg(15);
-            $this->shipping            = func_get_arg(16);
-            $this->discounts           = func_get_arg(17);
-            $this->metadata            = func_get_arg(18);
-            $this->setup               = func_get_arg(19);
-            $this->billingDay          = func_get_arg(20);
-            $this->installments        = func_get_arg(21);
-            $this->startAt             = func_get_arg(22);
-            $this->minimumPrice        = func_get_arg(23);
-            $this->cycles              = func_get_arg(24);
+            $this->customer            = func_get_arg(0);
+            $this->card                = func_get_arg(1);
+            $this->code                = func_get_arg(2);
+            $this->paymentMethod       = func_get_arg(3);
+            $this->billingType         = func_get_arg(4);
+            $this->statementDescriptor = func_get_arg(5);
+            $this->description         = func_get_arg(6);
+            $this->currency            = func_get_arg(7);
+            $this->interval            = func_get_arg(8);
+            $this->intervalCount       = func_get_arg(9);
+            $this->pricingScheme       = func_get_arg(10);
+            $this->items               = func_get_arg(11);
+            $this->shipping            = func_get_arg(12);
+            $this->discounts           = func_get_arg(13);
+            $this->metadata            = func_get_arg(14);
+            $this->setup               = func_get_arg(15);
+            $this->planId              = func_get_arg(16);
+            $this->customerId          = func_get_arg(17);
+            $this->cardId              = func_get_arg(18);
+            $this->billingDay          = func_get_arg(19);
+            $this->installments        = func_get_arg(20);
+            $this->startAt             = func_get_arg(21);
+            $this->minimumPrice        = func_get_arg(22);
+            $this->cycles              = func_get_arg(23);
+            $this->cardToken           = func_get_arg(24);
         }
     }
 
@@ -262,31 +258,31 @@ class CreateSubscriptionRequest implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['plan_id']                = $this->planId;
-        $json['customer']               = $this->customer;
-        $json['card']                   = $this->card;
-        $json['code']                   = $this->code;
-        $json['customer_id']            = $this->customerId;
-        $json['credit_card_id']         = $this->creditCardId;
-        $json['credit_card_gateway_id'] = $this->creditCardGatewayId;
-        $json['payment_method']         = $this->paymentMethod;
-        $json['billing_type']           = $this->billingType;
-        $json['statement_descriptor']   = $this->statementDescriptor;
-        $json['description']            = $this->description;
-        $json['currency']               = $this->currency;
-        $json['interval']               = $this->interval;
-        $json['interval_count']         = $this->intervalCount;
-        $json['pricing_scheme']         = $this->pricingScheme;
-        $json['items']                  = $this->items;
-        $json['shipping']               = $this->shipping;
-        $json['discounts']              = $this->discounts;
-        $json['metadata']               = $this->metadata;
-        $json['setup']                  = $this->setup;
-        $json['billing_day']            = $this->billingDay;
-        $json['installments']           = $this->installments;
-        $json['start_at']               = $this->startAt;
-        $json['minimum_price']          = $this->minimumPrice;
-        $json['cycles']                 = $this->cycles;
+        $json['customer']             = $this->customer;
+        $json['card']                 = $this->card;
+        $json['code']                 = $this->code;
+        $json['payment_method']       = $this->paymentMethod;
+        $json['billing_type']         = $this->billingType;
+        $json['statement_descriptor'] = $this->statementDescriptor;
+        $json['description']          = $this->description;
+        $json['currency']             = $this->currency;
+        $json['interval']             = $this->interval;
+        $json['interval_count']       = $this->intervalCount;
+        $json['pricing_scheme']       = $this->pricingScheme;
+        $json['items']                = $this->items;
+        $json['shipping']             = $this->shipping;
+        $json['discounts']            = $this->discounts;
+        $json['metadata']             = $this->metadata;
+        $json['setup']                = $this->setup;
+        $json['plan_id']              = $this->planId;
+        $json['customer_id']          = $this->customerId;
+        $json['card_id']              = $this->cardId;
+        $json['billing_day']          = $this->billingDay;
+        $json['installments']         = $this->installments;
+        $json['start_at']             = $this->startAt;
+        $json['minimum_price']        = $this->minimumPrice;
+        $json['cycles']               = $this->cycles;
+        $json['card_token']           = $this->cardToken;
 
         return $json;
     }

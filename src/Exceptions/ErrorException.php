@@ -16,21 +16,21 @@ use MundiAPILib\APIHelper;
 class ErrorException extends APIException
 {
     /**
- * @todo Write general description for this property
+     * @todo Write general description for this property
      * @required
      * @var string $message public property
      */
     public $message;
 
     /**
- * @todo Write general description for this property
+     * @todo Write general description for this property
      * @required
      * @var object $errors public property
      */
     public $errors;
 
     /**
- * @todo Write general description for this property
+     * @todo Write general description for this property
      * @required
      * @var object $request public property
      */

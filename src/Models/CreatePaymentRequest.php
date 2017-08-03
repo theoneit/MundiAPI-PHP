@@ -45,19 +45,47 @@ class CreatePaymentRequest implements JsonSerializable
     public $currency;
 
     /**
+     * Settings for voucher payment
+     * @required
+     * @var CreateVoucherPaymentRequest $voucher public property
+     */
+    public $voucher;
+
+    /**
+     * Settings for bank transfer payment
+     * @maps bank_transfer
+     * @var CreateBankTransferPaymentRequest|null $bankTransfer public property
+     */
+    public $bankTransfer;
+
+    /**
+     * Gateway affiliation code
+     * @maps gateway_affiliation_id
+     * @var string|null $gatewayAffiliationId public property
+     */
+    public $gatewayAffiliationId;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param string                         $paymentMethod Initialization value for $this->paymentMethod
-     * @param CreateCreditCardPaymentRequest $creditCard    Initialization value for $this->creditCard
-     * @param CreateBoletoPaymentRequest     $boleto        Initialization value for $this->boleto
-     * @param string                         $currency      Initialization value for $this->currency
+     * @param string                           $paymentMethod        Initialization value for $this->paymentMethod
+     * @param CreateCreditCardPaymentRequest   $creditCard           Initialization value for $this->creditCard
+     * @param CreateBoletoPaymentRequest       $boleto               Initialization value for $this->boleto
+     * @param string                           $currency             Initialization value for $this->currency
+     * @param CreateVoucherPaymentRequest      $voucher              Initialization value for $this->voucher
+     * @param CreateBankTransferPaymentRequest $bankTransfer         Initialization value for $this->bankTransfer
+     * @param string                           $gatewayAffiliationId Initialization value for $this-
+     *                                                                 >gatewayAffiliationId
      */
     public function __construct()
     {
-        if (4 == func_num_args()) {
-            $this->paymentMethod = func_get_arg(0);
-            $this->creditCard    = func_get_arg(1);
-            $this->boleto        = func_get_arg(2);
-            $this->currency      = func_get_arg(3);
+        if (7 == func_num_args()) {
+            $this->paymentMethod        = func_get_arg(0);
+            $this->creditCard           = func_get_arg(1);
+            $this->boleto               = func_get_arg(2);
+            $this->currency             = func_get_arg(3);
+            $this->voucher              = func_get_arg(4);
+            $this->bankTransfer         = func_get_arg(5);
+            $this->gatewayAffiliationId = func_get_arg(6);
         }
     }
 
@@ -68,10 +96,13 @@ class CreatePaymentRequest implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['payment_method'] = $this->paymentMethod;
-        $json['credit_card']    = $this->creditCard;
-        $json['boleto']         = $this->boleto;
-        $json['currency']       = $this->currency;
+        $json['payment_method']         = $this->paymentMethod;
+        $json['credit_card']            = $this->creditCard;
+        $json['boleto']                 = $this->boleto;
+        $json['currency']               = $this->currency;
+        $json['voucher']                = $this->voucher;
+        $json['bank_transfer']          = $this->bankTransfer;
+        $json['gateway_affiliation_id'] = $this->gatewayAffiliationId;
 
         return $json;
     }

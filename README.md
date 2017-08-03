@@ -1,5 +1,7 @@
 # Getting started
 
+Mundipagg API
+
 ## How to Build
 
 The generated code has dependencies over external libraries like UniRest. These dependencies are defined in the ```composer.json``` file that comes with the SDK. 
@@ -28,7 +30,7 @@ CURL used to include a list of accepted CAs, but no longer bundles ANY CA certs.
 
 ## How to Use
 
-The following section explains how to use the MundiAPILib library in a new project.
+The following section explains how to use the MundiAPI library in a new project.
 
 ### 1. Open Project in an IDE
 
@@ -119,16 +121,16 @@ In order to setup authentication and initialization of the API client, you need 
 API client can be initialized as following.
 
 ```php
-// Configuration parameters and credentials
-$basicAuthUserName = "basicAuthUserName"; // The username to use with basic authentication
-$basicAuthPassword = "basicAuthPassword"; // The password to use with basic authentication
+$basicAuthUserName = 'basicAuthUserName'; // The username to use with basic authentication
+$basicAuthPassword = 'basicAuthPassword'; // The password to use with basic authentication
 
-$client = new MundiAPILib\MundiAPILibClient($basicAuthUserName, $basicAuthPassword);
+$client = new MundiAPILib\MundiAPIClient($basicAuthUserName, $basicAuthPassword);
 ```
 
-## Class Reference
 
-### <a name="list_of_controllers"></a>List of Controllers
+# Class Reference
+
+## <a name="list_of_controllers"></a>List of Controllers
 
 * [ChargesController](#charges_controller)
 * [CustomersController](#customers_controller)
@@ -137,9 +139,9 @@ $client = new MundiAPILib\MundiAPILibClient($basicAuthUserName, $basicAuthPasswo
 * [InvoicesController](#invoices_controller)
 * [OrdersController](#orders_controller)
 
-### <a name="charges_controller"></a>![Class: ](https://apidocs.io/img/class.png ".ChargesController") ChargesController
+## <a name="charges_controller"></a>![Class: ](https://apidocs.io/img/class.png ".ChargesController") ChargesController
 
-#### Get singleton instance
+### Get singleton instance
 
 The singleton instance of the ``` ChargesController ``` class can be accessed from the API Client.
 
@@ -147,7 +149,7 @@ The singleton instance of the ``` ChargesController ``` class can be accessed fr
 $charges = $client->getCharges();
 ```
 
-#### <a name="get_charge"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.getCharge") getCharge
+### <a name="get_charge"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.getCharge") getCharge
 
 > Get a charge from its id
 
@@ -174,7 +176,7 @@ $result = $charges->getCharge($chargeId);
 ```
 
 
-#### <a name="retry_charge"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.retryCharge") retryCharge
+### <a name="retry_charge"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.retryCharge") retryCharge
 
 > Retries a charge
 
@@ -201,7 +203,7 @@ $result = $charges->retryCharge($chargeId);
 ```
 
 
-#### <a name="get_charges"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.getCharges") getCharges
+### <a name="get_charges"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.getCharges") getCharges
 
 > Lists all charges
 
@@ -219,7 +221,7 @@ $result = $charges->getCharges();
 ```
 
 
-#### <a name="create_charge"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.createCharge") createCharge
+### <a name="create_charge"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.createCharge") createCharge
 
 > Creates a new charge
 
@@ -246,7 +248,7 @@ $result = $charges->createCharge($request);
 ```
 
 
-#### <a name="update_charge_card"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.updateChargeCard") updateChargeCard
+### <a name="update_charge_card"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.updateChargeCard") updateChargeCard
 
 > Updates the card from a charge
 
@@ -277,7 +279,7 @@ $result = $charges->updateChargeCard($chargeId, $request);
 ```
 
 
-#### <a name="update_charge_payment_method"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.updateChargePaymentMethod") updateChargePaymentMethod
+### <a name="update_charge_payment_method"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.updateChargePaymentMethod") updateChargePaymentMethod
 
 > Updates a charge's payment method
 
@@ -308,7 +310,7 @@ $result = $charges->updateChargePaymentMethod($chargeId, $request);
 ```
 
 
-#### <a name="cancel_charge"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.cancelCharge") cancelCharge
+### <a name="cancel_charge"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.cancelCharge") cancelCharge
 
 > Cancel a charge
 
@@ -339,7 +341,7 @@ $result = $charges->cancelCharge($chargeId, $request);
 ```
 
 
-#### <a name="capture_charge"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.captureCharge") captureCharge
+### <a name="capture_charge"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.captureCharge") captureCharge
 
 > Captures a charge
 
@@ -372,9 +374,9 @@ $result = $charges->captureCharge($chargeId, $request);
 
 [Back to List of Controllers](#list_of_controllers)
 
-### <a name="customers_controller"></a>![Class: ](https://apidocs.io/img/class.png ".CustomersController") CustomersController
+## <a name="customers_controller"></a>![Class: ](https://apidocs.io/img/class.png ".CustomersController") CustomersController
 
-#### Get singleton instance
+### Get singleton instance
 
 The singleton instance of the ``` CustomersController ``` class can be accessed from the API Client.
 
@@ -382,7 +384,7 @@ The singleton instance of the ``` CustomersController ``` class can be accessed 
 $customers = $client->getCustomers();
 ```
 
-#### <a name="get_addresses"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getAddresses") getAddresses
+### <a name="get_addresses"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getAddresses") getAddresses
 
 > Gets all adressess from a customer
 
@@ -409,7 +411,7 @@ $result = $customers->getAddresses($customerId);
 ```
 
 
-#### <a name="get_cards"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getCards") getCards
+### <a name="get_cards"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getCards") getCards
 
 > Get all cards from a customer
 
@@ -436,7 +438,7 @@ $result = $customers->getCards($customerId);
 ```
 
 
-#### <a name="get_customers"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getCustomers") getCustomers
+### <a name="get_customers"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getCustomers") getCustomers
 
 > Get all Customers
 
@@ -454,7 +456,7 @@ $result = $customers->getCustomers();
 ```
 
 
-#### <a name="create_customer"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.createCustomer") createCustomer
+### <a name="create_customer"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.createCustomer") createCustomer
 
 > Creates a new customer
 
@@ -481,7 +483,7 @@ $result = $customers->createCustomer($request);
 ```
 
 
-#### <a name="get_customer"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getCustomer") getCustomer
+### <a name="get_customer"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getCustomer") getCustomer
 
 > Get a customer
 
@@ -508,7 +510,7 @@ $result = $customers->getCustomer($customerId);
 ```
 
 
-#### <a name="update_address"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.updateAddress") updateAddress
+### <a name="update_address"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.updateAddress") updateAddress
 
 > Updates an address
 
@@ -542,7 +544,7 @@ $result = $customers->updateAddress($customerId, $addressId, $request);
 ```
 
 
-#### <a name="update_card"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.updateCard") updateCard
+### <a name="update_card"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.updateCard") updateCard
 
 > Updates a card
 
@@ -576,7 +578,7 @@ $result = $customers->updateCard($customerId, $cardId, $request);
 ```
 
 
-#### <a name="get_address"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getAddress") getAddress
+### <a name="get_address"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getAddress") getAddress
 
 > Get a customer's address
 
@@ -607,7 +609,7 @@ $result = $customers->getAddress($customerId, $addressId);
 ```
 
 
-#### <a name="delete_address"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.deleteAddress") deleteAddress
+### <a name="delete_address"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.deleteAddress") deleteAddress
 
 > Delete a Customer's address
 
@@ -638,7 +640,7 @@ $result = $customers->deleteAddress($customerId, $addressId);
 ```
 
 
-#### <a name="delete_card"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.deleteCard") deleteCard
+### <a name="delete_card"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.deleteCard") deleteCard
 
 > Delete a customer's card
 
@@ -669,7 +671,7 @@ $result = $customers->deleteCard($customerId, $cardId);
 ```
 
 
-#### <a name="create_address"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.createAddress") createAddress
+### <a name="create_address"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.createAddress") createAddress
 
 > Creates a new address for a customer
 
@@ -700,7 +702,7 @@ $result = $customers->createAddress($customerId, $request);
 ```
 
 
-#### <a name="get_card"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getCard") getCard
+### <a name="get_card"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getCard") getCard
 
 > Get a customer's card
 
@@ -731,7 +733,7 @@ $result = $customers->getCard($customerId, $cardId);
 ```
 
 
-#### <a name="create_card"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.createCard") createCard
+### <a name="create_card"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.createCard") createCard
 
 > Creates a new card for a customer
 
@@ -762,7 +764,7 @@ $result = $customers->createCard($customerId, $request);
 ```
 
 
-#### <a name="update_customer"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.updateCustomer") updateCustomer
+### <a name="update_customer"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.updateCustomer") updateCustomer
 
 > Updates a customer
 
@@ -793,11 +795,158 @@ $result = $customers->updateCustomer($customerId, $request);
 ```
 
 
+### <a name="delete_access_tokens"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.deleteAccessTokens") deleteAccessTokens
+
+> Delete a Customer's access tokens
+
+
+```php
+function deleteAccessTokens($customerId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| customerId |  ``` Required ```  | Customer Id |
+
+
+
+#### Example Usage
+
+```php
+$customerId = 'customer_id';
+
+$result = $customers->deleteAccessTokens($customerId);
+
+```
+
+
+### <a name="get_access_tokens"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getAccessTokens") getAccessTokens
+
+> Get all access tokens from a customer
+
+
+```php
+function getAccessTokens($customerId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| customerId |  ``` Required ```  | Customer Id |
+
+
+
+#### Example Usage
+
+```php
+$customerId = 'customer_id';
+
+$result = $customers->getAccessTokens($customerId);
+
+```
+
+
+### <a name="delete_access_token"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.deleteAccessToken") deleteAccessToken
+
+> Delete a customer's access token
+
+
+```php
+function deleteAccessToken(
+        $customerId,
+        $tokenId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| customerId |  ``` Required ```  | Customer Id |
+| tokenId |  ``` Required ```  | Token Id |
+
+
+
+#### Example Usage
+
+```php
+$customerId = 'customer_id';
+$tokenId = 'token_id';
+
+$result = $customers->deleteAccessToken($customerId, $tokenId);
+
+```
+
+
+### <a name="create_access_token"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.createAccessToken") createAccessToken
+
+> Creates a access token for a customer
+
+
+```php
+function createAccessToken(
+        $customerId,
+        $request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| customerId |  ``` Required ```  | Customer Id |
+| request |  ``` Required ```  | Request for creating a access token |
+
+
+
+#### Example Usage
+
+```php
+$customerId = 'customer_id';
+$request = new CreateAccessTokenRequest();
+
+$result = $customers->createAccessToken($customerId, $request);
+
+```
+
+
+### <a name="get_access_token"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getAccessToken") getAccessToken
+
+> Get a Customer's access token
+
+
+```php
+function getAccessToken(
+        $customerId,
+        $tokenId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| customerId |  ``` Required ```  | Customer Id |
+| tokenId |  ``` Required ```  | Token Id |
+
+
+
+#### Example Usage
+
+```php
+$customerId = 'customer_id';
+$tokenId = 'token_id';
+
+$result = $customers->getAccessToken($customerId, $tokenId);
+
+```
+
+
 [Back to List of Controllers](#list_of_controllers)
 
-### <a name="subscriptions_controller"></a>![Class: ](https://apidocs.io/img/class.png ".SubscriptionsController") SubscriptionsController
+## <a name="subscriptions_controller"></a>![Class: ](https://apidocs.io/img/class.png ".SubscriptionsController") SubscriptionsController
 
-#### Get singleton instance
+### Get singleton instance
 
 The singleton instance of the ``` SubscriptionsController ``` class can be accessed from the API Client.
 
@@ -805,88 +954,7 @@ The singleton instance of the ``` SubscriptionsController ``` class can be acces
 $subscriptions = $client->getSubscriptions();
 ```
 
-#### <a name="delete_subscription"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.deleteSubscription") deleteSubscription
-
-> Cancels a subscription
-
-
-```php
-function deleteSubscription($subscriptionId)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | The subscription id |
-
-
-
-#### Example Usage
-
-```php
-$subscriptionId = 'subscription_id';
-
-$result = $subscriptions->deleteSubscription($subscriptionId);
-
-```
-
-
-#### <a name="get_subscription_invoices"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getSubscriptionInvoices") getSubscriptionInvoices
-
-> Gets all invoices from a subscription
-
-
-```php
-function getSubscriptionInvoices($subscriptionId)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | Subscription id |
-
-
-
-#### Example Usage
-
-```php
-$subscriptionId = 'subscription_id';
-
-$result = $subscriptions->getSubscriptionInvoices($subscriptionId);
-
-```
-
-
-#### <a name="get_subscription_items"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getSubscriptionItems") getSubscriptionItems
-
-> Gets all the items from a subscription
-
-
-```php
-function getSubscriptionItems($subscriptionId)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | The subscription id |
-
-
-
-#### Example Usage
-
-```php
-$subscriptionId = 'subscription_id';
-
-$result = $subscriptions->getSubscriptionItems($subscriptionId);
-
-```
-
-
-#### <a name="update_subscription_billing_date"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.updateSubscriptionBillingDate") updateSubscriptionBillingDate
+### <a name="update_subscription_billing_date"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.updateSubscriptionBillingDate") updateSubscriptionBillingDate
 
 > Updates the billing date from a subscription
 
@@ -917,7 +985,7 @@ $result = $subscriptions->updateSubscriptionBillingDate($subscriptionId, $reques
 ```
 
 
-#### <a name="create_usage"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.createUsage") createUsage
+### <a name="create_usage"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.createUsage") createUsage
 
 > Creates a usage
 
@@ -951,7 +1019,7 @@ $result = $subscriptions->createUsage($subscriptionId, $itemId, $body);
 ```
 
 
-#### <a name="update_subscription_item"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.updateSubscriptionItem") updateSubscriptionItem
+### <a name="update_subscription_item"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.updateSubscriptionItem") updateSubscriptionItem
 
 > Updates a subscription item
 
@@ -985,7 +1053,7 @@ $result = $subscriptions->updateSubscriptionItem($subscriptionId, $itemId, $body
 ```
 
 
-#### <a name="get_subscriptions"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getSubscriptions") getSubscriptions
+### <a name="get_subscriptions"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getSubscriptions") getSubscriptions
 
 > Gets all subscriptions
 
@@ -1003,38 +1071,38 @@ $result = $subscriptions->getSubscriptions();
 ```
 
 
-#### <a name="update_subscription_credit_card"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.updateSubscriptionCreditCard") updateSubscriptionCreditCard
+### <a name="update_subscription_card"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.updateSubscriptionCard") updateSubscriptionCard
 
 > Updates the credit card from a subscription
 
 
 ```php
-function updateSubscriptionCreditCard(
-        $body,
-        $subscriptionId)
+function updateSubscriptionCard(
+        $subscriptionId,
+        $request)
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| body |  ``` Required ```  | Request for updating a credit card |
 | subscriptionId |  ``` Required ```  | Subscription id |
+| request |  ``` Required ```  | Request for updating a card |
 
 
 
 #### Example Usage
 
 ```php
-$body = new UpdateSubscriptionCardRequest();
 $subscriptionId = 'subscription_id';
+$request = new UpdateSubscriptionCardRequest();
 
-$result = $subscriptions->updateSubscriptionCreditCard($body, $subscriptionId);
+$result = $subscriptions->updateSubscriptionCard($subscriptionId, $request);
 
 ```
 
 
-#### <a name="create_subscription"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.createSubscription") createSubscription
+### <a name="create_subscription"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.createSubscription") createSubscription
 
 > Creates a new subscription
 
@@ -1061,69 +1129,69 @@ $result = $subscriptions->createSubscription($body);
 ```
 
 
-#### <a name="create_subscription_item"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.createSubscriptionItem") createSubscriptionItem
+### <a name="create_subscription_item"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.createSubscriptionItem") createSubscriptionItem
 
 > Creates a new Subscription item
 
 
 ```php
 function createSubscriptionItem(
-        $body,
-        $subscriptionId)
+        $subscriptionId,
+        $request)
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| body |  ``` Required ```  | Request for creating a subscription item |
 | subscriptionId |  ``` Required ```  | Subscription id |
+| request |  ``` Required ```  | Request for creating a subscription item |
 
 
 
 #### Example Usage
 
 ```php
-$body = new CreateSubscriptionItemRequest();
 $subscriptionId = 'subscription_id';
+$request = new CreateSubscriptionItemRequest();
 
-$result = $subscriptions->createSubscriptionItem($body, $subscriptionId);
+$result = $subscriptions->createSubscriptionItem($subscriptionId, $request);
 
 ```
 
 
-#### <a name="create_discount"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.createDiscount") createDiscount
+### <a name="create_discount"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.createDiscount") createDiscount
 
 > Creates a discount
 
 
 ```php
 function createDiscount(
-        $body,
-        $subscriptionId)
+        $subscriptionId,
+        $request)
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| body |  ``` Required ```  | Request for creating a discount |
 | subscriptionId |  ``` Required ```  | Subscription id |
+| request |  ``` Required ```  | Request for creating a discount |
 
 
 
 #### Example Usage
 
 ```php
-$body = new CreateDiscountRequest();
 $subscriptionId = 'subscription_id';
+$request = new CreateDiscountRequest();
 
-$result = $subscriptions->createDiscount($body, $subscriptionId);
+$result = $subscriptions->createDiscount($subscriptionId, $request);
 
 ```
 
 
-#### <a name="get_subscription"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getSubscription") getSubscription
+### <a name="get_subscription"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getSubscription") getSubscription
 
 > Gets a subscription
 
@@ -1150,38 +1218,38 @@ $result = $subscriptions->getSubscription($subscriptionId);
 ```
 
 
-#### <a name="update_subscription_payment_method"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.updateSubscriptionPaymentMethod") updateSubscriptionPaymentMethod
+### <a name="update_subscription_payment_method"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.updateSubscriptionPaymentMethod") updateSubscriptionPaymentMethod
 
 > Updates the payment method from a subscription
 
 
 ```php
 function updateSubscriptionPaymentMethod(
-        $body,
-        $subscriptionId)
+        $subscriptionId,
+        $request)
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| body |  ``` Required ```  | Request for updating the payment method from a subscription |
 | subscriptionId |  ``` Required ```  | Subscription id |
+| request |  ``` Required ```  | Request for updating the paymentmethod from a subscription |
 
 
 
 #### Example Usage
 
 ```php
-$body = new UpdateSubscriptionPaymentMethodRequest();
 $subscriptionId = 'subscription_id';
+$request = new UpdateSubscriptionPaymentMethodRequest();
 
-$result = $subscriptions->updateSubscriptionPaymentMethod($body, $subscriptionId);
+$result = $subscriptions->updateSubscriptionPaymentMethod($subscriptionId, $request);
 
 ```
 
 
-#### <a name="get_usages"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getUsages") getUsages
+### <a name="get_usages"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getUsages") getUsages
 
 > Lists all usages from a subscription item
 
@@ -1212,7 +1280,7 @@ $result = $subscriptions->getUsages($subscriptionId, $itemId);
 ```
 
 
-#### <a name="delete_usage"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.deleteUsage") deleteUsage
+### <a name="delete_usage"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.deleteUsage") deleteUsage
 
 > Deletes a usage
 
@@ -1246,7 +1314,7 @@ $result = $subscriptions->deleteUsage($subscriptionId, $itemId, $usageId);
 ```
 
 
-#### <a name="delete_discount"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.deleteDiscount") deleteDiscount
+### <a name="delete_discount"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.deleteDiscount") deleteDiscount
 
 > Deletes a discount
 
@@ -1277,7 +1345,7 @@ $result = $subscriptions->deleteDiscount($subscriptionId, $discountId);
 ```
 
 
-#### <a name="cancel_subscription"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.cancelSubscription") cancelSubscription
+### <a name="cancel_subscription"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.cancelSubscription") cancelSubscription
 
 > Cancels a subscription
 
@@ -1285,7 +1353,7 @@ $result = $subscriptions->deleteDiscount($subscriptionId, $discountId);
 ```php
 function cancelSubscription(
         $subscriptionId,
-        $body = null)
+        $request = null)
 ```
 
 #### Parameters
@@ -1293,7 +1361,7 @@ function cancelSubscription(
 | Parameter | Tags | Description |
 |-----------|------|-------------|
 | subscriptionId |  ``` Required ```  | Subscription id |
-| body |  ``` Optional ```  | Request for cancelling a subscription |
+| request |  ``` Optional ```  | Request for cancelling a subscription |
 
 
 
@@ -1301,14 +1369,14 @@ function cancelSubscription(
 
 ```php
 $subscriptionId = 'subscription_id';
-$body = new CreateCancelSubscriptionRequest();
+$request = new CreateCancelSubscriptionRequest();
 
-$result = $subscriptions->cancelSubscription($subscriptionId, $body);
+$result = $subscriptions->cancelSubscription($subscriptionId, $request);
 
 ```
 
 
-#### <a name="delete_subscription_item"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.deleteSubscriptionItem") deleteSubscriptionItem
+### <a name="delete_subscription_item"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.deleteSubscriptionItem") deleteSubscriptionItem
 
 > Deletes a subscription item
 
@@ -1341,9 +1409,9 @@ $result = $subscriptions->deleteSubscriptionItem($subscriptionId, $subscriptionI
 
 [Back to List of Controllers](#list_of_controllers)
 
-### <a name="plans_controller"></a>![Class: ](https://apidocs.io/img/class.png ".PlansController") PlansController
+## <a name="plans_controller"></a>![Class: ](https://apidocs.io/img/class.png ".PlansController") PlansController
 
-#### Get singleton instance
+### Get singleton instance
 
 The singleton instance of the ``` PlansController ``` class can be accessed from the API Client.
 
@@ -1351,7 +1419,7 @@ The singleton instance of the ``` PlansController ``` class can be accessed from
 $plans = $client->getPlans();
 ```
 
-#### <a name="get_plan_items"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.getPlanItems") getPlanItems
+### <a name="get_plan_items"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.getPlanItems") getPlanItems
 
 > Gets all items from a plan
 
@@ -1378,7 +1446,7 @@ $result = $plans->getPlanItems($planId);
 ```
 
 
-#### <a name="update_plan_item"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.updatePlanItem") updatePlanItem
+### <a name="update_plan_item"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.updatePlanItem") updatePlanItem
 
 > Updates a plan item
 
@@ -1412,34 +1480,7 @@ $result = $plans->updatePlanItem($planId, $planItemId, $body);
 ```
 
 
-#### <a name="get_plan_subscriptions"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.getPlanSubscriptions") getPlanSubscriptions
-
-> Get all subscriptions from a plan
-
-
-```php
-function getPlanSubscriptions($planId)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| planId |  ``` Required ```  | Plan id |
-
-
-
-#### Example Usage
-
-```php
-$planId = 'plan_id';
-
-$result = $plans->getPlanSubscriptions($planId);
-
-```
-
-
-#### <a name="get_plan"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.getPlan") getPlan
+### <a name="get_plan"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.getPlan") getPlan
 
 > Gets a plan
 
@@ -1466,69 +1507,69 @@ $result = $plans->getPlan($planId);
 ```
 
 
-#### <a name="create_plan_item"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.createPlanItem") createPlanItem
+### <a name="create_plan_item"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.createPlanItem") createPlanItem
 
 > Adds a new item to a plan
 
 
 ```php
 function createPlanItem(
-        $body,
-        $planId)
+        $planId,
+        $request)
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| body |  ``` Required ```  | Request for creating a plan item |
 | planId |  ``` Required ```  | Plan id |
+| request |  ``` Required ```  | Request for creating a plan item |
 
 
 
 #### Example Usage
 
 ```php
-$body = new CreatePlanItemRequest();
 $planId = 'plan_id';
+$request = new CreatePlanItemRequest();
 
-$result = $plans->createPlanItem($body, $planId);
+$result = $plans->createPlanItem($planId, $request);
 
 ```
 
 
-#### <a name="update_plan"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.updatePlan") updatePlan
+### <a name="update_plan"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.updatePlan") updatePlan
 
 > Updates a plan
 
 
 ```php
 function updatePlan(
-        $body,
-        $planId)
+        $planId,
+        $request)
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| body |  ``` Required ```  | Request for updating a plan |
 | planId |  ``` Required ```  | Plan id |
+| request |  ``` Required ```  | Request for updating a plan |
 
 
 
 #### Example Usage
 
 ```php
-$body = new UpdatePlanRequest();
 $planId = 'plan_id';
+$request = new UpdatePlanRequest();
 
-$result = $plans->updatePlan($body, $planId);
+$result = $plans->updatePlan($planId, $request);
 
 ```
 
 
-#### <a name="create_plan"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.createPlan") createPlan
+### <a name="create_plan"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.createPlan") createPlan
 
 > Creates a new plan
 
@@ -1555,7 +1596,7 @@ $result = $plans->createPlan($body);
 ```
 
 
-#### <a name="get_plans"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.getPlans") getPlans
+### <a name="get_plans"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.getPlans") getPlans
 
 > Gets all plans
 
@@ -1573,7 +1614,7 @@ $result = $plans->getPlans();
 ```
 
 
-#### <a name="delete_plan"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.deletePlan") deletePlan
+### <a name="delete_plan"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.deletePlan") deletePlan
 
 > Deletes a plan
 
@@ -1600,7 +1641,7 @@ $result = $plans->deletePlan($planId);
 ```
 
 
-#### <a name="get_plan_item"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.getPlanItem") getPlanItem
+### <a name="get_plan_item"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.getPlanItem") getPlanItem
 
 > Gets a plan item
 
@@ -1631,7 +1672,7 @@ $result = $plans->getPlanItem($planId, $planItemId);
 ```
 
 
-#### <a name="delete_plan_item"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.deletePlanItem") deletePlanItem
+### <a name="delete_plan_item"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.deletePlanItem") deletePlanItem
 
 > Removes an item from a plan
 
@@ -1664,9 +1705,9 @@ $result = $plans->deletePlanItem($planId, $planItemId);
 
 [Back to List of Controllers](#list_of_controllers)
 
-### <a name="invoices_controller"></a>![Class: ](https://apidocs.io/img/class.png ".InvoicesController") InvoicesController
+## <a name="invoices_controller"></a>![Class: ](https://apidocs.io/img/class.png ".InvoicesController") InvoicesController
 
-#### Get singleton instance
+### Get singleton instance
 
 The singleton instance of the ``` InvoicesController ``` class can be accessed from the API Client.
 
@@ -1674,7 +1715,7 @@ The singleton instance of the ``` InvoicesController ``` class can be accessed f
 $invoices = $client->getInvoices();
 ```
 
-#### <a name="cancel_invoice"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.cancelInvoice") cancelInvoice
+### <a name="cancel_invoice"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.cancelInvoice") cancelInvoice
 
 > Cancels an invoice
 
@@ -1701,7 +1742,7 @@ $result = $invoices->cancelInvoice($invoiceId);
 ```
 
 
-#### <a name="get_last_invoice_charge"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.getLastInvoiceCharge") getLastInvoiceCharge
+### <a name="get_last_invoice_charge"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.getLastInvoiceCharge") getLastInvoiceCharge
 
 > Gets the last charge from an invoice
 
@@ -1728,7 +1769,7 @@ $result = $invoices->getLastInvoiceCharge($invoiceId);
 ```
 
 
-#### <a name="get_invoices"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.getInvoices") getInvoices
+### <a name="get_invoices"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.getInvoices") getInvoices
 
 > Gets all invoices
 
@@ -1746,7 +1787,7 @@ $result = $invoices->getInvoices();
 ```
 
 
-#### <a name="get_invoice"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.getInvoice") getInvoice
+### <a name="get_invoice"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.getInvoice") getInvoice
 
 > Gets an invoice
 
@@ -1775,9 +1816,9 @@ $result = $invoices->getInvoice($invoiceId);
 
 [Back to List of Controllers](#list_of_controllers)
 
-### <a name="orders_controller"></a>![Class: ](https://apidocs.io/img/class.png ".OrdersController") OrdersController
+## <a name="orders_controller"></a>![Class: ](https://apidocs.io/img/class.png ".OrdersController") OrdersController
 
-#### Get singleton instance
+### Get singleton instance
 
 The singleton instance of the ``` OrdersController ``` class can be accessed from the API Client.
 
@@ -1785,7 +1826,7 @@ The singleton instance of the ``` OrdersController ``` class can be accessed fro
 $orders = $client->getOrders();
 ```
 
-#### <a name="get_order"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.getOrder") getOrder
+### <a name="get_order"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.getOrder") getOrder
 
 > Gets an order
 
@@ -1812,7 +1853,7 @@ $result = $orders->getOrder($orderId);
 ```
 
 
-#### <a name="get_orders"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.getOrders") getOrders
+### <a name="get_orders"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.getOrders") getOrders
 
 > Gets all orders
 
@@ -1830,7 +1871,7 @@ $result = $orders->getOrders();
 ```
 
 
-#### <a name="create_order"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.createOrder") createOrder
+### <a name="create_order"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.createOrder") createOrder
 
 > Creates a new Order
 

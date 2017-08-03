@@ -60,23 +60,33 @@ class GetBoletoTransactionResponse extends GetTransactionResponse implements Jso
     public $instructions;
 
     /**
+     * @todo Write general description for this property
+     * @required
+     * @maps billing_address
+     * @var GetBillingAddressResponse $billingAddress public property
+     */
+    public $billingAddress;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param string $url            Initialization value for $this->url
-     * @param string $barCode        Initialization value for $this->barCode
-     * @param string $nossoNumero    Initialization value for $this->nossoNumero
-     * @param string $bank           Initialization value for $this->bank
-     * @param string $documentNumber Initialization value for $this->documentNumber
-     * @param string $instructions   Initialization value for $this->instructions
+     * @param string                    $url            Initialization value for $this->url
+     * @param string                    $barCode        Initialization value for $this->barCode
+     * @param string                    $nossoNumero    Initialization value for $this->nossoNumero
+     * @param string                    $bank           Initialization value for $this->bank
+     * @param string                    $documentNumber Initialization value for $this->documentNumber
+     * @param string                    $instructions   Initialization value for $this->instructions
+     * @param GetBillingAddressResponse $billingAddress Initialization value for $this->billingAddress
      */
     public function __construct()
     {
-        if (6 == func_num_args()) {
+        if (7 == func_num_args()) {
             $this->url            = func_get_arg(0);
             $this->barCode        = func_get_arg(1);
             $this->nossoNumero    = func_get_arg(2);
             $this->bank           = func_get_arg(3);
             $this->documentNumber = func_get_arg(4);
             $this->instructions   = func_get_arg(5);
+            $this->billingAddress = func_get_arg(6);
         }
     }
 
@@ -93,6 +103,7 @@ class GetBoletoTransactionResponse extends GetTransactionResponse implements Jso
         $json['bank']            = $this->bank;
         $json['document_number'] = $this->documentNumber;
         $json['instructions']    = $this->instructions;
+        $json['billing_address'] = $this->billingAddress;
         $json = array_merge($json, parent::jsonSerialize());
 
         return $json;
