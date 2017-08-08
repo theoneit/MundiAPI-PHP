@@ -169,7 +169,7 @@ function getCharge($chargeId)
 #### Example Usage
 
 ```php
-$chargeId = 'charge_id';
+$chargeId = 'ch_wbnd47nCJJFKVZQy';
 
 $result = $charges->getCharge($chargeId);
 
