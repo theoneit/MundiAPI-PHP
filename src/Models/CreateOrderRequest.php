@@ -65,25 +65,34 @@ class CreateOrderRequest implements JsonSerializable
     public $metadata;
 
     /**
+     * Defines whether the order will go through anti-fraud
+     * @maps antifraud_enabled
+     * @var bool|null $antifraudEnabled public property
+     */
+    public $antifraudEnabled;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param array                 $items      Initialization value for $this->items
-     * @param CreateCustomerRequest $customer   Initialization value for $this->customer
-     * @param array                 $payments   Initialization value for $this->payments
-     * @param string                $code       Initialization value for $this->code
-     * @param string                $customerId Initialization value for $this->customerId
-     * @param CreateShippingRequest $shipping   Initialization value for $this->shipping
-     * @param array                 $metadata   Initialization value for $this->metadata
+     * @param array                 $items            Initialization value for $this->items
+     * @param CreateCustomerRequest $customer         Initialization value for $this->customer
+     * @param array                 $payments         Initialization value for $this->payments
+     * @param string                $code             Initialization value for $this->code
+     * @param string                $customerId       Initialization value for $this->customerId
+     * @param CreateShippingRequest $shipping         Initialization value for $this->shipping
+     * @param array                 $metadata         Initialization value for $this->metadata
+     * @param bool                  $antifraudEnabled Initialization value for $this->antifraudEnabled
      */
     public function __construct()
     {
-        if (7 == func_num_args()) {
-            $this->items      = func_get_arg(0);
-            $this->customer   = func_get_arg(1);
-            $this->payments   = func_get_arg(2);
-            $this->code       = func_get_arg(3);
-            $this->customerId = func_get_arg(4);
-            $this->shipping   = func_get_arg(5);
-            $this->metadata   = func_get_arg(6);
+        if (8 == func_num_args()) {
+            $this->items            = func_get_arg(0);
+            $this->customer         = func_get_arg(1);
+            $this->payments         = func_get_arg(2);
+            $this->code             = func_get_arg(3);
+            $this->customerId       = func_get_arg(4);
+            $this->shipping         = func_get_arg(5);
+            $this->metadata         = func_get_arg(6);
+            $this->antifraudEnabled = func_get_arg(7);
         }
     }
 
@@ -94,13 +103,14 @@ class CreateOrderRequest implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['items']       = $this->items;
-        $json['customer']    = $this->customer;
-        $json['payments']    = $this->payments;
-        $json['code']        = $this->code;
-        $json['customer_id'] = $this->customerId;
-        $json['shipping']    = $this->shipping;
-        $json['metadata']    = $this->metadata;
+        $json['items']             = $this->items;
+        $json['customer']          = $this->customer;
+        $json['payments']          = $this->payments;
+        $json['code']              = $this->code;
+        $json['customer_id']       = $this->customerId;
+        $json['shipping']          = $this->shipping;
+        $json['metadata']          = $this->metadata;
+        $json['antifraud_enabled'] = $this->antifraudEnabled;
 
         return $json;
     }

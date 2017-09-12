@@ -80,7 +80,8 @@ class CreatePlanRequest implements JsonSerializable
     public $interval;
 
     /**
-     * Interval counts between two charges. For instance, if the interval is 'month' and count is 2, the customer will be charged once every two months.
+     * Interval counts between two charges. For instance, if the interval is 'month' and count is 2, the
+     * customer will be charged once every two months.
      * @required
      * @maps interval_count
      * @var integer $intervalCount public property

@@ -58,7 +58,8 @@ class CreateAddressRequest implements JsonSerializable
     public $state;
 
     /**
-     * Country. Must be entered using ISO 3166-1 alpha-2 format. See https://pt.wikipedia.org/wiki/ISO_3166-1_alfa-2
+     * Country. Must be entered using ISO 3166-1 alpha-2 format. See https://pt.wikipedia.org/wiki/ISO_3166-
+     * 1_alfa-2
      * @required
      * @var string $country public property
      */

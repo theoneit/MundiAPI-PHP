@@ -17,7 +17,7 @@ class ListSubscriptionsResponse implements JsonSerializable
     /**
      * The subscription objects
      * @required
-     * @var array $data public property
+     * @var GetSubscriptionResponse[] $data public property
      */
     public $data;
 

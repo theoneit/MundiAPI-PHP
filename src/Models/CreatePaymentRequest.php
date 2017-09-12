@@ -66,6 +66,12 @@ class CreatePaymentRequest implements JsonSerializable
     public $gatewayAffiliationId;
 
     /**
+     * The amount of the payment, in cents
+     * @var integer|null $amount public property
+     */
+    public $amount;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string                           $paymentMethod        Initialization value for $this->paymentMethod
      * @param CreateCreditCardPaymentRequest   $creditCard           Initialization value for $this->creditCard
@@ -75,10 +81,11 @@ class CreatePaymentRequest implements JsonSerializable
      * @param CreateBankTransferPaymentRequest $bankTransfer         Initialization value for $this->bankTransfer
      * @param string                           $gatewayAffiliationId Initialization value for $this-
      *                                                                 >gatewayAffiliationId
+     * @param integer                          $amount               Initialization value for $this->amount
      */
     public function __construct()
     {
-        if (7 == func_num_args()) {
+        if (8 == func_num_args()) {
             $this->paymentMethod        = func_get_arg(0);
             $this->creditCard           = func_get_arg(1);
             $this->boleto               = func_get_arg(2);
@@ -86,6 +93,7 @@ class CreatePaymentRequest implements JsonSerializable
             $this->voucher              = func_get_arg(4);
             $this->bankTransfer         = func_get_arg(5);
             $this->gatewayAffiliationId = func_get_arg(6);
+            $this->amount               = func_get_arg(7);
         }
     }
 
@@ -103,6 +111,7 @@ class CreatePaymentRequest implements JsonSerializable
         $json['voucher']                = $this->voucher;
         $json['bank_transfer']          = $this->bankTransfer;
         $json['gateway_affiliation_id'] = $this->gatewayAffiliationId;
+        $json['amount']                 = $this->amount;
 
         return $json;
     }

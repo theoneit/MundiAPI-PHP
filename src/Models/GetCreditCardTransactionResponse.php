@@ -78,6 +78,14 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
     public $card;
 
     /**
+     * Acquirer message
+     * @required
+     * @maps acquirer_message
+     * @var string $acquirerMessage public property
+     */
+    public $acquirerMessage;
+
+    /**
      * Number of installments
      * @var integer|null $installments public property
      */
@@ -93,11 +101,12 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
      * @param string          $acquirerAuthCode        Initialization value for $this->acquirerAuthCode
      * @param string          $operationType           Initialization value for $this->operationType
      * @param GetCardResponse $card                    Initialization value for $this->card
+     * @param string          $acquirerMessage         Initialization value for $this->acquirerMessage
      * @param integer         $installments            Initialization value for $this->installments
      */
     public function __construct()
     {
-        if (9 == func_num_args()) {
+        if (10 == func_num_args()) {
             $this->statementDescriptor     = func_get_arg(0);
             $this->acquirerName            = func_get_arg(1);
             $this->acquirerAffiliationCode = func_get_arg(2);
@@ -106,7 +115,8 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
             $this->acquirerAuthCode        = func_get_arg(5);
             $this->operationType           = func_get_arg(6);
             $this->card                    = func_get_arg(7);
-            $this->installments            = func_get_arg(8);
+            $this->acquirerMessage         = func_get_arg(8);
+            $this->installments            = func_get_arg(9);
         }
     }
 
@@ -125,6 +135,7 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
         $json['acquirer_auth_code']        = $this->acquirerAuthCode;
         $json['operation_type']            = $this->operationType;
         $json['card']                      = $this->card;
+        $json['acquirer_message']          = $this->acquirerMessage;
         $json['installments']              = $this->installments;
         $json = array_merge($json, parent::jsonSerialize());
 

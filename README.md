@@ -138,6 +138,7 @@ $client = new MundiAPILib\MundiAPIClient($basicAuthUserName, $basicAuthPassword)
 * [PlansController](#plans_controller)
 * [InvoicesController](#invoices_controller)
 * [OrdersController](#orders_controller)
+* [TokensController](#tokens_controller)
 
 ## <a name="charges_controller"></a>![Class: ](https://apidocs.io/img/class.png ".ChargesController") ChargesController
 
@@ -169,7 +170,7 @@ function getCharge($chargeId)
 #### Example Usage
 
 ```php
-$chargeId = 'ch_wbnd47nCJJFKVZQy';
+$chargeId = 'charge_id';
 
 $result = $charges->getCharge($chargeId);
 
@@ -368,6 +369,37 @@ $chargeId = 'charge_id';
 $request = new CreateCaptureChargeRequest();
 
 $result = $charges->captureCharge($chargeId, $request);
+
+```
+
+
+### <a name="update_charge_metadata"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.updateChargeMetadata") updateChargeMetadata
+
+> Updates the metadata from a charge
+
+
+```php
+function updateChargeMetadata(
+        $chargeId,
+        $request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| chargeId |  ``` Required ```  | The charge id |
+| request |  ``` Required ```  | Request for updating the charge metadata |
+
+
+
+#### Example Usage
+
+```php
+$chargeId = 'charge_id';
+$request = new UpdateMetadataRequest();
+
+$result = $charges->updateChargeMetadata($chargeId, $request);
 
 ```
 
@@ -942,6 +974,37 @@ $result = $customers->getAccessToken($customerId, $tokenId);
 ```
 
 
+### <a name="update_customer_metadata"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.updateCustomerMetadata") updateCustomerMetadata
+
+> Updates the metadata a customer
+
+
+```php
+function updateCustomerMetadata(
+        $customerId,
+        $request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| customerId |  ``` Required ```  | The customer id |
+| request |  ``` Required ```  | Request for updating the customer metadata |
+
+
+
+#### Example Usage
+
+```php
+$customerId = 'customer_id';
+$request = new UpdateMetadataRequest();
+
+$result = $customers->updateCustomerMetadata($customerId, $request);
+
+```
+
+
 [Back to List of Controllers](#list_of_controllers)
 
 ## <a name="subscriptions_controller"></a>![Class: ](https://apidocs.io/img/class.png ".SubscriptionsController") SubscriptionsController
@@ -1407,6 +1470,37 @@ $result = $subscriptions->deleteSubscriptionItem($subscriptionId, $subscriptionI
 ```
 
 
+### <a name="update_subscription_metadata"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.updateSubscriptionMetadata") updateSubscriptionMetadata
+
+> Updates the metadata from a subscription
+
+
+```php
+function updateSubscriptionMetadata(
+        $subscriptionId,
+        $request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | The subscription id |
+| request |  ``` Required ```  | Request for updating the subscrption metadata |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+$request = new UpdateMetadataRequest();
+
+$result = $subscriptions->updateSubscriptionMetadata($subscriptionId, $request);
+
+```
+
+
 [Back to List of Controllers](#list_of_controllers)
 
 ## <a name="plans_controller"></a>![Class: ](https://apidocs.io/img/class.png ".PlansController") PlansController
@@ -1418,33 +1512,6 @@ The singleton instance of the ``` PlansController ``` class can be accessed from
 ```php
 $plans = $client->getPlans();
 ```
-
-### <a name="get_plan_items"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.getPlanItems") getPlanItems
-
-> Gets all items from a plan
-
-
-```php
-function getPlanItems($planId)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| planId |  ``` Required ```  | Plan id |
-
-
-
-#### Example Usage
-
-```php
-$planId = 'plan_id';
-
-$result = $plans->getPlanItems($planId);
-
-```
-
 
 ### <a name="update_plan_item"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.updatePlanItem") updatePlanItem
 
@@ -1703,6 +1770,37 @@ $result = $plans->deletePlanItem($planId, $planItemId);
 ```
 
 
+### <a name="update_plan_metadata"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.updatePlanMetadata") updatePlanMetadata
+
+> Updates the metadata from a plan
+
+
+```php
+function updatePlanMetadata(
+        $planId,
+        $request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| planId |  ``` Required ```  | The plan id |
+| request |  ``` Required ```  | Request for updating the plan metadata |
+
+
+
+#### Example Usage
+
+```php
+$planId = 'plan_id';
+$request = new UpdateMetadataRequest();
+
+$result = $plans->updatePlanMetadata($planId, $request);
+
+```
+
+
 [Back to List of Controllers](#list_of_controllers)
 
 ## <a name="invoices_controller"></a>![Class: ](https://apidocs.io/img/class.png ".InvoicesController") InvoicesController
@@ -1814,6 +1912,37 @@ $result = $invoices->getInvoice($invoiceId);
 ```
 
 
+### <a name="update_invoice_metadata"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.updateInvoiceMetadata") updateInvoiceMetadata
+
+> Updates the metadata from an invoice
+
+
+```php
+function updateInvoiceMetadata(
+        $invoiceId,
+        $request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| invoiceId |  ``` Required ```  | The invoice id |
+| request |  ``` Required ```  | Request for updating the invoice metadata |
+
+
+
+#### Example Usage
+
+```php
+$invoiceId = 'invoice_id';
+$request = new UpdateMetadataRequest();
+
+$result = $invoices->updateInvoiceMetadata($invoiceId, $request);
+
+```
+
+
 [Back to List of Controllers](#list_of_controllers)
 
 ## <a name="orders_controller"></a>![Class: ](https://apidocs.io/img/class.png ".OrdersController") OrdersController
@@ -1894,6 +2023,115 @@ function createOrder($body)
 $body = new CreateOrderRequest();
 
 $result = $orders->createOrder($body);
+
+```
+
+
+### <a name="update_order_metadata"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.updateOrderMetadata") updateOrderMetadata
+
+> Updates the metadata from an order
+
+
+```php
+function updateOrderMetadata(
+        $orderId,
+        $request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| orderId |  ``` Required ```  | The order id |
+| request |  ``` Required ```  | Request for updating the order metadata |
+
+
+
+#### Example Usage
+
+```php
+$orderId = 'order_id';
+$request = new UpdateMetadataRequest();
+
+$result = $orders->updateOrderMetadata($orderId, $request);
+
+```
+
+
+[Back to List of Controllers](#list_of_controllers)
+
+## <a name="tokens_controller"></a>![Class: ](https://apidocs.io/img/class.png ".TokensController") TokensController
+
+### Get singleton instance
+
+The singleton instance of the ``` TokensController ``` class can be accessed from the API Client.
+
+```php
+$tokens = $client->getTokens();
+```
+
+### <a name="get_token"></a>![Method: ](https://apidocs.io/img/method.png ".TokensController.getToken") getToken
+
+> *Tags:*  ``` Skips Authentication ``` 
+
+> Gets a token from its id
+
+
+```php
+function getToken(
+        $id,
+        $publicKey)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| id |  ``` Required ```  | Token id |
+| publicKey |  ``` Required ```  | Public key |
+
+
+
+#### Example Usage
+
+```php
+$id = 'id';
+$publicKey = 'public_key';
+
+$result = $tokens->getToken($id, $publicKey);
+
+```
+
+
+### <a name="create_token"></a>![Method: ](https://apidocs.io/img/method.png ".TokensController.createToken") createToken
+
+> *Tags:*  ``` Skips Authentication ``` 
+
+> TODO: Add a method description
+
+
+```php
+function createToken(
+        $publicKey,
+        $request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| publicKey |  ``` Required ```  | Public key |
+| request |  ``` Required ```  | Request for creating a token |
+
+
+
+#### Example Usage
+
+```php
+$publicKey = 'public_key';
+$request = new CreateTokenRequest();
+
+$result = $tokens->createToken($publicKey, $request);
 
 ```
 
