@@ -38,17 +38,26 @@ class UpdateChargeCardRequest implements JsonSerializable
     public $card;
 
     /**
+     * Indicates a recurrence
+     * @required
+     * @var bool $recurrence public property
+     */
+    public $recurrence;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param bool              $updateSubscription Initialization value for $this->updateSubscription
      * @param string            $cardId             Initialization value for $this->cardId
      * @param CreateCardRequest $card               Initialization value for $this->card
+     * @param bool              $recurrence         Initialization value for $this->recurrence
      */
     public function __construct()
     {
-        if (3 == func_num_args()) {
+        if (4 == func_num_args()) {
             $this->updateSubscription = func_get_arg(0);
             $this->cardId             = func_get_arg(1);
             $this->card               = func_get_arg(2);
+            $this->recurrence         = func_get_arg(3);
         }
     }
 
@@ -62,6 +71,7 @@ class UpdateChargeCardRequest implements JsonSerializable
         $json['update_subscription'] = $this->updateSubscription;
         $json['card_id']             = $this->cardId;
         $json['card']                = $this->card;
+        $json['recurrence']          = $this->recurrence;
 
         return $json;
     }

@@ -17,7 +17,7 @@ class ListUsagesResponse implements JsonSerializable
     /**
      * The usage objects
      * @required
-     * @var array $data public property
+     * @var GetUsageResponse[] $data public property
      */
     public $data;
 

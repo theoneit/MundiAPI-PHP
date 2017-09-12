@@ -22,9 +22,7 @@
         "apimatic/jsonmapper": "~1.2.0"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "^2.7",
-        "phpunit/phpunit": "4.8.*"
-
+        "squizlabs/php_codesniffer": "^2.7"
     },
     "autoload": {
         "psr-4": {

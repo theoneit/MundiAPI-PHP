@@ -34,7 +34,7 @@ class CreateCancelSubscriptionRequest implements JsonSerializable
                 break;
 
             default:
-                $this->cancelPendingInvoices = TRUE;
+                $this->cancelPendingInvoices = true;
                 break;
         }
     }

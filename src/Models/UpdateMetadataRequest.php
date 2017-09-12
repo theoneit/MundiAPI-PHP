@@ -10,27 +10,25 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Options for creating the card
+ * Request for updating an metadata
  */
-class CreateCardOptionsRequest implements JsonSerializable
+class UpdateMetadataRequest implements JsonSerializable
 {
     /**
-     * Indicates if the card should be verified before creation. If true, executes an authorization before
-     * saving the card.
+     * Metadata
      * @required
-     * @maps verify_card
-     * @var bool $verifyCard public property
+     * @var array $metadata public property
      */
-    public $verifyCard;
+    public $metadata;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param bool $verifyCard Initialization value for $this->verifyCard
+     * @param array $metadata Initialization value for $this->metadata
      */
     public function __construct()
     {
         if (1 == func_num_args()) {
-            $this->verifyCard = func_get_arg(0);
+            $this->metadata = func_get_arg(0);
         }
     }
 
@@ -41,7 +39,7 @@ class CreateCardOptionsRequest implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['verify_card'] = $this->verifyCard;
+        $json['metadata'] = $this->metadata;
 
         return $json;
     }
