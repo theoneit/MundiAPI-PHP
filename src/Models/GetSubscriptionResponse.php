@@ -122,10 +122,9 @@ class GetSubscriptionResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @required
-     * @maps credit_card
-     * @var GetCardResponse $creditCard public property
+     * @var GetCardResponse $card public property
      */
-    public $creditCard;
+    public $card;
 
     /**
      * @todo Write general description for this property
@@ -185,6 +184,12 @@ class GetSubscriptionResponse implements JsonSerializable
     public $canceledAt;
 
     /**
+     * Subscription discounts
+     * @var GetDiscountResponse[]|null $discounts public property
+     */
+    public $discounts;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string              $id                  Initialization value for $this->id
      * @param string              $code                Initialization value for $this->code
@@ -200,7 +205,7 @@ class GetSubscriptionResponse implements JsonSerializable
      * @param string              $createdAt           Initialization value for $this->createdAt
      * @param string              $updatedAt           Initialization value for $this->updatedAt
      * @param GetCustomerResponse $customer            Initialization value for $this->customer
-     * @param GetCardResponse     $creditCard          Initialization value for $this->creditCard
+     * @param GetCardResponse     $card                Initialization value for $this->card
      * @param array               $items               Initialization value for $this->items
      * @param string              $statementDescriptor Initialization value for $this->statementDescriptor
      * @param array               $metadata            Initialization value for $this->metadata
@@ -209,10 +214,11 @@ class GetSubscriptionResponse implements JsonSerializable
      * @param integer             $billingDay          Initialization value for $this->billingDay
      * @param integer             $minimumPrice        Initialization value for $this->minimumPrice
      * @param string              $canceledAt          Initialization value for $this->canceledAt
+     * @param array               $discounts           Initialization value for $this->discounts
      */
     public function __construct()
     {
-        if (23 == func_num_args()) {
+        if (24 == func_num_args()) {
             $this->id                  = func_get_arg(0);
             $this->code                = func_get_arg(1);
             $this->startAt             = func_get_arg(2);
@@ -227,7 +233,7 @@ class GetSubscriptionResponse implements JsonSerializable
             $this->createdAt           = func_get_arg(11);
             $this->updatedAt           = func_get_arg(12);
             $this->customer            = func_get_arg(13);
-            $this->creditCard          = func_get_arg(14);
+            $this->card                = func_get_arg(14);
             $this->items               = func_get_arg(15);
             $this->statementDescriptor = func_get_arg(16);
             $this->metadata            = func_get_arg(17);
@@ -236,6 +242,7 @@ class GetSubscriptionResponse implements JsonSerializable
             $this->billingDay          = func_get_arg(20);
             $this->minimumPrice        = func_get_arg(21);
             $this->canceledAt          = func_get_arg(22);
+            $this->discounts           = func_get_arg(23);
         }
     }
 
@@ -260,7 +267,7 @@ class GetSubscriptionResponse implements JsonSerializable
         $json['created_at']           = $this->createdAt;
         $json['updated_at']           = $this->updatedAt;
         $json['customer']             = $this->customer;
-        $json['credit_card']          = $this->creditCard;
+        $json['card']                 = $this->card;
         $json['items']                = $this->items;
         $json['statement_descriptor'] = $this->statementDescriptor;
         $json['metadata']             = $this->metadata;
@@ -269,6 +276,7 @@ class GetSubscriptionResponse implements JsonSerializable
         $json['billing_day']          = $this->billingDay;
         $json['minimum_price']        = $this->minimumPrice;
         $json['canceled_at']          = $this->canceledAt;
+        $json['discounts']            = $this->discounts;
 
         return $json;
     }

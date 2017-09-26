@@ -102,6 +102,12 @@ class GetOrderResponse implements JsonSerializable
     public $metadata;
 
     /**
+     * Checkout Payment Settings Response
+     * @var GetCheckoutPaymentSettingsResponse[]|null $checkouts public property
+     */
+    public $checkouts;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string              $id         Initialization value for $this->id
      * @param string              $code       Initialization value for $this->code
@@ -115,10 +121,11 @@ class GetOrderResponse implements JsonSerializable
      * @param string              $invoiceUrl Initialization value for $this->invoiceUrl
      * @param GetShippingResponse $shipping   Initialization value for $this->shipping
      * @param array               $metadata   Initialization value for $this->metadata
+     * @param array               $checkouts  Initialization value for $this->checkouts
      */
     public function __construct()
     {
-        if (12 == func_num_args()) {
+        if (13 == func_num_args()) {
             $this->id         = func_get_arg(0);
             $this->code       = func_get_arg(1);
             $this->currency   = func_get_arg(2);
@@ -131,6 +138,7 @@ class GetOrderResponse implements JsonSerializable
             $this->invoiceUrl = func_get_arg(9);
             $this->shipping   = func_get_arg(10);
             $this->metadata   = func_get_arg(11);
+            $this->checkouts  = func_get_arg(12);
         }
     }
 
@@ -153,6 +161,7 @@ class GetOrderResponse implements JsonSerializable
         $json['invoice_url'] = $this->invoiceUrl;
         $json['shipping']    = $this->shipping;
         $json['metadata']    = $this->metadata;
+        $json['checkouts']   = $this->checkouts;
 
         return $json;
     }

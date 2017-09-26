@@ -52,6 +52,13 @@ class CreatePaymentRequest implements JsonSerializable
     public $voucher;
 
     /**
+     * Metadata
+     * @required
+     * @var array $metadata public property
+     */
+    public $metadata;
+
+    /**
      * Settings for bank transfer payment
      * @maps bank_transfer
      * @var CreateBankTransferPaymentRequest|null $bankTransfer public property
@@ -72,28 +79,38 @@ class CreatePaymentRequest implements JsonSerializable
     public $amount;
 
     /**
+     * Settings for checkout payment
+     * @var CreateCheckoutPaymentRequest|null $checkout public property
+     */
+    public $checkout;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string                           $paymentMethod        Initialization value for $this->paymentMethod
      * @param CreateCreditCardPaymentRequest   $creditCard           Initialization value for $this->creditCard
      * @param CreateBoletoPaymentRequest       $boleto               Initialization value for $this->boleto
      * @param string                           $currency             Initialization value for $this->currency
      * @param CreateVoucherPaymentRequest      $voucher              Initialization value for $this->voucher
+     * @param array                            $metadata             Initialization value for $this->metadata
      * @param CreateBankTransferPaymentRequest $bankTransfer         Initialization value for $this->bankTransfer
      * @param string                           $gatewayAffiliationId Initialization value for $this-
      *                                                                 >gatewayAffiliationId
      * @param integer                          $amount               Initialization value for $this->amount
+     * @param CreateCheckoutPaymentRequest     $checkout             Initialization value for $this->checkout
      */
     public function __construct()
     {
-        if (8 == func_num_args()) {
+        if (10 == func_num_args()) {
             $this->paymentMethod        = func_get_arg(0);
             $this->creditCard           = func_get_arg(1);
             $this->boleto               = func_get_arg(2);
             $this->currency             = func_get_arg(3);
             $this->voucher              = func_get_arg(4);
-            $this->bankTransfer         = func_get_arg(5);
-            $this->gatewayAffiliationId = func_get_arg(6);
-            $this->amount               = func_get_arg(7);
+            $this->metadata             = func_get_arg(5);
+            $this->bankTransfer         = func_get_arg(6);
+            $this->gatewayAffiliationId = func_get_arg(7);
+            $this->amount               = func_get_arg(8);
+            $this->checkout             = func_get_arg(9);
         }
     }
 
@@ -109,9 +126,11 @@ class CreatePaymentRequest implements JsonSerializable
         $json['boleto']                 = $this->boleto;
         $json['currency']               = $this->currency;
         $json['voucher']                = $this->voucher;
+        $json['metadata']               = $this->metadata;
         $json['bank_transfer']          = $this->bankTransfer;
         $json['gateway_affiliation_id'] = $this->gatewayAffiliationId;
         $json['amount']                 = $this->amount;
+        $json['checkout']               = $this->checkout;
 
         return $json;
     }

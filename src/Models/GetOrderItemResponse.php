@@ -36,17 +36,26 @@ class GetOrderItemResponse implements JsonSerializable
     public $quantity;
 
     /**
+     * Seller data
+     * @maps GetSellerResponse
+     * @var GetSellerResponse|null $getSellerResponse public property
+     */
+    public $getSellerResponse;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param integer $amount      Initialization value for $this->amount
-     * @param string  $description Initialization value for $this->description
-     * @param integer $quantity    Initialization value for $this->quantity
+     * @param integer           $amount            Initialization value for $this->amount
+     * @param string            $description       Initialization value for $this->description
+     * @param integer           $quantity          Initialization value for $this->quantity
+     * @param GetSellerResponse $getSellerResponse Initialization value for $this->getSellerResponse
      */
     public function __construct()
     {
-        if (3 == func_num_args()) {
-            $this->amount      = func_get_arg(0);
-            $this->description = func_get_arg(1);
-            $this->quantity    = func_get_arg(2);
+        if (4 == func_num_args()) {
+            $this->amount            = func_get_arg(0);
+            $this->description       = func_get_arg(1);
+            $this->quantity          = func_get_arg(2);
+            $this->getSellerResponse = func_get_arg(3);
         }
     }
 
@@ -57,9 +66,10 @@ class GetOrderItemResponse implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['amount']      = $this->amount;
-        $json['description'] = $this->description;
-        $json['quantity']    = $this->quantity;
+        $json['amount']            = $this->amount;
+        $json['description']       = $this->description;
+        $json['quantity']          = $this->quantity;
+        $json['GetSellerResponse'] = $this->getSellerResponse;
 
         return $json;
     }

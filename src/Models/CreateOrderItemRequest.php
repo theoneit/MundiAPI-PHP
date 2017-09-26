@@ -36,17 +36,34 @@ class CreateOrderItemRequest implements JsonSerializable
     public $quantity;
 
     /**
+     * Item seller
+     * @var CreateSellerRequest|null $seller public property
+     */
+    public $seller;
+
+    /**
+     * seller identificator
+     * @maps seller_id
+     * @var string|null $sellerId public property
+     */
+    public $sellerId;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param integer $amount      Initialization value for $this->amount
-     * @param string  $description Initialization value for $this->description
-     * @param integer $quantity    Initialization value for $this->quantity
+     * @param integer             $amount      Initialization value for $this->amount
+     * @param string              $description Initialization value for $this->description
+     * @param integer             $quantity    Initialization value for $this->quantity
+     * @param CreateSellerRequest $seller      Initialization value for $this->seller
+     * @param string              $sellerId    Initialization value for $this->sellerId
      */
     public function __construct()
     {
-        if (3 == func_num_args()) {
+        if (5 == func_num_args()) {
             $this->amount      = func_get_arg(0);
             $this->description = func_get_arg(1);
             $this->quantity    = func_get_arg(2);
+            $this->seller      = func_get_arg(3);
+            $this->sellerId    = func_get_arg(4);
         }
     }
 
@@ -60,6 +77,8 @@ class CreateOrderItemRequest implements JsonSerializable
         $json['amount']      = $this->amount;
         $json['description'] = $this->description;
         $json['quantity']    = $this->quantity;
+        $json['seller']      = $this->seller;
+        $json['seller_id']   = $this->sellerId;
 
         return $json;
     }
