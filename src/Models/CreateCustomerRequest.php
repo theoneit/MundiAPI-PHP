@@ -71,6 +71,12 @@ class CreateCustomerRequest implements JsonSerializable
     public $code;
 
     /**
+     * Customer Gender
+     * @var string|null $gender public property
+     */
+    public $gender;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string               $name     Initialization value for $this->name
      * @param string               $email    Initialization value for $this->email
@@ -80,10 +86,11 @@ class CreateCustomerRequest implements JsonSerializable
      * @param array                $metadata Initialization value for $this->metadata
      * @param CreatePhonesRequest  $phones   Initialization value for $this->phones
      * @param string               $code     Initialization value for $this->code
+     * @param string               $gender   Initialization value for $this->gender
      */
     public function __construct()
     {
-        if (8 == func_num_args()) {
+        if (9 == func_num_args()) {
             $this->name     = func_get_arg(0);
             $this->email    = func_get_arg(1);
             $this->document = func_get_arg(2);
@@ -92,6 +99,7 @@ class CreateCustomerRequest implements JsonSerializable
             $this->metadata = func_get_arg(5);
             $this->phones   = func_get_arg(6);
             $this->code     = func_get_arg(7);
+            $this->gender   = func_get_arg(8);
         }
     }
 
@@ -110,6 +118,7 @@ class CreateCustomerRequest implements JsonSerializable
         $json['metadata'] = $this->metadata;
         $json['phones']   = $this->phones;
         $json['code']     = $this->code;
+        $json['gender']   = $this->gender;
 
         return $json;
     }
