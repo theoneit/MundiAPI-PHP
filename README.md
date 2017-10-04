@@ -470,24 +470,6 @@ $result = $customers->getCards($customerId);
 ```
 
 
-### <a name="get_customers"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getCustomers") getCustomers
-
-> Get all Customers
-
-
-```php
-function getCustomers()
-```
-
-#### Example Usage
-
-```php
-
-$result = $customers->getCustomers();
-
-```
-
-
 ### <a name="create_customer"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.createCustomer") createCustomer
 
 > Creates a new customer
@@ -877,6 +859,43 @@ function getAccessTokens($customerId)
 $customerId = 'customer_id';
 
 $result = $customers->getAccessTokens($customerId);
+
+```
+
+
+### <a name="get_customers"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getCustomers") getCustomers
+
+> Get all Customers
+
+
+```php
+function getCustomers(
+        $name = null,
+        $document = null,
+        $page = 1,
+        $size = 10)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| name |  ``` Optional ```  | Name of the Customer |
+| document |  ``` Optional ```  | Document of the Customer |
+| page |  ``` Optional ```  ``` DefaultValue ```  | Current page the the search |
+| size |  ``` Optional ```  ``` DefaultValue ```  | Quantity pages of the search |
+
+
+
+#### Example Usage
+
+```php
+$name = 'name';
+$document = 'document';
+$page = 1;
+$size = 10;
+
+$result = $customers->getCustomers($name, $document, $page, $size);
 
 ```
 
