@@ -41,12 +41,12 @@ class MundiAPIClient
         return Controllers\CustomersController::getInstance();
     }
     /**
-     * Singleton access to Subscriptions controller
-     * @return Controllers\SubscriptionsController The *Singleton* instance
+     * Singleton access to Invoices controller
+     * @return Controllers\InvoicesController The *Singleton* instance
      */
-    public function getSubscriptions()
+    public function getInvoices()
     {
-        return Controllers\SubscriptionsController::getInstance();
+        return Controllers\InvoicesController::getInstance();
     }
     /**
      * Singleton access to Plans controller
@@ -57,12 +57,12 @@ class MundiAPIClient
         return Controllers\PlansController::getInstance();
     }
     /**
-     * Singleton access to Invoices controller
-     * @return Controllers\InvoicesController The *Singleton* instance
+     * Singleton access to Subscriptions controller
+     * @return Controllers\SubscriptionsController The *Singleton* instance
      */
-    public function getInvoices()
+    public function getSubscriptions()
     {
-        return Controllers\InvoicesController::getInstance();
+        return Controllers\SubscriptionsController::getInstance();
     }
     /**
      * Singleton access to Orders controller
