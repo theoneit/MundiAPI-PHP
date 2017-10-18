@@ -38,10 +38,9 @@ class UpdateCustomerRequest implements JsonSerializable
     /**
      * Person type
      * @required
-     * @maps person_type
-     * @var string $personType public property
+     * @var string $type public property
      */
-    public $personType;
+    public $type;
 
     /**
      * Address
@@ -66,24 +65,24 @@ class UpdateCustomerRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string               $name       Initialization value for $this->name
-     * @param string               $email      Initialization value for $this->email
-     * @param string               $document   Initialization value for $this->document
-     * @param string               $personType Initialization value for $this->personType
-     * @param CreateAddressRequest $address    Initialization value for $this->address
-     * @param array                $metadata   Initialization value for $this->metadata
-     * @param CreatePhonesRequest  $phones     Initialization value for $this->phones
+     * @param string               $name     Initialization value for $this->name
+     * @param string               $email    Initialization value for $this->email
+     * @param string               $document Initialization value for $this->document
+     * @param string               $type     Initialization value for $this->type
+     * @param CreateAddressRequest $address  Initialization value for $this->address
+     * @param array                $metadata Initialization value for $this->metadata
+     * @param CreatePhonesRequest  $phones   Initialization value for $this->phones
      */
     public function __construct()
     {
         if (7 == func_num_args()) {
-            $this->name       = func_get_arg(0);
-            $this->email      = func_get_arg(1);
-            $this->document   = func_get_arg(2);
-            $this->personType = func_get_arg(3);
-            $this->address    = func_get_arg(4);
-            $this->metadata   = func_get_arg(5);
-            $this->phones     = func_get_arg(6);
+            $this->name     = func_get_arg(0);
+            $this->email    = func_get_arg(1);
+            $this->document = func_get_arg(2);
+            $this->type     = func_get_arg(3);
+            $this->address  = func_get_arg(4);
+            $this->metadata = func_get_arg(5);
+            $this->phones   = func_get_arg(6);
         }
     }
 
@@ -94,13 +93,13 @@ class UpdateCustomerRequest implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['name']        = $this->name;
-        $json['email']       = $this->email;
-        $json['document']    = $this->document;
-        $json['person_type'] = $this->personType;
-        $json['address']     = $this->address;
-        $json['metadata']    = $this->metadata;
-        $json['phones']      = $this->phones;
+        $json['name']     = $this->name;
+        $json['email']    = $this->email;
+        $json['document'] = $this->document;
+        $json['type']     = $this->type;
+        $json['address']  = $this->address;
+        $json['metadata'] = $this->metadata;
+        $json['phones']   = $this->phones;
 
         return $json;
     }

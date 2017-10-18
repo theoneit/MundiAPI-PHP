@@ -11,6 +11,9 @@ use JsonSerializable;
 
 /**
  * Response for voucher transactions
+ *
+ * @discriminator transaction_type
+ * @discriminatorType voucher
  */
 class GetVoucherTransactionResponse extends GetTransactionResponse implements JsonSerializable
 {

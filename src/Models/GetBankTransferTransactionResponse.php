@@ -11,6 +11,9 @@ use JsonSerializable;
 
 /**
  * Response object for getting a bank transfer transaction
+ *
+ * @discriminator transaction_type
+ * @discriminatorType bank_transfer
  */
 class GetBankTransferTransactionResponse extends GetTransactionResponse implements JsonSerializable
 {
