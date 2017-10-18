@@ -11,6 +11,9 @@ use JsonSerializable;
 
 /**
  * Response object for getting a boleto transaction
+ *
+ * @discriminator transaction_type
+ * @discriminatorType boleto
  */
 class GetBoletoTransactionResponse extends GetTransactionResponse implements JsonSerializable
 {

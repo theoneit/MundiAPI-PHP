@@ -11,6 +11,9 @@ use JsonSerializable;
 
 /**
  * Response object for getting a safety pay transaction
+ *
+ * @discriminator transaction_type
+ * @discriminatorType safetypay
  */
 class GetSafetyPayTransactionResponse extends GetTransactionResponse implements JsonSerializable
 {

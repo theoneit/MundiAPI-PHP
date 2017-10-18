@@ -1,5 +1,5 @@
 {
-    "name": "apimatic/mundiapi",
+    "name": "mundipagg/mundiapi",
     "type": "library",
     "description": "Mundipagg API",
     "keywords": ["MundiAPI","API","SDK"],
