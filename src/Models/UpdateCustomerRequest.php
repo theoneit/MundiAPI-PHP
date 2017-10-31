@@ -58,8 +58,7 @@ class UpdateCustomerRequest implements JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @required
-     * @var CreatePhonesRequest $phones public property
+     * @var CreatePhonesRequest|null $phones public property
      */
     public $phones;
 

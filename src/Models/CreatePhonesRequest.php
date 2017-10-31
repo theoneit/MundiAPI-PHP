@@ -16,17 +16,15 @@ class CreatePhonesRequest implements JsonSerializable
 {
     /**
      * @todo Write general description for this property
-     * @required
      * @maps home_phone
-     * @var CreatePhoneRequest $homePhone public property
+     * @var CreatePhoneRequest|null $homePhone public property
      */
     public $homePhone;
 
     /**
      * @todo Write general description for this property
-     * @required
      * @maps mobile_phone
-     * @var CreatePhoneRequest $mobilePhone public property
+     * @var CreatePhoneRequest|null $mobilePhone public property
      */
     public $mobilePhone;
 

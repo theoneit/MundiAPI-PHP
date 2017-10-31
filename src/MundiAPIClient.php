@@ -80,4 +80,12 @@ class MundiAPIClient
     {
         return Controllers\TokensController::getInstance();
     }
+    /**
+     * Singleton access to Recipients controller
+     * @return Controllers\RecipientsController The *Singleton* instance
+     */
+    public function getRecipients()
+    {
+        return Controllers\RecipientsController::getInstance();
+    }
 }
