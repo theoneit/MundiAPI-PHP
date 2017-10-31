@@ -79,6 +79,13 @@ class GetTransactionResponse implements JsonSerializable
     public $maxAttempts;
 
     /**
+     * Splits
+     * @required
+     * @var GetSplitResponse[] $splits public property
+     */
+    public $splits;
+
+    /**
      * Date and time of the next attempt
      * @maps next_attempt
      * @var string|null $nextAttempt public property
@@ -102,12 +109,13 @@ class GetTransactionResponse implements JsonSerializable
      * @param string  $updatedAt       Initialization value for $this->updatedAt
      * @param integer $attemptCount    Initialization value for $this->attemptCount
      * @param integer $maxAttempts     Initialization value for $this->maxAttempts
+     * @param array   $splits          Initialization value for $this->splits
      * @param string  $nextAttempt     Initialization value for $this->nextAttempt
      * @param string  $transactionType Initialization value for $this->transactionType
      */
     public function __construct()
     {
-        if (10 == func_num_args()) {
+        if (11 == func_num_args()) {
             $this->gatewayId       = func_get_arg(0);
             $this->amount          = func_get_arg(1);
             $this->status          = func_get_arg(2);
@@ -116,8 +124,9 @@ class GetTransactionResponse implements JsonSerializable
             $this->updatedAt       = func_get_arg(5);
             $this->attemptCount    = func_get_arg(6);
             $this->maxAttempts     = func_get_arg(7);
-            $this->nextAttempt     = func_get_arg(8);
-            $this->transactionType = func_get_arg(9);
+            $this->splits          = func_get_arg(8);
+            $this->nextAttempt     = func_get_arg(9);
+            $this->transactionType = func_get_arg(10);
         }
     }
 
@@ -136,6 +145,7 @@ class GetTransactionResponse implements JsonSerializable
         $json['updated_at']       = $this->updatedAt;
         $json['attempt_count']    = $this->attemptCount;
         $json['max_attempts']     = $this->maxAttempts;
+        $json['splits']           = $this->splits;
         $json['next_attempt']     = $this->nextAttempt;
         $json['transaction_type'] = $this->transactionType;
 

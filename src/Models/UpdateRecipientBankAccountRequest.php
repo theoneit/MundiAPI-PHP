@@ -10,25 +10,26 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Request for creating a new Access Token
+ * Updates the default bank account for a recipient
  */
-class CreateAccessTokenRequest implements JsonSerializable
+class UpdateRecipientBankAccountRequest implements JsonSerializable
 {
     /**
-     * Minutes to expire the token
-     * @maps expires_in
-     * @var integer|null $expiresIn public property
+     * Bank account
+     * @required
+     * @maps bank_account
+     * @var CreateBankAccountRequest $bankAccount public property
      */
-    public $expiresIn;
+    public $bankAccount;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param integer $expiresIn Initialization value for $this->expiresIn
+     * @param CreateBankAccountRequest $bankAccount Initialization value for $this->bankAccount
      */
     public function __construct()
     {
         if (1 == func_num_args()) {
-            $this->expiresIn = func_get_arg(0);
+            $this->bankAccount = func_get_arg(0);
         }
     }
 
@@ -39,7 +40,7 @@ class CreateAccessTokenRequest implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['expires_in'] = $this->expiresIn;
+        $json['bank_account'] = $this->bankAccount;
 
         return $json;
     }

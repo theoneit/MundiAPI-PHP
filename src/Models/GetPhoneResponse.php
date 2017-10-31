@@ -16,24 +16,21 @@ class GetPhoneResponse implements JsonSerializable
 {
     /**
      * @todo Write general description for this property
-     * @required
      * @maps country_code
-     * @var string $countryCode public property
+     * @var string|null $countryCode public property
      */
     public $countryCode;
 
     /**
      * @todo Write general description for this property
-     * @required
-     * @var string $number public property
+     * @var string|null $number public property
      */
     public $number;
 
     /**
      * @todo Write general description for this property
-     * @required
      * @maps area_code
-     * @var string $areaCode public property
+     * @var string|null $areaCode public property
      */
     public $areaCode;
 

@@ -139,6 +139,7 @@ $client = new MundiAPILib\MundiAPIClient($basicAuthUserName, $basicAuthPassword)
 * [SubscriptionsController](#subscriptions_controller)
 * [OrdersController](#orders_controller)
 * [TokensController](#tokens_controller)
+* [RecipientsController](#recipients_controller)
 
 ## <a name="charges_controller"></a>![Class: ](https://apidocs.io/img/class.png ".ChargesController") ChargesController
 
@@ -423,8 +424,8 @@ function getCharges(
 #### Example Usage
 
 ```php
-$page = 138;
-$size = 138;
+$page = 163;
+$size = 163;
 $code = 'code';
 $status = 'status';
 $paymentMethod = 'payment_method';
@@ -1006,8 +1007,8 @@ function getAccessTokens(
 
 ```php
 $customerId = 'customer_id';
-$page = 230;
-$size = 230;
+$page = 163;
+$size = 163;
 
 $result = $customers->getAccessTokens($customerId, $page, $size);
 
@@ -1040,8 +1041,8 @@ function getAddresses(
 
 ```php
 $customerId = 'customer_id';
-$page = 230;
-$size = 230;
+$page = 163;
+$size = 163;
 
 $result = $customers->getAddresses($customerId, $page, $size);
 
@@ -1074,8 +1075,8 @@ function getCards(
 
 ```php
 $customerId = 'customer_id';
-$page = 230;
-$size = 230;
+$page = 163;
+$size = 163;
 
 $result = $customers->getCards($customerId, $page, $size);
 
@@ -1218,8 +1219,8 @@ function getInvoices(
 #### Example Usage
 
 ```php
-$page = 230;
-$size = 230;
+$page = 163;
+$size = 163;
 $code = 'code';
 $customerId = 'customer_id';
 $subscriptionId = 'subscription_id';
@@ -1549,8 +1550,8 @@ function getPlans(
 #### Example Usage
 
 ```php
-$page = 66;
-$size = 66;
+$page = 121;
+$size = 121;
 $name = 'name';
 $status = 'status';
 $billingType = 'billing_type';
@@ -2007,8 +2008,8 @@ function getUsages(
 ```php
 $subscriptionId = 'subscription_id';
 $itemId = 'item_id';
-$page = 66;
-$size = 66;
+$page = 121;
+$size = 121;
 
 $result = $subscriptions->getUsages($subscriptionId, $itemId, $page, $size);
 
@@ -2089,8 +2090,8 @@ function getSubscriptions(
 #### Example Usage
 
 ```php
-$page = 66;
-$size = 66;
+$page = 121;
+$size = 121;
 $code = 'code';
 $billingType = 'billing_type';
 $customerId = 'customer_id';
@@ -2237,8 +2238,8 @@ function getOrders(
 #### Example Usage
 
 ```php
-$page = 66;
-$size = 66;
+$page = 121;
+$size = 121;
 $code = 'code';
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
@@ -2324,6 +2325,476 @@ $publicKey = 'public_key';
 $request = new CreateTokenRequest();
 
 $result = $tokens->createToken($publicKey, $request);
+
+```
+
+
+[Back to List of Controllers](#list_of_controllers)
+
+## <a name="recipients_controller"></a>![Class: ](https://apidocs.io/img/class.png ".RecipientsController") RecipientsController
+
+### Get singleton instance
+
+The singleton instance of the ``` RecipientsController ``` class can be accessed from the API Client.
+
+```php
+$recipients = $client->getRecipients();
+```
+
+### <a name="create_recipient"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.createRecipient") createRecipient
+
+> Creates a new recipient
+
+
+```php
+function createRecipient($request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| request |  ``` Required ```  | Recipient data |
+
+
+
+#### Example Usage
+
+```php
+$request = new CreateRecipientRequest();
+
+$result = $recipients->createRecipient($request);
+
+```
+
+
+### <a name="update_recipient"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.updateRecipient") updateRecipient
+
+> Updates a recipient
+
+
+```php
+function updateRecipient(
+        $recipientId,
+        $request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+| request |  ``` Required ```  | Recipient data |
+
+
+
+#### Example Usage
+
+```php
+$recipientId = 'recipient_id';
+$request = new UpdateRecipientRequest();
+
+$result = $recipients->updateRecipient($recipientId, $request);
+
+```
+
+
+### <a name="update_recipient_default_bank_account"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.updateRecipientDefaultBankAccount") updateRecipientDefaultBankAccount
+
+> Updates the default bank account from a recipient
+
+
+```php
+function updateRecipientDefaultBankAccount(
+        $recipientId,
+        $request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+| request |  ``` Required ```  | Bank account data |
+
+
+
+#### Example Usage
+
+```php
+$recipientId = 'recipient_id';
+$request = new UpdateRecipientBankAccountRequest();
+
+$result = $recipients->updateRecipientDefaultBankAccount($recipientId, $request);
+
+```
+
+
+### <a name="get_recipient"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getRecipient") getRecipient
+
+> Retrieves recipient information
+
+
+```php
+function getRecipient($recipientId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipiend id |
+
+
+
+#### Example Usage
+
+```php
+$recipientId = 'recipient_id';
+
+$result = $recipients->getRecipient($recipientId);
+
+```
+
+
+### <a name="get_recipients"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getRecipients") getRecipients
+
+> Retrieves paginated recipients information
+
+
+```php
+function getRecipients(
+        $page = null,
+        $size = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| page |  ``` Optional ```  | Page number |
+| size |  ``` Optional ```  | Page size |
+
+
+
+#### Example Usage
+
+```php
+$page = 213;
+$size = 213;
+
+$result = $recipients->getRecipients($page, $size);
+
+```
+
+
+### <a name="get_balance"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getBalance") getBalance
+
+> Get balance information for a recipient
+
+
+```php
+function getBalance($recipientId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+
+
+
+#### Example Usage
+
+```php
+$recipientId = 'recipient_id';
+
+$result = $recipients->getBalance($recipientId);
+
+```
+
+
+### <a name="create_transfer"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.createTransfer") createTransfer
+
+> Creates a transfer for a recipient
+
+
+```php
+function createTransfer(
+        $recipientId,
+        $request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient Id |
+| request |  ``` Required ```  | Transfer data |
+
+
+
+#### Example Usage
+
+```php
+$recipientId = 'recipient_id';
+$request = new CreateTransferRequest();
+
+$result = $recipients->createTransfer($recipientId, $request);
+
+```
+
+
+### <a name="get_transfer"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getTransfer") getTransfer
+
+> Gets a transfer
+
+
+```php
+function getTransfer(
+        $recipientId,
+        $transferId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+| transferId |  ``` Required ```  | Transfer id |
+
+
+
+#### Example Usage
+
+```php
+$recipientId = 'recipient_id';
+$transferId = 'transfer_id';
+
+$result = $recipients->getTransfer($recipientId, $transferId);
+
+```
+
+
+### <a name="get_transfers"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getTransfers") getTransfers
+
+> Gets a paginated list of transfers for the recipient
+
+
+```php
+function getTransfers(
+        $recipientId,
+        $page = null,
+        $size = null,
+        $status = null,
+        $createdSince = null,
+        $createdUntil = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+| page |  ``` Optional ```  | Page number |
+| size |  ``` Optional ```  | Page size |
+| status |  ``` Optional ```  | Filter for transfer status |
+| createdSince |  ``` Optional ```  | Filter for start range of transfer creation date |
+| createdUntil |  ``` Optional ```  | Filter for end range of transfer creation date |
+
+
+
+#### Example Usage
+
+```php
+$recipientId = 'recipient_id';
+$page = 213;
+$size = 213;
+$status = 'status';
+$createdSince = date("D M d, Y G:i");
+$createdUntil = date("D M d, Y G:i");
+
+$result = $recipients->getTransfers($recipientId, $page, $size, $status, $createdSince, $createdUntil);
+
+```
+
+
+### <a name="create_anticipation"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.createAnticipation") createAnticipation
+
+> Creates an anticipation
+
+
+```php
+function createAnticipation(
+        $recipientId,
+        $request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+| request |  ``` Required ```  | Anticipation data |
+
+
+
+#### Example Usage
+
+```php
+$recipientId = 'recipient_id';
+$request = new CreateAnticipationRequest();
+
+$result = $recipients->createAnticipation($recipientId, $request);
+
+```
+
+
+### <a name="get_anticipation"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getAnticipation") getAnticipation
+
+> Gets an anticipation
+
+
+```php
+function getAnticipation(
+        $recipientId,
+        $anticipationId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+| anticipationId |  ``` Required ```  | Anticipation id |
+
+
+
+#### Example Usage
+
+```php
+$recipientId = 'recipient_id';
+$anticipationId = 'anticipation_id';
+
+$result = $recipients->getAnticipation($recipientId, $anticipationId);
+
+```
+
+
+### <a name="get_anticipation_limits"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getAnticipationLimits") getAnticipationLimits
+
+> Gets the anticipation limits for a recipient
+
+
+```php
+function getAnticipationLimits(
+        $recipientId,
+        $timeframe,
+        $paymentDate)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+| timeframe |  ``` Required ```  | Timeframe |
+| paymentDate |  ``` Required ```  | Anticipation payment date |
+
+
+
+#### Example Usage
+
+```php
+$recipientId = 'recipient_id';
+$timeframe = 'timeframe';
+$paymentDate = date("D M d, Y G:i");
+
+$result = $recipients->getAnticipationLimits($recipientId, $timeframe, $paymentDate);
+
+```
+
+
+### <a name="get_anticipations"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getAnticipations") getAnticipations
+
+> Retrieves a paginated list of anticipations from a recipient
+
+
+```php
+function getAnticipations(
+        $recipientId,
+        $page = null,
+        $size = null,
+        $status = null,
+        $timeframe = null,
+        $paymentDateSince = null,
+        $paymentDateUntil = null,
+        $createdSince = null,
+        $createdUntil = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+| page |  ``` Optional ```  | Page number |
+| size |  ``` Optional ```  | Page size |
+| status |  ``` Optional ```  | Filter for anticipation status |
+| timeframe |  ``` Optional ```  | Filter for anticipation timeframe |
+| paymentDateSince |  ``` Optional ```  | Filter for start range for anticipation payment date |
+| paymentDateUntil |  ``` Optional ```  | Filter for end range for anticipation payment date |
+| createdSince |  ``` Optional ```  | Filter for start range for anticipation creation date |
+| createdUntil |  ``` Optional ```  | Filter for end range for anticipation creation date |
+
+
+
+#### Example Usage
+
+```php
+$recipientId = 'recipient_id';
+$page = 213;
+$size = 213;
+$status = 'status';
+$timeframe = 'timeframe';
+$paymentDateSince = date("D M d, Y G:i");
+$paymentDateUntil = date("D M d, Y G:i");
+$createdSince = date("D M d, Y G:i");
+$createdUntil = date("D M d, Y G:i");
+
+$result = $recipients->getAnticipations($recipientId, $page, $size, $status, $timeframe, $paymentDateSince, $paymentDateUntil, $createdSince, $createdUntil);
+
+```
+
+
+### <a name="update_recipient_metadata"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.updateRecipientMetadata") updateRecipientMetadata
+
+> Updates recipient metadata
+
+
+```php
+function updateRecipientMetadata(
+        $recipientId,
+        $request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+| request |  ``` Required ```  | Metadata |
+
+
+
+#### Example Usage
+
+```php
+$recipientId = 'recipient_id';
+$request = new UpdateMetadataRequest();
+
+$result = $recipients->updateRecipientMetadata($recipientId, $request);
 
 ```
 
