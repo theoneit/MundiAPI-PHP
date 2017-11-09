@@ -424,8 +424,8 @@ function getCharges(
 #### Example Usage
 
 ```php
-$page = 163;
-$size = 163;
+$page = 146;
+$size = 146;
 $code = 'code';
 $status = 'status';
 $paymentMethod = 'payment_method';
@@ -1007,8 +1007,8 @@ function getAccessTokens(
 
 ```php
 $customerId = 'customer_id';
-$page = 163;
-$size = 163;
+$page = 105;
+$size = 105;
 
 $result = $customers->getAccessTokens($customerId, $page, $size);
 
@@ -1041,8 +1041,8 @@ function getAddresses(
 
 ```php
 $customerId = 'customer_id';
-$page = 163;
-$size = 163;
+$page = 105;
+$size = 105;
 
 $result = $customers->getAddresses($customerId, $page, $size);
 
@@ -1075,8 +1075,8 @@ function getCards(
 
 ```php
 $customerId = 'customer_id';
-$page = 163;
-$size = 163;
+$page = 105;
+$size = 105;
 
 $result = $customers->getCards($customerId, $page, $size);
 
@@ -1219,8 +1219,8 @@ function getInvoices(
 #### Example Usage
 
 ```php
-$page = 163;
-$size = 163;
+$page = 105;
+$size = 105;
 $code = 'code';
 $customerId = 'customer_id';
 $subscriptionId = 'subscription_id';
@@ -1231,6 +1231,37 @@ $dueSince = date("D M d, Y G:i");
 $dueUntil = date("D M d, Y G:i");
 
 $result = $invoices->getInvoices($page, $size, $code, $customerId, $subscriptionId, $createdSince, $createdUntil, $status, $dueSince, $dueUntil);
+
+```
+
+
+### <a name="create_invoice"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.createInvoice") createInvoice
+
+> Create an Invoice
+
+
+```php
+function createInvoice(
+        $subscriptionId,
+        $cycleId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | Subscription Id |
+| cycleId |  ``` Required ```  | Cycle Id |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+$cycleId = 'cycle_id';
+
+$result = $invoices->createInvoice($subscriptionId, $cycleId);
 
 ```
 
@@ -1550,8 +1581,8 @@ function getPlans(
 #### Example Usage
 
 ```php
-$page = 121;
-$size = 121;
+$page = 105;
+$size = 105;
 $name = 'name';
 $status = 'status';
 $billingType = 'billing_type';
@@ -2008,8 +2039,8 @@ function getUsages(
 ```php
 $subscriptionId = 'subscription_id';
 $itemId = 'item_id';
-$page = 121;
-$size = 121;
+$page = 196;
+$size = 196;
 
 $result = $subscriptions->getUsages($subscriptionId, $itemId, $page, $size);
 
@@ -2090,8 +2121,8 @@ function getSubscriptions(
 #### Example Usage
 
 ```php
-$page = 121;
-$size = 121;
+$page = 196;
+$size = 196;
 $code = 'code';
 $billingType = 'billing_type';
 $customerId = 'customer_id';
@@ -2104,6 +2135,102 @@ $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
 
 $result = $subscriptions->getSubscriptions($page, $size, $code, $billingType, $customerId, $planId, $cardId, $status, $nextBillingSince, $nextBillingUntil, $createdSince, $createdUntil);
+
+```
+
+
+### <a name="create_an_usage"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.createAnUsage") createAnUsage
+
+> Create Usage
+
+
+```php
+function createAnUsage(
+        $subscriptionId,
+        $itemId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | Subscription id |
+| itemId |  ``` Required ```  | Item id |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+$itemId = 'item_id';
+
+$result = $subscriptions->createAnUsage($subscriptionId, $itemId);
+
+```
+
+
+### <a name="get_subscription_item"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getSubscriptionItem") getSubscriptionItem
+
+> Get Subscription Item
+
+
+```php
+function getSubscriptionItem(
+        $subscriptionId,
+        $itemId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | Subscription Id |
+| itemId |  ``` Required ```  | Item id |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+$itemId = 'item_id';
+
+$result = $subscriptions->getSubscriptionItem($subscriptionId, $itemId);
+
+```
+
+
+### <a name="get_subscription_items"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getSubscriptionItems") getSubscriptionItems
+
+> Get Subscription Itens
+
+
+```php
+function getSubscriptionItems(
+        $subscriptionId,
+        $status,
+        $description)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | Subscription Id |
+| status |  ``` Required ```  | Status |
+| description |  ``` Required ```  | Description |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+$status = 'status';
+$description = 'description';
+
+$result = $subscriptions->getSubscriptionItems($subscriptionId, $status, $description);
 
 ```
 
@@ -2238,8 +2365,8 @@ function getOrders(
 #### Example Usage
 
 ```php
-$page = 121;
-$size = 121;
+$page = 196;
+$size = 196;
 $code = 'code';
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
@@ -2480,8 +2607,8 @@ function getRecipients(
 #### Example Usage
 
 ```php
-$page = 213;
-$size = 213;
+$page = 154;
+$size = 154;
 
 $result = $recipients->getRecipients($page, $size);
 
@@ -2609,8 +2736,8 @@ function getTransfers(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 213;
-$size = 213;
+$page = 154;
+$size = 154;
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
@@ -2754,8 +2881,8 @@ function getAnticipations(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 213;
-$size = 213;
+$page = 154;
+$size = 154;
 $status = 'status';
 $timeframe = 'timeframe';
 $paymentDateSince = date("D M d, Y G:i");
