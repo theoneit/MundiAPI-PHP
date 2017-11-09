@@ -72,6 +72,31 @@ class CreateOrderRequest implements JsonSerializable
     public $antifraudEnabled;
 
     /**
+     * Ip address
+     * @var string|null $ip public property
+     */
+    public $ip;
+
+    /**
+     * Session id
+     * @maps session_id
+     * @var string|null $sessionId public property
+     */
+    public $sessionId;
+
+    /**
+     * Request's location
+     * @var CreateLocationRequest|null $location public property
+     */
+    public $location;
+
+    /**
+     * Device's informations
+     * @var CreateDeviceRequest|null $device public property
+     */
+    public $device;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param array                 $items            Initialization value for $this->items
      * @param CreateCustomerRequest $customer         Initialization value for $this->customer
@@ -81,10 +106,14 @@ class CreateOrderRequest implements JsonSerializable
      * @param CreateShippingRequest $shipping         Initialization value for $this->shipping
      * @param array                 $metadata         Initialization value for $this->metadata
      * @param bool                  $antifraudEnabled Initialization value for $this->antifraudEnabled
+     * @param string                $ip               Initialization value for $this->ip
+     * @param string                $sessionId        Initialization value for $this->sessionId
+     * @param CreateLocationRequest $location         Initialization value for $this->location
+     * @param CreateDeviceRequest   $device           Initialization value for $this->device
      */
     public function __construct()
     {
-        if (8 == func_num_args()) {
+        if (12 == func_num_args()) {
             $this->items            = func_get_arg(0);
             $this->customer         = func_get_arg(1);
             $this->payments         = func_get_arg(2);
@@ -93,6 +122,10 @@ class CreateOrderRequest implements JsonSerializable
             $this->shipping         = func_get_arg(5);
             $this->metadata         = func_get_arg(6);
             $this->antifraudEnabled = func_get_arg(7);
+            $this->ip               = func_get_arg(8);
+            $this->sessionId        = func_get_arg(9);
+            $this->location         = func_get_arg(10);
+            $this->device           = func_get_arg(11);
         }
     }
 
@@ -111,6 +144,10 @@ class CreateOrderRequest implements JsonSerializable
         $json['shipping']          = $this->shipping;
         $json['metadata']          = $this->metadata;
         $json['antifraud_enabled'] = $this->antifraudEnabled;
+        $json['ip']                = $this->ip;
+        $json['session_id']        = $this->sessionId;
+        $json['location']          = $this->location;
+        $json['device']            = $this->device;
 
         return $json;
     }
