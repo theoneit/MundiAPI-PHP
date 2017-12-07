@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  * Generic response object for getting a transaction.
@@ -50,7 +51,8 @@ class GetTransactionResponse implements JsonSerializable
      * Creation date
      * @required
      * @maps created_at
-     * @var string $createdAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $createdAt public property
      */
     public $createdAt;
 
@@ -58,7 +60,8 @@ class GetTransactionResponse implements JsonSerializable
      * Last update date
      * @required
      * @maps updated_at
-     * @var string $updatedAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $updatedAt public property
      */
     public $updatedAt;
 
@@ -81,14 +84,14 @@ class GetTransactionResponse implements JsonSerializable
     /**
      * Splits
      * @required
-     * @var GetSplitResponse[] $splits public property
+     * @var \MundiAPILib\Models\GetSplitResponse[] $splits public property
      */
     public $splits;
 
     /**
      * Date and time of the next attempt
      * @maps next_attempt
-     * @var string|null $nextAttempt public property
+     * @var DateTime|null $nextAttempt public property
      */
     public $nextAttempt;
 
@@ -101,17 +104,17 @@ class GetTransactionResponse implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string  $gatewayId       Initialization value for $this->gatewayId
-     * @param integer $amount          Initialization value for $this->amount
-     * @param string  $status          Initialization value for $this->status
-     * @param bool    $success         Initialization value for $this->success
-     * @param string  $createdAt       Initialization value for $this->createdAt
-     * @param string  $updatedAt       Initialization value for $this->updatedAt
-     * @param integer $attemptCount    Initialization value for $this->attemptCount
-     * @param integer $maxAttempts     Initialization value for $this->maxAttempts
-     * @param array   $splits          Initialization value for $this->splits
-     * @param string  $nextAttempt     Initialization value for $this->nextAttempt
-     * @param string  $transactionType Initialization value for $this->transactionType
+     * @param string    $gatewayId       Initialization value for $this->gatewayId
+     * @param integer   $amount          Initialization value for $this->amount
+     * @param string    $status          Initialization value for $this->status
+     * @param bool      $success         Initialization value for $this->success
+     * @param \DateTime $createdAt       Initialization value for $this->createdAt
+     * @param \DateTime $updatedAt       Initialization value for $this->updatedAt
+     * @param integer   $attemptCount    Initialization value for $this->attemptCount
+     * @param integer   $maxAttempts     Initialization value for $this->maxAttempts
+     * @param array     $splits          Initialization value for $this->splits
+     * @param \DateTime $nextAttempt     Initialization value for $this->nextAttempt
+     * @param string    $transactionType Initialization value for $this->transactionType
      */
     public function __construct()
     {
@@ -141,12 +144,12 @@ class GetTransactionResponse implements JsonSerializable
         $json['amount']           = $this->amount;
         $json['status']           = $this->status;
         $json['success']          = $this->success;
-        $json['created_at']       = $this->createdAt;
-        $json['updated_at']       = $this->updatedAt;
+        $json['created_at']       = DateTimeHelper::toRfc3339DateTime($this->createdAt);
+        $json['updated_at']       = DateTimeHelper::toRfc3339DateTime($this->updatedAt);
         $json['attempt_count']    = $this->attemptCount;
         $json['max_attempts']     = $this->maxAttempts;
         $json['splits']           = $this->splits;
-        $json['next_attempt']     = $this->nextAttempt;
+        $json['next_attempt']     = DateTimeHelper::toRfc3339DateTime($this->nextAttempt);
         $json['transaction_type'] = $this->transactionType;
 
         return $json;

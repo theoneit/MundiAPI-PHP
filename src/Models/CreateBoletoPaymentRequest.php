@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  * Contains the settings for creating a boleto payment
@@ -39,7 +40,8 @@ class CreateBoletoPaymentRequest implements JsonSerializable
      * Boleto due date
      * @required
      * @maps due_at
-     * @var string $dueAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $dueAt public property
      */
     public $dueAt;
 
@@ -47,7 +49,7 @@ class CreateBoletoPaymentRequest implements JsonSerializable
      * Card's billing address
      * @required
      * @maps billing_address
-     * @var CreateAddressRequest $billingAddress public property
+     * @var \MundiAPILib\Models\CreateAddressRequest $billingAddress public property
      */
     public $billingAddress;
 
@@ -61,12 +63,12 @@ class CreateBoletoPaymentRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param integer              $retries          Initialization value for $this->retries
-     * @param string               $bank             Initialization value for $this->bank
-     * @param string               $instructions     Initialization value for $this->instructions
-     * @param string               $dueAt            Initialization value for $this->dueAt
-     * @param CreateAddressRequest $billingAddress   Initialization value for $this->billingAddress
-     * @param string               $billingAddressId Initialization value for $this->billingAddressId
+     * @param integer               $retries          Initialization value for $this->retries
+     * @param string                $bank             Initialization value for $this->bank
+     * @param string                $instructions     Initialization value for $this->instructions
+     * @param \DateTime             $dueAt            Initialization value for $this->dueAt
+     * @param CreateAddressRequest  $billingAddress   Initialization value for $this->billingAddress
+     * @param string                $billingAddressId Initialization value for $this->billingAddressId
      */
     public function __construct()
     {
@@ -90,7 +92,7 @@ class CreateBoletoPaymentRequest implements JsonSerializable
         $json['retries']            = $this->retries;
         $json['bank']               = $this->bank;
         $json['instructions']       = $this->instructions;
-        $json['due_at']             = $this->dueAt;
+        $json['due_at']             = DateTimeHelper::toRfc3339DateTime($this->dueAt);
         $json['billing_address']    = $this->billingAddress;
         $json['billing_address_id'] = $this->billingAddressId;
 

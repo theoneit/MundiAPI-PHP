@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  * Request for updating a charge due date
@@ -17,13 +18,13 @@ class UpdateChargeDueDateRequest implements JsonSerializable
     /**
      * The charge's new due date
      * @maps due_at
-     * @var string|null $dueAt public property
+     * @var DateTime|null $dueAt public property
      */
     public $dueAt;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string $dueAt Initialization value for $this->dueAt
+     * @param \DateTime $dueAt Initialization value for $this->dueAt
      */
     public function __construct()
     {
@@ -39,7 +40,7 @@ class UpdateChargeDueDateRequest implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['due_at'] = $this->dueAt;
+        $json['due_at'] = DateTimeHelper::toRfc3339DateTime($this->dueAt);
 
         return $json;
     }

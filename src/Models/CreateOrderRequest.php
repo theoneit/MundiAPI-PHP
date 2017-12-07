@@ -17,21 +17,21 @@ class CreateOrderRequest implements JsonSerializable
     /**
      * Items
      * @required
-     * @var CreateOrderItemRequest[] $items public property
+     * @var \MundiAPILib\Models\CreateOrderItemRequest[] $items public property
      */
     public $items;
 
     /**
      * Customer
      * @required
-     * @var CreateCustomerRequest $customer public property
+     * @var \MundiAPILib\Models\CreateCustomerRequest $customer public property
      */
     public $customer;
 
     /**
      * Payment data
      * @required
-     * @var CreatePaymentRequest[] $payments public property
+     * @var \MundiAPILib\Models\CreatePaymentRequest[] $payments public property
      */
     public $payments;
 
@@ -53,7 +53,7 @@ class CreateOrderRequest implements JsonSerializable
     /**
      * Shipping data
      * @required
-     * @var CreateShippingRequest $shipping public property
+     * @var \MundiAPILib\Models\CreateShippingRequest $shipping public property
      */
     public $shipping;
 
@@ -86,13 +86,13 @@ class CreateOrderRequest implements JsonSerializable
 
     /**
      * Request's location
-     * @var CreateLocationRequest|null $location public property
+     * @var \MundiAPILib\Models\CreateLocationRequest|null $location public property
      */
     public $location;
 
     /**
      * Device's informations
-     * @var CreateDeviceRequest|null $device public property
+     * @var \MundiAPILib\Models\CreateDeviceRequest|null $device public property
      */
     public $device;
 

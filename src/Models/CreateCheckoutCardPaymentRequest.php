@@ -23,7 +23,7 @@ class CreateCheckoutCardPaymentRequest implements JsonSerializable
 
     /**
      * Payment installment options
-     * @var CreateCheckoutCardInstallmentOptionRequest[]|null $installments public property
+     * @var \MundiAPILib\Models\CreateCheckoutCardInstallmentOptionRequest[]|null $installments public property
      */
     public $installments;
 

@@ -17,14 +17,14 @@ class ListAnticipationResponse implements JsonSerializable
     /**
      * Anticipations
      * @required
-     * @var GetAnticipationResponse[] $data public property
+     * @var \MundiAPILib\Models\GetAnticipationResponse[] $data public property
      */
     public $data;
 
     /**
      * Paging
      * @required
-     * @var PagingResponse $paging public property
+     * @var \MundiAPILib\Models\PagingResponse $paging public property
      */
     public $paging;
 

@@ -56,7 +56,7 @@ class CreateCardRequest implements JsonSerializable
      * Card's billing address
      * @required
      * @maps billing_address
-     * @var CreateAddressRequest $billingAddress public property
+     * @var \MundiAPILib\Models\CreateAddressRequest $billingAddress public property
      */
     public $billingAddress;
 
@@ -92,7 +92,7 @@ class CreateCardRequest implements JsonSerializable
     /**
      * Options for creating the card
      * @required
-     * @var CreateCardOptionsRequest $options public property
+     * @var \MundiAPILib\Models\CreateCardOptionsRequest $options public property
      */
     public $options;
 

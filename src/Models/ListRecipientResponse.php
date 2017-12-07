@@ -17,14 +17,14 @@ class ListRecipientResponse implements JsonSerializable
     /**
      * Recipients
      * @required
-     * @var GetRecipientResponse[] $data public property
+     * @var \MundiAPILib\Models\GetRecipientResponse[] $data public property
      */
     public $data;
 
     /**
      * Paging
      * @required
-     * @var PagingResponse $paging public property
+     * @var \MundiAPILib\Models\PagingResponse $paging public property
      */
     public $paging;
 

@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  * Response object for getting an Order
@@ -38,14 +39,14 @@ class GetOrderResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @required
-     * @var GetOrderItemResponse[] $items public property
+     * @var \MundiAPILib\Models\GetOrderItemResponse[] $items public property
      */
     public $items;
 
     /**
      * @todo Write general description for this property
      * @required
-     * @var GetCustomerResponse $customer public property
+     * @var \MundiAPILib\Models\GetCustomerResponse $customer public property
      */
     public $customer;
 
@@ -60,7 +61,8 @@ class GetOrderResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps created_at
-     * @var string $createdAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $createdAt public property
      */
     public $createdAt;
 
@@ -68,14 +70,15 @@ class GetOrderResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps updated_at
-     * @var string $updatedAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $updatedAt public property
      */
     public $updatedAt;
 
     /**
      * @todo Write general description for this property
      * @required
-     * @var GetChargeResponse[] $charges public property
+     * @var \MundiAPILib\Models\GetChargeResponse[] $charges public property
      */
     public $charges;
 
@@ -90,7 +93,7 @@ class GetOrderResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @required
-     * @var GetShippingResponse $shipping public property
+     * @var \MundiAPILib\Models\GetShippingResponse $shipping public property
      */
     public $shipping;
 
@@ -103,7 +106,7 @@ class GetOrderResponse implements JsonSerializable
 
     /**
      * Checkout Payment Settings Response
-     * @var GetCheckoutPaymentSettingsResponse[]|null $checkouts public property
+     * @var \MundiAPILib\Models\GetCheckoutPaymentSettingsResponse[]|null $checkouts public property
      */
     public $checkouts;
 
@@ -122,35 +125,35 @@ class GetOrderResponse implements JsonSerializable
 
     /**
      * Location
-     * @var GetLocationResponse|null $location public property
+     * @var \MundiAPILib\Models\GetLocationResponse|null $location public property
      */
     public $location;
 
     /**
      * Device's informations
-     * @var GetDeviceResponse|null $device public property
+     * @var \MundiAPILib\Models\GetDeviceResponse|null $device public property
      */
     public $device;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string              $id         Initialization value for $this->id
-     * @param string              $code       Initialization value for $this->code
-     * @param string              $currency   Initialization value for $this->currency
-     * @param array               $items      Initialization value for $this->items
-     * @param GetCustomerResponse $customer   Initialization value for $this->customer
-     * @param string              $status     Initialization value for $this->status
-     * @param string              $createdAt  Initialization value for $this->createdAt
-     * @param string              $updatedAt  Initialization value for $this->updatedAt
-     * @param array               $charges    Initialization value for $this->charges
-     * @param string              $invoiceUrl Initialization value for $this->invoiceUrl
-     * @param GetShippingResponse $shipping   Initialization value for $this->shipping
-     * @param array               $metadata   Initialization value for $this->metadata
-     * @param array               $checkouts  Initialization value for $this->checkouts
-     * @param string              $ip         Initialization value for $this->ip
-     * @param string              $sessionId  Initialization value for $this->sessionId
-     * @param GetLocationResponse $location   Initialization value for $this->location
-     * @param GetDeviceResponse   $device     Initialization value for $this->device
+     * @param string               $id         Initialization value for $this->id
+     * @param string               $code       Initialization value for $this->code
+     * @param string               $currency   Initialization value for $this->currency
+     * @param array                $items      Initialization value for $this->items
+     * @param GetCustomerResponse  $customer   Initialization value for $this->customer
+     * @param string               $status     Initialization value for $this->status
+     * @param \DateTime            $createdAt  Initialization value for $this->createdAt
+     * @param \DateTime            $updatedAt  Initialization value for $this->updatedAt
+     * @param array                $charges    Initialization value for $this->charges
+     * @param string               $invoiceUrl Initialization value for $this->invoiceUrl
+     * @param GetShippingResponse  $shipping   Initialization value for $this->shipping
+     * @param array                $metadata   Initialization value for $this->metadata
+     * @param array                $checkouts  Initialization value for $this->checkouts
+     * @param string               $ip         Initialization value for $this->ip
+     * @param string               $sessionId  Initialization value for $this->sessionId
+     * @param GetLocationResponse  $location   Initialization value for $this->location
+     * @param GetDeviceResponse    $device     Initialization value for $this->device
      */
     public function __construct()
     {
@@ -188,8 +191,8 @@ class GetOrderResponse implements JsonSerializable
         $json['items']       = $this->items;
         $json['customer']    = $this->customer;
         $json['status']      = $this->status;
-        $json['created_at']  = $this->createdAt;
-        $json['updated_at']  = $this->updatedAt;
+        $json['created_at']  = DateTimeHelper::toRfc3339DateTime($this->createdAt);
+        $json['updated_at']  = DateTimeHelper::toRfc3339DateTime($this->updatedAt);
         $json['charges']     = $this->charges;
         $json['invoice_url'] = $this->invoiceUrl;
         $json['shipping']    = $this->shipping;

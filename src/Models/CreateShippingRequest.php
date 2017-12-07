@@ -55,7 +55,7 @@ class CreateShippingRequest implements JsonSerializable
     /**
      * Address data
      * @required
-     * @var CreateAddressRequest $address public property
+     * @var \MundiAPILib\Models\CreateAddressRequest $address public property
      */
     public $address;
 

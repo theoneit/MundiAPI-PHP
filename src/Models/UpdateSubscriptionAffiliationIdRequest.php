@@ -10,26 +10,26 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Updates the default bank account for a recipient
+ * Request for updating a Subscription Affiliation Id
  */
-class UpdateRecipientBankAccountRequest implements JsonSerializable
+class UpdateSubscriptionAffiliationIdRequest implements JsonSerializable
 {
     /**
-     * Bank account
+     * @todo Write general description for this property
      * @required
-     * @maps bank_account
-     * @var \MundiAPILib\Models\CreateBankAccountRequest $bankAccount public property
+     * @maps gateway_affiliation_id
+     * @var string $gatewayAffiliationId public property
      */
-    public $bankAccount;
+    public $gatewayAffiliationId;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param CreateBankAccountRequest $bankAccount Initialization value for $this->bankAccount
+     * @param string $gatewayAffiliationId Initialization value for $this->gatewayAffiliationId
      */
     public function __construct()
     {
         if (1 == func_num_args()) {
-            $this->bankAccount = func_get_arg(0);
+            $this->gatewayAffiliationId = func_get_arg(0);
         }
     }
 
@@ -40,7 +40,7 @@ class UpdateRecipientBankAccountRequest implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['bank_account'] = $this->bankAccount;
+        $json['gateway_affiliation_id'] = $this->gatewayAffiliationId;
 
         return $json;
     }

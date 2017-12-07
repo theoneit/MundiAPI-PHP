@@ -17,14 +17,14 @@ class ListInvoicesResponse implements JsonSerializable
     /**
      * The Invoice objects
      * @required
-     * @var GetInvoiceResponse[] $data public property
+     * @var \MundiAPILib\Models\GetInvoiceResponse[] $data public property
      */
     public $data;
 
     /**
      * Paging object
      * @required
-     * @var PagingResponse $paging public property
+     * @var \MundiAPILib\Models\PagingResponse $paging public property
      */
     public $paging;
 

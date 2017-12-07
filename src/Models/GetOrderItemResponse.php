@@ -38,7 +38,7 @@ class GetOrderItemResponse implements JsonSerializable
     /**
      * Seller data
      * @maps GetSellerResponse
-     * @var GetSellerResponse|null $getSellerResponse public property
+     * @var \MundiAPILib\Models\GetSellerResponse|null $getSellerResponse public property
      */
     public $getSellerResponse;
 

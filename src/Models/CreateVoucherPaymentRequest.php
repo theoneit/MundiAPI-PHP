@@ -49,7 +49,7 @@ class CreateVoucherPaymentRequest implements JsonSerializable
      * Card info
      * @required
      * @maps Card
-     * @var CreateCardRequest $card public property
+     * @var \MundiAPILib\Models\CreateCardRequest $card public property
      */
     public $card;
 

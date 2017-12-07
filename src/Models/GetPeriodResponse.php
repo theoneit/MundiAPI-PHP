@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  * Response object for getting a period
@@ -18,7 +19,8 @@ class GetPeriodResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps start_at
-     * @var string $startAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $startAt public property
      */
     public $startAt;
 
@@ -26,7 +28,8 @@ class GetPeriodResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps end_at
-     * @var string $endAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $endAt public property
      */
     public $endAt;
 
@@ -41,24 +44,25 @@ class GetPeriodResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps billing_at
-     * @var string $billingAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $billingAt public property
      */
     public $billingAt;
 
     /**
      * @todo Write general description for this property
      * @required
-     * @var GetSubscriptionResponse $subscription public property
+     * @var \MundiAPILib\Models\GetSubscriptionResponse $subscription public property
      */
     public $subscription;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                  $startAt      Initialization value for $this->startAt
-     * @param string                  $endAt        Initialization value for $this->endAt
-     * @param string                  $id           Initialization value for $this->id
-     * @param string                  $billingAt    Initialization value for $this->billingAt
-     * @param GetSubscriptionResponse $subscription Initialization value for $this->subscription
+     * @param \DateTime                $startAt      Initialization value for $this->startAt
+     * @param \DateTime                $endAt        Initialization value for $this->endAt
+     * @param string                   $id           Initialization value for $this->id
+     * @param \DateTime                $billingAt    Initialization value for $this->billingAt
+     * @param GetSubscriptionResponse  $subscription Initialization value for $this->subscription
      */
     public function __construct()
     {
@@ -78,10 +82,10 @@ class GetPeriodResponse implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['start_at']     = $this->startAt;
-        $json['end_at']       = $this->endAt;
+        $json['start_at']     = DateTimeHelper::toRfc3339DateTime($this->startAt);
+        $json['end_at']       = DateTimeHelper::toRfc3339DateTime($this->endAt);
         $json['id']           = $this->id;
-        $json['billing_at']   = $this->billingAt;
+        $json['billing_at']   = DateTimeHelper::toRfc3339DateTime($this->billingAt);
         $json['subscription'] = $this->subscription;
 
         return $json;

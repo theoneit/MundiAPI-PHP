@@ -17,14 +17,14 @@ class ListCustomersResponse implements JsonSerializable
     /**
      * The customer object
      * @required
-     * @var GetCustomerResponse[] $data public property
+     * @var \MundiAPILib\Models\GetCustomerResponse[] $data public property
      */
     public $data;
 
     /**
      * Paging object
      * @required
-     * @var PagingResponse $paging public property
+     * @var \MundiAPILib\Models\PagingResponse $paging public property
      */
     public $paging;
 

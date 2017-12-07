@@ -17,14 +17,14 @@ class ListUsagesResponse implements JsonSerializable
     /**
      * The usage objects
      * @required
-     * @var GetUsageResponse[] $data public property
+     * @var \MundiAPILib\Models\GetUsageResponse[] $data public property
      */
     public $data;
 
     /**
      * Paging object
      * @required
-     * @var PagingResponse $paging public property
+     * @var \MundiAPILib\Models\PagingResponse $paging public property
      */
     public $paging;
 

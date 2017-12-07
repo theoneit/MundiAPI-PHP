@@ -34,21 +34,21 @@ class UpdateChargePaymentMethodRequest implements JsonSerializable
      * Credit card data
      * @required
      * @maps credit_card
-     * @var CreateCreditCardPaymentRequest $creditCard public property
+     * @var \MundiAPILib\Models\CreateCreditCardPaymentRequest $creditCard public property
      */
     public $creditCard;
 
     /**
      * Boleto data
      * @required
-     * @var CreateBoletoPaymentRequest $boleto public property
+     * @var \MundiAPILib\Models\CreateBoletoPaymentRequest $boleto public property
      */
     public $boleto;
 
     /**
      * Voucher data
      * @required
-     * @var CreateVoucherPaymentRequest $voucher public property
+     * @var \MundiAPILib\Models\CreateVoucherPaymentRequest $voucher public property
      */
     public $voucher;
 

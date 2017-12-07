@@ -92,7 +92,7 @@ class GetVoucherTransactionResponse extends GetTransactionResponse implements Js
     /**
      * Card data
      * @required
-     * @var GetCardResponse $card public property
+     * @var \MundiAPILib\Models\GetCardResponse $card public property
      */
     public $card;
 

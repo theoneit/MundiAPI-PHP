@@ -26,7 +26,7 @@ class CreatePricingSchemeRequest implements JsonSerializable
      * Price brackets
      * @required
      * @maps price_brackets
-     * @var CreatePriceBracketRequest[] $priceBrackets public property
+     * @var \MundiAPILib\Models\CreatePriceBracketRequest[] $priceBrackets public property
      */
     public $priceBrackets;
 

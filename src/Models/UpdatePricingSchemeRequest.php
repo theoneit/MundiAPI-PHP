@@ -26,7 +26,7 @@ class UpdatePricingSchemeRequest implements JsonSerializable
      * Price brackets
      * @required
      * @maps price_brackets
-     * @var UpdatePriceBracketRequest[] $priceBrackets public property
+     * @var \MundiAPILib\Models\UpdatePriceBracketRequest[] $priceBrackets public property
      */
     public $priceBrackets;
 

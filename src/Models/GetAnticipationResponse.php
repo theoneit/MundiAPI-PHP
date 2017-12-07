@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  * Anticipation
@@ -40,7 +41,7 @@ class GetAnticipationResponse implements JsonSerializable
     /**
      * Recipient
      * @required
-     * @var GetRecipientResponse $recipient public property
+     * @var \MundiAPILib\Models\GetRecipientResponse $recipient public property
      */
     public $recipient;
 
@@ -55,7 +56,8 @@ class GetAnticipationResponse implements JsonSerializable
      * Creation date
      * @required
      * @maps created_at
-     * @var string $createdAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $createdAt public property
      */
     public $createdAt;
 
@@ -63,7 +65,8 @@ class GetAnticipationResponse implements JsonSerializable
      * Last update date
      * @required
      * @maps updated_at
-     * @var string $updatedAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $updatedAt public property
      */
     public $updatedAt;
 
@@ -71,7 +74,8 @@ class GetAnticipationResponse implements JsonSerializable
      * Payment date
      * @required
      * @maps payment_date
-     * @var string $paymentDate public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $paymentDate public property
      */
     public $paymentDate;
 
@@ -91,16 +95,16 @@ class GetAnticipationResponse implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string               $id              Initialization value for $this->id
-     * @param integer              $requestedAmount Initialization value for $this->requestedAmount
-     * @param integer              $approvedAmount  Initialization value for $this->approvedAmount
-     * @param GetRecipientResponse $recipient       Initialization value for $this->recipient
-     * @param string               $pgid            Initialization value for $this->pgid
-     * @param string               $createdAt       Initialization value for $this->createdAt
-     * @param string               $updatedAt       Initialization value for $this->updatedAt
-     * @param string               $paymentDate     Initialization value for $this->paymentDate
-     * @param string               $status          Initialization value for $this->status
-     * @param string               $timeframe       Initialization value for $this->timeframe
+     * @param string                $id              Initialization value for $this->id
+     * @param integer               $requestedAmount Initialization value for $this->requestedAmount
+     * @param integer               $approvedAmount  Initialization value for $this->approvedAmount
+     * @param GetRecipientResponse  $recipient       Initialization value for $this->recipient
+     * @param string                $pgid            Initialization value for $this->pgid
+     * @param \DateTime             $createdAt       Initialization value for $this->createdAt
+     * @param \DateTime             $updatedAt       Initialization value for $this->updatedAt
+     * @param \DateTime             $paymentDate     Initialization value for $this->paymentDate
+     * @param string                $status          Initialization value for $this->status
+     * @param string                $timeframe       Initialization value for $this->timeframe
      */
     public function __construct()
     {
@@ -130,9 +134,9 @@ class GetAnticipationResponse implements JsonSerializable
         $json['approved_amount']  = $this->approvedAmount;
         $json['recipient']        = $this->recipient;
         $json['pgid']             = $this->pgid;
-        $json['created_at']       = $this->createdAt;
-        $json['updated_at']       = $this->updatedAt;
-        $json['payment_date']     = $this->paymentDate;
+        $json['created_at']       = DateTimeHelper::toRfc3339DateTime($this->createdAt);
+        $json['updated_at']       = DateTimeHelper::toRfc3339DateTime($this->updatedAt);
+        $json['payment_date']     = DateTimeHelper::toRfc3339DateTime($this->paymentDate);
         $json['status']           = $this->status;
         $json['timeframe']        = $this->timeframe;
 

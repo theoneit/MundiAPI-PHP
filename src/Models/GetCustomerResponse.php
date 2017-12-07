@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  * Response object for getting a customer
@@ -46,7 +47,8 @@ class GetCustomerResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps created_at
-     * @var string $createdAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $createdAt public property
      */
     public $createdAt;
 
@@ -54,7 +56,8 @@ class GetCustomerResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps updated_at
-     * @var string $updatedAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $updatedAt public property
      */
     public $updatedAt;
 
@@ -83,7 +86,7 @@ class GetCustomerResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @required
-     * @var GetAddressResponse $address public property
+     * @var \MundiAPILib\Models\GetAddressResponse $address public property
      */
     public $address;
 
@@ -97,7 +100,7 @@ class GetCustomerResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @required
-     * @var GetPhonesResponse $phones public property
+     * @var \MundiAPILib\Models\GetPhonesResponse $phones public property
      */
     public $phones;
 
@@ -110,19 +113,19 @@ class GetCustomerResponse implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string             $id            Initialization value for $this->id
-     * @param string             $name          Initialization value for $this->name
-     * @param string             $email         Initialization value for $this->email
-     * @param bool               $delinquent    Initialization value for $this->delinquent
-     * @param string             $createdAt     Initialization value for $this->createdAt
-     * @param string             $updatedAt     Initialization value for $this->updatedAt
-     * @param string             $document      Initialization value for $this->document
-     * @param string             $type          Initialization value for $this->type
-     * @param string             $fbAccessToken Initialization value for $this->fbAccessToken
-     * @param GetAddressResponse $address       Initialization value for $this->address
-     * @param array              $metadata      Initialization value for $this->metadata
-     * @param GetPhonesResponse  $phones        Initialization value for $this->phones
-     * @param integer            $fbId          Initialization value for $this->fbId
+     * @param string              $id            Initialization value for $this->id
+     * @param string              $name          Initialization value for $this->name
+     * @param string              $email         Initialization value for $this->email
+     * @param bool                $delinquent    Initialization value for $this->delinquent
+     * @param \DateTime           $createdAt     Initialization value for $this->createdAt
+     * @param \DateTime           $updatedAt     Initialization value for $this->updatedAt
+     * @param string              $document      Initialization value for $this->document
+     * @param string              $type          Initialization value for $this->type
+     * @param string              $fbAccessToken Initialization value for $this->fbAccessToken
+     * @param GetAddressResponse  $address       Initialization value for $this->address
+     * @param array               $metadata      Initialization value for $this->metadata
+     * @param GetPhonesResponse   $phones        Initialization value for $this->phones
+     * @param integer             $fbId          Initialization value for $this->fbId
      */
     public function __construct()
     {
@@ -154,8 +157,8 @@ class GetCustomerResponse implements JsonSerializable
         $json['name']            = $this->name;
         $json['email']           = $this->email;
         $json['delinquent']      = $this->delinquent;
-        $json['created_at']      = $this->createdAt;
-        $json['updated_at']      = $this->updatedAt;
+        $json['created_at']      = DateTimeHelper::toRfc3339DateTime($this->createdAt);
+        $json['updated_at']      = DateTimeHelper::toRfc3339DateTime($this->updatedAt);
         $json['document']        = $this->document;
         $json['type']            = $this->type;
         $json['fb_access_token'] = $this->fbAccessToken;

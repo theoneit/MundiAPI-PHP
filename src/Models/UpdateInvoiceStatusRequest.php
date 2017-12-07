@@ -10,26 +10,25 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Updates the default bank account for a recipient
+ * Invoice Update Status Request
  */
-class UpdateRecipientBankAccountRequest implements JsonSerializable
+class UpdateInvoiceStatusRequest implements JsonSerializable
 {
     /**
-     * Bank account
+     * Status
      * @required
-     * @maps bank_account
-     * @var \MundiAPILib\Models\CreateBankAccountRequest $bankAccount public property
+     * @var string $status public property
      */
-    public $bankAccount;
+    public $status;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param CreateBankAccountRequest $bankAccount Initialization value for $this->bankAccount
+     * @param string $status Initialization value for $this->status
      */
     public function __construct()
     {
         if (1 == func_num_args()) {
-            $this->bankAccount = func_get_arg(0);
+            $this->status = func_get_arg(0);
         }
     }
 
@@ -40,7 +39,7 @@ class UpdateRecipientBankAccountRequest implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['bank_account'] = $this->bankAccount;
+        $json['status'] = $this->status;
 
         return $json;
     }

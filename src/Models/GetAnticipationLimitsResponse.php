@@ -17,14 +17,14 @@ class GetAnticipationLimitsResponse implements JsonSerializable
     /**
      * Max limit
      * @required
-     * @var GetAnticipationLimitResponse $max public property
+     * @var \MundiAPILib\Models\GetAnticipationLimitResponse $max public property
      */
     public $max;
 
     /**
      * Min limit
      * @required
-     * @var GetAnticipationLimitResponse $min public property
+     * @var \MundiAPILib\Models\GetAnticipationLimitResponse $min public property
      */
     public $min;
 

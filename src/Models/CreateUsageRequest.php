@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  * Request for creating a usage
@@ -32,15 +33,16 @@ class CreateUsageRequest implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps used_at
-     * @var string $usedAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $usedAt public property
      */
     public $usedAt;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param integer $quantity    Initialization value for $this->quantity
-     * @param string  $description Initialization value for $this->description
-     * @param string  $usedAt      Initialization value for $this->usedAt
+     * @param integer   $quantity    Initialization value for $this->quantity
+     * @param string    $description Initialization value for $this->description
+     * @param \DateTime $usedAt      Initialization value for $this->usedAt
      */
     public function __construct()
     {
@@ -60,7 +62,7 @@ class CreateUsageRequest implements JsonSerializable
         $json = array();
         $json['quantity']    = $this->quantity;
         $json['description'] = $this->description;
-        $json['used_at']     = $this->usedAt;
+        $json['used_at']     = DateTimeHelper::toRfc3339DateTime($this->usedAt);
 
         return $json;
     }

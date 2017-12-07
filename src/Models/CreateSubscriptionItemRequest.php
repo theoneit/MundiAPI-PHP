@@ -25,7 +25,7 @@ class CreateSubscriptionItemRequest implements JsonSerializable
      * Pricing scheme
      * @required
      * @maps pricing_scheme
-     * @var CreatePricingSchemeRequest $pricingScheme public property
+     * @var \MundiAPILib\Models\CreatePricingSchemeRequest $pricingScheme public property
      */
     public $pricingScheme;
 
@@ -47,9 +47,16 @@ class CreateSubscriptionItemRequest implements JsonSerializable
     /**
      * Discounts for the item
      * @required
-     * @var CreateDiscountRequest[] $discounts public property
+     * @var \MundiAPILib\Models\CreateDiscountRequest[] $discounts public property
      */
     public $discounts;
+
+    /**
+     * Item name
+     * @required
+     * @var string $name public property
+     */
+    public $name;
 
     /**
      * Number of cycles which the item will be charged
@@ -77,21 +84,23 @@ class CreateSubscriptionItemRequest implements JsonSerializable
      * @param string                     $id            Initialization value for $this->id
      * @param string                     $planItemId    Initialization value for $this->planItemId
      * @param array                      $discounts     Initialization value for $this->discounts
+     * @param string                     $name          Initialization value for $this->name
      * @param integer                    $cycles        Initialization value for $this->cycles
      * @param integer                    $quantity      Initialization value for $this->quantity
      * @param integer                    $minimumPrice  Initialization value for $this->minimumPrice
      */
     public function __construct()
     {
-        if (8 == func_num_args()) {
+        if (9 == func_num_args()) {
             $this->description   = func_get_arg(0);
             $this->pricingScheme = func_get_arg(1);
             $this->id            = func_get_arg(2);
             $this->planItemId    = func_get_arg(3);
             $this->discounts     = func_get_arg(4);
-            $this->cycles        = func_get_arg(5);
-            $this->quantity      = func_get_arg(6);
-            $this->minimumPrice  = func_get_arg(7);
+            $this->name          = func_get_arg(5);
+            $this->cycles        = func_get_arg(6);
+            $this->quantity      = func_get_arg(7);
+            $this->minimumPrice  = func_get_arg(8);
         }
     }
 
@@ -107,6 +116,7 @@ class CreateSubscriptionItemRequest implements JsonSerializable
         $json['id']             = $this->id;
         $json['plan_item_id']   = $this->planItemId;
         $json['discounts']      = $this->discounts;
+        $json['name']           = $this->name;
         $json['cycles']         = $this->cycles;
         $json['quantity']       = $this->quantity;
         $json['minimum_price']  = $this->minimumPrice;

@@ -72,6 +72,22 @@ class GetBillingAddressResponse implements JsonSerializable
     public $complement;
 
     /**
+     * Line 1 for address
+     * @required
+     * @maps line_1
+     * @var string $line1 public property
+     */
+    public $line1;
+
+    /**
+     * Line 2 for address
+     * @required
+     * @maps line_2
+     * @var string $line2 public property
+     */
+    public $line2;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string $street       Initialization value for $this->street
      * @param string $number       Initialization value for $this->number
@@ -81,10 +97,12 @@ class GetBillingAddressResponse implements JsonSerializable
      * @param string $state        Initialization value for $this->state
      * @param string $country      Initialization value for $this->country
      * @param string $complement   Initialization value for $this->complement
+     * @param string $line1        Initialization value for $this->line1
+     * @param string $line2        Initialization value for $this->line2
      */
     public function __construct()
     {
-        if (8 == func_num_args()) {
+        if (10 == func_num_args()) {
             $this->street       = func_get_arg(0);
             $this->number       = func_get_arg(1);
             $this->zipCode      = func_get_arg(2);
@@ -93,6 +111,8 @@ class GetBillingAddressResponse implements JsonSerializable
             $this->state        = func_get_arg(5);
             $this->country      = func_get_arg(6);
             $this->complement   = func_get_arg(7);
+            $this->line1        = func_get_arg(8);
+            $this->line2        = func_get_arg(9);
         }
     }
 
@@ -111,6 +131,8 @@ class GetBillingAddressResponse implements JsonSerializable
         $json['state']        = $this->state;
         $json['country']      = $this->country;
         $json['complement']   = $this->complement;
+        $json['line_1']       = $this->line1;
+        $json['line_2']       = $this->line2;
 
         return $json;
     }

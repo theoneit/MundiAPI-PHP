@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  * Response object for getting an Address
@@ -89,7 +90,8 @@ class GetAddressResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps created_at
-     * @var string $createdAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $createdAt public property
      */
     public $createdAt;
 
@@ -97,14 +99,15 @@ class GetAddressResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps updated_at
-     * @var string $updatedAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $updatedAt public property
      */
     public $updatedAt;
 
     /**
      * @todo Write general description for this property
      * @required
-     * @var GetCustomerResponse $customer public property
+     * @var \MundiAPILib\Models\GetCustomerResponse $customer public property
      */
     public $customer;
 
@@ -116,33 +119,51 @@ class GetAddressResponse implements JsonSerializable
     public $metadata;
 
     /**
+     * Line 1 for address
+     * @required
+     * @maps line_1
+     * @var string $line1 public property
+     */
+    public $line1;
+
+    /**
+     * Line 2 for address
+     * @required
+     * @maps line_2
+     * @var string $line2 public property
+     */
+    public $line2;
+
+    /**
      * @todo Write general description for this property
      * @maps deleted_at
-     * @var string|null $deletedAt public property
+     * @var DateTime|null $deletedAt public property
      */
     public $deletedAt;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string              $id           Initialization value for $this->id
-     * @param string              $street       Initialization value for $this->street
-     * @param string              $number       Initialization value for $this->number
-     * @param string              $complement   Initialization value for $this->complement
-     * @param string              $zipCode      Initialization value for $this->zipCode
-     * @param string              $neighborhood Initialization value for $this->neighborhood
-     * @param string              $city         Initialization value for $this->city
-     * @param string              $state        Initialization value for $this->state
-     * @param string              $country      Initialization value for $this->country
-     * @param string              $status       Initialization value for $this->status
-     * @param string              $createdAt    Initialization value for $this->createdAt
-     * @param string              $updatedAt    Initialization value for $this->updatedAt
-     * @param GetCustomerResponse $customer     Initialization value for $this->customer
-     * @param array               $metadata     Initialization value for $this->metadata
-     * @param string              $deletedAt    Initialization value for $this->deletedAt
+     * @param string               $id           Initialization value for $this->id
+     * @param string               $street       Initialization value for $this->street
+     * @param string               $number       Initialization value for $this->number
+     * @param string               $complement   Initialization value for $this->complement
+     * @param string               $zipCode      Initialization value for $this->zipCode
+     * @param string               $neighborhood Initialization value for $this->neighborhood
+     * @param string               $city         Initialization value for $this->city
+     * @param string               $state        Initialization value for $this->state
+     * @param string               $country      Initialization value for $this->country
+     * @param string               $status       Initialization value for $this->status
+     * @param \DateTime            $createdAt    Initialization value for $this->createdAt
+     * @param \DateTime            $updatedAt    Initialization value for $this->updatedAt
+     * @param GetCustomerResponse  $customer     Initialization value for $this->customer
+     * @param array                $metadata     Initialization value for $this->metadata
+     * @param string               $line1        Initialization value for $this->line1
+     * @param string               $line2        Initialization value for $this->line2
+     * @param \DateTime            $deletedAt    Initialization value for $this->deletedAt
      */
     public function __construct()
     {
-        if (15 == func_num_args()) {
+        if (17 == func_num_args()) {
             $this->id           = func_get_arg(0);
             $this->street       = func_get_arg(1);
             $this->number       = func_get_arg(2);
@@ -157,7 +178,9 @@ class GetAddressResponse implements JsonSerializable
             $this->updatedAt    = func_get_arg(11);
             $this->customer     = func_get_arg(12);
             $this->metadata     = func_get_arg(13);
-            $this->deletedAt    = func_get_arg(14);
+            $this->line1        = func_get_arg(14);
+            $this->line2        = func_get_arg(15);
+            $this->deletedAt    = func_get_arg(16);
         }
     }
 
@@ -178,11 +201,13 @@ class GetAddressResponse implements JsonSerializable
         $json['state']        = $this->state;
         $json['country']      = $this->country;
         $json['status']       = $this->status;
-        $json['created_at']   = $this->createdAt;
-        $json['updated_at']   = $this->updatedAt;
+        $json['created_at']   = DateTimeHelper::toRfc3339DateTime($this->createdAt);
+        $json['updated_at']   = DateTimeHelper::toRfc3339DateTime($this->updatedAt);
         $json['customer']     = $this->customer;
         $json['metadata']     = $this->metadata;
-        $json['deleted_at']   = $this->deletedAt;
+        $json['line_1']       = $this->line1;
+        $json['line_2']       = $this->line2;
+        $json['deleted_at']   = DateTimeHelper::toRfc3339DateTime($this->deletedAt);
 
         return $json;
     }

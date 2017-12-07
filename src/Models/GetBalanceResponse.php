@@ -32,7 +32,7 @@ class GetBalanceResponse implements JsonSerializable
     /**
      * Recipient
      * @required
-     * @var GetRecipientResponse $recipient public property
+     * @var \MundiAPILib\Models\GetRecipientResponse $recipient public property
      */
     public $recipient;
 

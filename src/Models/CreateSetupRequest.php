@@ -32,7 +32,7 @@ class CreateSetupRequest implements JsonSerializable
     /**
      * Payment data
      * @required
-     * @var CreatePaymentRequest $payment public property
+     * @var \MundiAPILib\Models\CreatePaymentRequest $payment public property
      */
     public $payment;
 

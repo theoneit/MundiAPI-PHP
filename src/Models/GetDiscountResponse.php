@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  * Response object for getting a discount
@@ -47,14 +48,15 @@ class GetDiscountResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps created_at
-     * @var string $createdAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $createdAt public property
      */
     public $createdAt;
 
     /**
      * @todo Write general description for this property
      * @required
-     * @var GetSubscriptionResponse $subscription public property
+     * @var \MundiAPILib\Models\GetSubscriptionResponse $subscription public property
      */
     public $subscription;
 
@@ -67,20 +69,20 @@ class GetDiscountResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @maps deleted_at
-     * @var string|null $deletedAt public property
+     * @var DateTime|null $deletedAt public property
      */
     public $deletedAt;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                  $id           Initialization value for $this->id
-     * @param double                  $value        Initialization value for $this->value
-     * @param string                  $discountType Initialization value for $this->discountType
-     * @param string                  $status       Initialization value for $this->status
-     * @param string                  $createdAt    Initialization value for $this->createdAt
-     * @param GetSubscriptionResponse $subscription Initialization value for $this->subscription
-     * @param integer                 $cycles       Initialization value for $this->cycles
-     * @param string                  $deletedAt    Initialization value for $this->deletedAt
+     * @param string                   $id           Initialization value for $this->id
+     * @param double                   $value        Initialization value for $this->value
+     * @param string                   $discountType Initialization value for $this->discountType
+     * @param string                   $status       Initialization value for $this->status
+     * @param \DateTime                $createdAt    Initialization value for $this->createdAt
+     * @param GetSubscriptionResponse  $subscription Initialization value for $this->subscription
+     * @param integer                  $cycles       Initialization value for $this->cycles
+     * @param \DateTime                $deletedAt    Initialization value for $this->deletedAt
      */
     public function __construct()
     {
@@ -107,10 +109,10 @@ class GetDiscountResponse implements JsonSerializable
         $json['value']         = $this->value;
         $json['discount_type'] = $this->discountType;
         $json['status']        = $this->status;
-        $json['created_at']    = $this->createdAt;
+        $json['created_at']    = DateTimeHelper::toRfc3339DateTime($this->createdAt);
         $json['subscription']  = $this->subscription;
         $json['cycles']        = $this->cycles;
-        $json['deleted_at']    = $this->deletedAt;
+        $json['deleted_at']    = DateTimeHelper::toRfc3339DateTime($this->deletedAt);
 
         return $json;
     }

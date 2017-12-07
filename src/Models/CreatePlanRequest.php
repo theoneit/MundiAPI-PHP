@@ -39,7 +39,7 @@ class CreatePlanRequest implements JsonSerializable
     /**
      * Plan items
      * @required
-     * @var CreatePlanItemRequest[] $items public property
+     * @var \MundiAPILib\Models\CreatePlanItemRequest[] $items public property
      */
     public $items;
 
@@ -108,7 +108,7 @@ class CreatePlanRequest implements JsonSerializable
      * Plan's pricing scheme
      * @required
      * @maps pricing_scheme
-     * @var CreatePricingSchemeRequest $pricingScheme public property
+     * @var \MundiAPILib\Models\CreatePricingSchemeRequest $pricingScheme public property
      */
     public $pricingScheme;
 

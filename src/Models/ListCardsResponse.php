@@ -17,14 +17,14 @@ class ListCardsResponse implements JsonSerializable
     /**
      * The card objects
      * @required
-     * @var GetCardResponse[] $data public property
+     * @var \MundiAPILib\Models\GetCardResponse[] $data public property
      */
     public $data;
 
     /**
      * Paging object
      * @required
-     * @var PagingResponse $paging public property
+     * @var \MundiAPILib\Models\PagingResponse $paging public property
      */
     public $paging;
 

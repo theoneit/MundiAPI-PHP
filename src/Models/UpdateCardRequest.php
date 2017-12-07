@@ -50,7 +50,7 @@ class UpdateCardRequest implements JsonSerializable
      * Billing address
      * @required
      * @maps billing_address
-     * @var CreateAddressRequest $billingAddress public property
+     * @var \MundiAPILib\Models\CreateAddressRequest $billingAddress public property
      */
     public $billingAddress;
 
