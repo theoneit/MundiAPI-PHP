@@ -53,7 +53,7 @@ class CreateSellerRequest implements JsonSerializable
 
     /**
      * Metadata
-     * @var CreateCardRequest|null $metadata public property
+     * @var \MundiAPILib\Models\CreateCardRequest|null $metadata public property
      */
     public $metadata;
 

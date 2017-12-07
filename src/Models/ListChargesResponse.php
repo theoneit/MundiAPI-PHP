@@ -17,14 +17,14 @@ class ListChargesResponse implements JsonSerializable
     /**
      * The charge objects
      * @required
-     * @var GetChargeResponse[] $data public property
+     * @var \MundiAPILib\Models\GetChargeResponse[] $data public property
      */
     public $data;
 
     /**
      * Paging object
      * @required
-     * @var PagingResponse $paging public property
+     * @var \MundiAPILib\Models\PagingResponse $paging public property
      */
     public $paging;
 

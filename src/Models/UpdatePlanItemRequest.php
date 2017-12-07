@@ -39,7 +39,7 @@ class UpdatePlanItemRequest implements JsonSerializable
      * Pricing scheme
      * @required
      * @maps pricing_scheme
-     * @var UpdatePricingSchemeRequest $pricingScheme public property
+     * @var \MundiAPILib\Models\UpdatePricingSchemeRequest $pricingScheme public property
      */
     public $pricingScheme;
 

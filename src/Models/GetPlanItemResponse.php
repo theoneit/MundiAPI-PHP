@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  * Response object for getting a plan item
@@ -39,7 +40,8 @@ class GetPlanItemResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps created_at
-     * @var string $createdAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $createdAt public property
      */
     public $createdAt;
 
@@ -47,7 +49,8 @@ class GetPlanItemResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps updated_at
-     * @var string $updatedAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $updatedAt public property
      */
     public $updatedAt;
 
@@ -55,7 +58,7 @@ class GetPlanItemResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps pricing_scheme
-     * @var GetPricingSchemeResponse $pricingScheme public property
+     * @var \MundiAPILib\Models\GetPricingSchemeResponse $pricingScheme public property
      */
     public $pricingScheme;
 
@@ -69,7 +72,7 @@ class GetPlanItemResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @required
-     * @var GetPlanResponse $plan public property
+     * @var \MundiAPILib\Models\GetPlanResponse $plan public property
      */
     public $plan;
 
@@ -88,23 +91,23 @@ class GetPlanItemResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @maps deleted_at
-     * @var string|null $deletedAt public property
+     * @var DateTime|null $deletedAt public property
      */
     public $deletedAt;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                   $id            Initialization value for $this->id
-     * @param string                   $name          Initialization value for $this->name
-     * @param string                   $status        Initialization value for $this->status
-     * @param string                   $createdAt     Initialization value for $this->createdAt
-     * @param string                   $updatedAt     Initialization value for $this->updatedAt
-     * @param GetPricingSchemeResponse $pricingScheme Initialization value for $this->pricingScheme
-     * @param string                   $description   Initialization value for $this->description
-     * @param GetPlanResponse          $plan          Initialization value for $this->plan
-     * @param integer                  $quantity      Initialization value for $this->quantity
-     * @param integer                  $cycles        Initialization value for $this->cycles
-     * @param string                   $deletedAt     Initialization value for $this->deletedAt
+     * @param string                    $id            Initialization value for $this->id
+     * @param string                    $name          Initialization value for $this->name
+     * @param string                    $status        Initialization value for $this->status
+     * @param \DateTime                 $createdAt     Initialization value for $this->createdAt
+     * @param \DateTime                 $updatedAt     Initialization value for $this->updatedAt
+     * @param GetPricingSchemeResponse  $pricingScheme Initialization value for $this->pricingScheme
+     * @param string                    $description   Initialization value for $this->description
+     * @param GetPlanResponse           $plan          Initialization value for $this->plan
+     * @param integer                   $quantity      Initialization value for $this->quantity
+     * @param integer                   $cycles        Initialization value for $this->cycles
+     * @param \DateTime                 $deletedAt     Initialization value for $this->deletedAt
      */
     public function __construct()
     {
@@ -133,14 +136,14 @@ class GetPlanItemResponse implements JsonSerializable
         $json['id']             = $this->id;
         $json['name']           = $this->name;
         $json['status']         = $this->status;
-        $json['created_at']     = $this->createdAt;
-        $json['updated_at']     = $this->updatedAt;
+        $json['created_at']     = DateTimeHelper::toRfc3339DateTime($this->createdAt);
+        $json['updated_at']     = DateTimeHelper::toRfc3339DateTime($this->updatedAt);
         $json['pricing_scheme'] = $this->pricingScheme;
         $json['description']    = $this->description;
         $json['plan']           = $this->plan;
         $json['quantity']       = $this->quantity;
         $json['cycles']         = $this->cycles;
-        $json['deleted_at']     = $this->deletedAt;
+        $json['deleted_at']     = DateTimeHelper::toRfc3339DateTime($this->deletedAt);
 
         return $json;
     }

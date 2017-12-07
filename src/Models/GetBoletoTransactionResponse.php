@@ -66,7 +66,7 @@ class GetBoletoTransactionResponse extends GetTransactionResponse implements Jso
      * @todo Write general description for this property
      * @required
      * @maps billing_address
-     * @var GetBillingAddressResponse $billingAddress public property
+     * @var \MundiAPILib\Models\GetBillingAddressResponse $billingAddress public property
      */
     public $billingAddress;
 

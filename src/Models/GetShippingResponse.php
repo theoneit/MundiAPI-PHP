@@ -47,7 +47,7 @@ class GetShippingResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @required
-     * @var GetAddressResponse $address public property
+     * @var \MundiAPILib\Models\GetAddressResponse $address public property
      */
     public $address;
 

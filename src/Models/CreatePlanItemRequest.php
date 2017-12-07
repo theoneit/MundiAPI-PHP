@@ -25,7 +25,7 @@ class CreatePlanItemRequest implements JsonSerializable
      * Item's pricing scheme
      * @required
      * @maps pricing_scheme
-     * @var CreatePricingSchemeRequest $pricingScheme public property
+     * @var \MundiAPILib\Models\CreatePricingSchemeRequest $pricingScheme public property
      */
     public $pricingScheme;
 

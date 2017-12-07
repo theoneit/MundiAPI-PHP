@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  * Response object for getting a charge
@@ -69,7 +70,8 @@ class GetChargeResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps due_at
-     * @var string $dueAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $dueAt public property
      */
     public $dueAt;
 
@@ -77,7 +79,8 @@ class GetChargeResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps created_at
-     * @var string $createdAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $createdAt public property
      */
     public $createdAt;
 
@@ -85,7 +88,8 @@ class GetChargeResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps updated_at
-     * @var string $updatedAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $updatedAt public property
      */
     public $updatedAt;
 
@@ -93,28 +97,28 @@ class GetChargeResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps last_transaction
-     * @var GetTransactionResponse $lastTransaction public property
+     * @var \MundiAPILib\Models\GetTransactionResponse $lastTransaction public property
      */
     public $lastTransaction;
 
     /**
      * @todo Write general description for this property
      * @required
-     * @var GetInvoiceResponse $invoice public property
+     * @var \MundiAPILib\Models\GetInvoiceResponse $invoice public property
      */
     public $invoice;
 
     /**
      * @todo Write general description for this property
      * @required
-     * @var GetOrderResponse $order public property
+     * @var \MundiAPILib\Models\GetOrderResponse $order public property
      */
     public $order;
 
     /**
      * @todo Write general description for this property
      * @required
-     * @var GetCustomerResponse $customer public property
+     * @var \MundiAPILib\Models\GetCustomerResponse $customer public property
      */
     public $customer;
 
@@ -128,36 +132,36 @@ class GetChargeResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @maps paid_at
-     * @var string|null $paidAt public property
+     * @var DateTime|null $paidAt public property
      */
     public $paidAt;
 
     /**
      * @todo Write general description for this property
      * @maps canceled_at
-     * @var string|null $canceledAt public property
+     * @var DateTime|null $canceledAt public property
      */
     public $canceledAt;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                 $id              Initialization value for $this->id
-     * @param string                 $code            Initialization value for $this->code
-     * @param string                 $gatewayId       Initialization value for $this->gatewayId
-     * @param integer                $amount          Initialization value for $this->amount
-     * @param string                 $status          Initialization value for $this->status
-     * @param string                 $currency        Initialization value for $this->currency
-     * @param string                 $paymentMethod   Initialization value for $this->paymentMethod
-     * @param string                 $dueAt           Initialization value for $this->dueAt
-     * @param string                 $createdAt       Initialization value for $this->createdAt
-     * @param string                 $updatedAt       Initialization value for $this->updatedAt
-     * @param GetTransactionResponse $lastTransaction Initialization value for $this->lastTransaction
-     * @param GetInvoiceResponse     $invoice         Initialization value for $this->invoice
-     * @param GetOrderResponse       $order           Initialization value for $this->order
-     * @param GetCustomerResponse    $customer        Initialization value for $this->customer
-     * @param array                  $metadata        Initialization value for $this->metadata
-     * @param string                 $paidAt          Initialization value for $this->paidAt
-     * @param string                 $canceledAt      Initialization value for $this->canceledAt
+     * @param string                  $id              Initialization value for $this->id
+     * @param string                  $code            Initialization value for $this->code
+     * @param string                  $gatewayId       Initialization value for $this->gatewayId
+     * @param integer                 $amount          Initialization value for $this->amount
+     * @param string                  $status          Initialization value for $this->status
+     * @param string                  $currency        Initialization value for $this->currency
+     * @param string                  $paymentMethod   Initialization value for $this->paymentMethod
+     * @param \DateTime               $dueAt           Initialization value for $this->dueAt
+     * @param \DateTime               $createdAt       Initialization value for $this->createdAt
+     * @param \DateTime               $updatedAt       Initialization value for $this->updatedAt
+     * @param GetTransactionResponse  $lastTransaction Initialization value for $this->lastTransaction
+     * @param GetInvoiceResponse      $invoice         Initialization value for $this->invoice
+     * @param GetOrderResponse        $order           Initialization value for $this->order
+     * @param GetCustomerResponse     $customer        Initialization value for $this->customer
+     * @param array                   $metadata        Initialization value for $this->metadata
+     * @param \DateTime               $paidAt          Initialization value for $this->paidAt
+     * @param \DateTime               $canceledAt      Initialization value for $this->canceledAt
      */
     public function __construct()
     {
@@ -196,16 +200,16 @@ class GetChargeResponse implements JsonSerializable
         $json['status']           = $this->status;
         $json['currency']         = $this->currency;
         $json['payment_method']   = $this->paymentMethod;
-        $json['due_at']           = $this->dueAt;
-        $json['created_at']       = $this->createdAt;
-        $json['updated_at']       = $this->updatedAt;
+        $json['due_at']           = DateTimeHelper::toRfc3339DateTime($this->dueAt);
+        $json['created_at']       = DateTimeHelper::toRfc3339DateTime($this->createdAt);
+        $json['updated_at']       = DateTimeHelper::toRfc3339DateTime($this->updatedAt);
         $json['last_transaction'] = $this->lastTransaction;
         $json['invoice']          = $this->invoice;
         $json['order']            = $this->order;
         $json['customer']         = $this->customer;
         $json['metadata']         = $this->metadata;
-        $json['paid_at']          = $this->paidAt;
-        $json['canceled_at']      = $this->canceledAt;
+        $json['paid_at']          = DateTimeHelper::toRfc3339DateTime($this->paidAt);
+        $json['canceled_at']      = DateTimeHelper::toRfc3339DateTime($this->canceledAt);
 
         return $json;
     }

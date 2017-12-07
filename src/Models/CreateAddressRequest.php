@@ -80,6 +80,22 @@ class CreateAddressRequest implements JsonSerializable
     public $metadata;
 
     /**
+     * Line 1 for address
+     * @required
+     * @maps line_1
+     * @var string $line1 public property
+     */
+    public $line1;
+
+    /**
+     * Line 2 for address
+     * @required
+     * @maps line_2
+     * @var string $line2 public property
+     */
+    public $line2;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string $street       Initialization value for $this->street
      * @param string $number       Initialization value for $this->number
@@ -90,10 +106,12 @@ class CreateAddressRequest implements JsonSerializable
      * @param string $country      Initialization value for $this->country
      * @param string $complement   Initialization value for $this->complement
      * @param array  $metadata     Initialization value for $this->metadata
+     * @param string $line1        Initialization value for $this->line1
+     * @param string $line2        Initialization value for $this->line2
      */
     public function __construct()
     {
-        if (9 == func_num_args()) {
+        if (11 == func_num_args()) {
             $this->street       = func_get_arg(0);
             $this->number       = func_get_arg(1);
             $this->zipCode      = func_get_arg(2);
@@ -103,6 +121,8 @@ class CreateAddressRequest implements JsonSerializable
             $this->country      = func_get_arg(6);
             $this->complement   = func_get_arg(7);
             $this->metadata     = func_get_arg(8);
+            $this->line1        = func_get_arg(9);
+            $this->line2        = func_get_arg(10);
         }
     }
 
@@ -122,6 +142,8 @@ class CreateAddressRequest implements JsonSerializable
         $json['country']      = $this->country;
         $json['complement']   = $this->complement;
         $json['metadata']     = $this->metadata;
+        $json['line_1']       = $this->line1;
+        $json['line_2']       = $this->line2;
 
         return $json;
     }

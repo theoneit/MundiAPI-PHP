@@ -33,7 +33,7 @@ class GetPricingSchemeResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps price_brackets
-     * @var GetPriceBracketResponse[] $priceBrackets public property
+     * @var \MundiAPILib\Models\GetPriceBracketResponse[] $priceBrackets public property
      */
     public $priceBrackets;
 

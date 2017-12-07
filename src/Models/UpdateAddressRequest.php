@@ -36,17 +36,27 @@ class UpdateAddressRequest implements JsonSerializable
     public $metadata;
 
     /**
+     * Line 2 for address
+     * @required
+     * @maps line_2
+     * @var string $line2 public property
+     */
+    public $line2;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string $number     Initialization value for $this->number
      * @param string $complement Initialization value for $this->complement
      * @param array  $metadata   Initialization value for $this->metadata
+     * @param string $line2      Initialization value for $this->line2
      */
     public function __construct()
     {
-        if (3 == func_num_args()) {
+        if (4 == func_num_args()) {
             $this->number     = func_get_arg(0);
             $this->complement = func_get_arg(1);
             $this->metadata   = func_get_arg(2);
+            $this->line2      = func_get_arg(3);
         }
     }
 
@@ -60,6 +70,7 @@ class UpdateAddressRequest implements JsonSerializable
         $json['number']     = $this->number;
         $json['complement'] = $this->complement;
         $json['metadata']   = $this->metadata;
+        $json['line_2']     = $this->line2;
 
         return $json;
     }

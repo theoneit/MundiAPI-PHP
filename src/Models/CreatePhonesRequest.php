@@ -17,14 +17,14 @@ class CreatePhonesRequest implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @maps home_phone
-     * @var CreatePhoneRequest|null $homePhone public property
+     * @var \MundiAPILib\Models\CreatePhoneRequest|null $homePhone public property
      */
     public $homePhone;
 
     /**
      * @todo Write general description for this property
      * @maps mobile_phone
-     * @var CreatePhoneRequest|null $mobilePhone public property
+     * @var \MundiAPILib\Models\CreatePhoneRequest|null $mobilePhone public property
      */
     public $mobilePhone;
 

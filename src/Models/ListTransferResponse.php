@@ -17,14 +17,14 @@ class ListTransferResponse implements JsonSerializable
     /**
      * Transfers
      * @required
-     * @var GetTransferResponse[] $data public property
+     * @var \MundiAPILib\Models\GetTransferResponse[] $data public property
      */
     public $data;
 
     /**
      * Paging
      * @required
-     * @var PagingResponse $paging public property
+     * @var \MundiAPILib\Models\PagingResponse $paging public property
      */
     public $paging;
 

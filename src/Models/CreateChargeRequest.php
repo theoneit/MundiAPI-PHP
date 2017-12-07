@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  * Request for creating a new charge
@@ -39,14 +40,14 @@ class CreateChargeRequest implements JsonSerializable
     /**
      * Customer data
      * @required
-     * @var CreateCustomerRequest $customer public property
+     * @var \MundiAPILib\Models\CreateCustomerRequest $customer public property
      */
     public $customer;
 
     /**
      * Payment data
      * @required
-     * @var CreatePaymentRequest $payment public property
+     * @var \MundiAPILib\Models\CreatePaymentRequest $payment public property
      */
     public $payment;
 
@@ -60,19 +61,19 @@ class CreateChargeRequest implements JsonSerializable
     /**
      * The charge due date
      * @maps due_at
-     * @var string|null $dueAt public property
+     * @var DateTime|null $dueAt public property
      */
     public $dueAt;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                $code       Initialization value for $this->code
-     * @param integer               $amount     Initialization value for $this->amount
-     * @param string                $customerId Initialization value for $this->customerId
-     * @param CreateCustomerRequest $customer   Initialization value for $this->customer
-     * @param CreatePaymentRequest  $payment    Initialization value for $this->payment
-     * @param array                 $metadata   Initialization value for $this->metadata
-     * @param string                $dueAt      Initialization value for $this->dueAt
+     * @param string                 $code       Initialization value for $this->code
+     * @param integer                $amount     Initialization value for $this->amount
+     * @param string                 $customerId Initialization value for $this->customerId
+     * @param CreateCustomerRequest  $customer   Initialization value for $this->customer
+     * @param CreatePaymentRequest   $payment    Initialization value for $this->payment
+     * @param array                  $metadata   Initialization value for $this->metadata
+     * @param \DateTime              $dueAt      Initialization value for $this->dueAt
      */
     public function __construct()
     {
@@ -100,7 +101,7 @@ class CreateChargeRequest implements JsonSerializable
         $json['customer']    = $this->customer;
         $json['payment']     = $this->payment;
         $json['metadata']    = $this->metadata;
-        $json['due_at']      = $this->dueAt;
+        $json['due_at']      = DateTimeHelper::toRfc3339DateTime($this->dueAt);
 
         return $json;
     }

@@ -77,7 +77,7 @@ class GetSellerResponse implements JsonSerializable
      * Address
      * @required
      * @maps Address
-     * @var GetAddressResponse $address public property
+     * @var \MundiAPILib\Models\GetAddressResponse $address public property
      */
     public $address;
 

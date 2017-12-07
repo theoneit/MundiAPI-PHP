@@ -17,14 +17,14 @@ class ListOrderResponse implements JsonSerializable
     /**
      * The order object
      * @required
-     * @var GetOrderResponse[] $data public property
+     * @var \MundiAPILib\Models\GetOrderResponse[] $data public property
      */
     public $data;
 
     /**
      * Paging object
      * @required
-     * @var PagingResponse $paging public property
+     * @var \MundiAPILib\Models\PagingResponse $paging public property
      */
     public $paging;
 

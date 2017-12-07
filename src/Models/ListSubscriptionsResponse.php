@@ -17,14 +17,14 @@ class ListSubscriptionsResponse implements JsonSerializable
     /**
      * The subscription objects
      * @required
-     * @var GetSubscriptionResponse[] $data public property
+     * @var \MundiAPILib\Models\GetSubscriptionResponse[] $data public property
      */
     public $data;
 
     /**
      * Paging object
      * @required
-     * @var PagingResponse $paging public property
+     * @var \MundiAPILib\Models\PagingResponse $paging public property
      */
     public $paging;
 

@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  * Token data
@@ -32,7 +33,8 @@ class GetTokenResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps created_at
-     * @var string $createdAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $createdAt public property
      */
     public $createdAt;
 
@@ -47,17 +49,17 @@ class GetTokenResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @required
-     * @var GetCardTokenResponse $card public property
+     * @var \MundiAPILib\Models\GetCardTokenResponse $card public property
      */
     public $card;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string               $id        Initialization value for $this->id
-     * @param string               $type      Initialization value for $this->type
-     * @param string               $createdAt Initialization value for $this->createdAt
-     * @param string               $expiresAt Initialization value for $this->expiresAt
-     * @param GetCardTokenResponse $card      Initialization value for $this->card
+     * @param string                $id        Initialization value for $this->id
+     * @param string                $type      Initialization value for $this->type
+     * @param \DateTime             $createdAt Initialization value for $this->createdAt
+     * @param string                $expiresAt Initialization value for $this->expiresAt
+     * @param GetCardTokenResponse  $card      Initialization value for $this->card
      */
     public function __construct()
     {
@@ -79,7 +81,7 @@ class GetTokenResponse implements JsonSerializable
         $json = array();
         $json['id']         = $this->id;
         $json['type']       = $this->type;
-        $json['created_at'] = $this->createdAt;
+        $json['created_at'] = DateTimeHelper::toRfc3339DateTime($this->createdAt);
         $json['expires_at'] = $this->expiresAt;
         $json['card']       = $this->card;
 

@@ -8,6 +8,7 @@
 namespace MundiAPILib;
 
 use InvalidArgumentException;
+use JsonSerializable;
 
 /**
  * API utility class
@@ -161,5 +162,49 @@ class APIHelper
                 return $mapper->map(json_decode($json), $instance);
             }
         }
+    }
+
+    /**
+     * Check if an array isAssociative (has string keys)
+     * @param  array  $array  A valid array
+     * @return bool           True if the array is Associative, false if it is Indexed
+     */
+    private static function isAssociative($arr)
+    {
+        foreach ($arr as $key => $value) {
+            if (is_string($key)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Prepare a model before sending it in a form
+     * @param  JsonSerializable  $model  A valid instance of JsonSerializable
+     * @return array                     The model as a map of key value pairs
+     */
+    public static function prepareFormFields($model)
+    {
+        if (!$model instanceof JsonSerializable) {
+            return $model;
+        }
+
+        $arr = $model->jsonSerialize();
+
+        foreach ($model as $key => $value) {
+            if ($value instanceof JsonSerializable) {
+                $arr[$key] = static::prepareFormFields($model->$key);
+            } elseif (is_array($value) && !empty($value) && !static::isAssociative($value) &&
+                $value[0] instanceof JsonSerializable) {
+                $temp = array();
+                foreach ($value as $k => $v) {
+                    $temp[$k] = static::prepareFormFields($v);
+                }
+                $arr[$key] = $temp;
+            }
+        }
+        return $arr;
     }
 }

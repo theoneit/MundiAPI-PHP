@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  * Response object for getting a credit card
@@ -71,7 +72,8 @@ class GetCardResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps created_at
-     * @var string $createdAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $createdAt public property
      */
     public $createdAt;
 
@@ -79,7 +81,8 @@ class GetCardResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps updated_at
-     * @var string $updatedAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $updatedAt public property
      */
     public $updatedAt;
 
@@ -87,14 +90,14 @@ class GetCardResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps billing_address
-     * @var GetBillingAddressResponse $billingAddress public property
+     * @var \MundiAPILib\Models\GetBillingAddressResponse $billingAddress public property
      */
     public $billingAddress;
 
     /**
      * @todo Write general description for this property
      * @required
-     * @var GetCustomerResponse $customer public property
+     * @var \MundiAPILib\Models\GetCustomerResponse $customer public property
      */
     public $customer;
 
@@ -123,27 +126,27 @@ class GetCardResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @maps deleted_at
-     * @var string|null $deletedAt public property
+     * @var DateTime|null $deletedAt public property
      */
     public $deletedAt;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                    $id             Initialization value for $this->id
-     * @param string                    $lastFourDigits Initialization value for $this->lastFourDigits
-     * @param string                    $brand          Initialization value for $this->brand
-     * @param string                    $holderName     Initialization value for $this->holderName
-     * @param integer                   $expMonth       Initialization value for $this->expMonth
-     * @param integer                   $expYear        Initialization value for $this->expYear
-     * @param string                    $status         Initialization value for $this->status
-     * @param string                    $createdAt      Initialization value for $this->createdAt
-     * @param string                    $updatedAt      Initialization value for $this->updatedAt
-     * @param GetBillingAddressResponse $billingAddress Initialization value for $this->billingAddress
-     * @param GetCustomerResponse       $customer       Initialization value for $this->customer
-     * @param array                     $metadata       Initialization value for $this->metadata
-     * @param string                    $type           Initialization value for $this->type
-     * @param string                    $holderDocument Initialization value for $this->holderDocument
-     * @param string                    $deletedAt      Initialization value for $this->deletedAt
+     * @param string                     $id             Initialization value for $this->id
+     * @param string                     $lastFourDigits Initialization value for $this->lastFourDigits
+     * @param string                     $brand          Initialization value for $this->brand
+     * @param string                     $holderName     Initialization value for $this->holderName
+     * @param integer                    $expMonth       Initialization value for $this->expMonth
+     * @param integer                    $expYear        Initialization value for $this->expYear
+     * @param string                     $status         Initialization value for $this->status
+     * @param \DateTime                  $createdAt      Initialization value for $this->createdAt
+     * @param \DateTime                  $updatedAt      Initialization value for $this->updatedAt
+     * @param GetBillingAddressResponse  $billingAddress Initialization value for $this->billingAddress
+     * @param GetCustomerResponse        $customer       Initialization value for $this->customer
+     * @param array                      $metadata       Initialization value for $this->metadata
+     * @param string                     $type           Initialization value for $this->type
+     * @param string                     $holderDocument Initialization value for $this->holderDocument
+     * @param \DateTime                  $deletedAt      Initialization value for $this->deletedAt
      */
     public function __construct()
     {
@@ -180,14 +183,14 @@ class GetCardResponse implements JsonSerializable
         $json['exp_month']        = $this->expMonth;
         $json['exp_year']         = $this->expYear;
         $json['status']           = $this->status;
-        $json['created_at']       = $this->createdAt;
-        $json['updated_at']       = $this->updatedAt;
+        $json['created_at']       = DateTimeHelper::toRfc3339DateTime($this->createdAt);
+        $json['updated_at']       = DateTimeHelper::toRfc3339DateTime($this->updatedAt);
         $json['billing_address']  = $this->billingAddress;
         $json['customer']         = $this->customer;
         $json['metadata']         = $this->metadata;
         $json['type']             = $this->type;
         $json['holder_document']  = $this->holderDocument;
-        $json['deleted_at']       = $this->deletedAt;
+        $json['deleted_at']       = DateTimeHelper::toRfc3339DateTime($this->deletedAt);
 
         return $json;
     }

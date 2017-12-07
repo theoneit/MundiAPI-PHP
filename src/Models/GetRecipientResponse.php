@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  * Recipient response
@@ -67,7 +68,8 @@ class GetRecipientResponse implements JsonSerializable
      * Creation date
      * @required
      * @maps created_at
-     * @var string $createdAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $createdAt public property
      */
     public $createdAt;
 
@@ -75,7 +77,8 @@ class GetRecipientResponse implements JsonSerializable
      * Last update date
      * @required
      * @maps updated_at
-     * @var string $updatedAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $updatedAt public property
      */
     public $updatedAt;
 
@@ -83,7 +86,8 @@ class GetRecipientResponse implements JsonSerializable
      * Deletion date
      * @required
      * @maps deleted_at
-     * @var string $deletedAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $deletedAt public property
      */
     public $deletedAt;
 
@@ -91,7 +95,7 @@ class GetRecipientResponse implements JsonSerializable
      * Default bank account
      * @required
      * @maps default_bank_account
-     * @var GetBankAccountResponse $defaultBankAccount public property
+     * @var \MundiAPILib\Models\GetBankAccountResponse $defaultBankAccount public property
      */
     public $defaultBankAccount;
 
@@ -99,7 +103,7 @@ class GetRecipientResponse implements JsonSerializable
      * Info about the recipient on the gateway
      * @required
      * @maps gateway_recipients
-     * @var GetGatewayRecipientResponse[] $gatewayRecipients public property
+     * @var \MundiAPILib\Models\GetGatewayRecipientResponse[] $gatewayRecipients public property
      */
     public $gatewayRecipients;
 
@@ -112,19 +116,19 @@ class GetRecipientResponse implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                 $id                 Initialization value for $this->id
-     * @param string                 $name               Initialization value for $this->name
-     * @param string                 $email              Initialization value for $this->email
-     * @param string                 $document           Initialization value for $this->document
-     * @param string                 $description        Initialization value for $this->description
-     * @param string                 $type               Initialization value for $this->type
-     * @param string                 $status             Initialization value for $this->status
-     * @param string                 $createdAt          Initialization value for $this->createdAt
-     * @param string                 $updatedAt          Initialization value for $this->updatedAt
-     * @param string                 $deletedAt          Initialization value for $this->deletedAt
-     * @param GetBankAccountResponse $defaultBankAccount Initialization value for $this->defaultBankAccount
-     * @param array                  $gatewayRecipients  Initialization value for $this->gatewayRecipients
-     * @param array                  $metadata           Initialization value for $this->metadata
+     * @param string                  $id                 Initialization value for $this->id
+     * @param string                  $name               Initialization value for $this->name
+     * @param string                  $email              Initialization value for $this->email
+     * @param string                  $document           Initialization value for $this->document
+     * @param string                  $description        Initialization value for $this->description
+     * @param string                  $type               Initialization value for $this->type
+     * @param string                  $status             Initialization value for $this->status
+     * @param \DateTime               $createdAt          Initialization value for $this->createdAt
+     * @param \DateTime               $updatedAt          Initialization value for $this->updatedAt
+     * @param \DateTime               $deletedAt          Initialization value for $this->deletedAt
+     * @param GetBankAccountResponse  $defaultBankAccount Initialization value for $this->defaultBankAccount
+     * @param array                   $gatewayRecipients  Initialization value for $this->gatewayRecipients
+     * @param array                   $metadata           Initialization value for $this->metadata
      */
     public function __construct()
     {
@@ -159,9 +163,9 @@ class GetRecipientResponse implements JsonSerializable
         $json['description']          = $this->description;
         $json['type']                 = $this->type;
         $json['status']               = $this->status;
-        $json['created_at']           = $this->createdAt;
-        $json['updated_at']           = $this->updatedAt;
-        $json['deleted_at']           = $this->deletedAt;
+        $json['created_at']           = DateTimeHelper::toRfc3339DateTime($this->createdAt);
+        $json['updated_at']           = DateTimeHelper::toRfc3339DateTime($this->updatedAt);
+        $json['deleted_at']           = DateTimeHelper::toRfc3339DateTime($this->deletedAt);
         $json['default_bank_account'] = $this->defaultBankAccount;
         $json['gateway_recipients']   = $this->gatewayRecipients;
         $json['metadata']             = $this->metadata;

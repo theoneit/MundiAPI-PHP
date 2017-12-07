@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  * Response object for getting a usage
@@ -39,7 +40,8 @@ class GetUsageResponse implements JsonSerializable
      * Used at
      * @required
      * @maps used_at
-     * @var string $usedAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $usedAt public property
      */
     public $usedAt;
 
@@ -47,7 +49,8 @@ class GetUsageResponse implements JsonSerializable
      * Creation date
      * @required
      * @maps created_at
-     * @var string $createdAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $createdAt public property
      */
     public $createdAt;
 
@@ -55,18 +58,18 @@ class GetUsageResponse implements JsonSerializable
      * Subscription item
      * @required
      * @maps subscription_item
-     * @var GetSubscriptionItemResponse $subscriptionItem public property
+     * @var \MundiAPILib\Models\GetSubscriptionItemResponse $subscriptionItem public property
      */
     public $subscriptionItem;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                      $id               Initialization value for $this->id
-     * @param integer                     $quantity         Initialization value for $this->quantity
-     * @param string                      $description      Initialization value for $this->description
-     * @param string                      $usedAt           Initialization value for $this->usedAt
-     * @param string                      $createdAt        Initialization value for $this->createdAt
-     * @param GetSubscriptionItemResponse $subscriptionItem Initialization value for $this->subscriptionItem
+     * @param string                       $id               Initialization value for $this->id
+     * @param integer                      $quantity         Initialization value for $this->quantity
+     * @param string                       $description      Initialization value for $this->description
+     * @param \DateTime                    $usedAt           Initialization value for $this->usedAt
+     * @param \DateTime                    $createdAt        Initialization value for $this->createdAt
+     * @param GetSubscriptionItemResponse  $subscriptionItem Initialization value for $this->subscriptionItem
      */
     public function __construct()
     {
@@ -90,8 +93,8 @@ class GetUsageResponse implements JsonSerializable
         $json['id']                = $this->id;
         $json['quantity']          = $this->quantity;
         $json['description']       = $this->description;
-        $json['used_at']           = $this->usedAt;
-        $json['created_at']        = $this->createdAt;
+        $json['used_at']           = DateTimeHelper::toRfc3339DateTime($this->usedAt);
+        $json['created_at']        = DateTimeHelper::toRfc3339DateTime($this->createdAt);
         $json['subscription_item'] = $this->subscriptionItem;
 
         return $json;

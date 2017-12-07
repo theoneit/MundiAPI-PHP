@@ -45,7 +45,7 @@ class UpdateCustomerRequest implements JsonSerializable
     /**
      * Address
      * @required
-     * @var CreateAddressRequest $address public property
+     * @var \MundiAPILib\Models\CreateAddressRequest $address public property
      */
     public $address;
 
@@ -58,7 +58,7 @@ class UpdateCustomerRequest implements JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var CreatePhonesRequest|null $phones public property
+     * @var \MundiAPILib\Models\CreatePhonesRequest|null $phones public property
      */
     public $phones;
 

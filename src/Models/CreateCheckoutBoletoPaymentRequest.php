@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  * @todo Write general description for this model
@@ -32,15 +33,16 @@ class CreateCheckoutBoletoPaymentRequest implements JsonSerializable
      * Due date
      * @required
      * @maps due_at
-     * @var string $dueAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $dueAt public property
      */
     public $dueAt;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string $bank         Initialization value for $this->bank
-     * @param string $instructions Initialization value for $this->instructions
-     * @param string $dueAt        Initialization value for $this->dueAt
+     * @param string    $bank         Initialization value for $this->bank
+     * @param string    $instructions Initialization value for $this->instructions
+     * @param \DateTime $dueAt        Initialization value for $this->dueAt
      */
     public function __construct()
     {
@@ -60,7 +62,7 @@ class CreateCheckoutBoletoPaymentRequest implements JsonSerializable
         $json = array();
         $json['bank']         = $this->bank;
         $json['instructions'] = $this->instructions;
-        $json['due_at']       = $this->dueAt;
+        $json['due_at']       = DateTimeHelper::toRfc3339DateTime($this->dueAt);
 
         return $json;
     }

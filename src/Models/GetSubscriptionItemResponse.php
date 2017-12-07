@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  * @todo Write general description for this model
@@ -39,7 +40,8 @@ class GetSubscriptionItemResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps created_at
-     * @var string $createdAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $createdAt public property
      */
     public $createdAt;
 
@@ -47,7 +49,8 @@ class GetSubscriptionItemResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps updated_at
-     * @var string $updatedAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $updatedAt public property
      */
     public $updatedAt;
 
@@ -55,23 +58,30 @@ class GetSubscriptionItemResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps pricing_scheme
-     * @var GetPricingSchemeResponse $pricingScheme public property
+     * @var \MundiAPILib\Models\GetPricingSchemeResponse $pricingScheme public property
      */
     public $pricingScheme;
 
     /**
      * @todo Write general description for this property
      * @required
-     * @var GetDiscountResponse[] $discounts public property
+     * @var \MundiAPILib\Models\GetDiscountResponse[] $discounts public property
      */
     public $discounts;
 
     /**
      * @todo Write general description for this property
      * @required
-     * @var GetSubscriptionResponse $subscription public property
+     * @var \MundiAPILib\Models\GetSubscriptionResponse $subscription public property
      */
     public $subscription;
+
+    /**
+     * Item name
+     * @required
+     * @var string $name public property
+     */
+    public $name;
 
     /**
      * @todo Write general description for this property
@@ -88,27 +98,28 @@ class GetSubscriptionItemResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @maps deleted_at
-     * @var string|null $deletedAt public property
+     * @var DateTime|null $deletedAt public property
      */
     public $deletedAt;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                   $id            Initialization value for $this->id
-     * @param string                   $description   Initialization value for $this->description
-     * @param string                   $status        Initialization value for $this->status
-     * @param string                   $createdAt     Initialization value for $this->createdAt
-     * @param string                   $updatedAt     Initialization value for $this->updatedAt
-     * @param GetPricingSchemeResponse $pricingScheme Initialization value for $this->pricingScheme
-     * @param array                    $discounts     Initialization value for $this->discounts
-     * @param GetSubscriptionResponse  $subscription  Initialization value for $this->subscription
-     * @param integer                  $quantity      Initialization value for $this->quantity
-     * @param integer                  $cycles        Initialization value for $this->cycles
-     * @param string                   $deletedAt     Initialization value for $this->deletedAt
+     * @param string                    $id            Initialization value for $this->id
+     * @param string                    $description   Initialization value for $this->description
+     * @param string                    $status        Initialization value for $this->status
+     * @param \DateTime                 $createdAt     Initialization value for $this->createdAt
+     * @param \DateTime                 $updatedAt     Initialization value for $this->updatedAt
+     * @param GetPricingSchemeResponse  $pricingScheme Initialization value for $this->pricingScheme
+     * @param array                     $discounts     Initialization value for $this->discounts
+     * @param GetSubscriptionResponse   $subscription  Initialization value for $this->subscription
+     * @param string                    $name          Initialization value for $this->name
+     * @param integer                   $quantity      Initialization value for $this->quantity
+     * @param integer                   $cycles        Initialization value for $this->cycles
+     * @param \DateTime                 $deletedAt     Initialization value for $this->deletedAt
      */
     public function __construct()
     {
-        if (11 == func_num_args()) {
+        if (12 == func_num_args()) {
             $this->id            = func_get_arg(0);
             $this->description   = func_get_arg(1);
             $this->status        = func_get_arg(2);
@@ -117,9 +128,10 @@ class GetSubscriptionItemResponse implements JsonSerializable
             $this->pricingScheme = func_get_arg(5);
             $this->discounts     = func_get_arg(6);
             $this->subscription  = func_get_arg(7);
-            $this->quantity      = func_get_arg(8);
-            $this->cycles        = func_get_arg(9);
-            $this->deletedAt     = func_get_arg(10);
+            $this->name          = func_get_arg(8);
+            $this->quantity      = func_get_arg(9);
+            $this->cycles        = func_get_arg(10);
+            $this->deletedAt     = func_get_arg(11);
         }
     }
 
@@ -133,14 +145,15 @@ class GetSubscriptionItemResponse implements JsonSerializable
         $json['id']             = $this->id;
         $json['description']    = $this->description;
         $json['status']         = $this->status;
-        $json['created_at']     = $this->createdAt;
-        $json['updated_at']     = $this->updatedAt;
+        $json['created_at']     = DateTimeHelper::toRfc3339DateTime($this->createdAt);
+        $json['updated_at']     = DateTimeHelper::toRfc3339DateTime($this->updatedAt);
         $json['pricing_scheme'] = $this->pricingScheme;
         $json['discounts']      = $this->discounts;
         $json['subscription']   = $this->subscription;
+        $json['name']           = $this->name;
         $json['quantity']       = $this->quantity;
         $json['cycles']         = $this->cycles;
-        $json['deleted_at']     = $this->deletedAt;
+        $json['deleted_at']     = DateTimeHelper::toRfc3339DateTime($this->deletedAt);
 
         return $json;
     }

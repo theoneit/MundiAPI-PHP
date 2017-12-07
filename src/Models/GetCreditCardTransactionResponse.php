@@ -76,7 +76,7 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
     /**
      * Card data
      * @required
-     * @var GetCardResponse $card public property
+     * @var \MundiAPILib\Models\GetCardResponse $card public property
      */
     public $card;
 
@@ -87,6 +87,14 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
      * @var string $acquirerMessage public property
      */
     public $acquirerMessage;
+
+    /**
+     * Acquirer Return Code
+     * @required
+     * @maps acquirer_return_code
+     * @var string $acquirerReturnCode public property
+     */
+    public $acquirerReturnCode;
 
     /**
      * Number of installments
@@ -105,11 +113,12 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
      * @param string          $operationType           Initialization value for $this->operationType
      * @param GetCardResponse $card                    Initialization value for $this->card
      * @param string          $acquirerMessage         Initialization value for $this->acquirerMessage
+     * @param string          $acquirerReturnCode      Initialization value for $this->acquirerReturnCode
      * @param integer         $installments            Initialization value for $this->installments
      */
     public function __construct()
     {
-        if (10 == func_num_args()) {
+        if (11 == func_num_args()) {
             $this->statementDescriptor     = func_get_arg(0);
             $this->acquirerName            = func_get_arg(1);
             $this->acquirerAffiliationCode = func_get_arg(2);
@@ -119,7 +128,8 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
             $this->operationType           = func_get_arg(6);
             $this->card                    = func_get_arg(7);
             $this->acquirerMessage         = func_get_arg(8);
-            $this->installments            = func_get_arg(9);
+            $this->acquirerReturnCode      = func_get_arg(9);
+            $this->installments            = func_get_arg(10);
         }
     }
 
@@ -139,6 +149,7 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
         $json['operation_type']            = $this->operationType;
         $json['card']                      = $this->card;
         $json['acquirer_message']          = $this->acquirerMessage;
+        $json['acquirer_return_code']      = $this->acquirerReturnCode;
         $json['installments']              = $this->installments;
         $json = array_merge($json, parent::jsonSerialize());
 

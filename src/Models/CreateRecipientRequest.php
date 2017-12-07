@@ -53,7 +53,7 @@ class CreateRecipientRequest implements JsonSerializable
      * Bank account
      * @required
      * @maps default_bank_account
-     * @var CreateBankAccountRequest $defaultBankAccount public property
+     * @var \MundiAPILib\Models\CreateBankAccountRequest $defaultBankAccount public property
      */
     public $defaultBankAccount;
 

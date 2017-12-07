@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  * Transfer response
@@ -39,7 +40,8 @@ class GetTransferResponse implements JsonSerializable
      * Transfer creation date
      * @required
      * @maps created_at
-     * @var string $createdAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $createdAt public property
      */
     public $createdAt;
 
@@ -47,7 +49,8 @@ class GetTransferResponse implements JsonSerializable
      * Transfer last update date
      * @required
      * @maps updated_at
-     * @var string $updatedAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $updatedAt public property
      */
     public $updatedAt;
 
@@ -55,7 +58,7 @@ class GetTransferResponse implements JsonSerializable
      * Bank account
      * @required
      * @maps bank_account
-     * @var GetBankAccountResponse $bankAccount public property
+     * @var \MundiAPILib\Models\GetBankAccountResponse $bankAccount public property
      */
     public $bankAccount;
 
@@ -68,13 +71,13 @@ class GetTransferResponse implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                 $id          Initialization value for $this->id
-     * @param integer                $amount      Initialization value for $this->amount
-     * @param string                 $status      Initialization value for $this->status
-     * @param string                 $createdAt   Initialization value for $this->createdAt
-     * @param string                 $updatedAt   Initialization value for $this->updatedAt
-     * @param GetBankAccountResponse $bankAccount Initialization value for $this->bankAccount
-     * @param array                  $metadata    Initialization value for $this->metadata
+     * @param string                  $id          Initialization value for $this->id
+     * @param integer                 $amount      Initialization value for $this->amount
+     * @param string                  $status      Initialization value for $this->status
+     * @param \DateTime               $createdAt   Initialization value for $this->createdAt
+     * @param \DateTime               $updatedAt   Initialization value for $this->updatedAt
+     * @param GetBankAccountResponse  $bankAccount Initialization value for $this->bankAccount
+     * @param array                   $metadata    Initialization value for $this->metadata
      */
     public function __construct()
     {
@@ -99,8 +102,8 @@ class GetTransferResponse implements JsonSerializable
         $json['id']           = $this->id;
         $json['amount']       = $this->amount;
         $json['status']       = $this->status;
-        $json['created_at']   = $this->createdAt;
-        $json['updated_at']   = $this->updatedAt;
+        $json['created_at']   = DateTimeHelper::toRfc3339DateTime($this->createdAt);
+        $json['updated_at']   = DateTimeHelper::toRfc3339DateTime($this->updatedAt);
         $json['bank_account'] = $this->bankAccount;
         $json['metadata']     = $this->metadata;
 

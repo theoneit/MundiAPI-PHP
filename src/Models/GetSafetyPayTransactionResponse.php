@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  * Response object for getting a safety pay transaction
@@ -35,7 +36,7 @@ class GetSafetyPayTransactionResponse extends GetTransactionResponse implements 
     /**
      * Payment date
      * @maps paid_at
-     * @var string|null $paidAt public property
+     * @var DateTime|null $paidAt public property
      */
     public $paidAt;
 
@@ -48,10 +49,10 @@ class GetSafetyPayTransactionResponse extends GetTransactionResponse implements 
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string  $url        Initialization value for $this->url
-     * @param string  $bankTid    Initialization value for $this->bankTid
-     * @param string  $paidAt     Initialization value for $this->paidAt
-     * @param integer $paidAmount Initialization value for $this->paidAmount
+     * @param string    $url        Initialization value for $this->url
+     * @param string    $bankTid    Initialization value for $this->bankTid
+     * @param \DateTime $paidAt     Initialization value for $this->paidAt
+     * @param integer   $paidAmount Initialization value for $this->paidAmount
      */
     public function __construct()
     {
@@ -72,7 +73,7 @@ class GetSafetyPayTransactionResponse extends GetTransactionResponse implements 
         $json = array();
         $json['url']         = $this->url;
         $json['bank_tid']    = $this->bankTid;
-        $json['paid_at']     = $this->paidAt;
+        $json['paid_at']     = DateTimeHelper::toRfc3339DateTime($this->paidAt);
         $json['paid_amount'] = $this->paidAmount;
         $json = array_merge($json, parent::jsonSerialize());
 

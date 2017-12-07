@@ -24,7 +24,7 @@ class CreateTokenRequest implements JsonSerializable
     /**
      * Card data
      * @required
-     * @var CreateCardTokenRequest $card public property
+     * @var \MundiAPILib\Models\CreateCardTokenRequest $card public property
      */
     public $card;
 

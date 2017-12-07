@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  * @todo Write general description for this model
@@ -32,7 +33,8 @@ class GetSubscriptionResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps start_at
-     * @var string $startAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $startAt public property
      */
     public $startAt;
 
@@ -62,10 +64,10 @@ class GetSubscriptionResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @required
-     * @maps current_period
-     * @var GetPeriodResponse $currentPeriod public property
+     * @maps current_cycle
+     * @var \MundiAPILib\Models\GetPeriodResponse $currentCycle public property
      */
-    public $currentPeriod;
+    public $currentCycle;
 
     /**
      * @todo Write general description for this property
@@ -100,7 +102,8 @@ class GetSubscriptionResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps created_at
-     * @var string $createdAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $createdAt public property
      */
     public $createdAt;
 
@@ -108,28 +111,29 @@ class GetSubscriptionResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps updated_at
-     * @var string $updatedAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $updatedAt public property
      */
     public $updatedAt;
 
     /**
      * @todo Write general description for this property
      * @required
-     * @var GetCustomerResponse $customer public property
+     * @var \MundiAPILib\Models\GetCustomerResponse $customer public property
      */
     public $customer;
 
     /**
      * @todo Write general description for this property
      * @required
-     * @var GetCardResponse $card public property
+     * @var \MundiAPILib\Models\GetCardResponse $card public property
      */
     public $card;
 
     /**
      * @todo Write general description for this property
      * @required
-     * @var GetSubscriptionItemResponse[] $items public property
+     * @var \MundiAPILib\Models\GetSubscriptionItemResponse[] $items public property
      */
     public $items;
 
@@ -151,14 +155,22 @@ class GetSubscriptionResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @required
-     * @var GetSetupResponse $setup public property
+     * @var \MundiAPILib\Models\GetSetupResponse $setup public property
      */
     public $setup;
 
     /**
+     * Affiliation Code
+     * @required
+     * @maps gateway_affiliation_id
+     * @var string $gatewayAffiliationId public property
+     */
+    public $gatewayAffiliationId;
+
+    /**
      * @todo Write general description for this property
      * @maps next_billing_at
-     * @var string|null $nextBillingAt public property
+     * @var DateTime|null $nextBillingAt public property
      */
     public $nextBillingAt;
 
@@ -179,70 +191,72 @@ class GetSubscriptionResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @maps canceled_at
-     * @var string|null $canceledAt public property
+     * @var DateTime|null $canceledAt public property
      */
     public $canceledAt;
 
     /**
      * Subscription discounts
-     * @var GetDiscountResponse[]|null $discounts public property
+     * @var \MundiAPILib\Models\GetDiscountResponse[]|null $discounts public property
      */
     public $discounts;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string              $id                  Initialization value for $this->id
-     * @param string              $code                Initialization value for $this->code
-     * @param string              $startAt             Initialization value for $this->startAt
-     * @param string              $interval            Initialization value for $this->interval
-     * @param integer             $intervalCount       Initialization value for $this->intervalCount
-     * @param string              $billingType         Initialization value for $this->billingType
-     * @param GetPeriodResponse   $currentPeriod       Initialization value for $this->currentPeriod
-     * @param string              $paymentMethod       Initialization value for $this->paymentMethod
-     * @param string              $currency            Initialization value for $this->currency
-     * @param integer             $installments        Initialization value for $this->installments
-     * @param string              $status              Initialization value for $this->status
-     * @param string              $createdAt           Initialization value for $this->createdAt
-     * @param string              $updatedAt           Initialization value for $this->updatedAt
-     * @param GetCustomerResponse $customer            Initialization value for $this->customer
-     * @param GetCardResponse     $card                Initialization value for $this->card
-     * @param array               $items               Initialization value for $this->items
-     * @param string              $statementDescriptor Initialization value for $this->statementDescriptor
-     * @param array               $metadata            Initialization value for $this->metadata
-     * @param GetSetupResponse    $setup               Initialization value for $this->setup
-     * @param string              $nextBillingAt       Initialization value for $this->nextBillingAt
-     * @param integer             $billingDay          Initialization value for $this->billingDay
-     * @param integer             $minimumPrice        Initialization value for $this->minimumPrice
-     * @param string              $canceledAt          Initialization value for $this->canceledAt
-     * @param array               $discounts           Initialization value for $this->discounts
+     * @param string               $id                   Initialization value for $this->id
+     * @param string               $code                 Initialization value for $this->code
+     * @param \DateTime            $startAt              Initialization value for $this->startAt
+     * @param string               $interval             Initialization value for $this->interval
+     * @param integer              $intervalCount        Initialization value for $this->intervalCount
+     * @param string               $billingType          Initialization value for $this->billingType
+     * @param GetPeriodResponse    $currentCycle         Initialization value for $this->currentCycle
+     * @param string               $paymentMethod        Initialization value for $this->paymentMethod
+     * @param string               $currency             Initialization value for $this->currency
+     * @param integer              $installments         Initialization value for $this->installments
+     * @param string               $status               Initialization value for $this->status
+     * @param \DateTime            $createdAt            Initialization value for $this->createdAt
+     * @param \DateTime            $updatedAt            Initialization value for $this->updatedAt
+     * @param GetCustomerResponse  $customer             Initialization value for $this->customer
+     * @param GetCardResponse      $card                 Initialization value for $this->card
+     * @param array                $items                Initialization value for $this->items
+     * @param string               $statementDescriptor  Initialization value for $this->statementDescriptor
+     * @param array                $metadata             Initialization value for $this->metadata
+     * @param GetSetupResponse     $setup                Initialization value for $this->setup
+     * @param string               $gatewayAffiliationId Initialization value for $this->gatewayAffiliationId
+     * @param \DateTime            $nextBillingAt        Initialization value for $this->nextBillingAt
+     * @param integer              $billingDay           Initialization value for $this->billingDay
+     * @param integer              $minimumPrice         Initialization value for $this->minimumPrice
+     * @param \DateTime            $canceledAt           Initialization value for $this->canceledAt
+     * @param array                $discounts            Initialization value for $this->discounts
      */
     public function __construct()
     {
-        if (24 == func_num_args()) {
-            $this->id                  = func_get_arg(0);
-            $this->code                = func_get_arg(1);
-            $this->startAt             = func_get_arg(2);
-            $this->interval            = func_get_arg(3);
-            $this->intervalCount       = func_get_arg(4);
-            $this->billingType         = func_get_arg(5);
-            $this->currentPeriod       = func_get_arg(6);
-            $this->paymentMethod       = func_get_arg(7);
-            $this->currency            = func_get_arg(8);
-            $this->installments        = func_get_arg(9);
-            $this->status              = func_get_arg(10);
-            $this->createdAt           = func_get_arg(11);
-            $this->updatedAt           = func_get_arg(12);
-            $this->customer            = func_get_arg(13);
-            $this->card                = func_get_arg(14);
-            $this->items               = func_get_arg(15);
-            $this->statementDescriptor = func_get_arg(16);
-            $this->metadata            = func_get_arg(17);
-            $this->setup               = func_get_arg(18);
-            $this->nextBillingAt       = func_get_arg(19);
-            $this->billingDay          = func_get_arg(20);
-            $this->minimumPrice        = func_get_arg(21);
-            $this->canceledAt          = func_get_arg(22);
-            $this->discounts           = func_get_arg(23);
+        if (25 == func_num_args()) {
+            $this->id                   = func_get_arg(0);
+            $this->code                 = func_get_arg(1);
+            $this->startAt              = func_get_arg(2);
+            $this->interval             = func_get_arg(3);
+            $this->intervalCount        = func_get_arg(4);
+            $this->billingType          = func_get_arg(5);
+            $this->currentCycle         = func_get_arg(6);
+            $this->paymentMethod        = func_get_arg(7);
+            $this->currency             = func_get_arg(8);
+            $this->installments         = func_get_arg(9);
+            $this->status               = func_get_arg(10);
+            $this->createdAt            = func_get_arg(11);
+            $this->updatedAt            = func_get_arg(12);
+            $this->customer             = func_get_arg(13);
+            $this->card                 = func_get_arg(14);
+            $this->items                = func_get_arg(15);
+            $this->statementDescriptor  = func_get_arg(16);
+            $this->metadata             = func_get_arg(17);
+            $this->setup                = func_get_arg(18);
+            $this->gatewayAffiliationId = func_get_arg(19);
+            $this->nextBillingAt        = func_get_arg(20);
+            $this->billingDay           = func_get_arg(21);
+            $this->minimumPrice         = func_get_arg(22);
+            $this->canceledAt           = func_get_arg(23);
+            $this->discounts            = func_get_arg(24);
         }
     }
 
@@ -253,30 +267,31 @@ class GetSubscriptionResponse implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['id']                   = $this->id;
-        $json['code']                 = $this->code;
-        $json['start_at']             = $this->startAt;
-        $json['interval']             = $this->interval;
-        $json['interval_count']       = $this->intervalCount;
-        $json['billing_type']         = $this->billingType;
-        $json['current_period']       = $this->currentPeriod;
-        $json['payment_method']       = $this->paymentMethod;
-        $json['currency']             = $this->currency;
-        $json['installments']         = $this->installments;
-        $json['status']               = $this->status;
-        $json['created_at']           = $this->createdAt;
-        $json['updated_at']           = $this->updatedAt;
-        $json['customer']             = $this->customer;
-        $json['card']                 = $this->card;
-        $json['items']                = $this->items;
-        $json['statement_descriptor'] = $this->statementDescriptor;
-        $json['metadata']             = $this->metadata;
-        $json['setup']                = $this->setup;
-        $json['next_billing_at']      = $this->nextBillingAt;
-        $json['billing_day']          = $this->billingDay;
-        $json['minimum_price']        = $this->minimumPrice;
-        $json['canceled_at']          = $this->canceledAt;
-        $json['discounts']            = $this->discounts;
+        $json['id']                     = $this->id;
+        $json['code']                   = $this->code;
+        $json['start_at']               = DateTimeHelper::toRfc3339DateTime($this->startAt);
+        $json['interval']               = $this->interval;
+        $json['interval_count']         = $this->intervalCount;
+        $json['billing_type']           = $this->billingType;
+        $json['current_cycle']          = $this->currentCycle;
+        $json['payment_method']         = $this->paymentMethod;
+        $json['currency']               = $this->currency;
+        $json['installments']           = $this->installments;
+        $json['status']                 = $this->status;
+        $json['created_at']             = DateTimeHelper::toRfc3339DateTime($this->createdAt);
+        $json['updated_at']             = DateTimeHelper::toRfc3339DateTime($this->updatedAt);
+        $json['customer']               = $this->customer;
+        $json['card']                   = $this->card;
+        $json['items']                  = $this->items;
+        $json['statement_descriptor']   = $this->statementDescriptor;
+        $json['metadata']               = $this->metadata;
+        $json['setup']                  = $this->setup;
+        $json['gateway_affiliation_id'] = $this->gatewayAffiliationId;
+        $json['next_billing_at']        = DateTimeHelper::toRfc3339DateTime($this->nextBillingAt);
+        $json['billing_day']            = $this->billingDay;
+        $json['minimum_price']          = $this->minimumPrice;
+        $json['canceled_at']            = DateTimeHelper::toRfc3339DateTime($this->canceledAt);
+        $json['discounts']              = $this->discounts;
 
         return $json;
     }

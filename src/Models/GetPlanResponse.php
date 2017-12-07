@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  * Response object for getting a plan
@@ -106,7 +107,8 @@ class GetPlanResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps created_at
-     * @var string $createdAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $createdAt public property
      */
     public $createdAt;
 
@@ -114,14 +116,15 @@ class GetPlanResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps updated_at
-     * @var string $updatedAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $updatedAt public property
      */
     public $updatedAt;
 
     /**
      * @todo Write general description for this property
      * @required
-     * @var GetPlanItemResponse[] $items public property
+     * @var \MundiAPILib\Models\GetPlanItemResponse[] $items public property
      */
     public $items;
 
@@ -164,33 +167,33 @@ class GetPlanResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @maps deleted_at
-     * @var string|null $deletedAt public property
+     * @var DateTime|null $deletedAt public property
      */
     public $deletedAt;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string  $id                  Initialization value for $this->id
-     * @param string  $name                Initialization value for $this->name
-     * @param string  $description         Initialization value for $this->description
-     * @param string  $url                 Initialization value for $this->url
-     * @param string  $statementDescriptor Initialization value for $this->statementDescriptor
-     * @param string  $interval            Initialization value for $this->interval
-     * @param integer $intervalCount       Initialization value for $this->intervalCount
-     * @param string  $billingType         Initialization value for $this->billingType
-     * @param array   $paymentMethods      Initialization value for $this->paymentMethods
-     * @param array   $installments        Initialization value for $this->installments
-     * @param string  $status              Initialization value for $this->status
-     * @param string  $currency            Initialization value for $this->currency
-     * @param string  $createdAt           Initialization value for $this->createdAt
-     * @param string  $updatedAt           Initialization value for $this->updatedAt
-     * @param array   $items               Initialization value for $this->items
-     * @param array   $billingDays         Initialization value for $this->billingDays
-     * @param bool    $shippable           Initialization value for $this->shippable
-     * @param array   $metadata            Initialization value for $this->metadata
-     * @param integer $trialPeriodDays     Initialization value for $this->trialPeriodDays
-     * @param integer $minimumPrice        Initialization value for $this->minimumPrice
-     * @param string  $deletedAt           Initialization value for $this->deletedAt
+     * @param string    $id                  Initialization value for $this->id
+     * @param string    $name                Initialization value for $this->name
+     * @param string    $description         Initialization value for $this->description
+     * @param string    $url                 Initialization value for $this->url
+     * @param string    $statementDescriptor Initialization value for $this->statementDescriptor
+     * @param string    $interval            Initialization value for $this->interval
+     * @param integer   $intervalCount       Initialization value for $this->intervalCount
+     * @param string    $billingType         Initialization value for $this->billingType
+     * @param array     $paymentMethods      Initialization value for $this->paymentMethods
+     * @param array     $installments        Initialization value for $this->installments
+     * @param string    $status              Initialization value for $this->status
+     * @param string    $currency            Initialization value for $this->currency
+     * @param \DateTime $createdAt           Initialization value for $this->createdAt
+     * @param \DateTime $updatedAt           Initialization value for $this->updatedAt
+     * @param array     $items               Initialization value for $this->items
+     * @param array     $billingDays         Initialization value for $this->billingDays
+     * @param bool      $shippable           Initialization value for $this->shippable
+     * @param array     $metadata            Initialization value for $this->metadata
+     * @param integer   $trialPeriodDays     Initialization value for $this->trialPeriodDays
+     * @param integer   $minimumPrice        Initialization value for $this->minimumPrice
+     * @param \DateTime $deletedAt           Initialization value for $this->deletedAt
      */
     public function __construct()
     {
@@ -238,15 +241,15 @@ class GetPlanResponse implements JsonSerializable
         $json['installments']         = $this->installments;
         $json['status']               = $this->status;
         $json['currency']             = $this->currency;
-        $json['created_at']           = $this->createdAt;
-        $json['updated_at']           = $this->updatedAt;
+        $json['created_at']           = DateTimeHelper::toRfc3339DateTime($this->createdAt);
+        $json['updated_at']           = DateTimeHelper::toRfc3339DateTime($this->updatedAt);
         $json['items']                = $this->items;
         $json['billing_days']         = $this->billingDays;
         $json['shippable']            = $this->shippable;
         $json['metadata']             = $this->metadata;
         $json['trial_period_days']    = $this->trialPeriodDays;
         $json['minimum_price']        = $this->minimumPrice;
-        $json['deleted_at']           = $this->deletedAt;
+        $json['deleted_at']           = DateTimeHelper::toRfc3339DateTime($this->deletedAt);
 
         return $json;
     }

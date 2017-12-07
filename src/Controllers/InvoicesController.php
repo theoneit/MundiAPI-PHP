@@ -12,6 +12,7 @@ use MundiAPILib\APIHelper;
 use MundiAPILib\Configuration;
 use MundiAPILib\Models;
 use MundiAPILib\Exceptions;
+use MundiAPILib\Utils\DateTimeHelper;
 use MundiAPILib\Http\HttpRequest;
 use MundiAPILib\Http\HttpResponse;
 use MundiAPILib\Http\HttpMethod;
@@ -39,65 +40,6 @@ class InvoicesController extends BaseController
         }
         
         return static::$instance;
-    }
-
-    /**
-     * Gets an invoice
-     *
-     * @param string $invoiceId  Invoice Id
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function getInvoice(
-        $invoiceId
-    ) {
-
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
-        //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/invoices/{invoice_id}';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'invoice_id' => $invoiceId,
-            ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => 'MundiSDK',
-            'Accept'        => 'application/json'
-        );
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::get($_queryUrl, $_headers);
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetInvoiceResponse');
     }
 
     /**
@@ -160,115 +102,26 @@ class InvoicesController extends BaseController
     }
 
     /**
-     * Updates the metadata from an invoice
+     * Gets an invoice
      *
-     * @param string                       $invoiceId  The invoice id
-     * @param Models\UpdateMetadataRequest $request    Request for updating the invoice metadata
+     * @param string $invoiceId  Invoice Id
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function updateInvoiceMetadata(
-        $invoiceId,
-        $request
+    public function getInvoice(
+        $invoiceId
     ) {
 
         //the base uri for api requests
         $_queryBuilder = Configuration::$BASEURI;
         
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/invoices/{invoice_id}/metadata';
+        $_queryBuilder = $_queryBuilder.'/invoices/{invoice_id}';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'invoice_id' => $invoiceId,
             ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => 'MundiSDK',
-            'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
-        );
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::PATCH, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::patch($_queryUrl, $_headers, Request\Body::Json($request));
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetInvoiceResponse');
-    }
-
-    /**
-     * Gets all invoices
-     *
-     * @param integer $page            (optional) Page number
-     * @param integer $size            (optional) Page size
-     * @param string  $code            (optional) Filter for Invoice's code
-     * @param string  $customerId      (optional) Filter for Invoice's customer id
-     * @param string  $subscriptionId  (optional) Filter for Invoice's subscription id
-     * @param string  $createdSince    (optional) Filter for Invoice's creation date start range
-     * @param string  $createdUntil    (optional) Filter for Invoices creation date end range
-     * @param string  $status          (optional) Filter for Invoice's status
-     * @param string  $dueSince        (optional) Filter for Invoice's due date start range
-     * @param string  $dueUntil        (optional) Filter for Invoice's due date end range
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function getInvoices(
-        $page = null,
-        $size = null,
-        $code = null,
-        $customerId = null,
-        $subscriptionId = null,
-        $createdSince = null,
-        $createdUntil = null,
-        $status = null,
-        $dueSince = null,
-        $dueUntil = null
-    ) {
-
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
-        //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/invoices';
-
-        //process optional query parameters
-        APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
-            'page'            => $page,
-            'size'            => $size,
-            'code'            => $code,
-            'customer_id'     => $customerId,
-            'subscription_id' => $subscriptionId,
-            'created_since'   => $createdSince,
-            'created_until'   => $createdUntil,
-            'status'          => $status,
-            'due_since'       => $dueSince,
-            'due_until'       => $dueUntil,
-        ));
 
         //validate and preprocess url
         $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
@@ -304,7 +157,7 @@ class InvoicesController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListInvoicesResponse');
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetInvoiceResponse');
     }
 
     /**
@@ -352,6 +205,216 @@ class InvoicesController extends BaseController
 
         //and invoke the API call request to fetch the response
         $response = Request::post($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetInvoiceResponse');
+    }
+
+    /**
+     * Updates the status from an invoice
+     *
+     * @param string                            $invoiceId  Invoice Id
+     * @param Models\UpdateInvoiceStatusRequest $request    Request for updating an invoice's status
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function updateInvoiceStatus(
+        $invoiceId,
+        $request
+    ) {
+
+        //the base uri for api requests
+        $_queryBuilder = Configuration::$BASEURI;
+        
+        //prepare query string for API call
+        $_queryBuilder = $_queryBuilder.'/invoices/{invoice_id}/status';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'invoice_id' => $invoiceId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => 'MundiSDK',
+            'Accept'        => 'application/json',
+            'content-type'  => 'application/json; charset=utf-8'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::PATCH, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::patch($_queryUrl, $_headers, Request\Body::Json($request));
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetInvoiceResponse');
+    }
+
+    /**
+     * Gets all invoices
+     *
+     * @param integer  $page            (optional) Page number
+     * @param integer  $size            (optional) Page size
+     * @param string   $code            (optional) Filter for Invoice's code
+     * @param string   $customerId      (optional) Filter for Invoice's customer id
+     * @param string   $subscriptionId  (optional) Filter for Invoice's subscription id
+     * @param DateTime $createdSince    (optional) Filter for Invoice's creation date start range
+     * @param DateTime $createdUntil    (optional) Filter for Invoices creation date end range
+     * @param string   $status          (optional) Filter for Invoice's status
+     * @param DateTime $dueSince        (optional) Filter for Invoice's due date start range
+     * @param DateTime $dueUntil        (optional) Filter for Invoice's due date end range
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function getInvoices(
+        $page = null,
+        $size = null,
+        $code = null,
+        $customerId = null,
+        $subscriptionId = null,
+        $createdSince = null,
+        $createdUntil = null,
+        $status = null,
+        $dueSince = null,
+        $dueUntil = null
+    ) {
+
+        //the base uri for api requests
+        $_queryBuilder = Configuration::$BASEURI;
+        
+        //prepare query string for API call
+        $_queryBuilder = $_queryBuilder.'/invoices';
+
+        //process optional query parameters
+        APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
+            'page'            => $page,
+            'size'            => $size,
+            'code'            => $code,
+            'customer_id'     => $customerId,
+            'subscription_id' => $subscriptionId,
+            'created_since'   => DateTimeHelper::toRfc3339DateTime($created_since),
+            'created_until'   => DateTimeHelper::toRfc3339DateTime($created_until),
+            'status'          => $status,
+            'due_since'       => DateTimeHelper::toRfc3339DateTime($due_since),
+            'due_until'       => DateTimeHelper::toRfc3339DateTime($due_until),
+        ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => 'MundiSDK',
+            'Accept'        => 'application/json'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::get($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListInvoicesResponse');
+    }
+
+    /**
+     * Updates the metadata from an invoice
+     *
+     * @param string                       $invoiceId  The invoice id
+     * @param Models\UpdateMetadataRequest $request    Request for updating the invoice metadata
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function updateInvoiceMetadata(
+        $invoiceId,
+        $request
+    ) {
+
+        //the base uri for api requests
+        $_queryBuilder = Configuration::$BASEURI;
+        
+        //prepare query string for API call
+        $_queryBuilder = $_queryBuilder.'/invoices/{invoice_id}/metadata';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'invoice_id' => $invoiceId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => 'MundiSDK',
+            'Accept'        => 'application/json',
+            'content-type'  => 'application/json; charset=utf-8'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::PATCH, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::patch($_queryUrl, $_headers, Request\Body::Json($request));
 
         $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
         $_httpContext = new HttpContext($_httpRequest, $_httpResponse);

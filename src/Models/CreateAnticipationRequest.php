@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  * Request for creating an anticipation
@@ -32,15 +33,16 @@ class CreateAnticipationRequest implements JsonSerializable
      * Payment date
      * @required
      * @maps payment_date
-     * @var string $paymentDate public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $paymentDate public property
      */
     public $paymentDate;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param integer $amount      Initialization value for $this->amount
-     * @param string  $timeframe   Initialization value for $this->timeframe
-     * @param string  $paymentDate Initialization value for $this->paymentDate
+     * @param integer   $amount      Initialization value for $this->amount
+     * @param string    $timeframe   Initialization value for $this->timeframe
+     * @param \DateTime $paymentDate Initialization value for $this->paymentDate
      */
     public function __construct()
     {
@@ -60,7 +62,7 @@ class CreateAnticipationRequest implements JsonSerializable
         $json = array();
         $json['amount']       = $this->amount;
         $json['timeframe']    = $this->timeframe;
-        $json['payment_date'] = $this->paymentDate;
+        $json['payment_date'] = DateTimeHelper::toRfc3339DateTime($this->paymentDate);
 
         return $json;
     }

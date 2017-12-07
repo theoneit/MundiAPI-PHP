@@ -18,7 +18,7 @@ class GetPhonesResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps home_phone
-     * @var GetPhoneResponse $homePhone public property
+     * @var \MundiAPILib\Models\GetPhoneResponse $homePhone public property
      */
     public $homePhone;
 
@@ -26,7 +26,7 @@ class GetPhonesResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps mobile_phone
-     * @var GetPhoneResponse $mobilePhone public property
+     * @var \MundiAPILib\Models\GetPhoneResponse $mobilePhone public property
      */
     public $mobilePhone;
 

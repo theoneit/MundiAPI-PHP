@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  * Request for updating the due date from a subscription
@@ -18,13 +19,14 @@ class UpdateSubscriptionBillingDateRequest implements JsonSerializable
      * The date when the next subscription billing must occur
      * @required
      * @maps next_billing_at
-     * @var string $nextBillingAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime $nextBillingAt public property
      */
     public $nextBillingAt;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string $nextBillingAt Initialization value for $this->nextBillingAt
+     * @param \DateTime $nextBillingAt Initialization value for $this->nextBillingAt
      */
     public function __construct()
     {
@@ -40,7 +42,7 @@ class UpdateSubscriptionBillingDateRequest implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['next_billing_at'] = $this->nextBillingAt;
+        $json['next_billing_at'] = DateTimeHelper::toRfc3339DateTime($this->nextBillingAt);
 
         return $json;
     }

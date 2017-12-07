@@ -47,13 +47,13 @@ class CreateCheckoutPaymentRequest implements JsonSerializable
     /**
      * Card payment request
      * @maps credit_card
-     * @var CreateCheckoutCardPaymentRequest|null $creditCard public property
+     * @var \MundiAPILib\Models\CreateCheckoutCardPaymentRequest|null $creditCard public property
      */
     public $creditCard;
 
     /**
      * Boleto payment request
-     * @var CreateCheckoutBoletoPaymentRequest|null $boleto public property
+     * @var \MundiAPILib\Models\CreateCheckoutBoletoPaymentRequest|null $boleto public property
      */
     public $boleto;
 

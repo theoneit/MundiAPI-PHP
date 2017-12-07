@@ -17,14 +17,14 @@ class ListPlansResponse implements JsonSerializable
     /**
      * The plan objects
      * @required
-     * @var GetPlanResponse[] $data public property
+     * @var \MundiAPILib\Models\GetPlanResponse[] $data public property
      */
     public $data;
 
     /**
      * Paging object
      * @required
-     * @var PagingResponse $paging public property
+     * @var \MundiAPILib\Models\PagingResponse $paging public property
      */
     public $paging;
 

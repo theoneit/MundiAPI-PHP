@@ -26,14 +26,14 @@ class CreatePaymentRequest implements JsonSerializable
      * Settings for credit card payment
      * @required
      * @maps credit_card
-     * @var CreateCreditCardPaymentRequest $creditCard public property
+     * @var \MundiAPILib\Models\CreateCreditCardPaymentRequest $creditCard public property
      */
     public $creditCard;
 
     /**
      * Settings for boleto payment
      * @required
-     * @var CreateBoletoPaymentRequest $boleto public property
+     * @var \MundiAPILib\Models\CreateBoletoPaymentRequest $boleto public property
      */
     public $boleto;
 
@@ -47,7 +47,7 @@ class CreatePaymentRequest implements JsonSerializable
     /**
      * Settings for voucher payment
      * @required
-     * @var CreateVoucherPaymentRequest $voucher public property
+     * @var \MundiAPILib\Models\CreateVoucherPaymentRequest $voucher public property
      */
     public $voucher;
 
@@ -61,14 +61,14 @@ class CreatePaymentRequest implements JsonSerializable
     /**
      * Splits
      * @required
-     * @var CreateSplitRequest[] $split public property
+     * @var \MundiAPILib\Models\CreateSplitRequest[] $split public property
      */
     public $split;
 
     /**
      * Settings for bank transfer payment
      * @maps bank_transfer
-     * @var CreateBankTransferPaymentRequest|null $bankTransfer public property
+     * @var \MundiAPILib\Models\CreateBankTransferPaymentRequest|null $bankTransfer public property
      */
     public $bankTransfer;
 
@@ -87,7 +87,7 @@ class CreatePaymentRequest implements JsonSerializable
 
     /**
      * Settings for checkout payment
-     * @var CreateCheckoutPaymentRequest|null $checkout public property
+     * @var \MundiAPILib\Models\CreateCheckoutPaymentRequest|null $checkout public property
      */
     public $checkout;
 

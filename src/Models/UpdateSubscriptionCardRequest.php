@@ -17,7 +17,7 @@ class UpdateSubscriptionCardRequest implements JsonSerializable
     /**
      * Credit card data
      * @required
-     * @var CreateCardRequest $card public property
+     * @var \MundiAPILib\Models\CreateCardRequest $card public property
      */
     public $card;
 

@@ -37,7 +37,7 @@ class CreateOrderItemRequest implements JsonSerializable
 
     /**
      * Item seller
-     * @var CreateSellerRequest|null $seller public property
+     * @var \MundiAPILib\Models\CreateSellerRequest|null $seller public property
      */
     public $seller;
 
