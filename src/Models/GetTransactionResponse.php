@@ -91,7 +91,8 @@ class GetTransactionResponse implements JsonSerializable
     /**
      * Date and time of the next attempt
      * @maps next_attempt
-     * @var DateTime|null $nextAttempt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $nextAttempt public property
      */
     public $nextAttempt;
 
@@ -149,7 +150,7 @@ class GetTransactionResponse implements JsonSerializable
         $json['attempt_count']    = $this->attemptCount;
         $json['max_attempts']     = $this->maxAttempts;
         $json['splits']           = $this->splits;
-        $json['next_attempt']     = DateTimeHelper::toRfc3339DateTime($this->nextAttempt);
+        $json['next_attempt']     = isset($this->nextAttempt) ? DateTimeHelper::toRfc3339DateTime($this->nextAttempt) : null;
         $json['transaction_type'] = $this->transactionType;
 
         return $json;
