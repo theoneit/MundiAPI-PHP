@@ -170,7 +170,8 @@ class GetSubscriptionResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @maps next_billing_at
-     * @var DateTime|null $nextBillingAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $nextBillingAt public property
      */
     public $nextBillingAt;
 
@@ -191,7 +192,8 @@ class GetSubscriptionResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @maps canceled_at
-     * @var DateTime|null $canceledAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $canceledAt public property
      */
     public $canceledAt;
 
@@ -287,10 +289,10 @@ class GetSubscriptionResponse implements JsonSerializable
         $json['metadata']               = $this->metadata;
         $json['setup']                  = $this->setup;
         $json['gateway_affiliation_id'] = $this->gatewayAffiliationId;
-        $json['next_billing_at']        = DateTimeHelper::toRfc3339DateTime($this->nextBillingAt);
+        $json['next_billing_at']        = isset($this->nextBillingAt) ? DateTimeHelper::toRfc3339DateTime($this->nextBillingAt) : null;
         $json['billing_day']            = $this->billingDay;
         $json['minimum_price']          = $this->minimumPrice;
-        $json['canceled_at']            = DateTimeHelper::toRfc3339DateTime($this->canceledAt);
+        $json['canceled_at']            = isset($this->canceledAt) ? DateTimeHelper::toRfc3339DateTime($this->canceledAt) : null;
         $json['discounts']              = $this->discounts;
 
         return $json;

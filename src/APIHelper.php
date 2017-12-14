@@ -104,46 +104,6 @@ class APIHelper
     }
 
     /**
-     * Encode multidimentional arrays for sending as post field in CURL
-     *
-     * Will handle files as well as models if found in the $data.
-     *
-     * @source https://bugs.php.net/patch-display.php?bug_id=67477&patch=add-http_build_query_develop-function&revision=latest
-     *
-     * @param  array $data Input data to be encoded
-     * @return array       Encoded data
-     */
-    public static function httpBuildQueryDevelop($data)
-    {
-        // if not array, $data is okay
-        if (!is_array($data)) {
-            return $data;
-        }
-
-        foreach ($data as $key => $val) {
-            if (is_array($val)) {
-                foreach ($val as $k => $v) {
-                    if (is_array($v)) {
-                        // flatten array and merge
-                        $data = array_merge($data, static::httpBuildQueryDevelop(array( "{$key}[{$k}]" => $v)));
-                    } elseif (is_object($v)) {
-                        // flatten object to array and merge
-                        $data = array_merge(
-                            $data,
-                            static::httpBuildQueryDevelop(array( "{$key}[{$k}]" => $v->jsonSerialize()))
-                        );
-                    } else {
-                        // does not need flattening; primitive
-                        $data["{$key}[{$k}]"] = $v;
-                    }
-                }
-                unset($data[$key]);
-            }
-        }
-        return $data;
-    }
-
-    /**
      * Deserialize a Json string
      * @param  string   $json       A valid Json string
      * @param  mixed    $instance   Instance of an object to map the json into
@@ -167,7 +127,7 @@ class APIHelper
     /**
      * Check if an array isAssociative (has string keys)
      * @param  array  $array  A valid array
-     * @return bool           True if the array is Associative, false if it is Indexed
+     * @return boolean        True if the array is Associative, false if it is Indexed
      */
     private static function isAssociative($arr)
     {
@@ -181,7 +141,7 @@ class APIHelper
     }
 
     /**
-     * Prepare a model before sending it in a form
+     * Prepare a model for form encoding
      * @param  JsonSerializable  $model  A valid instance of JsonSerializable
      * @return array                     The model as a map of key value pairs
      */

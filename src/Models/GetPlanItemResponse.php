@@ -91,7 +91,8 @@ class GetPlanItemResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @maps deleted_at
-     * @var DateTime|null $deletedAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $deletedAt public property
      */
     public $deletedAt;
 
@@ -143,7 +144,7 @@ class GetPlanItemResponse implements JsonSerializable
         $json['plan']           = $this->plan;
         $json['quantity']       = $this->quantity;
         $json['cycles']         = $this->cycles;
-        $json['deleted_at']     = DateTimeHelper::toRfc3339DateTime($this->deletedAt);
+        $json['deleted_at']     = isset($this->deletedAt) ? DateTimeHelper::toRfc3339DateTime($this->deletedAt) : null;
 
         return $json;
     }

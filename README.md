@@ -598,8 +598,8 @@ function getSubscriptions(
 #### Example Usage
 
 ```php
-$page = 86;
-$size = 86;
+$page = 211;
+$size = 211;
 $code = 'code';
 $billingType = 'billing_type';
 $customerId = 'customer_id';
@@ -741,8 +741,8 @@ function getUsages(
 ```php
 $subscriptionId = 'subscription_id';
 $itemId = 'item_id';
-$page = 86;
-$size = 86;
+$page = 48;
+$size = 48;
 
 $result = $subscriptions->getUsages($subscriptionId, $itemId, $page, $size);
 
@@ -910,8 +910,8 @@ function getOrders(
 #### Example Usage
 
 ```php
-$page = 86;
-$size = 86;
+$page = 48;
+$size = 48;
 $code = 'code';
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
@@ -1176,8 +1176,8 @@ function getPlans(
 #### Example Usage
 
 ```php
-$page = 44;
-$size = 44;
+$page = 48;
+$size = 48;
 $name = 'name';
 $status = 'status';
 $billingType = 'billing_type';
@@ -1449,8 +1449,8 @@ function getInvoices(
 #### Example Usage
 
 ```php
-$page = 44;
-$size = 44;
+$page = 48;
+$size = 48;
 $code = 'code';
 $customerId = 'customer_id';
 $subscriptionId = 'subscription_id';
@@ -1656,8 +1656,8 @@ function getAccessTokens(
 
 ```php
 $customerId = 'customer_id';
-$page = 44;
-$size = 44;
+$page = 6;
+$size = 6;
 
 $result = $customers->getAccessTokens($customerId, $page, $size);
 
@@ -1690,8 +1690,8 @@ function getAddresses(
 
 ```php
 $customerId = 'customer_id';
-$page = 44;
-$size = 44;
+$page = 6;
+$size = 6;
 
 $result = $customers->getAddresses($customerId, $page, $size);
 
@@ -1724,8 +1724,8 @@ function getCards(
 
 ```php
 $customerId = 'customer_id';
-$page = 44;
-$size = 44;
+$page = 6;
+$size = 6;
 
 $result = $customers->getCards($customerId, $page, $size);
 
@@ -2332,8 +2332,8 @@ function getCharges(
 #### Example Usage
 
 ```php
-$page = 135;
-$size = 135;
+$page = 6;
+$size = 6;
 $code = 'code';
 $status = 'status';
 $paymentMethod = 'payment_method';
@@ -2436,6 +2436,37 @@ $chargeId = 'charge_id';
 $request = new CreateCaptureChargeRequest();
 
 $result = $charges->captureCharge($chargeId, $request);
+
+```
+
+
+### <a name="update_charge_due_date"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.updateChargeDueDate") updateChargeDueDate
+
+> Updates the due date from a charge
+
+
+```php
+function updateChargeDueDate(
+        $chargeId,
+        $request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| chargeId |  ``` Required ```  | Charge Id |
+| request |  ``` Required ```  | Request for updating the due date |
+
+
+
+#### Example Usage
+
+```php
+$chargeId = 'charge_id';
+$request = new UpdateChargeDueDateRequest();
+
+$result = $charges->updateChargeDueDate($chargeId, $request);
 
 ```
 
@@ -2546,8 +2577,8 @@ function getTransfers(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 135;
-$size = 135;
+$page = 97;
+$size = 97;
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
@@ -2691,8 +2722,8 @@ function getAnticipations(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 135;
-$size = 135;
+$page = 97;
+$size = 97;
 $status = 'status';
 $timeframe = 'timeframe';
 $paymentDateSince = date("D M d, Y G:i");
@@ -2817,8 +2848,8 @@ function getRecipients(
 #### Example Usage
 
 ```php
-$page = 135;
-$size = 135;
+$page = 97;
+$size = 97;
 
 $result = $recipients->getRecipients($page, $size);
 

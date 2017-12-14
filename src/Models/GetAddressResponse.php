@@ -137,7 +137,8 @@ class GetAddressResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @maps deleted_at
-     * @var DateTime|null $deletedAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $deletedAt public property
      */
     public $deletedAt;
 
@@ -207,7 +208,7 @@ class GetAddressResponse implements JsonSerializable
         $json['metadata']     = $this->metadata;
         $json['line_1']       = $this->line1;
         $json['line_2']       = $this->line2;
-        $json['deleted_at']   = DateTimeHelper::toRfc3339DateTime($this->deletedAt);
+        $json['deleted_at']   = isset($this->deletedAt) ? DateTimeHelper::toRfc3339DateTime($this->deletedAt) : null;
 
         return $json;
     }

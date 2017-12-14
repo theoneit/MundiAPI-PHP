@@ -134,28 +134,32 @@ class GetInvoiceResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @maps due_at
-     * @var DateTime|null $dueAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $dueAt public property
      */
     public $dueAt;
 
     /**
      * @todo Write general description for this property
      * @maps canceled_at
-     * @var DateTime|null $canceledAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $canceledAt public property
      */
     public $canceledAt;
 
     /**
      * @todo Write general description for this property
      * @maps billing_at
-     * @var DateTime|null $billingAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $billingAt public property
      */
     public $billingAt;
 
     /**
      * @todo Write general description for this property
      * @maps seen_at
-     * @var DateTime|null $seenAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $seenAt public property
      */
     public $seenAt;
 
@@ -231,10 +235,10 @@ class GetInvoiceResponse implements JsonSerializable
         $json['cycle']           = $this->cycle;
         $json['shipping']        = $this->shipping;
         $json['metadata']        = $this->metadata;
-        $json['due_at']          = DateTimeHelper::toRfc3339DateTime($this->dueAt);
-        $json['canceled_at']     = DateTimeHelper::toRfc3339DateTime($this->canceledAt);
-        $json['billing_at']      = DateTimeHelper::toRfc3339DateTime($this->billingAt);
-        $json['seen_at']         = DateTimeHelper::toRfc3339DateTime($this->seenAt);
+        $json['due_at']          = isset($this->dueAt) ? DateTimeHelper::toRfc3339DateTime($this->dueAt) : null;
+        $json['canceled_at']     = isset($this->canceledAt) ? DateTimeHelper::toRfc3339DateTime($this->canceledAt) : null;
+        $json['billing_at']      = isset($this->billingAt) ? DateTimeHelper::toRfc3339DateTime($this->billingAt) : null;
+        $json['seen_at']         = isset($this->seenAt) ? DateTimeHelper::toRfc3339DateTime($this->seenAt) : null;
 
         return $json;
     }

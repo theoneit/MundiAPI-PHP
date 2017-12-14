@@ -36,7 +36,8 @@ class GetSafetyPayTransactionResponse extends GetTransactionResponse implements 
     /**
      * Payment date
      * @maps paid_at
-     * @var DateTime|null $paidAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $paidAt public property
      */
     public $paidAt;
 
@@ -73,7 +74,7 @@ class GetSafetyPayTransactionResponse extends GetTransactionResponse implements 
         $json = array();
         $json['url']         = $this->url;
         $json['bank_tid']    = $this->bankTid;
-        $json['paid_at']     = DateTimeHelper::toRfc3339DateTime($this->paidAt);
+        $json['paid_at']     = isset($this->paidAt) ? DateTimeHelper::toRfc3339DateTime($this->paidAt) : null;
         $json['paid_amount'] = $this->paidAmount;
         $json = array_merge($json, parent::jsonSerialize());
 

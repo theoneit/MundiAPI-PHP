@@ -18,7 +18,8 @@ class UpdateChargeDueDateRequest implements JsonSerializable
     /**
      * The charge's new due date
      * @maps due_at
-     * @var DateTime|null $dueAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $dueAt public property
      */
     public $dueAt;
 
@@ -40,7 +41,7 @@ class UpdateChargeDueDateRequest implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['due_at'] = DateTimeHelper::toRfc3339DateTime($this->dueAt);
+        $json['due_at'] = isset($this->dueAt) ? DateTimeHelper::toRfc3339DateTime($this->dueAt) : null;
 
         return $json;
     }

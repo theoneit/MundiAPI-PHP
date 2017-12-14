@@ -167,7 +167,8 @@ class GetPlanResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @maps deleted_at
-     * @var DateTime|null $deletedAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $deletedAt public property
      */
     public $deletedAt;
 
@@ -249,7 +250,7 @@ class GetPlanResponse implements JsonSerializable
         $json['metadata']             = $this->metadata;
         $json['trial_period_days']    = $this->trialPeriodDays;
         $json['minimum_price']        = $this->minimumPrice;
-        $json['deleted_at']           = DateTimeHelper::toRfc3339DateTime($this->deletedAt);
+        $json['deleted_at']           = isset($this->deletedAt) ? DateTimeHelper::toRfc3339DateTime($this->deletedAt) : null;
 
         return $json;
     }

@@ -169,7 +169,8 @@ class CreateSubscriptionRequest implements JsonSerializable
     /**
      * Subscription start date
      * @maps start_at
-     * @var DateTime|null $startAt public property
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $startAt public property
      */
     public $startAt;
 
@@ -289,7 +290,7 @@ class CreateSubscriptionRequest implements JsonSerializable
         $json['card_id']                = $this->cardId;
         $json['billing_day']            = $this->billingDay;
         $json['installments']           = $this->installments;
-        $json['start_at']               = DateTimeHelper::toRfc3339DateTime($this->startAt);
+        $json['start_at']               = isset($this->startAt) ? DateTimeHelper::toRfc3339DateTime($this->startAt) : null;
         $json['minimum_price']          = $this->minimumPrice;
         $json['cycles']                 = $this->cycles;
         $json['card_token']             = $this->cardToken;
