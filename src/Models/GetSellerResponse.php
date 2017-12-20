@@ -85,7 +85,7 @@ class GetSellerResponse implements JsonSerializable
      * Metadata
      * @required
      * @maps Metadata
-     * @var object $metadata public property
+     * @var array $metadata public property
      */
     public $metadata;
 
@@ -107,7 +107,7 @@ class GetSellerResponse implements JsonSerializable
      * @param string             $createdAt   Initialization value for $this->createdAt
      * @param string             $updatedAt   Initialization value for $this->updatedAt
      * @param GetAddressResponse $address     Initialization value for $this->address
-     * @param object             $metadata    Initialization value for $this->metadata
+     * @param array              $metadata    Initialization value for $this->metadata
      * @param string             $deletedAt   Initialization value for $this->deletedAt
      */
     public function __construct()

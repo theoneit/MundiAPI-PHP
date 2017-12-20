@@ -202,6 +202,12 @@ class CreateSubscriptionRequest implements JsonSerializable
     public $gatewayAffiliationId;
 
     /**
+     * Quantity
+     * @var integer|null $quantity public property
+     */
+    public $quantity;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param CreateCustomerRequest       $customer             Initialization value for $this->customer
      * @param CreateCardRequest           $card                 Initialization value for $this->card
@@ -229,10 +235,11 @@ class CreateSubscriptionRequest implements JsonSerializable
      * @param integer                     $cycles               Initialization value for $this->cycles
      * @param string                      $cardToken            Initialization value for $this->cardToken
      * @param string                      $gatewayAffiliationId Initialization value for $this->gatewayAffiliationId
+     * @param integer                     $quantity             Initialization value for $this->quantity
      */
     public function __construct()
     {
-        if (26 == func_num_args()) {
+        if (27 == func_num_args()) {
             $this->customer             = func_get_arg(0);
             $this->card                 = func_get_arg(1);
             $this->code                 = func_get_arg(2);
@@ -259,6 +266,7 @@ class CreateSubscriptionRequest implements JsonSerializable
             $this->cycles               = func_get_arg(23);
             $this->cardToken            = func_get_arg(24);
             $this->gatewayAffiliationId = func_get_arg(25);
+            $this->quantity             = func_get_arg(26);
         }
     }
 
@@ -295,6 +303,7 @@ class CreateSubscriptionRequest implements JsonSerializable
         $json['cycles']                 = $this->cycles;
         $json['card_token']             = $this->cardToken;
         $json['gateway_affiliation_id'] = $this->gatewayAffiliationId;
+        $json['quantity']               = $this->quantity;
 
         return $json;
     }

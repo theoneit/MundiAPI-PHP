@@ -22,6 +22,13 @@ class CreateSellerRequest implements JsonSerializable
     public $name;
 
     /**
+     * Metadata
+     * @required
+     * @var array $metadata public property
+     */
+    public $metadata;
+
+    /**
      * Seller's code identification
      * @var string|null $code public property
      */
@@ -41,7 +48,7 @@ class CreateSellerRequest implements JsonSerializable
 
     /**
      * Address
-     * @var string|null $address public property
+     * @var \MundiAPILib\Models\CreateAddressRequest|null $address public property
      */
     public $address;
 
@@ -52,31 +59,25 @@ class CreateSellerRequest implements JsonSerializable
     public $type;
 
     /**
-     * Metadata
-     * @var \MundiAPILib\Models\CreateCardRequest|null $metadata public property
-     */
-    public $metadata;
-
-    /**
      * Constructor to set initial or default values of member properties
-     * @param string            $name        Initialization value for $this->name
-     * @param string            $code        Initialization value for $this->code
-     * @param string            $description Initialization value for $this->description
-     * @param string            $document    Initialization value for $this->document
-     * @param string            $address     Initialization value for $this->address
-     * @param string            $type        Initialization value for $this->type
-     * @param CreateCardRequest $metadata    Initialization value for $this->metadata
+     * @param string               $name        Initialization value for $this->name
+     * @param array                $metadata    Initialization value for $this->metadata
+     * @param string               $code        Initialization value for $this->code
+     * @param string               $description Initialization value for $this->description
+     * @param string               $document    Initialization value for $this->document
+     * @param CreateAddressRequest $address     Initialization value for $this->address
+     * @param string               $type        Initialization value for $this->type
      */
     public function __construct()
     {
         if (7 == func_num_args()) {
             $this->name        = func_get_arg(0);
-            $this->code        = func_get_arg(1);
-            $this->description = func_get_arg(2);
-            $this->document    = func_get_arg(3);
-            $this->address     = func_get_arg(4);
-            $this->type        = func_get_arg(5);
-            $this->metadata    = func_get_arg(6);
+            $this->metadata    = func_get_arg(1);
+            $this->code        = func_get_arg(2);
+            $this->description = func_get_arg(3);
+            $this->document    = func_get_arg(4);
+            $this->address     = func_get_arg(5);
+            $this->type        = func_get_arg(6);
         }
     }
 
@@ -88,12 +89,12 @@ class CreateSellerRequest implements JsonSerializable
     {
         $json = array();
         $json['name']        = $this->name;
+        $json['metadata']    = $this->metadata;
         $json['code']        = $this->code;
         $json['description'] = $this->description;
         $json['document']    = $this->document;
         $json['address']     = $this->address;
         $json['type']        = $this->type;
-        $json['metadata']    = $this->metadata;
 
         return $json;
     }
