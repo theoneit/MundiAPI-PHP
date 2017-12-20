@@ -105,6 +105,13 @@ class GetOrderResponse implements JsonSerializable
     public $metadata;
 
     /**
+     * Indicates whether the order is closed
+     * @required
+     * @var bool $closed public property
+     */
+    public $closed;
+
+    /**
      * Checkout Payment Settings Response
      * @var \MundiAPILib\Models\GetCheckoutPaymentSettingsResponse[]|null $checkouts public property
      */
@@ -149,6 +156,7 @@ class GetOrderResponse implements JsonSerializable
      * @param string               $invoiceUrl Initialization value for $this->invoiceUrl
      * @param GetShippingResponse  $shipping   Initialization value for $this->shipping
      * @param array                $metadata   Initialization value for $this->metadata
+     * @param bool                 $closed     Initialization value for $this->closed
      * @param array                $checkouts  Initialization value for $this->checkouts
      * @param string               $ip         Initialization value for $this->ip
      * @param string               $sessionId  Initialization value for $this->sessionId
@@ -157,7 +165,7 @@ class GetOrderResponse implements JsonSerializable
      */
     public function __construct()
     {
-        if (17 == func_num_args()) {
+        if (18 == func_num_args()) {
             $this->id         = func_get_arg(0);
             $this->code       = func_get_arg(1);
             $this->currency   = func_get_arg(2);
@@ -170,11 +178,12 @@ class GetOrderResponse implements JsonSerializable
             $this->invoiceUrl = func_get_arg(9);
             $this->shipping   = func_get_arg(10);
             $this->metadata   = func_get_arg(11);
-            $this->checkouts  = func_get_arg(12);
-            $this->ip         = func_get_arg(13);
-            $this->sessionId  = func_get_arg(14);
-            $this->location   = func_get_arg(15);
-            $this->device     = func_get_arg(16);
+            $this->closed     = func_get_arg(12);
+            $this->checkouts  = func_get_arg(13);
+            $this->ip         = func_get_arg(14);
+            $this->sessionId  = func_get_arg(15);
+            $this->location   = func_get_arg(16);
+            $this->device     = func_get_arg(17);
         }
     }
 
@@ -197,6 +206,7 @@ class GetOrderResponse implements JsonSerializable
         $json['invoice_url'] = $this->invoiceUrl;
         $json['shipping']    = $this->shipping;
         $json['metadata']    = $this->metadata;
+        $json['closed']      = $this->closed;
         $json['checkouts']   = $this->checkouts;
         $json['ip']          = $this->ip;
         $json['session_id']  = $this->sessionId;

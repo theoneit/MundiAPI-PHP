@@ -75,6 +75,22 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
     public $recurrence;
 
     /**
+     * Indicates whether the extended label (private label) is enabled
+     * @required
+     * @maps extended_limit_enabled
+     * @var bool $extendedLimitEnabled public property
+     */
+    public $extendedLimitEnabled;
+
+    /**
+     * Extended Limit Code
+     * @required
+     * @maps extended_limit_code
+     * @var string $extendedLimitCode public property
+     */
+    public $extendedLimitCode;
+
+    /**
      * Indicates if the operation should be only authorization or auth and capture.
      * @var bool|null $capture public property
      */
@@ -90,12 +106,14 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
      * @param string            $cardId                 Initialization value for $this->cardId
      * @param string            $cardToken              Initialization value for $this->cardToken
      * @param bool              $recurrence             Initialization value for $this->recurrence
+     * @param bool              $extendedLimitEnabled   Initialization value for $this->extendedLimitEnabled
+     * @param string            $extendedLimitCode      Initialization value for $this->extendedLimitCode
      * @param bool              $capture                Initialization value for $this->capture
      */
     public function __construct()
     {
         switch (func_num_args()) {
-            case 9:
+            case 11:
                 $this->installments           = func_get_arg(0);
                 $this->statementDescriptor    = func_get_arg(1);
                 $this->card                   = func_get_arg(2);
@@ -104,7 +122,9 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
                 $this->cardId                 = func_get_arg(5);
                 $this->cardToken              = func_get_arg(6);
                 $this->recurrence             = func_get_arg(7);
-                $this->capture                = func_get_arg(8);
+                $this->extendedLimitEnabled   = func_get_arg(8);
+                $this->extendedLimitCode      = func_get_arg(9);
+                $this->capture                = func_get_arg(10);
                 break;
 
             default:
@@ -129,6 +149,8 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
         $json['card_id']                  = $this->cardId;
         $json['card_token']               = $this->cardToken;
         $json['recurrence']               = $this->recurrence;
+        $json['extended_limit_enabled']   = $this->extendedLimitEnabled;
+        $json['extended_limit_code']      = $this->extendedLimitCode;
         $json['capture']                  = $this->capture;
 
         return $json;

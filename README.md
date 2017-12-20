@@ -140,6 +140,7 @@ $client = new MundiAPILib\MundiAPIClient($basicAuthUserName, $basicAuthPassword)
 * [ChargesController](#charges_controller)
 * [RecipientsController](#recipients_controller)
 * [TokensController](#tokens_controller)
+* [SellersController](#sellers_controller)
 
 ## <a name="subscriptions_controller"></a>![Class: ](https://apidocs.io/img/class.png ".SubscriptionsController") SubscriptionsController
 
@@ -598,8 +599,8 @@ function getSubscriptions(
 #### Example Usage
 
 ```php
-$page = 211;
-$size = 211;
+$page = 142;
+$size = 142;
 $code = 'code';
 $billingType = 'billing_type';
 $customerId = 'customer_id';
@@ -741,8 +742,8 @@ function getUsages(
 ```php
 $subscriptionId = 'subscription_id';
 $itemId = 'item_id';
-$page = 48;
-$size = 48;
+$page = 233;
+$size = 233;
 
 $result = $subscriptions->getUsages($subscriptionId, $itemId, $page, $size);
 
@@ -910,8 +911,8 @@ function getOrders(
 #### Example Usage
 
 ```php
-$page = 48;
-$size = 48;
+$page = 233;
+$size = 233;
 $code = 'code';
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
@@ -950,6 +951,191 @@ $orderId = 'order_id';
 $request = new UpdateMetadataRequest();
 
 $result = $orders->updateOrderMetadata($orderId, $request);
+
+```
+
+
+### <a name="delete_all_order_items"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.deleteAllOrderItems") deleteAllOrderItems
+
+> TODO: Add a method description
+
+
+```php
+function deleteAllOrderItems($orderId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| orderId |  ``` Required ```  | Order Id |
+
+
+
+#### Example Usage
+
+```php
+$orderId = 'orderId';
+
+$result = $orders->deleteAllOrderItems($orderId);
+
+```
+
+
+### <a name="update_order_item"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.updateOrderItem") updateOrderItem
+
+> TODO: Add a method description
+
+
+```php
+function updateOrderItem(
+        $orderId,
+        $itemId,
+        $request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| orderId |  ``` Required ```  | Order Id |
+| itemId |  ``` Required ```  | Item Id |
+| request |  ``` Required ```  | Item Model |
+
+
+
+#### Example Usage
+
+```php
+$orderId = 'orderId';
+$itemId = 'itemId';
+$request = new UpdateOrderItemRequest();
+
+$result = $orders->updateOrderItem($orderId, $itemId, $request);
+
+```
+
+
+### <a name="delete_order_item"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.deleteOrderItem") deleteOrderItem
+
+> TODO: Add a method description
+
+
+```php
+function deleteOrderItem(
+        $orderId,
+        $itemId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| orderId |  ``` Required ```  | Order Id |
+| itemId |  ``` Required ```  | Item Id |
+
+
+
+#### Example Usage
+
+```php
+$orderId = 'orderId';
+$itemId = 'itemId';
+
+$result = $orders->deleteOrderItem($orderId, $itemId);
+
+```
+
+
+### <a name="create_order_item"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.createOrderItem") createOrderItem
+
+> TODO: Add a method description
+
+
+```php
+function createOrderItem(
+        $orderId,
+        $request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| orderId |  ``` Required ```  | Order Id |
+| request |  ``` Required ```  | Order Item Model |
+
+
+
+#### Example Usage
+
+```php
+$orderId = 'orderId';
+$request = new CreateOrderItemRequest();
+
+$result = $orders->createOrderItem($orderId, $request);
+
+```
+
+
+### <a name="get_order_item"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.getOrderItem") getOrderItem
+
+> TODO: Add a method description
+
+
+```php
+function getOrderItem(
+        $orderId,
+        $itemId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| orderId |  ``` Required ```  | Order Id |
+| itemId |  ``` Required ```  | Item Id |
+
+
+
+#### Example Usage
+
+```php
+$orderId = 'orderId';
+$itemId = 'itemId';
+
+$result = $orders->getOrderItem($orderId, $itemId);
+
+```
+
+
+### <a name="update_order_status"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.updateOrderStatus") updateOrderStatus
+
+> TODO: Add a method description
+
+
+```php
+function updateOrderStatus(
+        $id,
+        $request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| id |  ``` Required ```  | Order Id |
+| request |  ``` Required ```  | Update Order Model |
+
+
+
+#### Example Usage
+
+```php
+$id = 'id';
+$request = new UpdateOrderStatusRequest();
+
+$result = $orders->updateOrderStatus($id, $request);
 
 ```
 
@@ -1176,8 +1362,8 @@ function getPlans(
 #### Example Usage
 
 ```php
-$page = 48;
-$size = 48;
+$page = 233;
+$size = 233;
 $name = 'name';
 $status = 'status';
 $billingType = 'billing_type';
@@ -1449,8 +1635,8 @@ function getInvoices(
 #### Example Usage
 
 ```php
-$page = 48;
-$size = 48;
+$page = 192;
+$size = 192;
 $code = 'code';
 $customerId = 'customer_id';
 $subscriptionId = 'subscription_id';
@@ -1656,8 +1842,8 @@ function getAccessTokens(
 
 ```php
 $customerId = 'customer_id';
-$page = 6;
-$size = 6;
+$page = 192;
+$size = 192;
 
 $result = $customers->getAccessTokens($customerId, $page, $size);
 
@@ -1690,8 +1876,8 @@ function getAddresses(
 
 ```php
 $customerId = 'customer_id';
-$page = 6;
-$size = 6;
+$page = 192;
+$size = 192;
 
 $result = $customers->getAddresses($customerId, $page, $size);
 
@@ -1724,8 +1910,8 @@ function getCards(
 
 ```php
 $customerId = 'customer_id';
-$page = 6;
-$size = 6;
+$page = 192;
+$size = 192;
 
 $result = $customers->getCards($customerId, $page, $size);
 
@@ -2332,8 +2518,8 @@ function getCharges(
 #### Example Usage
 
 ```php
-$page = 6;
-$size = 6;
+$page = 28;
+$size = 28;
 $code = 'code';
 $status = 'status';
 $paymentMethod = 'payment_method';
@@ -2577,8 +2763,8 @@ function getTransfers(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 97;
-$size = 97;
+$page = 28;
+$size = 28;
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
@@ -2722,8 +2908,8 @@ function getAnticipations(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 97;
-$size = 97;
+$page = 28;
+$size = 28;
 $status = 'status';
 $timeframe = 'timeframe';
 $paymentDateSince = date("D M d, Y G:i");
@@ -2848,8 +3034,8 @@ function getRecipients(
 #### Example Usage
 
 ```php
-$page = 97;
-$size = 97;
+$page = 28;
+$size = 28;
 
 $result = $recipients->getRecipients($page, $size);
 
@@ -3015,6 +3201,213 @@ $publicKey = 'public_key';
 $request = new CreateTokenRequest();
 
 $result = $tokens->createToken($publicKey, $request);
+
+```
+
+
+[Back to List of Controllers](#list_of_controllers)
+
+## <a name="sellers_controller"></a>![Class: ](https://apidocs.io/img/class.png ".SellersController") SellersController
+
+### Get singleton instance
+
+The singleton instance of the ``` SellersController ``` class can be accessed from the API Client.
+
+```php
+$sellers = $client->getSellers();
+```
+
+### <a name="get_seller_by_id"></a>![Method: ](https://apidocs.io/img/method.png ".SellersController.getSellerById") getSellerById
+
+> TODO: Add a method description
+
+
+```php
+function getSellerById($id)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| id |  ``` Required ```  | Seller Id |
+
+
+
+#### Example Usage
+
+```php
+$id = 'id';
+
+$result = $sellers->getSellerById($id);
+
+```
+
+
+### <a name="delete_seller"></a>![Method: ](https://apidocs.io/img/method.png ".SellersController.deleteSeller") deleteSeller
+
+> TODO: Add a method description
+
+
+```php
+function deleteSeller($sellerId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| sellerId |  ``` Required ```  | Seller Id |
+
+
+
+#### Example Usage
+
+```php
+$sellerId = 'sellerId';
+
+$result = $sellers->deleteSeller($sellerId);
+
+```
+
+
+### <a name="create_seller"></a>![Method: ](https://apidocs.io/img/method.png ".SellersController.createSeller") createSeller
+
+> TODO: Add a method description
+
+
+```php
+function createSeller($request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| request |  ``` Required ```  | Seller Model |
+
+
+
+#### Example Usage
+
+```php
+$request = new CreateSellerRequest();
+
+$result = $sellers->createSeller($request);
+
+```
+
+
+### <a name="get_sellers"></a>![Method: ](https://apidocs.io/img/method.png ".SellersController.getSellers") getSellers
+
+> TODO: Add a method description
+
+
+```php
+function getSellers(
+        $page = null,
+        $size = null,
+        $name = null,
+        $document = null,
+        $code = null,
+        $status = null,
+        $type = null,
+        $createdSince = null,
+        $createdUntil = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| page |  ``` Optional ```  | Page number |
+| size |  ``` Optional ```  | Page size |
+| name |  ``` Optional ```  | TODO: Add a parameter description |
+| document |  ``` Optional ```  | TODO: Add a parameter description |
+| code |  ``` Optional ```  | TODO: Add a parameter description |
+| status |  ``` Optional ```  | TODO: Add a parameter description |
+| type |  ``` Optional ```  | TODO: Add a parameter description |
+| createdSince |  ``` Optional ```  | TODO: Add a parameter description |
+| createdUntil |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$page = 28;
+$size = 28;
+$name = 'name';
+$document = 'document';
+$code = 'code';
+$status = 'status';
+$type = 'type';
+$createdSince = date("D M d, Y G:i");
+$createdUntil = date("D M d, Y G:i");
+
+$result = $sellers->getSellers($page, $size, $name, $document, $code, $status, $type, $createdSince, $createdUntil);
+
+```
+
+
+### <a name="update_seller"></a>![Method: ](https://apidocs.io/img/method.png ".SellersController.updateSeller") updateSeller
+
+> TODO: Add a method description
+
+
+```php
+function updateSeller(
+        $id,
+        $request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| id |  ``` Required ```  | TODO: Add a parameter description |
+| request |  ``` Required ```  | Update Seller model |
+
+
+
+#### Example Usage
+
+```php
+$id = 'id';
+$request = new UpdateSellerRequest();
+
+$result = $sellers->updateSeller($id, $request);
+
+```
+
+
+### <a name="update_seller_metadata"></a>![Method: ](https://apidocs.io/img/method.png ".SellersController.updateSellerMetadata") updateSellerMetadata
+
+> TODO: Add a method description
+
+
+```php
+function updateSellerMetadata(
+        $sellerId,
+        $request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| sellerId |  ``` Required ```  | Seller Id |
+| request |  ``` Required ```  | Request for updating the charge metadata |
+
+
+
+#### Example Usage
+
+```php
+$sellerId = 'seller_id';
+$request = new UpdateMetadataRequest();
+
+$result = $sellers->updateSellerMetadata($sellerId, $request);
 
 ```
 

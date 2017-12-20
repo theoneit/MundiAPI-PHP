@@ -10,69 +10,52 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Request for creating an order item
+ * Update Order item Request
  */
-class CreateOrderItemRequest implements JsonSerializable
+class UpdateOrderItemRequest implements JsonSerializable
 {
     /**
-     * Amount
+     * @todo Write general description for this property
      * @required
      * @var integer $amount public property
      */
     public $amount;
 
     /**
-     * Description
+     * @todo Write general description for this property
      * @required
      * @var string $description public property
      */
     public $description;
 
     /**
-     * Quantity
+     * @todo Write general description for this property
      * @required
      * @var integer $quantity public property
      */
     public $quantity;
 
     /**
-     * Category
+     * @todo Write general description for this property
      * @required
      * @var string $category public property
      */
     public $category;
 
     /**
-     * Item seller
-     * @var \MundiAPILib\Models\CreateSellerRequest|null $seller public property
-     */
-    public $seller;
-
-    /**
-     * seller identificator
-     * @maps seller_id
-     * @var string|null $sellerId public property
-     */
-    public $sellerId;
-
-    /**
      * Constructor to set initial or default values of member properties
-     * @param integer             $amount      Initialization value for $this->amount
-     * @param string              $description Initialization value for $this->description
-     * @param integer             $quantity    Initialization value for $this->quantity
-     * @param string              $category    Initialization value for $this->category
-     * @param CreateSellerRequest $seller      Initialization value for $this->seller
-     * @param string              $sellerId    Initialization value for $this->sellerId
+     * @param integer $amount      Initialization value for $this->amount
+     * @param string  $description Initialization value for $this->description
+     * @param integer $quantity    Initialization value for $this->quantity
+     * @param string  $category    Initialization value for $this->category
      */
     public function __construct()
     {
-        if (6 == func_num_args()) {
+        if (4 == func_num_args()) {
             $this->amount      = func_get_arg(0);
             $this->description = func_get_arg(1);
             $this->quantity    = func_get_arg(2);
             $this->category    = func_get_arg(3);
-            $this->seller      = func_get_arg(4);
-            $this->sellerId    = func_get_arg(5);
         }
     }
 
@@ -87,8 +70,6 @@ class CreateOrderItemRequest implements JsonSerializable
         $json['description'] = $this->description;
         $json['quantity']    = $this->quantity;
         $json['category']    = $this->category;
-        $json['seller']      = $this->seller;
-        $json['seller_id']   = $this->sellerId;
 
         return $json;
     }
