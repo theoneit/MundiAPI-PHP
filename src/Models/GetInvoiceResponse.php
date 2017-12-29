@@ -235,10 +235,14 @@ class GetInvoiceResponse implements JsonSerializable
         $json['cycle']           = $this->cycle;
         $json['shipping']        = $this->shipping;
         $json['metadata']        = $this->metadata;
-        $json['due_at']          = isset($this->dueAt) ? DateTimeHelper::toRfc3339DateTime($this->dueAt) : null;
-        $json['canceled_at']     = isset($this->canceledAt) ? DateTimeHelper::toRfc3339DateTime($this->canceledAt) : null;
-        $json['billing_at']      = isset($this->billingAt) ? DateTimeHelper::toRfc3339DateTime($this->billingAt) : null;
-        $json['seen_at']         = isset($this->seenAt) ? DateTimeHelper::toRfc3339DateTime($this->seenAt) : null;
+        $json['due_at']          = isset($this->dueAt) ?
+            DateTimeHelper::toRfc3339DateTime($this->dueAt) : null;
+        $json['canceled_at']     = isset($this->canceledAt) ?
+            DateTimeHelper::toRfc3339DateTime($this->canceledAt) : null;
+        $json['billing_at']      = isset($this->billingAt) ?
+            DateTimeHelper::toRfc3339DateTime($this->billingAt) : null;
+        $json['seen_at']         = isset($this->seenAt) ?
+            DateTimeHelper::toRfc3339DateTime($this->seenAt) : null;
 
         return $json;
     }

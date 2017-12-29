@@ -298,7 +298,8 @@ class CreateSubscriptionRequest implements JsonSerializable
         $json['card_id']                = $this->cardId;
         $json['billing_day']            = $this->billingDay;
         $json['installments']           = $this->installments;
-        $json['start_at']               = isset($this->startAt) ? DateTimeHelper::toRfc3339DateTime($this->startAt) : null;
+        $json['start_at']               = isset($this->startAt) ?
+            DateTimeHelper::toRfc3339DateTime($this->startAt) : null;
         $json['minimum_price']          = $this->minimumPrice;
         $json['cycles']                 = $this->cycles;
         $json['card_token']             = $this->cardToken;

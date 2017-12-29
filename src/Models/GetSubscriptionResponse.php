@@ -289,10 +289,12 @@ class GetSubscriptionResponse implements JsonSerializable
         $json['metadata']               = $this->metadata;
         $json['setup']                  = $this->setup;
         $json['gateway_affiliation_id'] = $this->gatewayAffiliationId;
-        $json['next_billing_at']        = isset($this->nextBillingAt) ? DateTimeHelper::toRfc3339DateTime($this->nextBillingAt) : null;
+        $json['next_billing_at']        = isset($this->nextBillingAt) ?
+            DateTimeHelper::toRfc3339DateTime($this->nextBillingAt) : null;
         $json['billing_day']            = $this->billingDay;
         $json['minimum_price']          = $this->minimumPrice;
-        $json['canceled_at']            = isset($this->canceledAt) ? DateTimeHelper::toRfc3339DateTime($this->canceledAt) : null;
+        $json['canceled_at']            = isset($this->canceledAt) ?
+            DateTimeHelper::toRfc3339DateTime($this->canceledAt) : null;
         $json['discounts']              = $this->discounts;
 
         return $json;

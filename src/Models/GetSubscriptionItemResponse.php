@@ -154,7 +154,8 @@ class GetSubscriptionItemResponse implements JsonSerializable
         $json['name']           = $this->name;
         $json['quantity']       = $this->quantity;
         $json['cycles']         = $this->cycles;
-        $json['deleted_at']     = isset($this->deletedAt) ? DateTimeHelper::toRfc3339DateTime($this->deletedAt) : null;
+        $json['deleted_at']     = isset($this->deletedAt) ?
+            DateTimeHelper::toRfc3339DateTime($this->deletedAt) : null;
 
         return $json;
     }

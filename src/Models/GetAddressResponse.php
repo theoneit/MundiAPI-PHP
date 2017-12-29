@@ -208,7 +208,8 @@ class GetAddressResponse implements JsonSerializable
         $json['metadata']     = $this->metadata;
         $json['line_1']       = $this->line1;
         $json['line_2']       = $this->line2;
-        $json['deleted_at']   = isset($this->deletedAt) ? DateTimeHelper::toRfc3339DateTime($this->deletedAt) : null;
+        $json['deleted_at']   = isset($this->deletedAt) ?
+            DateTimeHelper::toRfc3339DateTime($this->deletedAt) : null;
 
         return $json;
     }

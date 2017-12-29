@@ -55,6 +55,13 @@ class GetUsageResponse implements JsonSerializable
     public $createdAt;
 
     /**
+     * Status
+     * @required
+     * @var string $status public property
+     */
+    public $status;
+
+    /**
      * Subscription item
      * @required
      * @maps subscription_item
@@ -63,23 +70,35 @@ class GetUsageResponse implements JsonSerializable
     public $subscriptionItem;
 
     /**
+     * @todo Write general description for this property
+     * @maps deleted_at
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $deletedAt public property
+     */
+    public $deletedAt;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string                       $id               Initialization value for $this->id
      * @param integer                      $quantity         Initialization value for $this->quantity
      * @param string                       $description      Initialization value for $this->description
      * @param \DateTime                    $usedAt           Initialization value for $this->usedAt
      * @param \DateTime                    $createdAt        Initialization value for $this->createdAt
+     * @param string                       $status           Initialization value for $this->status
      * @param GetSubscriptionItemResponse  $subscriptionItem Initialization value for $this->subscriptionItem
+     * @param \DateTime                    $deletedAt        Initialization value for $this->deletedAt
      */
     public function __construct()
     {
-        if (6 == func_num_args()) {
+        if (8 == func_num_args()) {
             $this->id               = func_get_arg(0);
             $this->quantity         = func_get_arg(1);
             $this->description      = func_get_arg(2);
             $this->usedAt           = func_get_arg(3);
             $this->createdAt        = func_get_arg(4);
-            $this->subscriptionItem = func_get_arg(5);
+            $this->status           = func_get_arg(5);
+            $this->subscriptionItem = func_get_arg(6);
+            $this->deletedAt        = func_get_arg(7);
         }
     }
 
@@ -95,7 +114,10 @@ class GetUsageResponse implements JsonSerializable
         $json['description']       = $this->description;
         $json['used_at']           = DateTimeHelper::toRfc3339DateTime($this->usedAt);
         $json['created_at']        = DateTimeHelper::toRfc3339DateTime($this->createdAt);
+        $json['status']            = $this->status;
         $json['subscription_item'] = $this->subscriptionItem;
+        $json['deleted_at']        = isset($this->deletedAt) ?
+            DateTimeHelper::toRfc3339DateTime($this->deletedAt) : null;
 
         return $json;
     }

@@ -113,7 +113,8 @@ class GetDiscountResponse implements JsonSerializable
         $json['created_at']    = DateTimeHelper::toRfc3339DateTime($this->createdAt);
         $json['subscription']  = $this->subscription;
         $json['cycles']        = $this->cycles;
-        $json['deleted_at']    = isset($this->deletedAt) ? DateTimeHelper::toRfc3339DateTime($this->deletedAt) : null;
+        $json['deleted_at']    = isset($this->deletedAt) ?
+            DateTimeHelper::toRfc3339DateTime($this->deletedAt) : null;
 
         return $json;
     }
