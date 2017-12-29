@@ -41,7 +41,8 @@ class UpdateChargeDueDateRequest implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['due_at'] = isset($this->dueAt) ? DateTimeHelper::toRfc3339DateTime($this->dueAt) : null;
+        $json['due_at'] = isset($this->dueAt) ?
+            DateTimeHelper::toRfc3339DateTime($this->dueAt) : null;
 
         return $json;
     }

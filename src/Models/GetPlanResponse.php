@@ -250,7 +250,8 @@ class GetPlanResponse implements JsonSerializable
         $json['metadata']             = $this->metadata;
         $json['trial_period_days']    = $this->trialPeriodDays;
         $json['minimum_price']        = $this->minimumPrice;
-        $json['deleted_at']           = isset($this->deletedAt) ? DateTimeHelper::toRfc3339DateTime($this->deletedAt) : null;
+        $json['deleted_at']           = isset($this->deletedAt) ?
+            DateTimeHelper::toRfc3339DateTime($this->deletedAt) : null;
 
         return $json;
     }

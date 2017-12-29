@@ -150,7 +150,8 @@ class GetTransactionResponse implements JsonSerializable
         $json['attempt_count']    = $this->attemptCount;
         $json['max_attempts']     = $this->maxAttempts;
         $json['splits']           = $this->splits;
-        $json['next_attempt']     = isset($this->nextAttempt) ? DateTimeHelper::toRfc3339DateTime($this->nextAttempt) : null;
+        $json['next_attempt']     = isset($this->nextAttempt) ?
+            DateTimeHelper::toRfc3339DateTime($this->nextAttempt) : null;
         $json['transaction_type'] = $this->transactionType;
 
         return $json;

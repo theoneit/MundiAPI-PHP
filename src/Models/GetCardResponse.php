@@ -191,7 +191,8 @@ class GetCardResponse implements JsonSerializable
         $json['metadata']         = $this->metadata;
         $json['type']             = $this->type;
         $json['holder_document']  = $this->holderDocument;
-        $json['deleted_at']       = isset($this->deletedAt) ? DateTimeHelper::toRfc3339DateTime($this->deletedAt) : null;
+        $json['deleted_at']       = isset($this->deletedAt) ?
+            DateTimeHelper::toRfc3339DateTime($this->deletedAt) : null;
 
         return $json;
     }

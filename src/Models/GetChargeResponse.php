@@ -210,8 +210,10 @@ class GetChargeResponse implements JsonSerializable
         $json['order']            = $this->order;
         $json['customer']         = $this->customer;
         $json['metadata']         = $this->metadata;
-        $json['paid_at']          = isset($this->paidAt) ? DateTimeHelper::toRfc3339DateTime($this->paidAt) : null;
-        $json['canceled_at']      = isset($this->canceledAt) ? DateTimeHelper::toRfc3339DateTime($this->canceledAt) : null;
+        $json['paid_at']          = isset($this->paidAt) ?
+            DateTimeHelper::toRfc3339DateTime($this->paidAt) : null;
+        $json['canceled_at']      = isset($this->canceledAt) ?
+            DateTimeHelper::toRfc3339DateTime($this->canceledAt) : null;
 
         return $json;
     }

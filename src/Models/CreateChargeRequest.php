@@ -102,7 +102,8 @@ class CreateChargeRequest implements JsonSerializable
         $json['customer']    = $this->customer;
         $json['payment']     = $this->payment;
         $json['metadata']    = $this->metadata;
-        $json['due_at']      = isset($this->dueAt) ? DateTimeHelper::toRfc3339DateTime($this->dueAt) : null;
+        $json['due_at']      = isset($this->dueAt) ?
+            DateTimeHelper::toRfc3339DateTime($this->dueAt) : null;
 
         return $json;
     }
