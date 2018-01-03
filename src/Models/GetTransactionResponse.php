@@ -89,6 +89,13 @@ class GetTransactionResponse implements JsonSerializable
     public $splits;
 
     /**
+     * Código da transação
+     * @required
+     * @var string $id public property
+     */
+    public $id;
+
+    /**
      * Date and time of the next attempt
      * @maps next_attempt
      * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
@@ -114,12 +121,13 @@ class GetTransactionResponse implements JsonSerializable
      * @param integer   $attemptCount    Initialization value for $this->attemptCount
      * @param integer   $maxAttempts     Initialization value for $this->maxAttempts
      * @param array     $splits          Initialization value for $this->splits
+     * @param string    $id              Initialization value for $this->id
      * @param \DateTime $nextAttempt     Initialization value for $this->nextAttempt
      * @param string    $transactionType Initialization value for $this->transactionType
      */
     public function __construct()
     {
-        if (11 == func_num_args()) {
+        if (12 == func_num_args()) {
             $this->gatewayId       = func_get_arg(0);
             $this->amount          = func_get_arg(1);
             $this->status          = func_get_arg(2);
@@ -129,8 +137,9 @@ class GetTransactionResponse implements JsonSerializable
             $this->attemptCount    = func_get_arg(6);
             $this->maxAttempts     = func_get_arg(7);
             $this->splits          = func_get_arg(8);
-            $this->nextAttempt     = func_get_arg(9);
-            $this->transactionType = func_get_arg(10);
+            $this->id              = func_get_arg(9);
+            $this->nextAttempt     = func_get_arg(10);
+            $this->transactionType = func_get_arg(11);
         }
     }
 
@@ -150,6 +159,7 @@ class GetTransactionResponse implements JsonSerializable
         $json['attempt_count']    = $this->attemptCount;
         $json['max_attempts']     = $this->maxAttempts;
         $json['splits']           = $this->splits;
+        $json['id']               = $this->id;
         $json['next_attempt']     = isset($this->nextAttempt) ?
             DateTimeHelper::toRfc3339DateTime($this->nextAttempt) : null;
         $json['transaction_type'] = $this->transactionType;
