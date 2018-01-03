@@ -57,6 +57,13 @@ class UpdateCustomerRequest implements JsonSerializable
     public $metadata;
 
     /**
+     * Código de referência do cliente no sistema da loja. Max: 52 caracteres
+     * @required
+     * @var string $code public property
+     */
+    public $code;
+
+    /**
      * @todo Write general description for this property
      * @var \MundiAPILib\Models\CreatePhonesRequest|null $phones public property
      */
@@ -70,18 +77,20 @@ class UpdateCustomerRequest implements JsonSerializable
      * @param string               $type     Initialization value for $this->type
      * @param CreateAddressRequest $address  Initialization value for $this->address
      * @param array                $metadata Initialization value for $this->metadata
+     * @param string               $code     Initialization value for $this->code
      * @param CreatePhonesRequest  $phones   Initialization value for $this->phones
      */
     public function __construct()
     {
-        if (7 == func_num_args()) {
+        if (8 == func_num_args()) {
             $this->name     = func_get_arg(0);
             $this->email    = func_get_arg(1);
             $this->document = func_get_arg(2);
             $this->type     = func_get_arg(3);
             $this->address  = func_get_arg(4);
             $this->metadata = func_get_arg(5);
-            $this->phones   = func_get_arg(6);
+            $this->code     = func_get_arg(6);
+            $this->phones   = func_get_arg(7);
         }
     }
 
@@ -98,6 +107,7 @@ class UpdateCustomerRequest implements JsonSerializable
         $json['type']     = $this->type;
         $json['address']  = $this->address;
         $json['metadata'] = $this->metadata;
+        $json['code']     = $this->code;
         $json['phones']   = $this->phones;
 
         return $json;
