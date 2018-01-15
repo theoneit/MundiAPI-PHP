@@ -58,6 +58,13 @@ class CreateCheckoutPaymentRequest implements JsonSerializable
     public $boleto;
 
     /**
+     * Torna o objeto editável
+     * @maps customer_editable
+     * @var bool|null $customerEditable public property
+     */
+    public $customerEditable;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param array                              $acceptedPaymentMethods Initialization value for $this-
      *                                                                     >acceptedPaymentMethods
@@ -68,16 +75,19 @@ class CreateCheckoutPaymentRequest implements JsonSerializable
      *                                                                     >gatewayAffiliationId
      * @param CreateCheckoutCardPaymentRequest   $creditCard             Initialization value for $this->creditCard
      * @param CreateCheckoutBoletoPaymentRequest $boleto                 Initialization value for $this->boleto
+     * @param bool                               $customerEditable       Initialization value for $this-
+     *                                                                     >customerEditable
      */
     public function __construct()
     {
-        if (6 == func_num_args()) {
+        if (7 == func_num_args()) {
             $this->acceptedPaymentMethods = func_get_arg(0);
             $this->successUrl             = func_get_arg(1);
             $this->defaultPaymentMethod   = func_get_arg(2);
             $this->gatewayAffiliationId   = func_get_arg(3);
             $this->creditCard             = func_get_arg(4);
             $this->boleto                 = func_get_arg(5);
+            $this->customerEditable       = func_get_arg(6);
         }
     }
 
@@ -94,6 +104,7 @@ class CreateCheckoutPaymentRequest implements JsonSerializable
         $json['gateway_affiliation_id']   = $this->gatewayAffiliationId;
         $json['credit_card']              = $this->creditCard;
         $json['boleto']                   = $this->boleto;
+        $json['customer_editable']        = $this->customerEditable;
 
         return $json;
     }

@@ -113,7 +113,7 @@ class GetOrderResponse implements JsonSerializable
 
     /**
      * Checkout Payment Settings Response
-     * @var \MundiAPILib\Models\GetCheckoutPaymentSettingsResponse[]|null $checkouts public property
+     * @var \MundiAPILib\Models\GetCheckoutPaymentResponse[]|null $checkouts public property
      */
     public $checkouts;
 
