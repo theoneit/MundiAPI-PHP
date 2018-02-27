@@ -45,19 +45,24 @@ class SellersController extends BaseController
     /**
      * @todo Add general description for this endpoint
      *
-     * @param Models\CreateSellerRequest $request Seller Model
+     * @param string $id Seller Id
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function createSeller(
-        $request
+    public function getSellerById(
+        $id
     ) {
 
         //the base uri for api requests
         $_queryBuilder = Configuration::$BASEURI;
         
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/sellers/';
+        $_queryBuilder = $_queryBuilder.'/sellers/{id}';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'id' => $id,
+            ));
 
         //validate and preprocess url
         $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
@@ -65,21 +70,20 @@ class SellersController extends BaseController
         //prepare headers
         $_headers = array (
             'user-agent'    => 'MundiSDK',
-            'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'Accept'        => 'application/json'
         );
 
         //set HTTP basic auth parameters
         Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
 
         //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if ($this->getHttpCallBack() != null) {
             $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
-        $response = Request::post($_queryUrl, $_headers, Request\Body::Json($request));
+        $response = Request::get($_queryUrl, $_headers);
 
         $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
         $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
@@ -159,24 +163,19 @@ class SellersController extends BaseController
     /**
      * @todo Add general description for this endpoint
      *
-     * @param string $id Seller Id
+     * @param Models\CreateSellerRequest $request Seller Model
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function getSellerById(
-        $id
+    public function createSeller(
+        $request
     ) {
 
         //the base uri for api requests
         $_queryBuilder = Configuration::$BASEURI;
         
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/sellers/{id}';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'id' => $id,
-            ));
+        $_queryBuilder = $_queryBuilder.'/sellers/';
 
         //validate and preprocess url
         $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
@@ -184,20 +183,21 @@ class SellersController extends BaseController
         //prepare headers
         $_headers = array (
             'user-agent'    => 'MundiSDK',
-            'Accept'        => 'application/json'
+            'Accept'        => 'application/json',
+            'content-type'  => 'application/json; charset=utf-8'
         );
 
         //set HTTP basic auth parameters
         Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
 
         //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+        $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
         if ($this->getHttpCallBack() != null) {
             $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
-        $response = Request::get($_queryUrl, $_headers);
+        $response = Request::post($_queryUrl, $_headers, Request\Body::Json($request));
 
         $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
         $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
@@ -257,8 +257,8 @@ class SellersController extends BaseController
             'code'          => $code,
             'status'        => $status,
             'type'          => $type,
-            'created_Since' => DateTimeHelper::toRfc3339DateTime($created_Since),
-            'created_Until' => DateTimeHelper::toRfc3339DateTime($created_Until),
+            'created_Since' => DateTimeHelper::toRfc3339DateTime($createdSince),
+            'created_Until' => DateTimeHelper::toRfc3339DateTime($createdUntil),
         ));
 
         //validate and preprocess url

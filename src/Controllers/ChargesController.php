@@ -43,6 +43,185 @@ class ChargesController extends BaseController
     }
 
     /**
+     * Updates the card from a charge
+     *
+     * @param string                         $chargeId  Charge id
+     * @param Models\UpdateChargeCardRequest $request   Request for updating a charge's card
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function updateChargeCard(
+        $chargeId,
+        $request
+    ) {
+
+        //the base uri for api requests
+        $_queryBuilder = Configuration::$BASEURI;
+        
+        //prepare query string for API call
+        $_queryBuilder = $_queryBuilder.'/charges/{charge_id}/card';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'charge_id' => $chargeId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => 'MundiSDK',
+            'Accept'        => 'application/json',
+            'content-type'  => 'application/json; charset=utf-8'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::PATCH, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::patch($_queryUrl, $_headers, Request\Body::Json($request));
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetChargeResponse');
+    }
+
+    /**
+     * Updates a charge's payment method
+     *
+     * @param string                                  $chargeId  Charge id
+     * @param Models\UpdateChargePaymentMethodRequest $request   Request for updating the payment method from a charge
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function updateChargePaymentMethod(
+        $chargeId,
+        $request
+    ) {
+
+        //the base uri for api requests
+        $_queryBuilder = Configuration::$BASEURI;
+        
+        //prepare query string for API call
+        $_queryBuilder = $_queryBuilder.'/charges/{charge_id}/payment-method';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'charge_id' => $chargeId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => 'MundiSDK',
+            'Accept'        => 'application/json',
+            'content-type'  => 'application/json; charset=utf-8'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::PATCH, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::patch($_queryUrl, $_headers, Request\Body::Json($request));
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetChargeResponse');
+    }
+
+    /**
+     * Creates a new charge
+     *
+     * @param Models\CreateChargeRequest $request Request for creating a charge
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function createCharge(
+        $request
+    ) {
+
+        //the base uri for api requests
+        $_queryBuilder = Configuration::$BASEURI;
+        
+        //prepare query string for API call
+        $_queryBuilder = $_queryBuilder.'/Charges';
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => 'MundiSDK',
+            'Accept'        => 'application/json',
+            'content-type'  => 'application/json; charset=utf-8'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::post($_queryUrl, $_headers, Request\Body::Json($request));
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetChargeResponse');
+    }
+
+    /**
      * Get a charge from its id
      *
      * @param string $chargeId  Charge id
@@ -161,83 +340,50 @@ class ChargesController extends BaseController
     }
 
     /**
-     * Creates a new charge
+     * Lists all charges
      *
-     * @param Models\CreateChargeRequest $request Request for creating a charge
+     * @param integer  $page           (optional) Page number
+     * @param integer  $size           (optional) Page size
+     * @param string   $code           (optional) Filter for charge's code
+     * @param string   $status         (optional) Filter for charge's status
+     * @param string   $paymentMethod  (optional) Filter for charge's payment method
+     * @param string   $customerId     (optional) Filter for charge's customer id
+     * @param string   $orderId        (optional) Filter for charge's order id
+     * @param DateTime $createdSince   (optional) Filter for the beginning of the range for charge's creation
+     * @param DateTime $createdUntil   (optional) Filter for the end of the range for charge's creation
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function createCharge(
-        $request
+    public function getCharges(
+        $page = null,
+        $size = null,
+        $code = null,
+        $status = null,
+        $paymentMethod = null,
+        $customerId = null,
+        $orderId = null,
+        $createdSince = null,
+        $createdUntil = null
     ) {
 
         //the base uri for api requests
         $_queryBuilder = Configuration::$BASEURI;
         
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/Charges';
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => 'MundiSDK',
-            'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
-        );
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::post($_queryUrl, $_headers, Request\Body::Json($request));
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetChargeResponse');
-    }
-
-    /**
-     * Updates the card from a charge
-     *
-     * @param string                         $chargeId  Charge id
-     * @param Models\UpdateChargeCardRequest $request   Request for updating a charge's card
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function updateChargeCard(
-        $chargeId,
-        $request
-    ) {
-
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
-        //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/charges/{charge_id}/card';
+        $_queryBuilder = $_queryBuilder.'/charges';
 
         //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'charge_id' => $chargeId,
-            ));
+        APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
+            'page'           => $page,
+            'size'           => $size,
+            'code'           => $code,
+            'status'         => $status,
+            'payment_method' => $paymentMethod,
+            'customer_id'    => $customerId,
+            'order_id'       => $orderId,
+            'created_since'  => DateTimeHelper::toRfc3339DateTime($createdSince),
+            'created_until'  => DateTimeHelper::toRfc3339DateTime($createdUntil),
+        ));
 
         //validate and preprocess url
         $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
@@ -245,21 +391,20 @@ class ChargesController extends BaseController
         //prepare headers
         $_headers = array (
             'user-agent'    => 'MundiSDK',
-            'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'Accept'        => 'application/json'
         );
 
         //set HTTP basic auth parameters
         Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
 
         //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::PATCH, $_headers, $_queryUrl);
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if ($this->getHttpCallBack() != null) {
             $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
-        $response = Request::patch($_queryUrl, $_headers, Request\Body::Json($request));
+        $response = Request::get($_queryUrl, $_headers);
 
         $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
         $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
@@ -274,18 +419,18 @@ class ChargesController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetChargeResponse');
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListChargesResponse');
     }
 
     /**
-     * Updates a charge's payment method
+     * Updates the metadata from a charge
      *
-     * @param string                                  $chargeId  Charge id
-     * @param Models\UpdateChargePaymentMethodRequest $request   Request for updating the payment method from a charge
+     * @param string                       $chargeId  The charge id
+     * @param Models\UpdateMetadataRequest $request   Request for updating the charge metadata
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function updateChargePaymentMethod(
+    public function updateChargeMetadata(
         $chargeId,
         $request
     ) {
@@ -294,7 +439,7 @@ class ChargesController extends BaseController
         $_queryBuilder = Configuration::$BASEURI;
         
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/charges/{charge_id}/payment-method';
+        $_queryBuilder = $_queryBuilder.'/Charges/{charge_id}/metadata';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -461,151 +606,6 @@ class ChargesController extends BaseController
         $mapper = $this->getJsonMapper();
 
         return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetChargeResponse');
-    }
-
-    /**
-     * Updates the metadata from a charge
-     *
-     * @param string                       $chargeId  The charge id
-     * @param Models\UpdateMetadataRequest $request   Request for updating the charge metadata
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function updateChargeMetadata(
-        $chargeId,
-        $request
-    ) {
-
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
-        //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/Charges/{charge_id}/metadata';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'charge_id' => $chargeId,
-            ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => 'MundiSDK',
-            'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
-        );
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::PATCH, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::patch($_queryUrl, $_headers, Request\Body::Json($request));
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetChargeResponse');
-    }
-
-    /**
-     * Lists all charges
-     *
-     * @param integer  $page           (optional) Page number
-     * @param integer  $size           (optional) Page size
-     * @param string   $code           (optional) Filter for charge's code
-     * @param string   $status         (optional) Filter for charge's status
-     * @param string   $paymentMethod  (optional) Filter for charge's payment method
-     * @param string   $customerId     (optional) Filter for charge's customer id
-     * @param string   $orderId        (optional) Filter for charge's order id
-     * @param DateTime $createdSince   (optional) Filter for the beginning of the range for charge's creation
-     * @param DateTime $createdUntil   (optional) Filter for the end of the range for charge's creation
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function getCharges(
-        $page = null,
-        $size = null,
-        $code = null,
-        $status = null,
-        $paymentMethod = null,
-        $customerId = null,
-        $orderId = null,
-        $createdSince = null,
-        $createdUntil = null
-    ) {
-
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
-        //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/charges';
-
-        //process optional query parameters
-        APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
-            'page'           => $page,
-            'size'           => $size,
-            'code'           => $code,
-            'status'         => $status,
-            'payment_method' => $paymentMethod,
-            'customer_id'    => $customerId,
-            'order_id'       => $orderId,
-            'created_since'  => DateTimeHelper::toRfc3339DateTime($created_since),
-            'created_until'  => DateTimeHelper::toRfc3339DateTime($created_until),
-        ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => 'MundiSDK',
-            'Accept'        => 'application/json'
-        );
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::get($_queryUrl, $_headers);
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListChargesResponse');
     }
 
     /**

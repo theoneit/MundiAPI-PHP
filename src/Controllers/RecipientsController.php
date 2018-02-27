@@ -43,13 +43,15 @@ class RecipientsController extends BaseController
     }
 
     /**
-     * Creates a new recipient
+     * Updates recipient metadata
      *
-     * @param Models\CreateRecipientRequest $request Recipient data
+     * @param string                       $recipientId  Recipient id
+     * @param Models\UpdateMetadataRequest $request      Metadata
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function createRecipient(
+    public function updateRecipientMetadata(
+        $recipientId,
         $request
     ) {
 
@@ -57,7 +59,214 @@ class RecipientsController extends BaseController
         $_queryBuilder = Configuration::$BASEURI;
         
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/recipients';
+        $_queryBuilder = $_queryBuilder.'/recipients/{recipient_id}/metadata';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'recipient_id' => $recipientId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => 'MundiSDK',
+            'Accept'        => 'application/json',
+            'content-type'  => 'application/json; charset=utf-8'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::PATCH, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::patch($_queryUrl, $_headers, Request\Body::Json($request));
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetRecipientResponse');
+    }
+
+    /**
+     * Gets a transfer
+     *
+     * @param string $recipientId  Recipient id
+     * @param string $transferId   Transfer id
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function getTransfer(
+        $recipientId,
+        $transferId
+    ) {
+
+        //the base uri for api requests
+        $_queryBuilder = Configuration::$BASEURI;
+        
+        //prepare query string for API call
+        $_queryBuilder = $_queryBuilder.'/recipients/{recipient_id}/transfers/{transfer_id}';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'recipient_id' => $recipientId,
+            'transfer_id'  => $transferId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => 'MundiSDK',
+            'Accept'        => 'application/json'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::get($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetTransferResponse');
+    }
+
+    /**
+     * Gets a paginated list of transfers for the recipient
+     *
+     * @param string   $recipientId   Recipient id
+     * @param integer  $page          (optional) Page number
+     * @param integer  $size          (optional) Page size
+     * @param string   $status        (optional) Filter for transfer status
+     * @param DateTime $createdSince  (optional) Filter for start range of transfer creation date
+     * @param DateTime $createdUntil  (optional) Filter for end range of transfer creation date
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function getTransfers(
+        $recipientId,
+        $page = null,
+        $size = null,
+        $status = null,
+        $createdSince = null,
+        $createdUntil = null
+    ) {
+
+        //the base uri for api requests
+        $_queryBuilder = Configuration::$BASEURI;
+        
+        //prepare query string for API call
+        $_queryBuilder = $_queryBuilder.'/recipients/{recipient_id}/transfers';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'recipient_id'  => $recipientId,
+            ));
+
+        //process optional query parameters
+        APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
+            'page'          => $page,
+            'size'          => $size,
+            'status'        => $status,
+            'created_since' => DateTimeHelper::toRfc3339DateTime($createdSince),
+            'created_until' => DateTimeHelper::toRfc3339DateTime($createdUntil),
+        ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => 'MundiSDK',
+            'Accept'        => 'application/json'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::get($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListTransferResponse');
+    }
+
+    /**
+     * Creates an anticipation
+     *
+     * @param string                           $recipientId  Recipient id
+     * @param Models\CreateAnticipationRequest $request      Anticipation data
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function createAnticipation(
+        $recipientId,
+        $request
+    ) {
+
+        //the base uri for api requests
+        $_queryBuilder = Configuration::$BASEURI;
+        
+        //prepare query string for API call
+        $_queryBuilder = $_queryBuilder.'/recipients/{recipient_id}/anticipations';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'recipient_id' => $recipientId,
+            ));
 
         //validate and preprocess url
         $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
@@ -94,7 +303,225 @@ class RecipientsController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetRecipientResponse');
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetAnticipationResponse');
+    }
+
+    /**
+     * Gets an anticipation
+     *
+     * @param string $recipientId     Recipient id
+     * @param string $anticipationId  Anticipation id
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function getAnticipation(
+        $recipientId,
+        $anticipationId
+    ) {
+
+        //the base uri for api requests
+        $_queryBuilder = Configuration::$BASEURI;
+        
+        //prepare query string for API call
+        $_queryBuilder = $_queryBuilder.'/recipients/{recipient_id}/anticipations/{anticipation_id}';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'recipient_id'    => $recipientId,
+            'anticipation_id' => $anticipationId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => 'MundiSDK',
+            'Accept'        => 'application/json'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::get($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetAnticipationResponse');
+    }
+
+    /**
+     * Gets the anticipation limits for a recipient
+     *
+     * @param string   $recipientId  Recipient id
+     * @param string   $timeframe    Timeframe
+     * @param DateTime $paymentDate  Anticipation payment date
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function getAnticipationLimits(
+        $recipientId,
+        $timeframe,
+        $paymentDate
+    ) {
+
+        //the base uri for api requests
+        $_queryBuilder = Configuration::$BASEURI;
+        
+        //prepare query string for API call
+        $_queryBuilder = $_queryBuilder.'/recipients/{recipient_id}/anticipation_limits';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'recipient_id' => $recipientId,
+            ));
+
+        //process optional query parameters
+        APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
+            'timeframe'    => $timeframe,
+            'payment_date' => DateTimeHelper::toRfc3339DateTime($paymentDate),
+        ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => 'MundiSDK',
+            'Accept'        => 'application/json'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::get($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetAnticipationLimitResponse');
+    }
+
+    /**
+     * Retrieves a paginated list of anticipations from a recipient
+     *
+     * @param string   $recipientId        Recipient id
+     * @param integer  $page               (optional) Page number
+     * @param integer  $size               (optional) Page size
+     * @param string   $status             (optional) Filter for anticipation status
+     * @param string   $timeframe          (optional) Filter for anticipation timeframe
+     * @param DateTime $paymentDateSince   (optional) Filter for start range for anticipation payment date
+     * @param DateTime $paymentDateUntil   (optional) Filter for end range for anticipation payment date
+     * @param DateTime $createdSince       (optional) Filter for start range for anticipation creation date
+     * @param DateTime $createdUntil       (optional) Filter for end range for anticipation creation date
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function getAnticipations(
+        $recipientId,
+        $page = null,
+        $size = null,
+        $status = null,
+        $timeframe = null,
+        $paymentDateSince = null,
+        $paymentDateUntil = null,
+        $createdSince = null,
+        $createdUntil = null
+    ) {
+
+        //the base uri for api requests
+        $_queryBuilder = Configuration::$BASEURI;
+        
+        //prepare query string for API call
+        $_queryBuilder = $_queryBuilder.'/recipients/{recipient_id}/anticipations';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'recipient_id'       => $recipientId,
+            ));
+
+        //process optional query parameters
+        APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
+            'page'               => $page,
+            'size'               => $size,
+            'status'             => $status,
+            'timeframe'          => $timeframe,
+            'payment_date_since' => DateTimeHelper::toRfc3339DateTime($paymentDateSince),
+            'payment_date_until' => DateTimeHelper::toRfc3339DateTime($paymentDateUntil),
+            'created_since'      => DateTimeHelper::toRfc3339DateTime($createdSince),
+            'created_until'      => DateTimeHelper::toRfc3339DateTime($createdUntil),
+        ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'       => 'MundiSDK',
+            'Accept'           => 'application/json'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::get($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListAnticipationResponse');
     }
 
     /**
@@ -464,155 +891,13 @@ class RecipientsController extends BaseController
     }
 
     /**
-     * Gets a transfer
+     * Creates a new recipient
      *
-     * @param string $recipientId  Recipient id
-     * @param string $transferId   Transfer id
+     * @param Models\CreateRecipientRequest $request Recipient data
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function getTransfer(
-        $recipientId,
-        $transferId
-    ) {
-
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
-        //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/recipients/{recipient_id}/transfers/{transfer_id}';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'recipient_id' => $recipientId,
-            'transfer_id'  => $transferId,
-            ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => 'MundiSDK',
-            'Accept'        => 'application/json'
-        );
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::get($_queryUrl, $_headers);
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetTransferResponse');
-    }
-
-    /**
-     * Gets a paginated list of transfers for the recipient
-     *
-     * @param string   $recipientId   Recipient id
-     * @param integer  $page          (optional) Page number
-     * @param integer  $size          (optional) Page size
-     * @param string   $status        (optional) Filter for transfer status
-     * @param DateTime $createdSince  (optional) Filter for start range of transfer creation date
-     * @param DateTime $createdUntil  (optional) Filter for end range of transfer creation date
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function getTransfers(
-        $recipientId,
-        $page = null,
-        $size = null,
-        $status = null,
-        $createdSince = null,
-        $createdUntil = null
-    ) {
-
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
-        //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/recipients/{recipient_id}/transfers';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'recipient_id'  => $recipientId,
-            ));
-
-        //process optional query parameters
-        APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
-            'page'          => $page,
-            'size'          => $size,
-            'status'        => $status,
-            'created_since' => DateTimeHelper::toRfc3339DateTime($created_since),
-            'created_until' => DateTimeHelper::toRfc3339DateTime($created_until),
-        ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => 'MundiSDK',
-            'Accept'        => 'application/json'
-        );
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::get($_queryUrl, $_headers);
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListTransferResponse');
-    }
-
-    /**
-     * Creates an anticipation
-     *
-     * @param string                           $recipientId  Recipient id
-     * @param Models\CreateAnticipationRequest $request      Anticipation data
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function createAnticipation(
-        $recipientId,
+    public function createRecipient(
         $request
     ) {
 
@@ -620,12 +905,7 @@ class RecipientsController extends BaseController
         $_queryBuilder = Configuration::$BASEURI;
         
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/recipients/{recipient_id}/anticipations';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'recipient_id' => $recipientId,
-            ));
+        $_queryBuilder = $_queryBuilder.'/recipients';
 
         //validate and preprocess url
         $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
@@ -648,286 +928,6 @@ class RecipientsController extends BaseController
 
         //and invoke the API call request to fetch the response
         $response = Request::post($_queryUrl, $_headers, Request\Body::Json($request));
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetAnticipationResponse');
-    }
-
-    /**
-     * Gets an anticipation
-     *
-     * @param string $recipientId     Recipient id
-     * @param string $anticipationId  Anticipation id
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function getAnticipation(
-        $recipientId,
-        $anticipationId
-    ) {
-
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
-        //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/recipients/{recipient_id}/anticipations/{anticipation_id}';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'recipient_id'    => $recipientId,
-            'anticipation_id' => $anticipationId,
-            ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => 'MundiSDK',
-            'Accept'        => 'application/json'
-        );
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::get($_queryUrl, $_headers);
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetAnticipationResponse');
-    }
-
-    /**
-     * Gets the anticipation limits for a recipient
-     *
-     * @param string   $recipientId  Recipient id
-     * @param string   $timeframe    Timeframe
-     * @param DateTime $paymentDate  Anticipation payment date
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function getAnticipationLimits(
-        $recipientId,
-        $timeframe,
-        $paymentDate
-    ) {
-
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
-        //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/recipients/{recipient_id}/anticipation_limits';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'recipient_id' => $recipientId,
-            ));
-
-        //process optional query parameters
-        APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
-            'timeframe'    => $timeframe,
-            'payment_date' => DateTimeHelper::toRfc3339DateTime($payment_date),
-        ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => 'MundiSDK',
-            'Accept'        => 'application/json'
-        );
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::get($_queryUrl, $_headers);
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetAnticipationLimitResponse');
-    }
-
-    /**
-     * Retrieves a paginated list of anticipations from a recipient
-     *
-     * @param string   $recipientId        Recipient id
-     * @param integer  $page               (optional) Page number
-     * @param integer  $size               (optional) Page size
-     * @param string   $status             (optional) Filter for anticipation status
-     * @param string   $timeframe          (optional) Filter for anticipation timeframe
-     * @param DateTime $paymentDateSince   (optional) Filter for start range for anticipation payment date
-     * @param DateTime $paymentDateUntil   (optional) Filter for end range for anticipation payment date
-     * @param DateTime $createdSince       (optional) Filter for start range for anticipation creation date
-     * @param DateTime $createdUntil       (optional) Filter for end range for anticipation creation date
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function getAnticipations(
-        $recipientId,
-        $page = null,
-        $size = null,
-        $status = null,
-        $timeframe = null,
-        $paymentDateSince = null,
-        $paymentDateUntil = null,
-        $createdSince = null,
-        $createdUntil = null
-    ) {
-
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
-        //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/recipients/{recipient_id}/anticipations';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'recipient_id'       => $recipientId,
-            ));
-
-        //process optional query parameters
-        APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
-            'page'               => $page,
-            'size'               => $size,
-            'status'             => $status,
-            'timeframe'          => $timeframe,
-            'payment_date_since' => DateTimeHelper::toRfc3339DateTime($payment_date_since),
-            'payment_date_until' => DateTimeHelper::toRfc3339DateTime($payment_date_until),
-            'created_since'      => DateTimeHelper::toRfc3339DateTime($created_since),
-            'created_until'      => DateTimeHelper::toRfc3339DateTime($created_until),
-        ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'       => 'MundiSDK',
-            'Accept'           => 'application/json'
-        );
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::get($_queryUrl, $_headers);
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListAnticipationResponse');
-    }
-
-    /**
-     * Updates recipient metadata
-     *
-     * @param string                       $recipientId  Recipient id
-     * @param Models\UpdateMetadataRequest $request      Metadata
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function updateRecipientMetadata(
-        $recipientId,
-        $request
-    ) {
-
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
-        //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/recipients/{recipient_id}/metadata';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'recipient_id' => $recipientId,
-            ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => 'MundiSDK',
-            'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
-        );
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::PATCH, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::patch($_queryUrl, $_headers, Request\Body::Json($request));
 
         $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
         $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
