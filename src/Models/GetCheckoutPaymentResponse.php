@@ -133,6 +133,35 @@ class GetCheckoutPaymentResponse implements JsonSerializable
     public $boleto;
 
     /**
+     * Indica se o billing address poderá ser editado
+     * @required
+     * @maps billing_address_editable
+     * @var bool $billingAddressEditable public property
+     */
+    public $billingAddressEditable;
+
+    /**
+     * Configurações  de entrega
+     * @required
+     * @var \MundiAPILib\Models\GetShippingResponse $shipping public property
+     */
+    public $shipping;
+
+    /**
+     * Indica se possui entrega
+     * @required
+     * @var bool $shippable public property
+     */
+    public $shippable;
+
+    /**
+     * Moeda
+     * @required
+     * @var string $currency public property
+     */
+    public $currency;
+
+    /**
      * Valor em centavos
      * @var integer|null $amount public property
      */
@@ -145,6 +174,22 @@ class GetCheckoutPaymentResponse implements JsonSerializable
      * @var \DateTime|null $canceledAt public property
      */
     public $canceledAt;
+
+    /**
+     * Data de fechamento
+     * @maps closed_at
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $closedAt public property
+     */
+    public $closedAt;
+
+    /**
+     * Data de expiração
+     * @maps expires_at
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $expiresAt public property
+     */
+    public $expiresAt;
 
     /**
      * Constructor to set initial or default values of member properties
@@ -169,12 +214,19 @@ class GetCheckoutPaymentResponse implements JsonSerializable
      *                                                                     >billingaddress
      * @param GetCheckoutCardPaymentResponse    $creditCard              Initialization value for $this->creditCard
      * @param GetCheckoutBoletoPaymentResponse  $boleto                  Initialization value for $this->boleto
+     * @param bool                              $billingAddressEditable  Initialization value for $this-
+     *                                                                     >billingAddressEditable
+     * @param GetShippingResponse               $shipping                Initialization value for $this->shipping
+     * @param bool                              $shippable               Initialization value for $this->shippable
+     * @param string                            $currency                Initialization value for $this->currency
      * @param integer                           $amount                  Initialization value for $this->amount
      * @param \DateTime                         $canceledAt              Initialization value for $this->canceledAt
+     * @param \DateTime                         $closedAt                Initialization value for $this->closedAt
+     * @param \DateTime                         $expiresAt               Initialization value for $this->expiresAt
      */
     public function __construct()
     {
-        if (17 == func_num_args()) {
+        if (23 == func_num_args()) {
             $this->id                      = func_get_arg(0);
             $this->defaultPaymentMethod    = func_get_arg(1);
             $this->successUrl              = func_get_arg(2);
@@ -190,8 +242,14 @@ class GetCheckoutPaymentResponse implements JsonSerializable
             $this->billingaddress          = func_get_arg(12);
             $this->creditCard              = func_get_arg(13);
             $this->boleto                  = func_get_arg(14);
-            $this->amount                  = func_get_arg(15);
-            $this->canceledAt              = func_get_arg(16);
+            $this->billingAddressEditable  = func_get_arg(15);
+            $this->shipping                = func_get_arg(16);
+            $this->shippable               = func_get_arg(17);
+            $this->currency                = func_get_arg(18);
+            $this->amount                  = func_get_arg(19);
+            $this->canceledAt              = func_get_arg(20);
+            $this->closedAt                = func_get_arg(21);
+            $this->expiresAt               = func_get_arg(22);
         }
     }
 
@@ -217,9 +275,17 @@ class GetCheckoutPaymentResponse implements JsonSerializable
         $json['billingaddress']             = $this->billingaddress;
         $json['credit_Card']                = $this->creditCard;
         $json['boleto']                     = $this->boleto;
+        $json['billing_address_editable']   = $this->billingAddressEditable;
+        $json['shipping']                   = $this->shipping;
+        $json['shippable']                  = $this->shippable;
+        $json['currency']                   = $this->currency;
         $json['amount']                     = $this->amount;
         $json['canceled_at']                = isset($this->canceledAt) ?
             DateTimeHelper::toRfc3339DateTime($this->canceledAt) : null;
+        $json['closed_at']                  = isset($this->closedAt) ?
+            DateTimeHelper::toRfc3339DateTime($this->closedAt) : null;
+        $json['expires_at']                 = isset($this->expiresAt) ?
+            DateTimeHelper::toRfc3339DateTime($this->expiresAt) : null;
 
         return $json;
     }
