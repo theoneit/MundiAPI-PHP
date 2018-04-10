@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Options for card installment
+ *Options for card installment
  */
 class CreateCheckoutCardInstallmentOptionRequest implements JsonSerializable
 {

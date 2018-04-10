@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Response object for listing access tokens
+ *Response object for listing access tokens
  */
 class ListAccessTokensResponse implements JsonSerializable
 {

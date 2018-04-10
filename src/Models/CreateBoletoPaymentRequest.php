@@ -11,7 +11,7 @@ use JsonSerializable;
 use MundiAPILib\Utils\DateTimeHelper;
 
 /**
- * Contains the settings for creating a boleto payment
+ *Contains the settings for creating a boleto payment
  */
 class CreateBoletoPaymentRequest implements JsonSerializable
 {

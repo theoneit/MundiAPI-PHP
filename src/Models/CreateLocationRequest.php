@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Request for creating a location
+ *Request for creating a location
  */
 class CreateLocationRequest implements JsonSerializable
 {

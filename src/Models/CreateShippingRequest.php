@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Shipping data
+ *Shipping data
  */
 class CreateShippingRequest implements JsonSerializable
 {

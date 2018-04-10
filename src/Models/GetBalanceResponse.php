@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Balance
+ *Balance
  */
 class GetBalanceResponse implements JsonSerializable
 {

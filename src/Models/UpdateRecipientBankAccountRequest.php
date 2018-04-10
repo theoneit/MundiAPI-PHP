@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Updates the default bank account for a recipient
+ *Updates the default bank account for a recipient
  */
 class UpdateRecipientBankAccountRequest implements JsonSerializable
 {

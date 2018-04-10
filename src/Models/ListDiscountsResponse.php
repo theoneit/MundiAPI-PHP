@@ -10,14 +10,14 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- *Response object for listing charges
+ * @todo Write general description for this model
  */
-class ListChargesResponse implements JsonSerializable
+class ListDiscountsResponse implements JsonSerializable
 {
     /**
-     * The charge objects
+     * The Discounts response
      * @required
-     * @var \MundiAPILib\Models\GetChargeResponse[] $data public property
+     * @var \MundiAPILib\Models\GetDiscountResponse[] $data public property
      */
     public $data;
 

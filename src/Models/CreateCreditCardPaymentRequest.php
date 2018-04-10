@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * The settings for creating a credit card payment
+ *The settings for creating a credit card payment
  */
 class CreateCreditCardPaymentRequest implements JsonSerializable
 {
@@ -97,6 +97,13 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
     public $capture;
 
     /**
+     * Customer business segment code
+     * @maps merchant_category_code
+     * @var integer|null $merchantCategoryCode public property
+     */
+    public $merchantCategoryCode;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param integer           $installments           Initialization value for $this->installments
      * @param string            $statementDescriptor    Initialization value for $this->statementDescriptor
@@ -109,11 +116,12 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
      * @param bool              $extendedLimitEnabled   Initialization value for $this->extendedLimitEnabled
      * @param string            $extendedLimitCode      Initialization value for $this->extendedLimitCode
      * @param bool              $capture                Initialization value for $this->capture
+     * @param integer           $merchantCategoryCode   Initialization value for $this->merchantCategoryCode
      */
     public function __construct()
     {
         switch (func_num_args()) {
-            case 11:
+            case 12:
                 $this->installments           = func_get_arg(0);
                 $this->statementDescriptor    = func_get_arg(1);
                 $this->card                   = func_get_arg(2);
@@ -125,6 +133,7 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
                 $this->extendedLimitEnabled   = func_get_arg(8);
                 $this->extendedLimitCode      = func_get_arg(9);
                 $this->capture                = func_get_arg(10);
+                $this->merchantCategoryCode   = func_get_arg(11);
                 break;
 
             default:
@@ -152,6 +161,7 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
         $json['extended_limit_enabled']   = $this->extendedLimitEnabled;
         $json['extended_limit_code']      = $this->extendedLimitCode;
         $json['capture']                  = $this->capture;
+        $json['merchant_category_code']   = $this->merchantCategoryCode;
 
         return $json;
     }

@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Token data
+ *Token data
  */
 class CreateTokenRequest implements JsonSerializable
 {

@@ -11,7 +11,7 @@ use JsonSerializable;
 use MundiAPILib\Utils\DateTimeHelper;
 
 /**
- * Generic response object for getting a transaction.
+ *Generic response object for getting a transaction.
  *
  * @discriminator transaction_type
  * @discriminatorType transaction

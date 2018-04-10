@@ -11,7 +11,7 @@ use JsonSerializable;
 use MundiAPILib\Utils\DateTimeHelper;
 
 /**
- * Token data
+ *Token data
  */
 class GetTokenResponse implements JsonSerializable
 {

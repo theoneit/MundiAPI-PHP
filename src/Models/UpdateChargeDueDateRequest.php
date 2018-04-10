@@ -11,7 +11,7 @@ use JsonSerializable;
 use MundiAPILib\Utils\DateTimeHelper;
 
 /**
- * Request for updating a charge due date
+ *Request for updating a charge due date
  */
 class UpdateChargeDueDateRequest implements JsonSerializable
 {

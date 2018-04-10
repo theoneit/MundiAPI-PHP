@@ -11,7 +11,7 @@ use JsonSerializable;
 use MundiAPILib\Utils\DateTimeHelper;
 
 /**
- * Response object for getting an invoice
+ *Response object for getting an invoice
  */
 class GetInvoiceResponse implements JsonSerializable
 {

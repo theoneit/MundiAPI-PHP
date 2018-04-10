@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Request for canceling a subscription
+ *Request for canceling a subscription
  */
 class CreateCancelSubscriptionRequest implements JsonSerializable
 {

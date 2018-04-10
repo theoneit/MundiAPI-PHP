@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Anticipations
+ *Anticipations
  */
 class ListAnticipationResponse implements JsonSerializable
 {

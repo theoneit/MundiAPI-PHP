@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Request for creating a transfer
+ *Request for creating a transfer
  */
 class CreateTransferRequest implements JsonSerializable
 {

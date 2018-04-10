@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Request for creating a plan item
+ *Request for creating a plan item
  */
 class CreatePlanItemRequest implements JsonSerializable
 {

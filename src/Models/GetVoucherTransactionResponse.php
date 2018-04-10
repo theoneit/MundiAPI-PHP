@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Response for voucher transactions
+ *Response for voucher transactions
  *
  * @discriminator transaction_type
  * @discriminatorType voucher

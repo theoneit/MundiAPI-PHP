@@ -11,7 +11,7 @@ use JsonSerializable;
 use MundiAPILib\Utils\DateTimeHelper;
 
 /**
- * Transfer response
+ *Transfer response
  */
 class GetTransferResponse implements JsonSerializable
 {

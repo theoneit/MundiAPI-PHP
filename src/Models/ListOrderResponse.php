@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Response object for listing order objects
+ *Response object for listing order objects
  */
 class ListOrderResponse implements JsonSerializable
 {

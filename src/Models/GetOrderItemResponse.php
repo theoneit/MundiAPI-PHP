@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Response object for getting an order item
+ *Response object for getting an order item
  */
 class GetOrderItemResponse implements JsonSerializable
 {

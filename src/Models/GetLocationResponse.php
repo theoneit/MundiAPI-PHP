@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Response object for geetting an order location request
+ *Response object for geetting an order location request
  */
 class GetLocationResponse implements JsonSerializable
 {

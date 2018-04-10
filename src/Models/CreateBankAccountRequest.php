@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Request for creating a bank account
+ *Request for creating a bank account
  */
 class CreateBankAccountRequest implements JsonSerializable
 {

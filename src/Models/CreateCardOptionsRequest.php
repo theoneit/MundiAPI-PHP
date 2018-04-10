@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Options for creating the card
+ *Options for creating the card
  */
 class CreateCardOptionsRequest implements JsonSerializable
 {

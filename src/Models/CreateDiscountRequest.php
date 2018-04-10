@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Request for creating a new discount
+ *Request for creating a new discount
  */
 class CreateDiscountRequest implements JsonSerializable
 {

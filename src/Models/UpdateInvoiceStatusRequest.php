@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Invoice Update Status Request
+ *Invoice Update Status Request
  */
 class UpdateInvoiceStatusRequest implements JsonSerializable
 {
