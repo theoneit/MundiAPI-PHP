@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * The settings for creating a voucher payment
+ *The settings for creating a voucher payment
  */
 class CreateVoucherPaymentRequest implements JsonSerializable
 {

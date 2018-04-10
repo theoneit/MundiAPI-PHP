@@ -11,7 +11,7 @@ use JsonSerializable;
 use MundiAPILib\Utils\DateTimeHelper;
 
 /**
- * Resposta das configurações de pagamento do checkout
+ *Resposta das configurações de pagamento do checkout
  */
 class GetCheckoutPaymentResponse implements JsonSerializable
 {

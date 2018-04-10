@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Request for creating a new subscription item
+ *Request for creating a new subscription item
  */
 class CreateSubscriptionItemRequest implements JsonSerializable
 {

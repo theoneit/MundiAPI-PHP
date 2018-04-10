@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Request for updating a card
+ *Request for updating a card
  */
 class UpdateCardRequest implements JsonSerializable
 {

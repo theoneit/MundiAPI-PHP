@@ -11,7 +11,7 @@ use JsonSerializable;
 use MundiAPILib\Utils\DateTimeHelper;
 
 /**
- * Request for creating a subcription
+ *Request for creating a subcription
  */
 class CreateSubscriptionRequest implements JsonSerializable
 {

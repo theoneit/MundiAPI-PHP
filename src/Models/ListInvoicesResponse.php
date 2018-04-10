@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Response object for listing invoices
+ *Response object for listing invoices
  */
 class ListInvoicesResponse implements JsonSerializable
 {

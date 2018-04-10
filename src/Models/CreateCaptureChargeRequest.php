@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Request for capturing a charge
+ *Request for capturing a charge
  */
 class CreateCaptureChargeRequest implements JsonSerializable
 {

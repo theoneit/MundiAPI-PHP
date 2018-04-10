@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Split
+ *Split
  */
 class CreateSplitRequest implements JsonSerializable
 {

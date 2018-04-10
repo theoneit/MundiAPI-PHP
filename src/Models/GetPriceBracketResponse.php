@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Response object for getting a price bracket
+ *Response object for getting a price bracket
  */
 class GetPriceBracketResponse implements JsonSerializable
 {

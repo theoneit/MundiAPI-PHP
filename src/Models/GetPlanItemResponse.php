@@ -11,7 +11,7 @@ use JsonSerializable;
 use MundiAPILib\Utils\DateTimeHelper;
 
 /**
- * Response object for getting a plan item
+ *Response object for getting a plan item
  */
 class GetPlanItemResponse implements JsonSerializable
 {

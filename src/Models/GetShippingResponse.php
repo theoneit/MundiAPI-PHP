@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Response object for getting the shipping data
+ *Response object for getting the shipping data
  */
 class GetShippingResponse implements JsonSerializable
 {

@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Response object for listing subscriptions
+ *Response object for listing subscriptions
  */
 class ListSubscriptionsResponse implements JsonSerializable
 {

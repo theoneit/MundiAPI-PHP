@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Request for updating a subscription's payment method
+ *Request for updating a subscription's payment method
  */
 class UpdateSubscriptionPaymentMethodRequest implements JsonSerializable
 {

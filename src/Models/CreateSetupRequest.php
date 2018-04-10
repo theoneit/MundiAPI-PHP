@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Request for creating a Setup for a subscription. The setup is an order that will be created at the
+ *Request for creating a Setup for a subscription. The setup is an order that will be created at the
  * subscription creation.
  */
 class CreateSetupRequest implements JsonSerializable

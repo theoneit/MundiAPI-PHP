@@ -11,7 +11,7 @@ use JsonSerializable;
 use MundiAPILib\Utils\DateTimeHelper;
 
 /**
- * Response object for getting a period
+ *Response object for getting a period
  */
 class GetPeriodResponse implements JsonSerializable
 {

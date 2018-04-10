@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Response object for getting the setup from a subscription
+ *Response object for getting the setup from a subscription
  */
 class GetSetupResponse implements JsonSerializable
 {

@@ -11,7 +11,7 @@ use JsonSerializable;
 use MundiAPILib\Utils\DateTimeHelper;
 
 /**
- * Anticipation
+ *Anticipation
  */
 class GetAnticipationResponse implements JsonSerializable
 {

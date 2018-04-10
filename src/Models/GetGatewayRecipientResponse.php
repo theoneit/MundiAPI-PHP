@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Information about the recipient on the gateway
+ *Information about the recipient on the gateway
  */
 class GetGatewayRecipientResponse implements JsonSerializable
 {

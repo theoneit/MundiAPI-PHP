@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Object used for returning lists of objects with pagination
+ *Object used for returning lists of objects with pagination
  */
 class PagingResponse implements JsonSerializable
 {

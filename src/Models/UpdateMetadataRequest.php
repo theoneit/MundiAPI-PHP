@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Request for updating an metadata
+ *Request for updating an metadata
  */
 class UpdateMetadataRequest implements JsonSerializable
 {

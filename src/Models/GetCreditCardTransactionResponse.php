@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Response object for getting a credit card transaction
+ *Response object for getting a credit card transaction
  *
  * @discriminator transaction_type
  * @discriminatorType credit_card

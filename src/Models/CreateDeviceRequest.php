@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Request for creating a device
+ *Request for creating a device
  */
 class CreateDeviceRequest implements JsonSerializable
 {

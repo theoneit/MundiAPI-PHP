@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Request for canceling a charge.
+ *Request for canceling a charge.
  */
 class CreateCancelChargeRequest implements JsonSerializable
 {

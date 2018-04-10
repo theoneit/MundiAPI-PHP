@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Anticipation limits
+ *Anticipation limits
  */
 class GetAnticipationLimitsResponse implements JsonSerializable
 {

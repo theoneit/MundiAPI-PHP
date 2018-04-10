@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * Update Order item Request
+ *Update Order item Request
  */
 class UpdateOrderItemRequest implements JsonSerializable
 {

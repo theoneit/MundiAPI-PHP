@@ -10,7 +10,7 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- * List of paginated transfer objects
+ *List of paginated transfer objects
  */
 class ListTransferResponse implements JsonSerializable
 {
