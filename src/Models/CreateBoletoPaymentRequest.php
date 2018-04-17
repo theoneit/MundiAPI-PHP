@@ -37,15 +37,6 @@ class CreateBoletoPaymentRequest implements JsonSerializable
     public $instructions;
 
     /**
-     * Boleto due date
-     * @required
-     * @maps due_at
-     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
-     * @var \DateTime $dueAt public property
-     */
-    public $dueAt;
-
-    /**
      * Card's billing address
      * @required
      * @maps billing_address
@@ -62,6 +53,14 @@ class CreateBoletoPaymentRequest implements JsonSerializable
     public $billingAddressId;
 
     /**
+     * Boleto due date
+     * @maps due_at
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $dueAt public property
+     */
+    public $dueAt;
+
+    /**
      * Número de identificação do cliente com o banco
      * @maps nosso_numero
      * @var string|null $nossoNumero public property
@@ -73,9 +72,9 @@ class CreateBoletoPaymentRequest implements JsonSerializable
      * @param integer               $retries          Initialization value for $this->retries
      * @param string                $bank             Initialization value for $this->bank
      * @param string                $instructions     Initialization value for $this->instructions
-     * @param \DateTime             $dueAt            Initialization value for $this->dueAt
      * @param CreateAddressRequest  $billingAddress   Initialization value for $this->billingAddress
      * @param string                $billingAddressId Initialization value for $this->billingAddressId
+     * @param \DateTime             $dueAt            Initialization value for $this->dueAt
      * @param string                $nossoNumero      Initialization value for $this->nossoNumero
      */
     public function __construct()
@@ -84,9 +83,9 @@ class CreateBoletoPaymentRequest implements JsonSerializable
             $this->retries          = func_get_arg(0);
             $this->bank             = func_get_arg(1);
             $this->instructions     = func_get_arg(2);
-            $this->dueAt            = func_get_arg(3);
-            $this->billingAddress   = func_get_arg(4);
-            $this->billingAddressId = func_get_arg(5);
+            $this->billingAddress   = func_get_arg(3);
+            $this->billingAddressId = func_get_arg(4);
+            $this->dueAt            = func_get_arg(5);
             $this->nossoNumero      = func_get_arg(6);
         }
     }
@@ -101,9 +100,10 @@ class CreateBoletoPaymentRequest implements JsonSerializable
         $json['retries']            = $this->retries;
         $json['bank']               = $this->bank;
         $json['instructions']       = $this->instructions;
-        $json['due_at']             = DateTimeHelper::toRfc3339DateTime($this->dueAt);
         $json['billing_address']    = $this->billingAddress;
         $json['billing_address_id'] = $this->billingAddressId;
+        $json['due_at']             = isset($this->dueAt) ?
+            DateTimeHelper::toRfc3339DateTime($this->dueAt) : null;
         $json['nosso_numero']       = $this->nossoNumero;
 
         return $json;
