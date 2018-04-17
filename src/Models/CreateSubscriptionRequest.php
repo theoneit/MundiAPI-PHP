@@ -208,6 +208,13 @@ class CreateSubscriptionRequest implements JsonSerializable
     public $quantity;
 
     /**
+     * Days until boleto expires
+     * @maps boleto_due_days
+     * @var integer|null $boletoDueDays public property
+     */
+    public $boletoDueDays;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param CreateCustomerRequest       $customer             Initialization value for $this->customer
      * @param CreateCardRequest           $card                 Initialization value for $this->card
@@ -236,10 +243,11 @@ class CreateSubscriptionRequest implements JsonSerializable
      * @param string                      $cardToken            Initialization value for $this->cardToken
      * @param string                      $gatewayAffiliationId Initialization value for $this->gatewayAffiliationId
      * @param integer                     $quantity             Initialization value for $this->quantity
+     * @param integer                     $boletoDueDays        Initialization value for $this->boletoDueDays
      */
     public function __construct()
     {
-        if (27 == func_num_args()) {
+        if (28 == func_num_args()) {
             $this->customer             = func_get_arg(0);
             $this->card                 = func_get_arg(1);
             $this->code                 = func_get_arg(2);
@@ -267,6 +275,7 @@ class CreateSubscriptionRequest implements JsonSerializable
             $this->cardToken            = func_get_arg(24);
             $this->gatewayAffiliationId = func_get_arg(25);
             $this->quantity             = func_get_arg(26);
+            $this->boletoDueDays        = func_get_arg(27);
         }
     }
 
@@ -305,6 +314,7 @@ class CreateSubscriptionRequest implements JsonSerializable
         $json['card_token']             = $this->cardToken;
         $json['gateway_affiliation_id'] = $this->gatewayAffiliationId;
         $json['quantity']               = $this->quantity;
+        $json['boleto_due_days']        = $this->boletoDueDays;
 
         return $json;
     }

@@ -204,6 +204,13 @@ class GetSubscriptionResponse implements JsonSerializable
     public $discounts;
 
     /**
+     * Days until boleto expires
+     * @maps boleto_due_days
+     * @var integer|null $boletoDueDays public property
+     */
+    public $boletoDueDays;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string               $id                   Initialization value for $this->id
      * @param string               $code                 Initialization value for $this->code
@@ -230,10 +237,11 @@ class GetSubscriptionResponse implements JsonSerializable
      * @param integer              $minimumPrice         Initialization value for $this->minimumPrice
      * @param \DateTime            $canceledAt           Initialization value for $this->canceledAt
      * @param array                $discounts            Initialization value for $this->discounts
+     * @param integer              $boletoDueDays        Initialization value for $this->boletoDueDays
      */
     public function __construct()
     {
-        if (25 == func_num_args()) {
+        if (26 == func_num_args()) {
             $this->id                   = func_get_arg(0);
             $this->code                 = func_get_arg(1);
             $this->startAt              = func_get_arg(2);
@@ -259,6 +267,7 @@ class GetSubscriptionResponse implements JsonSerializable
             $this->minimumPrice         = func_get_arg(22);
             $this->canceledAt           = func_get_arg(23);
             $this->discounts            = func_get_arg(24);
+            $this->boletoDueDays        = func_get_arg(25);
         }
     }
 
@@ -296,6 +305,7 @@ class GetSubscriptionResponse implements JsonSerializable
         $json['canceled_at']            = isset($this->canceledAt) ?
             DateTimeHelper::toRfc3339DateTime($this->canceledAt) : null;
         $json['discounts']              = $this->discounts;
+        $json['boleto_due_days']        = $this->boletoDueDays;
 
         return $json;
     }
