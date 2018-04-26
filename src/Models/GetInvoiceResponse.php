@@ -164,6 +164,20 @@ class GetInvoiceResponse implements JsonSerializable
     public $seenAt;
 
     /**
+     * Total discounted value
+     * @maps total_discount
+     * @var integer|null $totalDiscount public property
+     */
+    public $totalDiscount;
+
+    /**
+     * Total discounted value
+     * @maps total_increment
+     * @var integer|null $totalIncrement public property
+     */
+    public $totalIncrement;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string                     $id             Initialization value for $this->id
      * @param string                     $code           Initialization value for $this->code
@@ -185,10 +199,12 @@ class GetInvoiceResponse implements JsonSerializable
      * @param \DateTime                  $canceledAt     Initialization value for $this->canceledAt
      * @param \DateTime                  $billingAt      Initialization value for $this->billingAt
      * @param \DateTime                  $seenAt         Initialization value for $this->seenAt
+     * @param integer                    $totalDiscount  Initialization value for $this->totalDiscount
+     * @param integer                    $totalIncrement Initialization value for $this->totalIncrement
      */
     public function __construct()
     {
-        if (20 == func_num_args()) {
+        if (22 == func_num_args()) {
             $this->id             = func_get_arg(0);
             $this->code           = func_get_arg(1);
             $this->url            = func_get_arg(2);
@@ -209,6 +225,8 @@ class GetInvoiceResponse implements JsonSerializable
             $this->canceledAt     = func_get_arg(17);
             $this->billingAt      = func_get_arg(18);
             $this->seenAt         = func_get_arg(19);
+            $this->totalDiscount  = func_get_arg(20);
+            $this->totalIncrement = func_get_arg(21);
         }
     }
 
@@ -243,6 +261,8 @@ class GetInvoiceResponse implements JsonSerializable
             DateTimeHelper::toRfc3339DateTime($this->billingAt) : null;
         $json['seen_at']         = isset($this->seenAt) ?
             DateTimeHelper::toRfc3339DateTime($this->seenAt) : null;
+        $json['total_discount']  = $this->totalDiscount;
+        $json['total_increment'] = $this->totalIncrement;
 
         return $json;
     }

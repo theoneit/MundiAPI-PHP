@@ -11,9 +11,9 @@ use JsonSerializable;
 use MundiAPILib\Utils\DateTimeHelper;
 
 /**
- *Response object for getting a discount
+ *Response object for getting a increment
  */
-class GetDiscountResponse implements JsonSerializable
+class GetIncrementResponse implements JsonSerializable
 {
     /**
      * @todo Write general description for this property
@@ -32,10 +32,10 @@ class GetDiscountResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @required
-     * @maps discount_type
-     * @var string $discountType public property
+     * @maps increment_type
+     * @var string $incrementType public property
      */
-    public $discountType;
+    public $incrementType;
 
     /**
      * @todo Write general description for this property
@@ -82,28 +82,28 @@ class GetDiscountResponse implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                   $id           Initialization value for $this->id
-     * @param double                   $value        Initialization value for $this->value
-     * @param string                   $discountType Initialization value for $this->discountType
-     * @param string                   $status       Initialization value for $this->status
-     * @param \DateTime                $createdAt    Initialization value for $this->createdAt
-     * @param GetSubscriptionResponse  $subscription Initialization value for $this->subscription
-     * @param integer                  $cycles       Initialization value for $this->cycles
-     * @param \DateTime                $deletedAt    Initialization value for $this->deletedAt
-     * @param string                   $description  Initialization value for $this->description
+     * @param string                   $id            Initialization value for $this->id
+     * @param double                   $value         Initialization value for $this->value
+     * @param string                   $incrementType Initialization value for $this->incrementType
+     * @param string                   $status        Initialization value for $this->status
+     * @param \DateTime                $createdAt     Initialization value for $this->createdAt
+     * @param GetSubscriptionResponse  $subscription  Initialization value for $this->subscription
+     * @param integer                  $cycles        Initialization value for $this->cycles
+     * @param \DateTime                $deletedAt     Initialization value for $this->deletedAt
+     * @param string                   $description   Initialization value for $this->description
      */
     public function __construct()
     {
         if (9 == func_num_args()) {
-            $this->id           = func_get_arg(0);
-            $this->value        = func_get_arg(1);
-            $this->discountType = func_get_arg(2);
-            $this->status       = func_get_arg(3);
-            $this->createdAt    = func_get_arg(4);
-            $this->subscription = func_get_arg(5);
-            $this->cycles       = func_get_arg(6);
-            $this->deletedAt    = func_get_arg(7);
-            $this->description  = func_get_arg(8);
+            $this->id            = func_get_arg(0);
+            $this->value         = func_get_arg(1);
+            $this->incrementType = func_get_arg(2);
+            $this->status        = func_get_arg(3);
+            $this->createdAt     = func_get_arg(4);
+            $this->subscription  = func_get_arg(5);
+            $this->cycles        = func_get_arg(6);
+            $this->deletedAt     = func_get_arg(7);
+            $this->description   = func_get_arg(8);
         }
     }
 
@@ -114,16 +114,16 @@ class GetDiscountResponse implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['id']            = $this->id;
-        $json['value']         = $this->value;
-        $json['discount_type'] = $this->discountType;
-        $json['status']        = $this->status;
-        $json['created_at']    = DateTimeHelper::toRfc3339DateTime($this->createdAt);
-        $json['subscription']  = $this->subscription;
-        $json['cycles']        = $this->cycles;
-        $json['deleted_at']    = isset($this->deletedAt) ?
+        $json['id']             = $this->id;
+        $json['value']          = $this->value;
+        $json['increment_type'] = $this->incrementType;
+        $json['status']         = $this->status;
+        $json['created_at']     = DateTimeHelper::toRfc3339DateTime($this->createdAt);
+        $json['subscription']   = $this->subscription;
+        $json['cycles']         = $this->cycles;
+        $json['deleted_at']     = isset($this->deletedAt) ?
             DateTimeHelper::toRfc3339DateTime($this->deletedAt) : null;
-        $json['description']   = $this->description;
+        $json['description']    = $this->description;
 
         return $json;
     }

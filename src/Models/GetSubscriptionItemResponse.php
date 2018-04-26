@@ -72,6 +72,13 @@ class GetSubscriptionItemResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @required
+     * @var \MundiAPILib\Models\GetIncrementResponse[] $increments public property
+     */
+    public $increments;
+
+    /**
+     * @todo Write general description for this property
+     * @required
      * @var \MundiAPILib\Models\GetSubscriptionResponse $subscription public property
      */
     public $subscription;
@@ -112,6 +119,7 @@ class GetSubscriptionItemResponse implements JsonSerializable
      * @param \DateTime                 $updatedAt     Initialization value for $this->updatedAt
      * @param GetPricingSchemeResponse  $pricingScheme Initialization value for $this->pricingScheme
      * @param array                     $discounts     Initialization value for $this->discounts
+     * @param array                     $increments    Initialization value for $this->increments
      * @param GetSubscriptionResponse   $subscription  Initialization value for $this->subscription
      * @param string                    $name          Initialization value for $this->name
      * @param integer                   $quantity      Initialization value for $this->quantity
@@ -120,7 +128,7 @@ class GetSubscriptionItemResponse implements JsonSerializable
      */
     public function __construct()
     {
-        if (12 == func_num_args()) {
+        if (13 == func_num_args()) {
             $this->id            = func_get_arg(0);
             $this->description   = func_get_arg(1);
             $this->status        = func_get_arg(2);
@@ -128,11 +136,12 @@ class GetSubscriptionItemResponse implements JsonSerializable
             $this->updatedAt     = func_get_arg(4);
             $this->pricingScheme = func_get_arg(5);
             $this->discounts     = func_get_arg(6);
-            $this->subscription  = func_get_arg(7);
-            $this->name          = func_get_arg(8);
-            $this->quantity      = func_get_arg(9);
-            $this->cycles        = func_get_arg(10);
-            $this->deletedAt     = func_get_arg(11);
+            $this->increments    = func_get_arg(7);
+            $this->subscription  = func_get_arg(8);
+            $this->name          = func_get_arg(9);
+            $this->quantity      = func_get_arg(10);
+            $this->cycles        = func_get_arg(11);
+            $this->deletedAt     = func_get_arg(12);
         }
     }
 
@@ -150,6 +159,7 @@ class GetSubscriptionItemResponse implements JsonSerializable
         $json['updated_at']     = DateTimeHelper::toRfc3339DateTime($this->updatedAt);
         $json['pricing_scheme'] = $this->pricingScheme;
         $json['discounts']      = $this->discounts;
+        $json['increments']     = $this->increments;
         $json['subscription']   = $this->subscription;
         $json['name']           = $this->name;
         $json['quantity']       = $this->quantity;

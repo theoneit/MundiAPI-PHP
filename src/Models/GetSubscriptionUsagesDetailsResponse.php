@@ -47,19 +47,37 @@ class GetSubscriptionUsagesDetailsResponse implements JsonSerializable
     public $usages;
 
     /**
+     * Total discounted value
+     * @maps total_discount
+     * @var integer|null $totalDiscount public property
+     */
+    public $totalDiscount;
+
+    /**
+     * Total inremented value
+     * @maps total_increment
+     * @var integer|null $totalIncrement public property
+     */
+    public $totalIncrement;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string            $subscriptionId Initialization value for $this->subscriptionId
      * @param integer           $totalAmount    Initialization value for $this->totalAmount
      * @param GetPeriodResponse $period         Initialization value for $this->period
      * @param array             $usages         Initialization value for $this->usages
+     * @param integer           $totalDiscount  Initialization value for $this->totalDiscount
+     * @param integer           $totalIncrement Initialization value for $this->totalIncrement
      */
     public function __construct()
     {
-        if (4 == func_num_args()) {
+        if (6 == func_num_args()) {
             $this->subscriptionId = func_get_arg(0);
             $this->totalAmount    = func_get_arg(1);
             $this->period         = func_get_arg(2);
             $this->usages         = func_get_arg(3);
+            $this->totalDiscount  = func_get_arg(4);
+            $this->totalIncrement = func_get_arg(5);
         }
     }
 
@@ -74,6 +92,8 @@ class GetSubscriptionUsagesDetailsResponse implements JsonSerializable
         $json['total_amount']    = $this->totalAmount;
         $json['Period']          = $this->period;
         $json['Usages']          = $this->usages;
+        $json['total_discount']  = $this->totalDiscount;
+        $json['total_increment'] = $this->totalIncrement;
 
         return $json;
     }

@@ -168,6 +168,13 @@ class GetSubscriptionResponse implements JsonSerializable
     public $gatewayAffiliationId;
 
     /**
+     * Subscription increments
+     * @required
+     * @var \MundiAPILib\Models\GetIncrementResponse[] $increments public property
+     */
+    public $increments;
+
+    /**
      * @todo Write general description for this property
      * @maps next_billing_at
      * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
@@ -232,6 +239,7 @@ class GetSubscriptionResponse implements JsonSerializable
      * @param array                $metadata             Initialization value for $this->metadata
      * @param GetSetupResponse     $setup                Initialization value for $this->setup
      * @param string               $gatewayAffiliationId Initialization value for $this->gatewayAffiliationId
+     * @param array                $increments           Initialization value for $this->increments
      * @param \DateTime            $nextBillingAt        Initialization value for $this->nextBillingAt
      * @param integer              $billingDay           Initialization value for $this->billingDay
      * @param integer              $minimumPrice         Initialization value for $this->minimumPrice
@@ -241,7 +249,7 @@ class GetSubscriptionResponse implements JsonSerializable
      */
     public function __construct()
     {
-        if (26 == func_num_args()) {
+        if (27 == func_num_args()) {
             $this->id                   = func_get_arg(0);
             $this->code                 = func_get_arg(1);
             $this->startAt              = func_get_arg(2);
@@ -262,12 +270,13 @@ class GetSubscriptionResponse implements JsonSerializable
             $this->metadata             = func_get_arg(17);
             $this->setup                = func_get_arg(18);
             $this->gatewayAffiliationId = func_get_arg(19);
-            $this->nextBillingAt        = func_get_arg(20);
-            $this->billingDay           = func_get_arg(21);
-            $this->minimumPrice         = func_get_arg(22);
-            $this->canceledAt           = func_get_arg(23);
-            $this->discounts            = func_get_arg(24);
-            $this->boletoDueDays        = func_get_arg(25);
+            $this->increments           = func_get_arg(20);
+            $this->nextBillingAt        = func_get_arg(21);
+            $this->billingDay           = func_get_arg(22);
+            $this->minimumPrice         = func_get_arg(23);
+            $this->canceledAt           = func_get_arg(24);
+            $this->discounts            = func_get_arg(25);
+            $this->boletoDueDays        = func_get_arg(26);
         }
     }
 
@@ -298,6 +307,7 @@ class GetSubscriptionResponse implements JsonSerializable
         $json['metadata']               = $this->metadata;
         $json['setup']                  = $this->setup;
         $json['gateway_affiliation_id'] = $this->gatewayAffiliationId;
+        $json['increments']             = $this->increments;
         $json['next_billing_at']        = isset($this->nextBillingAt) ?
             DateTimeHelper::toRfc3339DateTime($this->nextBillingAt) : null;
         $json['billing_day']            = $this->billingDay;
