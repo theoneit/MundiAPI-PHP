@@ -39,17 +39,25 @@ class CreateUsageRequest implements JsonSerializable
     public $usedAt;
 
     /**
+     * Identification code in the client system
+     * @var string|null $code public property
+     */
+    public $code;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param integer   $quantity    Initialization value for $this->quantity
      * @param string    $description Initialization value for $this->description
      * @param \DateTime $usedAt      Initialization value for $this->usedAt
+     * @param string    $code        Initialization value for $this->code
      */
     public function __construct()
     {
-        if (3 == func_num_args()) {
+        if (4 == func_num_args()) {
             $this->quantity    = func_get_arg(0);
             $this->description = func_get_arg(1);
             $this->usedAt      = func_get_arg(2);
+            $this->code        = func_get_arg(3);
         }
     }
 
@@ -63,6 +71,7 @@ class CreateUsageRequest implements JsonSerializable
         $json['quantity']    = $this->quantity;
         $json['description'] = $this->description;
         $json['used_at']     = DateTimeHelper::toRfc3339DateTime($this->usedAt);
+        $json['code']        = $this->code;
 
         return $json;
     }

@@ -44,19 +44,27 @@ class CreateDiscountRequest implements JsonSerializable
     public $cycles;
 
     /**
+     * Description
+     * @var string|null $description public property
+     */
+    public $description;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param double  $value        Initialization value for $this->value
      * @param string  $discountType Initialization value for $this->discountType
      * @param string  $itemId       Initialization value for $this->itemId
      * @param integer $cycles       Initialization value for $this->cycles
+     * @param string  $description  Initialization value for $this->description
      */
     public function __construct()
     {
-        if (4 == func_num_args()) {
+        if (5 == func_num_args()) {
             $this->value        = func_get_arg(0);
             $this->discountType = func_get_arg(1);
             $this->itemId       = func_get_arg(2);
             $this->cycles       = func_get_arg(3);
+            $this->description  = func_get_arg(4);
         }
     }
 
@@ -71,6 +79,7 @@ class CreateDiscountRequest implements JsonSerializable
         $json['discount_type'] = $this->discountType;
         $json['item_id']       = $this->itemId;
         $json['cycles']        = $this->cycles;
+        $json['description']   = $this->description;
 
         return $json;
     }
