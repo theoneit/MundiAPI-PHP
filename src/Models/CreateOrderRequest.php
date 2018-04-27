@@ -104,6 +104,12 @@ class CreateOrderRequest implements JsonSerializable
     public $device;
 
     /**
+     * Currency
+     * @var string|null $currency public property
+     */
+    public $currency;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param array                 $items            Initialization value for $this->items
      * @param CreateCustomerRequest $customer         Initialization value for $this->customer
@@ -118,11 +124,12 @@ class CreateOrderRequest implements JsonSerializable
      * @param string                $sessionId        Initialization value for $this->sessionId
      * @param CreateLocationRequest $location         Initialization value for $this->location
      * @param CreateDeviceRequest   $device           Initialization value for $this->device
+     * @param string                $currency         Initialization value for $this->currency
      */
     public function __construct()
     {
         switch (func_num_args()) {
-            case 13:
+            case 14:
                 $this->items            = func_get_arg(0);
                 $this->customer         = func_get_arg(1);
                 $this->payments         = func_get_arg(2);
@@ -136,6 +143,7 @@ class CreateOrderRequest implements JsonSerializable
                 $this->sessionId        = func_get_arg(10);
                 $this->location         = func_get_arg(11);
                 $this->device           = func_get_arg(12);
+                $this->currency         = func_get_arg(13);
                 break;
 
             default:
@@ -164,6 +172,7 @@ class CreateOrderRequest implements JsonSerializable
         $json['session_id']        = $this->sessionId;
         $json['location']          = $this->location;
         $json['device']            = $this->device;
+        $json['currency']          = $this->currency;
 
         return $json;
     }
