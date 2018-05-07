@@ -425,8 +425,8 @@ function getCharges(
 #### Example Usage
 
 ```php
-$page = 173;
-$size = 173;
+$page = 171;
+$size = 171;
 $code = 'code';
 $status = 'status';
 $paymentMethod = 'payment_method';
@@ -999,8 +999,8 @@ function getAccessTokens(
 
 ```php
 $customerId = 'customer_id';
-$page = 131;
-$size = 131;
+$page = 7;
+$size = 7;
 
 $result = $customers->getAccessTokens($customerId, $page, $size);
 
@@ -1033,8 +1033,8 @@ function getAddresses(
 
 ```php
 $customerId = 'customer_id';
-$page = 131;
-$size = 131;
+$page = 7;
+$size = 7;
 
 $result = $customers->getAddresses($customerId, $page, $size);
 
@@ -1067,8 +1067,8 @@ function getCards(
 
 ```php
 $customerId = 'customer_id';
-$page = 131;
-$size = 131;
+$page = 7;
+$size = 7;
 
 $result = $customers->getCards($customerId, $page, $size);
 
@@ -1254,8 +1254,8 @@ function getInvoices(
 #### Example Usage
 
 ```php
-$page = 131;
-$size = 131;
+$page = 7;
+$size = 7;
 $code = 'code';
 $customerId = 'customer_id';
 $subscriptionId = 'subscription_id';
@@ -1647,8 +1647,8 @@ function getPlans(
 #### Example Usage
 
 ```php
-$page = 131;
-$size = 131;
+$page = 99;
+$size = 99;
 $name = 'name';
 $status = 'status';
 $billingType = 'billing_type';
@@ -2076,43 +2076,6 @@ $result = $subscriptions->deleteUsage($subscriptionId, $itemId, $usageId);
 ```
 
 
-### <a name="get_usages"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getUsages") getUsages
-
-> Lists all usages from a subscription item
-
-
-```php
-function getUsages(
-        $subscriptionId,
-        $itemId,
-        $page = null,
-        $size = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | The subscription id |
-| itemId |  ``` Required ```  | The subscription item id |
-| page |  ``` Optional ```  | Page number |
-| size |  ``` Optional ```  | Page size |
-
-
-
-#### Example Usage
-
-```php
-$subscriptionId = 'subscription_id';
-$itemId = 'item_id';
-$page = 222;
-$size = 222;
-
-$result = $subscriptions->getUsages($subscriptionId, $itemId, $page, $size);
-
-```
-
-
 ### <a name="update_subscription_metadata"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.updateSubscriptionMetadata") updateSubscriptionMetadata
 
 > Updates the metadata from a subscription
@@ -2187,8 +2150,8 @@ function getSubscriptions(
 #### Example Usage
 
 ```php
-$page = 222;
-$size = 222;
+$page = 57;
+$size = 57;
 $code = 'code';
 $billingType = 'billing_type';
 $customerId = 'customer_id';
@@ -2389,41 +2352,10 @@ function getDiscounts(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 222;
-$size = 222;
+$page = 57;
+$size = 57;
 
 $result = $subscriptions->getDiscounts($subscriptionId, $page, $size);
-
-```
-
-
-### <a name="get_subscription_usages_details"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getSubscriptionUsagesDetails") getSubscriptionUsagesDetails
-
-> TODO: Add a method description
-
-
-```php
-function getSubscriptionUsagesDetails(
-        $subscriptionId,
-        $cycleId = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | Subscription Identifier |
-| cycleId |  ``` Optional ```  | Cycle id |
-
-
-
-#### Example Usage
-
-```php
-$subscriptionId = 'subscription_id';
-$cycleId = 'cycle_id';
-
-$result = $subscriptions->getSubscriptionUsagesDetails($subscriptionId, $cycleId);
 
 ```
 
@@ -2467,8 +2399,8 @@ $result = $subscriptions->createIncrement($subscriptionId, $request);
 ```php
 function getIncrements(
         $subscriptionId,
-        $page,
-        $size)
+        $page = null,
+        $size = null)
 ```
 
 #### Parameters
@@ -2476,8 +2408,8 @@ function getIncrements(
 | Parameter | Tags | Description |
 |-----------|------|-------------|
 | subscriptionId |  ``` Required ```  | The subscription id |
-| page |  ``` Required ```  | Page number |
-| size |  ``` Required ```  | Page size |
+| page |  ``` Optional ```  | Page number |
+| size |  ``` Optional ```  | Page size |
 
 
 
@@ -2485,8 +2417,8 @@ function getIncrements(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 222;
-$size = 222;
+$page = 57;
+$size = 57;
 
 $result = $subscriptions->getIncrements($subscriptionId, $page, $size);
 
@@ -2520,6 +2452,83 @@ $subscriptionId = 'subscription_id';
 $incrementId = 'increment_id';
 
 $result = $subscriptions->deleteIncrement($subscriptionId, $incrementId);
+
+```
+
+
+### <a name="get_usages_details"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getUsagesDetails") getUsagesDetails
+
+> TODO: Add a method description
+
+
+```php
+function getUsagesDetails(
+        $subscriptionId,
+        $cycleId = null,
+        $size = null,
+        $page = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | Subscription Identifier |
+| cycleId |  ``` Optional ```  | Cycle id |
+| size |  ``` Optional ```  | Page size |
+| page |  ``` Optional ```  | Page number |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+$cycleId = 'cycle_id';
+$size = 57;
+$page = 57;
+
+$result = $subscriptions->getUsagesDetails($subscriptionId, $cycleId, $size, $page);
+
+```
+
+
+### <a name="get_usages"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getUsages") getUsages
+
+> Lists all usages from a subscription item
+
+
+```php
+function getUsages(
+        $subscriptionId,
+        $itemId,
+        $page = null,
+        $size = null,
+        $code = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | The subscription id |
+| itemId |  ``` Required ```  | The subscription item id |
+| page |  ``` Optional ```  | Page number |
+| size |  ``` Optional ```  | Page size |
+| code |  ``` Optional ```  | Identification code in the client system |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+$itemId = 'item_id';
+$page = 57;
+$size = 57;
+$code = 'code';
+
+$result = $subscriptions->getUsages($subscriptionId, $itemId, $page, $size, $code);
 
 ```
 
@@ -2654,8 +2663,8 @@ function getOrders(
 #### Example Usage
 
 ```php
-$page = 181;
-$size = 181;
+$page = 57;
+$size = 57;
 $code = 'code';
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
@@ -3081,8 +3090,8 @@ function getRecipients(
 #### Example Usage
 
 ```php
-$page = 181;
-$size = 181;
+$page = 149;
+$size = 149;
 
 $result = $recipients->getRecipients($page, $size);
 
@@ -3210,8 +3219,8 @@ function getTransfers(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 181;
-$size = 181;
+$page = 149;
+$size = 149;
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
@@ -3355,8 +3364,8 @@ function getAnticipations(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 181;
-$size = 181;
+$page = 149;
+$size = 149;
 $status = 'status';
 $timeframe = 'timeframe';
 $paymentDateSince = date("D M d, Y G:i");
@@ -3530,8 +3539,8 @@ function getSellers(
 #### Example Usage
 
 ```php
-$page = 17;
-$size = 17;
+$page = 107;
+$size = 107;
 $name = 'name';
 $document = 'document';
 $code = 'code';

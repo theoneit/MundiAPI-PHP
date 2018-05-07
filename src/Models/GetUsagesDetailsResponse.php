@@ -12,7 +12,7 @@ use JsonSerializable;
 /**
  * @todo Write general description for this model
  */
-class GetSubscriptionUsagesDetailsResponse implements JsonSerializable
+class GetUsagesDetailsResponse implements JsonSerializable
 {
     /**
      * Subscription Identifier
@@ -42,7 +42,7 @@ class GetSubscriptionUsagesDetailsResponse implements JsonSerializable
      * Usages Details
      * @required
      * @maps Usages
-     * @var \MundiAPILib\Models\GetUsageResponse[] $usages public property
+     * @var \MundiAPILib\Models\ListUsagesDetailsResponse $usages public property
      */
     public $usages;
 
@@ -62,12 +62,12 @@ class GetSubscriptionUsagesDetailsResponse implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string            $subscriptionId Initialization value for $this->subscriptionId
-     * @param integer           $totalAmount    Initialization value for $this->totalAmount
-     * @param GetPeriodResponse $period         Initialization value for $this->period
-     * @param array             $usages         Initialization value for $this->usages
-     * @param integer           $totalDiscount  Initialization value for $this->totalDiscount
-     * @param integer           $totalIncrement Initialization value for $this->totalIncrement
+     * @param string                    $subscriptionId Initialization value for $this->subscriptionId
+     * @param integer                   $totalAmount    Initialization value for $this->totalAmount
+     * @param GetPeriodResponse         $period         Initialization value for $this->period
+     * @param ListUsagesDetailsResponse $usages         Initialization value for $this->usages
+     * @param integer                   $totalDiscount  Initialization value for $this->totalDiscount
+     * @param integer                   $totalIncrement Initialization value for $this->totalIncrement
      */
     public function __construct()
     {
