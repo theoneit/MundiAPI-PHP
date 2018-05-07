@@ -124,6 +124,14 @@ class GetCardResponse implements JsonSerializable
     public $holderDocument;
 
     /**
+     * First six digits
+     * @required
+     * @maps first_six_digits
+     * @var string $firstSixDigits public property
+     */
+    public $firstSixDigits;
+
+    /**
      * @todo Write general description for this property
      * @maps deleted_at
      * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
@@ -147,11 +155,12 @@ class GetCardResponse implements JsonSerializable
      * @param array                      $metadata       Initialization value for $this->metadata
      * @param string                     $type           Initialization value for $this->type
      * @param string                     $holderDocument Initialization value for $this->holderDocument
+     * @param string                     $firstSixDigits Initialization value for $this->firstSixDigits
      * @param \DateTime                  $deletedAt      Initialization value for $this->deletedAt
      */
     public function __construct()
     {
-        if (15 == func_num_args()) {
+        if (16 == func_num_args()) {
             $this->id             = func_get_arg(0);
             $this->lastFourDigits = func_get_arg(1);
             $this->brand          = func_get_arg(2);
@@ -166,7 +175,8 @@ class GetCardResponse implements JsonSerializable
             $this->metadata       = func_get_arg(11);
             $this->type           = func_get_arg(12);
             $this->holderDocument = func_get_arg(13);
-            $this->deletedAt      = func_get_arg(14);
+            $this->firstSixDigits = func_get_arg(14);
+            $this->deletedAt      = func_get_arg(15);
         }
     }
 
@@ -191,6 +201,7 @@ class GetCardResponse implements JsonSerializable
         $json['metadata']         = $this->metadata;
         $json['type']             = $this->type;
         $json['holder_document']  = $this->holderDocument;
+        $json['first_six_digits'] = $this->firstSixDigits;
         $json['deleted_at']       = isset($this->deletedAt) ?
             DateTimeHelper::toRfc3339DateTime($this->deletedAt) : null;
 

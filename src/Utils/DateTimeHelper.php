@@ -190,6 +190,11 @@ class DateTimeHelper
         if (is_null($datetime)) {
             return null;
         } else {
+            // Check for timezone information and append it if missing
+            if (!(substr($datetime, strlen($datetime)-1) == 'Z' || strpos($datetime, '+'))) {
+                $datetime .= 'Z';
+            }
+
             $x = DateTime::createFromFormat(DateTime::RFC3339, $datetime);
 
             if ($x instanceof DateTime) {
