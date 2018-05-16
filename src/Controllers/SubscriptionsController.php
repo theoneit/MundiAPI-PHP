@@ -1130,75 +1130,6 @@ class SubscriptionsController extends BaseController
     }
 
     /**
-     * Get Subscription Itens
-     *
-     * @param string $subscriptionId  Subscription Id
-     * @param string $status          Status
-     * @param string $description     Description
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function getSubscriptionItems(
-        $subscriptionId,
-        $status,
-        $description
-    ) {
-
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
-        //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/subscriptions/{subscription_id}/items';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'subscription_id' => $subscriptionId,
-            ));
-
-        //process optional query parameters
-        APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
-            'status'          => $status,
-            'description'     => $description,
-        ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => 'MundiSDK',
-            'Accept'        => 'application/json'
-        );
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::get($_queryUrl, $_headers);
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListSubscriptionsResponse');
-    }
-
-    /**
      * @todo Add general description for this endpoint
      *
      * @param string                                        $subscriptionId  TODO: type description here
@@ -1592,6 +1523,7 @@ class SubscriptionsController extends BaseController
      * @param string  $cycleId         (optional) Cycle id
      * @param integer $size            (optional) Page size
      * @param integer $page            (optional) Page number
+     * @param string  $itemId          (optional) Identificador do item
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
@@ -1599,7 +1531,8 @@ class SubscriptionsController extends BaseController
         $subscriptionId,
         $cycleId = null,
         $size = null,
-        $page = null
+        $page = null,
+        $itemId = null
     ) {
 
         //the base uri for api requests
@@ -1618,6 +1551,7 @@ class SubscriptionsController extends BaseController
             'cycle_id'        => $cycleId,
             'size'            => $size,
             'page'            => $page,
+            'item_id'         => $itemId,
         ));
 
         //validate and preprocess url
@@ -1665,6 +1599,7 @@ class SubscriptionsController extends BaseController
      * @param integer $page            (optional) Page number
      * @param integer $size            (optional) Page size
      * @param string  $code            (optional) Identification code in the client system
+     * @param string  $group           (optional) Identification group in the client system
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
@@ -1673,7 +1608,8 @@ class SubscriptionsController extends BaseController
         $itemId,
         $page = null,
         $size = null,
-        $code = null
+        $code = null,
+        $group = null
     ) {
 
         //the base uri for api requests
@@ -1693,6 +1629,7 @@ class SubscriptionsController extends BaseController
             'page'            => $page,
             'size'            => $size,
             'code'            => $code,
+            'group'           => $group,
         ));
 
         //validate and preprocess url

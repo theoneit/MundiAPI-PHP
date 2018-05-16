@@ -84,6 +84,12 @@ class GetUsageResponse implements JsonSerializable
     public $code;
 
     /**
+     * Identification group in the client system
+     * @var string|null $group public property
+     */
+    public $group;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string                       $id               Initialization value for $this->id
      * @param integer                      $quantity         Initialization value for $this->quantity
@@ -94,10 +100,11 @@ class GetUsageResponse implements JsonSerializable
      * @param GetSubscriptionItemResponse  $subscriptionItem Initialization value for $this->subscriptionItem
      * @param \DateTime                    $deletedAt        Initialization value for $this->deletedAt
      * @param string                       $code             Initialization value for $this->code
+     * @param string                       $group            Initialization value for $this->group
      */
     public function __construct()
     {
-        if (9 == func_num_args()) {
+        if (10 == func_num_args()) {
             $this->id               = func_get_arg(0);
             $this->quantity         = func_get_arg(1);
             $this->description      = func_get_arg(2);
@@ -107,6 +114,7 @@ class GetUsageResponse implements JsonSerializable
             $this->subscriptionItem = func_get_arg(6);
             $this->deletedAt        = func_get_arg(7);
             $this->code             = func_get_arg(8);
+            $this->group            = func_get_arg(9);
         }
     }
 
@@ -127,6 +135,7 @@ class GetUsageResponse implements JsonSerializable
         $json['deleted_at']        = isset($this->deletedAt) ?
             DateTimeHelper::toRfc3339DateTime($this->deletedAt) : null;
         $json['code']              = $this->code;
+        $json['group']             = $this->group;
 
         return $json;
     }
