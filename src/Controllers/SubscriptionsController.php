@@ -43,6 +43,68 @@ class SubscriptionsController extends BaseController
     }
 
     /**
+     * @todo Add general description for this endpoint
+     *
+     * @param string $subscriptionId  The subscription Id
+     * @param string $incrementId     The increment Id
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function getIncrementById(
+        $subscriptionId,
+        $incrementId
+    ) {
+
+        //the base uri for api requests
+        $_queryBuilder = Configuration::$BASEURI;
+        
+        //prepare query string for API call
+        $_queryBuilder = $_queryBuilder.'/subscriptions/{subscription_id}/increments/{increment_id}';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'subscription_id' => $subscriptionId,
+            'increment_id'    => $incrementId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => 'MundiSDK',
+            'Accept'        => 'application/json'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::get($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetIncrementResponse');
+    }
+
+    /**
      * Updates a subscription item
      *
      * @param string                               $subscriptionId  Subscription Id
@@ -1195,7 +1257,7 @@ class SubscriptionsController extends BaseController
     /**
      * @todo Add general description for this endpoint
      *
-     * @param string $subscriptionId  TODO: type description here
+     * @param string $subscriptionId  The subscription id
      * @param string $discountId      TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
@@ -1667,5 +1729,92 @@ class SubscriptionsController extends BaseController
         $mapper = $this->getJsonMapper();
 
         return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListUsagesResponse');
+    }
+
+    /**
+     * Get Subscription Items
+     *
+     * @param string  $subscriptionId  The subscription id
+     * @param integer $page            (optional) Page number
+     * @param integer $size            (optional) Page size
+     * @param string  $name            (optional) The item name
+     * @param string  $code            (optional) Identification code in the client system
+     * @param string  $status          (optional) The item statis
+     * @param string  $description     (optional) The item description
+     * @param string  $createdSince    (optional) Filter for item's creation date start range
+     * @param string  $createdUntil    (optional) Filter for item's creation date end range
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function getSubscriptionItems(
+        $subscriptionId,
+        $page = null,
+        $size = null,
+        $name = null,
+        $code = null,
+        $status = null,
+        $description = null,
+        $createdSince = null,
+        $createdUntil = null
+    ) {
+
+        //the base uri for api requests
+        $_queryBuilder = Configuration::$BASEURI;
+        
+        //prepare query string for API call
+        $_queryBuilder = $_queryBuilder.'/subscriptions/{subscription_id}/items';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'subscription_id' => $subscriptionId,
+            ));
+
+        //process optional query parameters
+        APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
+            'page'            => $page,
+            'size'            => $size,
+            'name'            => $name,
+            'code'            => $code,
+            'status'          => $status,
+            'description'     => $description,
+            'created_since'   => $createdSince,
+            'created_until'   => $createdUntil,
+        ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => 'MundiSDK',
+            'Accept'        => 'application/json'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::get($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListSubscriptionItemsResponse');
     }
 }
