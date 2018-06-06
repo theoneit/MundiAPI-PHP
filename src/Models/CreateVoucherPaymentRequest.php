@@ -15,13 +15,6 @@ use JsonSerializable;
 class CreateVoucherPaymentRequest implements JsonSerializable
 {
     /**
-     * Indicates if the operation should be only authorization or auth and capture.
-     * @required
-     * @var bool $capture public property
-     */
-    public $capture;
-
-    /**
      * The text that will be shown on the voucher's statement
      * @required
      * @maps statement_descriptor
@@ -55,7 +48,6 @@ class CreateVoucherPaymentRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param bool              $capture             Initialization value for $this->capture
      * @param string            $statementDescriptor Initialization value for $this->statementDescriptor
      * @param string            $cardId              Initialization value for $this->cardId
      * @param string            $cardToken           Initialization value for $this->cardToken
@@ -63,12 +55,11 @@ class CreateVoucherPaymentRequest implements JsonSerializable
      */
     public function __construct()
     {
-        if (5 == func_num_args()) {
-            $this->capture             = func_get_arg(0);
-            $this->statementDescriptor = func_get_arg(1);
-            $this->cardId              = func_get_arg(2);
-            $this->cardToken           = func_get_arg(3);
-            $this->card                = func_get_arg(4);
+        if (4 == func_num_args()) {
+            $this->statementDescriptor = func_get_arg(0);
+            $this->cardId              = func_get_arg(1);
+            $this->cardToken           = func_get_arg(2);
+            $this->card                = func_get_arg(3);
         }
     }
 
@@ -79,7 +70,6 @@ class CreateVoucherPaymentRequest implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['capture']              = $this->capture;
         $json['statement_descriptor'] = $this->statementDescriptor;
         $json['card_id']              = $this->cardId;
         $json['card_token']           = $this->cardToken;

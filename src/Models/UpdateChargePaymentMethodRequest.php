@@ -39,6 +39,14 @@ class UpdateChargePaymentMethodRequest implements JsonSerializable
     public $creditCard;
 
     /**
+     * Debit card data
+     * @required
+     * @maps debit_card
+     * @var \MundiAPILib\Models\CreateDebitCardPaymentRequest $debitCard public property
+     */
+    public $debitCard;
+
+    /**
      * Boleto data
      * @required
      * @var \MundiAPILib\Models\CreateBoletoPaymentRequest $boleto public property
@@ -57,17 +65,19 @@ class UpdateChargePaymentMethodRequest implements JsonSerializable
      * @param bool                           $updateSubscription Initialization value for $this->updateSubscription
      * @param string                         $paymentMethod      Initialization value for $this->paymentMethod
      * @param CreateCreditCardPaymentRequest $creditCard         Initialization value for $this->creditCard
+     * @param CreateDebitCardPaymentRequest  $debitCard          Initialization value for $this->debitCard
      * @param CreateBoletoPaymentRequest     $boleto             Initialization value for $this->boleto
      * @param CreateVoucherPaymentRequest    $voucher            Initialization value for $this->voucher
      */
     public function __construct()
     {
-        if (5 == func_num_args()) {
+        if (6 == func_num_args()) {
             $this->updateSubscription = func_get_arg(0);
             $this->paymentMethod      = func_get_arg(1);
             $this->creditCard         = func_get_arg(2);
-            $this->boleto             = func_get_arg(3);
-            $this->voucher            = func_get_arg(4);
+            $this->debitCard          = func_get_arg(3);
+            $this->boleto             = func_get_arg(4);
+            $this->voucher            = func_get_arg(5);
         }
     }
 
@@ -81,6 +91,7 @@ class UpdateChargePaymentMethodRequest implements JsonSerializable
         $json['update_subscription'] = $this->updateSubscription;
         $json['payment_method']      = $this->paymentMethod;
         $json['credit_card']         = $this->creditCard;
+        $json['debit_card']          = $this->debitCard;
         $json['boleto']              = $this->boleto;
         $json['voucher']             = $this->voucher;
 

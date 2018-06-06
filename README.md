@@ -661,8 +661,8 @@ function getSubscriptions(
 #### Example Usage
 
 ```php
-$page = 171;
-$size = 171;
+$page = 59;
+$size = 59;
 $code = 'code';
 $billingType = 'billing_type';
 $customerId = 'customer_id';
@@ -829,8 +829,8 @@ function getDiscounts(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 171;
-$size = 171;
+$page = 59;
+$size = 59;
 
 $result = $subscriptions->getDiscounts($subscriptionId, $page, $size);
 
@@ -894,8 +894,8 @@ function getIncrements(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 8;
-$size = 8;
+$page = 59;
+$size = 59;
 
 $result = $subscriptions->getIncrements($subscriptionId, $page, $size);
 
@@ -964,8 +964,8 @@ function getUsagesDetails(
 ```php
 $subscriptionId = 'subscription_id';
 $cycleId = 'cycle_id';
-$size = 8;
-$page = 8;
+$size = 59;
+$page = 59;
 $itemId = 'item_id';
 
 $result = $subscriptions->getUsagesDetails($subscriptionId, $cycleId, $size, $page, $itemId);
@@ -1006,8 +1006,8 @@ function getUsages(
 ```php
 $subscriptionId = 'subscription_id';
 $itemId = 'item_id';
-$page = 8;
-$size = 8;
+$page = 59;
+$size = 59;
 $code = 'code';
 $group = 'group';
 
@@ -1054,8 +1054,8 @@ function getSubscriptionItems(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 8;
-$size = 8;
+$page = 59;
+$size = 59;
 $name = 'name';
 $code = 'code';
 $status = 'status';
@@ -1353,8 +1353,8 @@ function getCharges(
 #### Example Usage
 
 ```php
-$page = 99;
-$size = 99;
+$page = 150;
+$size = 150;
 $code = 'code';
 $status = 'status';
 $paymentMethod = 'payment_method';
@@ -1927,8 +1927,8 @@ function getAccessTokens(
 
 ```php
 $customerId = 'customer_id';
-$page = 58;
-$size = 58;
+$page = 150;
+$size = 150;
 
 $result = $customers->getAccessTokens($customerId, $page, $size);
 
@@ -1961,8 +1961,8 @@ function getAddresses(
 
 ```php
 $customerId = 'customer_id';
-$page = 58;
-$size = 58;
+$page = 150;
+$size = 150;
 
 $result = $customers->getAddresses($customerId, $page, $size);
 
@@ -1995,8 +1995,8 @@ function getCards(
 
 ```php
 $customerId = 'customer_id';
-$page = 58;
-$size = 58;
+$page = 242;
+$size = 242;
 
 $result = $customers->getCards($customerId, $page, $size);
 
@@ -2182,8 +2182,8 @@ function getInvoices(
 #### Example Usage
 
 ```php
-$page = 58;
-$size = 58;
+$page = 242;
+$size = 242;
 $code = 'code';
 $customerId = 'customer_id';
 $subscriptionId = 'subscription_id';
@@ -2575,8 +2575,8 @@ function getPlans(
 #### Example Usage
 
 ```php
-$page = 149;
-$size = 149;
+$page = 242;
+$size = 242;
 $name = 'name';
 $status = 'status';
 $billingType = 'billing_type';
@@ -2718,8 +2718,8 @@ function getOrders(
 #### Example Usage
 
 ```php
-$page = 149;
-$size = 149;
+$page = 200;
+$size = 200;
 $code = 'code';
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
@@ -3145,8 +3145,8 @@ function getRecipients(
 #### Example Usage
 
 ```php
-$page = 241;
-$size = 241;
+$page = 200;
+$size = 200;
 
 $result = $recipients->getRecipients($page, $size);
 
@@ -3274,8 +3274,8 @@ function getTransfers(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 241;
-$size = 241;
+$page = 200;
+$size = 200;
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
@@ -3419,8 +3419,8 @@ function getAnticipations(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 241;
-$size = 241;
+$page = 200;
+$size = 200;
 $status = 'status';
 $timeframe = 'timeframe';
 $paymentDateSince = date("D M d, Y G:i");
@@ -3460,6 +3460,37 @@ $recipientId = 'recipient_id';
 $request = new UpdateMetadataRequest();
 
 $result = $recipients->updateRecipientMetadata($recipientId, $request);
+
+```
+
+
+### <a name="update_recipient_transfer_settings"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.updateRecipientTransferSettings") updateRecipientTransferSettings
+
+> TODO: Add a method description
+
+
+```php
+function updateRecipientTransferSettings(
+        $recipientId,
+        $request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient Identificator |
+| request |  ``` Required ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$recipientId = 'recipient_id';
+$request = new UpdateTransferSettingsRequest();
+
+$result = $recipients->updateRecipientTransferSettings($recipientId, $request);
 
 ```
 
@@ -3594,8 +3625,8 @@ function getSellers(
 #### Example Usage
 
 ```php
-$page = 241;
-$size = 241;
+$page = 36;
+$size = 36;
 $name = 'name';
 $document = 'document';
 $code = 'code';
