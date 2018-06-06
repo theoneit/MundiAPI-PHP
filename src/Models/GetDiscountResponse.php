@@ -55,13 +55,6 @@ class GetDiscountResponse implements JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @required
-     * @var \MundiAPILib\Models\GetSubscriptionResponse $subscription public property
-     */
-    public $subscription;
-
-    /**
-     * @todo Write general description for this property
      * @var integer|null $cycles public property
      */
     public $cycles;
@@ -81,29 +74,44 @@ class GetDiscountResponse implements JsonSerializable
     public $description;
 
     /**
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\GetSubscriptionResponse|null $subscription public property
+     */
+    public $subscription;
+
+    /**
+     * The subscription item
+     * @maps subscription_item
+     * @var \MundiAPILib\Models\GetSubscriptionItemResponse|null $subscriptionItem public property
+     */
+    public $subscriptionItem;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param string                   $id           Initialization value for $this->id
-     * @param double                   $value        Initialization value for $this->value
-     * @param string                   $discountType Initialization value for $this->discountType
-     * @param string                   $status       Initialization value for $this->status
-     * @param \DateTime                $createdAt    Initialization value for $this->createdAt
-     * @param GetSubscriptionResponse  $subscription Initialization value for $this->subscription
-     * @param integer                  $cycles       Initialization value for $this->cycles
-     * @param \DateTime                $deletedAt    Initialization value for $this->deletedAt
-     * @param string                   $description  Initialization value for $this->description
+     * @param string                       $id               Initialization value for $this->id
+     * @param double                       $value            Initialization value for $this->value
+     * @param string                       $discountType     Initialization value for $this->discountType
+     * @param string                       $status           Initialization value for $this->status
+     * @param \DateTime                    $createdAt        Initialization value for $this->createdAt
+     * @param integer                      $cycles           Initialization value for $this->cycles
+     * @param \DateTime                    $deletedAt        Initialization value for $this->deletedAt
+     * @param string                       $description      Initialization value for $this->description
+     * @param GetSubscriptionResponse      $subscription     Initialization value for $this->subscription
+     * @param GetSubscriptionItemResponse  $subscriptionItem Initialization value for $this->subscriptionItem
      */
     public function __construct()
     {
-        if (9 == func_num_args()) {
-            $this->id           = func_get_arg(0);
-            $this->value        = func_get_arg(1);
-            $this->discountType = func_get_arg(2);
-            $this->status       = func_get_arg(3);
-            $this->createdAt    = func_get_arg(4);
-            $this->subscription = func_get_arg(5);
-            $this->cycles       = func_get_arg(6);
-            $this->deletedAt    = func_get_arg(7);
-            $this->description  = func_get_arg(8);
+        if (10 == func_num_args()) {
+            $this->id               = func_get_arg(0);
+            $this->value            = func_get_arg(1);
+            $this->discountType     = func_get_arg(2);
+            $this->status           = func_get_arg(3);
+            $this->createdAt        = func_get_arg(4);
+            $this->cycles           = func_get_arg(5);
+            $this->deletedAt        = func_get_arg(6);
+            $this->description      = func_get_arg(7);
+            $this->subscription     = func_get_arg(8);
+            $this->subscriptionItem = func_get_arg(9);
         }
     }
 
@@ -114,16 +122,17 @@ class GetDiscountResponse implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['id']            = $this->id;
-        $json['value']         = $this->value;
-        $json['discount_type'] = $this->discountType;
-        $json['status']        = $this->status;
-        $json['created_at']    = DateTimeHelper::toRfc3339DateTime($this->createdAt);
-        $json['subscription']  = $this->subscription;
-        $json['cycles']        = $this->cycles;
-        $json['deleted_at']    = isset($this->deletedAt) ?
+        $json['id']                = $this->id;
+        $json['value']             = $this->value;
+        $json['discount_type']     = $this->discountType;
+        $json['status']            = $this->status;
+        $json['created_at']        = DateTimeHelper::toRfc3339DateTime($this->createdAt);
+        $json['cycles']            = $this->cycles;
+        $json['deleted_at']        = isset($this->deletedAt) ?
             DateTimeHelper::toRfc3339DateTime($this->deletedAt) : null;
-        $json['description']   = $this->description;
+        $json['description']       = $this->description;
+        $json['subscription']      = $this->subscription;
+        $json['subscription_item'] = $this->subscriptionItem;
 
         return $json;
     }

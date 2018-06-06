@@ -24,61 +24,41 @@ class CreatePaymentRequest implements JsonSerializable
 
     /**
      * Settings for credit card payment
-     * @required
      * @maps credit_card
-     * @var \MundiAPILib\Models\CreateCreditCardPaymentRequest $creditCard public property
+     * @var \MundiAPILib\Models\CreateCreditCardPaymentRequest|null $creditCard public property
      */
     public $creditCard;
 
     /**
+     * Settings for debit card payment
+     * @maps debit_card
+     * @var \MundiAPILib\Models\CreateDebitCardPaymentRequest|null $debitCard public property
+     */
+    public $debitCard;
+
+    /**
      * Settings for boleto payment
-     * @required
-     * @var \MundiAPILib\Models\CreateBoletoPaymentRequest $boleto public property
+     * @var \MundiAPILib\Models\CreateBoletoPaymentRequest|null $boleto public property
      */
     public $boleto;
 
     /**
      * Currency. Must be informed using 3 characters
-     * @required
-     * @var string $currency public property
+     * @var string|null $currency public property
      */
     public $currency;
 
     /**
      * Settings for voucher payment
-     * @required
-     * @var \MundiAPILib\Models\CreateVoucherPaymentRequest $voucher public property
+     * @var \MundiAPILib\Models\CreateVoucherPaymentRequest|null $voucher public property
      */
     public $voucher;
 
     /**
-     * Metadata
-     * @required
-     * @var array $metadata public property
-     */
-    public $metadata;
-
-    /**
      * Splits
-     * @required
-     * @var \MundiAPILib\Models\CreateSplitRequest[] $split public property
+     * @var \MundiAPILib\Models\CreateSplitRequest[]|null $split public property
      */
     public $split;
-
-    /**
-     * Customer Id
-     * @required
-     * @maps customer_id
-     * @var string $customerId public property
-     */
-    public $customerId;
-
-    /**
-     * Customer
-     * @required
-     * @var \MundiAPILib\Models\CreateCustomerRequest $customer public property
-     */
-    public $customer;
 
     /**
      * Settings for bank transfer payment
@@ -107,38 +87,59 @@ class CreatePaymentRequest implements JsonSerializable
     public $checkout;
 
     /**
+     * Customer Id
+     * @maps customer_id
+     * @var string|null $customerId public property
+     */
+    public $customerId;
+
+    /**
+     * Customer
+     * @var \MundiAPILib\Models\CreateCustomerRequest|null $customer public property
+     */
+    public $customer;
+
+    /**
+     * Metadata
+     * @var array|null $metadata public property
+     */
+    public $metadata;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string                           $paymentMethod        Initialization value for $this->paymentMethod
      * @param CreateCreditCardPaymentRequest   $creditCard           Initialization value for $this->creditCard
+     * @param CreateDebitCardPaymentRequest    $debitCard            Initialization value for $this->debitCard
      * @param CreateBoletoPaymentRequest       $boleto               Initialization value for $this->boleto
      * @param string                           $currency             Initialization value for $this->currency
      * @param CreateVoucherPaymentRequest      $voucher              Initialization value for $this->voucher
-     * @param array                            $metadata             Initialization value for $this->metadata
      * @param array                            $split                Initialization value for $this->split
-     * @param string                           $customerId           Initialization value for $this->customerId
-     * @param CreateCustomerRequest            $customer             Initialization value for $this->customer
      * @param CreateBankTransferPaymentRequest $bankTransfer         Initialization value for $this->bankTransfer
      * @param string                           $gatewayAffiliationId Initialization value for $this-
      *                                                                 >gatewayAffiliationId
      * @param integer                          $amount               Initialization value for $this->amount
      * @param CreateCheckoutPaymentRequest     $checkout             Initialization value for $this->checkout
+     * @param string                           $customerId           Initialization value for $this->customerId
+     * @param CreateCustomerRequest            $customer             Initialization value for $this->customer
+     * @param array                            $metadata             Initialization value for $this->metadata
      */
     public function __construct()
     {
-        if (13 == func_num_args()) {
+        if (14 == func_num_args()) {
             $this->paymentMethod        = func_get_arg(0);
             $this->creditCard           = func_get_arg(1);
-            $this->boleto               = func_get_arg(2);
-            $this->currency             = func_get_arg(3);
-            $this->voucher              = func_get_arg(4);
-            $this->metadata             = func_get_arg(5);
+            $this->debitCard            = func_get_arg(2);
+            $this->boleto               = func_get_arg(3);
+            $this->currency             = func_get_arg(4);
+            $this->voucher              = func_get_arg(5);
             $this->split                = func_get_arg(6);
-            $this->customerId           = func_get_arg(7);
-            $this->customer             = func_get_arg(8);
-            $this->bankTransfer         = func_get_arg(9);
-            $this->gatewayAffiliationId = func_get_arg(10);
-            $this->amount               = func_get_arg(11);
-            $this->checkout             = func_get_arg(12);
+            $this->bankTransfer         = func_get_arg(7);
+            $this->gatewayAffiliationId = func_get_arg(8);
+            $this->amount               = func_get_arg(9);
+            $this->checkout             = func_get_arg(10);
+            $this->customerId           = func_get_arg(11);
+            $this->customer             = func_get_arg(12);
+            $this->metadata             = func_get_arg(13);
         }
     }
 
@@ -151,17 +152,18 @@ class CreatePaymentRequest implements JsonSerializable
         $json = array();
         $json['payment_method']         = $this->paymentMethod;
         $json['credit_card']            = $this->creditCard;
+        $json['debit_card']             = $this->debitCard;
         $json['boleto']                 = $this->boleto;
         $json['currency']               = $this->currency;
         $json['voucher']                = $this->voucher;
-        $json['metadata']               = $this->metadata;
         $json['split']                  = $this->split;
-        $json['customer_id']            = $this->customerId;
-        $json['customer']               = $this->customer;
         $json['bank_transfer']          = $this->bankTransfer;
         $json['gateway_affiliation_id'] = $this->gatewayAffiliationId;
         $json['amount']                 = $this->amount;
         $json['checkout']               = $this->checkout;
+        $json['customer_id']            = $this->customerId;
+        $json['customer']               = $this->customer;
+        $json['metadata']               = $this->metadata;
 
         return $json;
     }

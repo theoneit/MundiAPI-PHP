@@ -96,6 +96,14 @@ class GetTransactionResponse implements JsonSerializable
     public $id;
 
     /**
+     * The Gateway Response
+     * @required
+     * @maps gateway_response
+     * @var \MundiAPILib\Models\GetGatewayResponseResponse $gatewayResponse public property
+     */
+    public $gatewayResponse;
+
+    /**
      * Date and time of the next attempt
      * @maps next_attempt
      * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
@@ -112,22 +120,23 @@ class GetTransactionResponse implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string    $gatewayId       Initialization value for $this->gatewayId
-     * @param integer   $amount          Initialization value for $this->amount
-     * @param string    $status          Initialization value for $this->status
-     * @param bool      $success         Initialization value for $this->success
-     * @param \DateTime $createdAt       Initialization value for $this->createdAt
-     * @param \DateTime $updatedAt       Initialization value for $this->updatedAt
-     * @param integer   $attemptCount    Initialization value for $this->attemptCount
-     * @param integer   $maxAttempts     Initialization value for $this->maxAttempts
-     * @param array     $splits          Initialization value for $this->splits
-     * @param string    $id              Initialization value for $this->id
-     * @param \DateTime $nextAttempt     Initialization value for $this->nextAttempt
-     * @param string    $transactionType Initialization value for $this->transactionType
+     * @param string                      $gatewayId       Initialization value for $this->gatewayId
+     * @param integer                     $amount          Initialization value for $this->amount
+     * @param string                      $status          Initialization value for $this->status
+     * @param bool                        $success         Initialization value for $this->success
+     * @param \DateTime                   $createdAt       Initialization value for $this->createdAt
+     * @param \DateTime                   $updatedAt       Initialization value for $this->updatedAt
+     * @param integer                     $attemptCount    Initialization value for $this->attemptCount
+     * @param integer                     $maxAttempts     Initialization value for $this->maxAttempts
+     * @param array                       $splits          Initialization value for $this->splits
+     * @param string                      $id              Initialization value for $this->id
+     * @param GetGatewayResponseResponse  $gatewayResponse Initialization value for $this->gatewayResponse
+     * @param \DateTime                   $nextAttempt     Initialization value for $this->nextAttempt
+     * @param string                      $transactionType Initialization value for $this->transactionType
      */
     public function __construct()
     {
-        if (12 == func_num_args()) {
+        if (13 == func_num_args()) {
             $this->gatewayId       = func_get_arg(0);
             $this->amount          = func_get_arg(1);
             $this->status          = func_get_arg(2);
@@ -138,8 +147,9 @@ class GetTransactionResponse implements JsonSerializable
             $this->maxAttempts     = func_get_arg(7);
             $this->splits          = func_get_arg(8);
             $this->id              = func_get_arg(9);
-            $this->nextAttempt     = func_get_arg(10);
-            $this->transactionType = func_get_arg(11);
+            $this->gatewayResponse = func_get_arg(10);
+            $this->nextAttempt     = func_get_arg(11);
+            $this->transactionType = func_get_arg(12);
         }
     }
 
@@ -160,6 +170,7 @@ class GetTransactionResponse implements JsonSerializable
         $json['max_attempts']     = $this->maxAttempts;
         $json['splits']           = $this->splits;
         $json['id']               = $this->id;
+        $json['gateway_response'] = $this->gatewayResponse;
         $json['next_attempt']     = isset($this->nextAttempt) ?
             DateTimeHelper::toRfc3339DateTime($this->nextAttempt) : null;
         $json['transaction_type'] = $this->transactionType;

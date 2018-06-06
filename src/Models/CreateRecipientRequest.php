@@ -65,18 +65,26 @@ class CreateRecipientRequest implements JsonSerializable
     public $metadata;
 
     /**
+     * Receiver Transfer Information
+     * @maps transfer_settings
+     * @var \MundiAPILib\Models\CreateTransferSettingsRequest|null $transferSettings public property
+     */
+    public $transferSettings;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param string                   $name               Initialization value for $this->name
-     * @param string                   $email              Initialization value for $this->email
-     * @param string                   $description        Initialization value for $this->description
-     * @param string                   $document           Initialization value for $this->document
-     * @param string                   $type               Initialization value for $this->type
-     * @param CreateBankAccountRequest $defaultBankAccount Initialization value for $this->defaultBankAccount
-     * @param array                    $metadata           Initialization value for $this->metadata
+     * @param string                        $name               Initialization value for $this->name
+     * @param string                        $email              Initialization value for $this->email
+     * @param string                        $description        Initialization value for $this->description
+     * @param string                        $document           Initialization value for $this->document
+     * @param string                        $type               Initialization value for $this->type
+     * @param CreateBankAccountRequest      $defaultBankAccount Initialization value for $this->defaultBankAccount
+     * @param array                         $metadata           Initialization value for $this->metadata
+     * @param CreateTransferSettingsRequest $transferSettings   Initialization value for $this->transferSettings
      */
     public function __construct()
     {
-        if (7 == func_num_args()) {
+        if (8 == func_num_args()) {
             $this->name               = func_get_arg(0);
             $this->email              = func_get_arg(1);
             $this->description        = func_get_arg(2);
@@ -84,6 +92,7 @@ class CreateRecipientRequest implements JsonSerializable
             $this->type               = func_get_arg(4);
             $this->defaultBankAccount = func_get_arg(5);
             $this->metadata           = func_get_arg(6);
+            $this->transferSettings   = func_get_arg(7);
         }
     }
 
@@ -101,6 +110,7 @@ class CreateRecipientRequest implements JsonSerializable
         $json['type']                 = $this->type;
         $json['default_bank_account'] = $this->defaultBankAccount;
         $json['metadata']             = $this->metadata;
+        $json['transfer_settings']    = $this->transferSettings;
 
         return $json;
     }

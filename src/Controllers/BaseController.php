@@ -60,7 +60,8 @@ class BaseController
             'MundiAPILib\\Models\\GetVoucherTransactionResponse',
             'MundiAPILib\\Models\\GetBankTransferTransactionResponse',
             'MundiAPILib\\Models\\GetSafetyPayTransactionResponse',
-            'MundiAPILib\\Models\\GetBoletoTransactionResponse'
+            'MundiAPILib\\Models\\GetBoletoTransactionResponse',
+            'MundiAPILib\\Models\\GetDebitCardTransactionResponse'
         );
         return $mapper;
     }
