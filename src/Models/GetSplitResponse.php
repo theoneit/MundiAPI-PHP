@@ -36,17 +36,27 @@ class GetSplitResponse implements JsonSerializable
     public $recipient;
 
     /**
+     * The split rule gateway id
+     * @required
+     * @maps gateway_id
+     * @var string $gatewayId public property
+     */
+    public $gatewayId;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string               $type      Initialization value for $this->type
      * @param integer              $amount    Initialization value for $this->amount
      * @param GetRecipientResponse $recipient Initialization value for $this->recipient
+     * @param string               $gatewayId Initialization value for $this->gatewayId
      */
     public function __construct()
     {
-        if (3 == func_num_args()) {
+        if (4 == func_num_args()) {
             $this->type      = func_get_arg(0);
             $this->amount    = func_get_arg(1);
             $this->recipient = func_get_arg(2);
+            $this->gatewayId = func_get_arg(3);
         }
     }
 
@@ -57,9 +67,10 @@ class GetSplitResponse implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['type']      = $this->type;
-        $json['amount']    = $this->amount;
-        $json['recipient'] = $this->recipient;
+        $json['type']       = $this->type;
+        $json['amount']     = $this->amount;
+        $json['recipient']  = $this->recipient;
+        $json['gateway_id'] = $this->gatewayId;
 
         return $json;
     }

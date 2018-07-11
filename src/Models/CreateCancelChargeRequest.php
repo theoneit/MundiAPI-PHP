@@ -21,13 +21,22 @@ class CreateCancelChargeRequest implements JsonSerializable
     public $amount;
 
     /**
+     * The split rules request
+     * @maps split_rules
+     * @var \MundiAPILib\Models\CreateCancelChargeSplitRulesRequest[]|null $splitRules public property
+     */
+    public $splitRules;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param integer $amount Initialization value for $this->amount
+     * @param integer $amount     Initialization value for $this->amount
+     * @param array   $splitRules Initialization value for $this->splitRules
      */
     public function __construct()
     {
-        if (1 == func_num_args()) {
-            $this->amount = func_get_arg(0);
+        if (2 == func_num_args()) {
+            $this->amount     = func_get_arg(0);
+            $this->splitRules = func_get_arg(1);
         }
     }
 
@@ -38,7 +47,8 @@ class CreateCancelChargeRequest implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['amount'] = $this->amount;
+        $json['amount']      = $this->amount;
+        $json['split_rules'] = $this->splitRules;
 
         return $json;
     }
