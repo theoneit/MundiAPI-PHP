@@ -8,6 +8,7 @@
 namespace MundiAPILib\Models;
 
 use JsonSerializable;
+use MundiAPILib\Utils\DateTimeHelper;
 
 /**
  *Response object for getting the shipping data
@@ -52,21 +53,41 @@ class GetShippingResponse implements JsonSerializable
     public $address;
 
     /**
+     * Data máxima de entrega
+     * @maps max_delivery_date
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $maxDeliveryDate public property
+     */
+    public $maxDeliveryDate;
+
+    /**
+     * Prazo estimado de entrega
+     * @maps estimated_delivery_date
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $estimatedDeliveryDate public property
+     */
+    public $estimatedDeliveryDate;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param integer            $amount         Initialization value for $this->amount
-     * @param string             $description    Initialization value for $this->description
-     * @param string             $recipientName  Initialization value for $this->recipientName
-     * @param string             $recipientPhone Initialization value for $this->recipientPhone
-     * @param GetAddressResponse $address        Initialization value for $this->address
+     * @param integer             $amount                Initialization value for $this->amount
+     * @param string              $description           Initialization value for $this->description
+     * @param string              $recipientName         Initialization value for $this->recipientName
+     * @param string              $recipientPhone        Initialization value for $this->recipientPhone
+     * @param GetAddressResponse  $address               Initialization value for $this->address
+     * @param \DateTime           $maxDeliveryDate       Initialization value for $this->maxDeliveryDate
+     * @param \DateTime           $estimatedDeliveryDate Initialization value for $this->estimatedDeliveryDate
      */
     public function __construct()
     {
-        if (5 == func_num_args()) {
-            $this->amount         = func_get_arg(0);
-            $this->description    = func_get_arg(1);
-            $this->recipientName  = func_get_arg(2);
-            $this->recipientPhone = func_get_arg(3);
-            $this->address        = func_get_arg(4);
+        if (7 == func_num_args()) {
+            $this->amount                = func_get_arg(0);
+            $this->description           = func_get_arg(1);
+            $this->recipientName         = func_get_arg(2);
+            $this->recipientPhone        = func_get_arg(3);
+            $this->address               = func_get_arg(4);
+            $this->maxDeliveryDate       = func_get_arg(5);
+            $this->estimatedDeliveryDate = func_get_arg(6);
         }
     }
 
@@ -77,11 +98,15 @@ class GetShippingResponse implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['amount']          = $this->amount;
-        $json['description']     = $this->description;
-        $json['recipient_name']  = $this->recipientName;
-        $json['recipient_phone'] = $this->recipientPhone;
-        $json['address']         = $this->address;
+        $json['amount']                  = $this->amount;
+        $json['description']             = $this->description;
+        $json['recipient_name']          = $this->recipientName;
+        $json['recipient_phone']         = $this->recipientPhone;
+        $json['address']                 = $this->address;
+        $json['max_delivery_date']       = isset($this->maxDeliveryDate) ?
+            DateTimeHelper::toRfc3339DateTime($this->maxDeliveryDate) : null;
+        $json['estimated_delivery_date'] = isset($this->estimatedDeliveryDate) ?
+            DateTimeHelper::toRfc3339DateTime($this->estimatedDeliveryDate) : null;
 
         return $json;
     }
