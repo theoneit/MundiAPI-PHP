@@ -105,15 +105,15 @@ class SubscriptionsController extends BaseController
     }
 
     /**
-     * Updates the billing date from a subscription
+     * Updates the start at date from a subscription
      *
-     * @param string                                      $subscriptionId  The subscription id
-     * @param Models\UpdateSubscriptionBillingDateRequest $request         Request for updating the subscription
-     *                                                                     billing date
+     * @param string                                    $subscriptionId  The subscription id
+     * @param Models\UpdateSubscriptionStartDateRequest $request         Request for updating the subscription start
+     *                                                                   date
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function updateSubscriptionBillingDate(
+    public function updateSubscriptionStartAt(
         $subscriptionId,
         $request
     ) {
@@ -122,7 +122,7 @@ class SubscriptionsController extends BaseController
         $_queryBuilder = Configuration::$BASEURI;
         
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/subscriptions/{subscription_id}/billing-date';
+        $_queryBuilder = $_queryBuilder.'/subscriptions/{subscription_id}/start-at';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
