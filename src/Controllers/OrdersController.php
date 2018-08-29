@@ -622,7 +622,7 @@ class OrdersController extends BaseController
         $_queryBuilder = Configuration::$BASEURI;
         
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/{id}/closed';
+        $_queryBuilder = $_queryBuilder.'/orders/{id}/closed';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (

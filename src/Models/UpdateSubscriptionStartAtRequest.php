@@ -13,7 +13,7 @@ use MundiAPILib\Utils\DateTimeHelper;
 /**
  *Request for updating the start date from a subscription
  */
-class UpdateSubscriptionStartDateRequest implements JsonSerializable
+class UpdateSubscriptionStartAtRequest implements JsonSerializable
 {
     /**
      * The date when the subscription periods will start

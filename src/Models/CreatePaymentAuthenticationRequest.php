@@ -12,7 +12,7 @@ use JsonSerializable;
 /**
  *The payment authentication request
  */
-class CreatePaymentAuthentiticationRequest implements JsonSerializable
+class CreatePaymentAuthenticationRequest implements JsonSerializable
 {
     /**
      * The Authentication type
@@ -25,14 +25,14 @@ class CreatePaymentAuthentiticationRequest implements JsonSerializable
      * The 3D-S authentication object
      * @required
      * @maps threed_secure
-     * @var \MundiAPILib\Models\Create3DSAuthentiticationRequest $threedSecure public property
+     * @var \MundiAPILib\Models\CreateThreeDSecureRequest $threedSecure public property
      */
     public $threedSecure;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                           $type         Initialization value for $this->type
-     * @param Create3DSAuthentiticationRequest $threedSecure Initialization value for $this->threedSecure
+     * @param string                    $type         Initialization value for $this->type
+     * @param CreateThreeDSecureRequest $threedSecure Initialization value for $this->threedSecure
      */
     public function __construct()
     {

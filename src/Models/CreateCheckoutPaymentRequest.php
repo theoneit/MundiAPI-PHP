@@ -77,11 +77,18 @@ class CreateCheckoutPaymentRequest implements JsonSerializable
     public $gatewayAffiliationId;
 
     /**
-     * Card payment request
+     * Credit Card payment request
      * @maps credit_card
-     * @var \MundiAPILib\Models\CreateCheckoutCardPaymentRequest|null $creditCard public property
+     * @var \MundiAPILib\Models\CreateCheckoutCreditCardPaymentRequest|null $creditCard public property
      */
     public $creditCard;
+
+    /**
+     * Debit Card payment request
+     * @maps debit_card
+     * @var \MundiAPILib\Models\CreateCheckoutDebitCardPaymentRequest|null $debitCard public property
+     */
+    public $debitCard;
 
     /**
      * Boleto payment request
@@ -105,33 +112,36 @@ class CreateCheckoutPaymentRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param array                              $acceptedPaymentMethods      Initialization value for $this-
-     *                                                                          >acceptedPaymentMethods
-     * @param array                              $acceptedMultiPaymentMethods Initialization value for $this-
-     *                                                                          >acceptedMultiPaymentMethods
-     * @param string                             $successUrl                  Initialization value for $this-
-     *                                                                          >successUrl
-     * @param bool                               $skipCheckoutSuccessPage     Initialization value for $this-
-     *                                                                          >skipCheckoutSuccessPage
-     * @param bool                               $billingAddressEditable      Initialization value for $this-
-     *                                                                          >billingAddressEditable
-     * @param CreateAddressRequest               $billingAddress              Initialization value for $this-
-     *                                                                          >billingAddress
-     * @param string                             $defaultPaymentMethod        Initialization value for $this-
-     *                                                                          >defaultPaymentMethod
-     * @param string                             $gatewayAffiliationId        Initialization value for $this-
-     *                                                                          >gatewayAffiliationId
-     * @param CreateCheckoutCardPaymentRequest   $creditCard                  Initialization value for $this-
-     *                                                                          >creditCard
-     * @param CreateCheckoutBoletoPaymentRequest $boleto                      Initialization value for $this->boleto
-     * @param bool                               $customerEditable            Initialization value for $this-
-     *                                                                          >customerEditable
-     * @param integer                            $expiresIn                   Initialization value for $this-
-     *                                                                          >expiresIn
+     * @param array                                  $acceptedPaymentMethods      Initialization value for $this-
+     *                                                                              >acceptedPaymentMethods
+     * @param array                                  $acceptedMultiPaymentMethods Initialization value for $this-
+     *                                                                              >acceptedMultiPaymentMethods
+     * @param string                                 $successUrl                  Initialization value for $this-
+     *                                                                              >successUrl
+     * @param bool                                   $skipCheckoutSuccessPage     Initialization value for $this-
+     *                                                                              >skipCheckoutSuccessPage
+     * @param bool                                   $billingAddressEditable      Initialization value for $this-
+     *                                                                              >billingAddressEditable
+     * @param CreateAddressRequest                   $billingAddress              Initialization value for $this-
+     *                                                                              >billingAddress
+     * @param string                                 $defaultPaymentMethod        Initialization value for $this-
+     *                                                                              >defaultPaymentMethod
+     * @param string                                 $gatewayAffiliationId        Initialization value for $this-
+     *                                                                              >gatewayAffiliationId
+     * @param CreateCheckoutCreditCardPaymentRequest $creditCard                  Initialization value for $this-
+     *                                                                              >creditCard
+     * @param CreateCheckoutDebitCardPaymentRequest  $debitCard                   Initialization value for $this-
+     *                                                                              >debitCard
+     * @param CreateCheckoutBoletoPaymentRequest     $boleto                      Initialization value for $this-
+     *                                                                              >boleto
+     * @param bool                                   $customerEditable            Initialization value for $this-
+     *                                                                              >customerEditable
+     * @param integer                                $expiresIn                   Initialization value for $this-
+     *                                                                              >expiresIn
      */
     public function __construct()
     {
-        if (12 == func_num_args()) {
+        if (13 == func_num_args()) {
             $this->acceptedPaymentMethods      = func_get_arg(0);
             $this->acceptedMultiPaymentMethods = func_get_arg(1);
             $this->successUrl                  = func_get_arg(2);
@@ -141,9 +151,10 @@ class CreateCheckoutPaymentRequest implements JsonSerializable
             $this->defaultPaymentMethod        = func_get_arg(6);
             $this->gatewayAffiliationId        = func_get_arg(7);
             $this->creditCard                  = func_get_arg(8);
-            $this->boleto                      = func_get_arg(9);
-            $this->customerEditable            = func_get_arg(10);
-            $this->expiresIn                   = func_get_arg(11);
+            $this->debitCard                   = func_get_arg(9);
+            $this->boleto                      = func_get_arg(10);
+            $this->customerEditable            = func_get_arg(11);
+            $this->expiresIn                   = func_get_arg(12);
         }
     }
 
@@ -163,6 +174,7 @@ class CreateCheckoutPaymentRequest implements JsonSerializable
         $json['default_payment_method']         = $this->defaultPaymentMethod;
         $json['gateway_affiliation_id']         = $this->gatewayAffiliationId;
         $json['credit_card']                    = $this->creditCard;
+        $json['debit_card']                     = $this->debitCard;
         $json['boleto']                         = $this->boleto;
         $json['customer_editable']              = $this->customerEditable;
         $json['expires_in']                     = $this->expiresIn;

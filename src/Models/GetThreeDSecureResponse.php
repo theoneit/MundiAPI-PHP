@@ -10,48 +10,52 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- *Creates a 3D-S authentication payment
+ *3D-S payment authentication response
  */
-class Create3DSAuthentiticationRequest implements JsonSerializable
+class GetThreeDSecureResponse implements JsonSerializable
 {
     /**
-     * The MPI Vendor (MerchantPlugin)
+     * MPI Vendor
      * @required
      * @var string $mpi public property
      */
     public $mpi;
 
     /**
-     * The Cardholder Authentication Verification value
-     * @var string|null $cavv public property
-     */
-    public $cavv;
-
-    /**
-     * The Electronic Commerce Indicator value
-     * @var string|null $eci public property
+     * Electronic Commerce Indicator (ECI) (Opcional)
+     * @required
+     * @var string $eci public property
      */
     public $eci;
 
     /**
-     * The TransactionId value (XID)
-     * @maps transaction_id
-     * @var string|null $transactionId public property
+     * Online payment cryptogram, definido pelo 3-D Secure.
+     * @required
+     * @var string $cavv public property
+     */
+    public $cavv;
+
+    /**
+     * Identificador da transação (XID)
+     * @required
+     * @maps transaction_Id
+     * @var string $transactionId public property
      */
     public $transactionId;
 
     /**
-     * The success URL after the authentication
+     * Url de redirecionamento de sucessso
+     * @required
      * @maps success_url
-     * @var string|null $successUrl public property
+     * @var string $successUrl public property
      */
     public $successUrl;
 
     /**
      * Constructor to set initial or default values of member properties
      * @param string $mpi           Initialization value for $this->mpi
-     * @param string $cavv          Initialization value for $this->cavv
      * @param string $eci           Initialization value for $this->eci
+     * @param string $cavv          Initialization value for $this->cavv
      * @param string $transactionId Initialization value for $this->transactionId
      * @param string $successUrl    Initialization value for $this->successUrl
      */
@@ -59,8 +63,8 @@ class Create3DSAuthentiticationRequest implements JsonSerializable
     {
         if (5 == func_num_args()) {
             $this->mpi           = func_get_arg(0);
-            $this->cavv          = func_get_arg(1);
-            $this->eci           = func_get_arg(2);
+            $this->eci           = func_get_arg(1);
+            $this->cavv          = func_get_arg(2);
             $this->transactionId = func_get_arg(3);
             $this->successUrl    = func_get_arg(4);
         }
@@ -74,9 +78,9 @@ class Create3DSAuthentiticationRequest implements JsonSerializable
     {
         $json = array();
         $json['mpi']            = $this->mpi;
-        $json['cavv']           = $this->cavv;
         $json['eci']            = $this->eci;
-        $json['transaction_id'] = $this->transactionId;
+        $json['cavv']           = $this->cavv;
+        $json['transaction_Id'] = $this->transactionId;
         $json['success_url']    = $this->successUrl;
 
         return $json;
