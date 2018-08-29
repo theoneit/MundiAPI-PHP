@@ -130,6 +130,14 @@ class GetChargeResponse implements JsonSerializable
     public $metadata;
 
     /**
+     * Canceled Amount
+     * @required
+     * @maps canceled_amount
+     * @var integer $canceledAmount public property
+     */
+    public $canceledAmount;
+
+    /**
      * @todo Write general description for this property
      * @maps paid_at
      * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
@@ -162,12 +170,13 @@ class GetChargeResponse implements JsonSerializable
      * @param GetOrderResponse        $order           Initialization value for $this->order
      * @param GetCustomerResponse     $customer        Initialization value for $this->customer
      * @param array                   $metadata        Initialization value for $this->metadata
+     * @param integer                 $canceledAmount  Initialization value for $this->canceledAmount
      * @param \DateTime               $paidAt          Initialization value for $this->paidAt
      * @param \DateTime               $canceledAt      Initialization value for $this->canceledAt
      */
     public function __construct()
     {
-        if (17 == func_num_args()) {
+        if (18 == func_num_args()) {
             $this->id              = func_get_arg(0);
             $this->code            = func_get_arg(1);
             $this->gatewayId       = func_get_arg(2);
@@ -183,8 +192,9 @@ class GetChargeResponse implements JsonSerializable
             $this->order           = func_get_arg(12);
             $this->customer        = func_get_arg(13);
             $this->metadata        = func_get_arg(14);
-            $this->paidAt          = func_get_arg(15);
-            $this->canceledAt      = func_get_arg(16);
+            $this->canceledAmount  = func_get_arg(15);
+            $this->paidAt          = func_get_arg(16);
+            $this->canceledAt      = func_get_arg(17);
         }
     }
 
@@ -210,6 +220,7 @@ class GetChargeResponse implements JsonSerializable
         $json['order']            = $this->order;
         $json['customer']         = $this->customer;
         $json['metadata']         = $this->metadata;
+        $json['canceled_amount']  = $this->canceledAmount;
         $json['paid_at']          = isset($this->paidAt) ?
             DateTimeHelper::toRfc3339DateTime($this->paidAt) : null;
         $json['canceled_at']      = isset($this->canceledAt) ?
