@@ -12,32 +12,34 @@ use JsonSerializable;
 /**
  * @todo Write general description for this model
  */
-class GetCheckoutCardPaymentResponse implements JsonSerializable
+class GetCheckoutDebitCardPaymentResponse implements JsonSerializable
 {
     /**
      * Descrição na fatura
      * @required
+     * @maps statement_descriptor
      * @var string $statementDescriptor public property
      */
     public $statementDescriptor;
 
     /**
-     * Parcelas
+     * Payment Authentication response object data
      * @required
-     * @var \MundiAPILib\Models\GetCheckoutCardInstallmentOptionsResponse[] $installments public property
+     * @var \MundiAPILib\Models\GetPaymentAuthenticationResponse $authentication public property
      */
-    public $installments;
+    public $authentication;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string $statementDescriptor Initialization value for $this->statementDescriptor
-     * @param array  $installments        Initialization value for $this->installments
+     * @param string                           $statementDescriptor Initialization value for $this-
+     *                                                                >statementDescriptor
+     * @param GetPaymentAuthenticationResponse $authentication      Initialization value for $this->authentication
      */
     public function __construct()
     {
         if (2 == func_num_args()) {
             $this->statementDescriptor = func_get_arg(0);
-            $this->installments        = func_get_arg(1);
+            $this->authentication      = func_get_arg(1);
         }
     }
 
@@ -48,8 +50,8 @@ class GetCheckoutCardPaymentResponse implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['statementDescriptor'] = $this->statementDescriptor;
-        $json['installments']        = $this->installments;
+        $json['statement_descriptor'] = $this->statementDescriptor;
+        $json['authentication']       = $this->authentication;
 
         return $json;
     }

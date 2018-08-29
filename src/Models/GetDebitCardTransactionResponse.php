@@ -119,12 +119,12 @@ class GetDebitCardTransactionResponse extends GetTransactionResponse implements 
     public $authenticationType;
 
     /**
-     * Authentication Url
+     * 3D-S Authentication Url
      * @required
-     * @maps authentication_url
-     * @var string $authenticationUrl public property
+     * @maps threed_authentication_url
+     * @var string $threedAuthenticationUrl public property
      */
-    public $authenticationUrl;
+    public $threedAuthenticationUrl;
 
     /**
      * Constructor to set initial or default values of member properties
@@ -141,7 +141,7 @@ class GetDebitCardTransactionResponse extends GetTransactionResponse implements 
      * @param string          $mpi                     Initialization value for $this->mpi
      * @param string          $eci                     Initialization value for $this->eci
      * @param string          $authenticationType      Initialization value for $this->authenticationType
-     * @param string          $authenticationUrl       Initialization value for $this->authenticationUrl
+     * @param string          $threedAuthenticationUrl Initialization value for $this->threedAuthenticationUrl
      */
     public function __construct()
     {
@@ -159,7 +159,7 @@ class GetDebitCardTransactionResponse extends GetTransactionResponse implements 
             $this->mpi                     = func_get_arg(10);
             $this->eci                     = func_get_arg(11);
             $this->authenticationType      = func_get_arg(12);
-            $this->authenticationUrl       = func_get_arg(13);
+            $this->threedAuthenticationUrl = func_get_arg(13);
         }
     }
 
@@ -183,7 +183,7 @@ class GetDebitCardTransactionResponse extends GetTransactionResponse implements 
         $json['mpi']                       = $this->mpi;
         $json['eci']                       = $this->eci;
         $json['authentication_type']       = $this->authenticationType;
-        $json['authentication_url']        = $this->authenticationUrl;
+        $json['threed_authentication_url'] = $this->threedAuthenticationUrl;
         $json = array_merge($json, parent::jsonSerialize());
 
         return $json;

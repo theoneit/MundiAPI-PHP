@@ -97,6 +97,14 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
     public $acquirerReturnCode;
 
     /**
+     * 3D-S authentication Url
+     * @required
+     * @maps threed_authentication_url
+     * @var string $threedAuthenticationUrl public property
+     */
+    public $threedAuthenticationUrl;
+
+    /**
      * Number of installments
      * @var integer|null $installments public property
      */
@@ -114,11 +122,12 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
      * @param GetCardResponse $card                    Initialization value for $this->card
      * @param string          $acquirerMessage         Initialization value for $this->acquirerMessage
      * @param string          $acquirerReturnCode      Initialization value for $this->acquirerReturnCode
+     * @param string          $threedAuthenticationUrl Initialization value for $this->threedAuthenticationUrl
      * @param integer         $installments            Initialization value for $this->installments
      */
     public function __construct()
     {
-        if (11 == func_num_args()) {
+        if (12 == func_num_args()) {
             $this->statementDescriptor     = func_get_arg(0);
             $this->acquirerName            = func_get_arg(1);
             $this->acquirerAffiliationCode = func_get_arg(2);
@@ -129,7 +138,8 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
             $this->card                    = func_get_arg(7);
             $this->acquirerMessage         = func_get_arg(8);
             $this->acquirerReturnCode      = func_get_arg(9);
-            $this->installments            = func_get_arg(10);
+            $this->threedAuthenticationUrl = func_get_arg(10);
+            $this->installments            = func_get_arg(11);
         }
     }
 
@@ -150,6 +160,7 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
         $json['card']                      = $this->card;
         $json['acquirer_message']          = $this->acquirerMessage;
         $json['acquirer_return_code']      = $this->acquirerReturnCode;
+        $json['threed_authentication_url'] = $this->threedAuthenticationUrl;
         $json['installments']              = $this->installments;
         $json = array_merge($json, parent::jsonSerialize());
 
