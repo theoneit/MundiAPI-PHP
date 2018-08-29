@@ -894,6 +894,7 @@ function getIncrements(
 
 ```php
 $subscriptionId = 'subscription_id';
+
 $page = 158;
 $size = 158;
 
@@ -1009,6 +1010,7 @@ function getUsages(
 ```php
 $subscriptionId = 'subscription_id';
 $itemId = 'item_id';
+
 $page = 158;
 $size = 158;
 $code = 'code';
@@ -2230,7 +2232,6 @@ function getAddresses(
 $customerId = 'customer_id';
 $page = 109;
 $size = 109;
-
 $result = $customers->getAddresses($customerId, $page, $size);
 
 ```
