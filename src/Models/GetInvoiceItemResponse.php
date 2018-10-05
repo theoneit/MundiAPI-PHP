@@ -45,14 +45,6 @@ class GetInvoiceItemResponse implements JsonSerializable
     public $priceBracket;
 
     /**
-     * Subscription Item Id
-     * @required
-     * @maps subscription_item_id
-     * @var string $subscriptionItemId public property
-     */
-    public $subscriptionItemId;
-
-    /**
      * @todo Write general description for this property
      * @var integer|null $quantity public property
      */
@@ -65,14 +57,22 @@ class GetInvoiceItemResponse implements JsonSerializable
     public $name;
 
     /**
+     * Subscription Item Id
+     * @required
+     * @maps subscription_item_id
+     * @var string $subscriptionItemId public property
+     */
+    public $subscriptionItemId;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param integer                  $amount             Initialization value for $this->amount
      * @param string                   $description        Initialization value for $this->description
      * @param GetPricingSchemeResponse $pricingScheme      Initialization value for $this->pricingScheme
      * @param GetPriceBracketResponse  $priceBracket       Initialization value for $this->priceBracket
-     * @param string                   $subscriptionItemId Initialization value for $this->subscriptionItemId
      * @param integer                  $quantity           Initialization value for $this->quantity
      * @param string                   $name               Initialization value for $this->name
+     * @param string                   $subscriptionItemId Initialization value for $this->subscriptionItemId
      */
     public function __construct()
     {
@@ -81,9 +81,9 @@ class GetInvoiceItemResponse implements JsonSerializable
             $this->description        = func_get_arg(1);
             $this->pricingScheme      = func_get_arg(2);
             $this->priceBracket       = func_get_arg(3);
-            $this->subscriptionItemId = func_get_arg(4);
-            $this->quantity           = func_get_arg(5);
-            $this->name               = func_get_arg(6);
+            $this->quantity           = func_get_arg(4);
+            $this->name               = func_get_arg(5);
+            $this->subscriptionItemId = func_get_arg(6);
         }
     }
 
@@ -98,9 +98,9 @@ class GetInvoiceItemResponse implements JsonSerializable
         $json['description']          = $this->description;
         $json['pricing_scheme']       = $this->pricingScheme;
         $json['price_bracket']        = $this->priceBracket;
-        $json['subscription_item_id'] = $this->subscriptionItemId;
         $json['quantity']             = $this->quantity;
         $json['name']                 = $this->name;
+        $json['subscription_item_id'] = $this->subscriptionItemId;
 
         return $json;
     }

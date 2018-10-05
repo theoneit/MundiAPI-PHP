@@ -65,13 +65,6 @@ class CreateOrderRequest implements JsonSerializable
     public $metadata;
 
     /**
-     * @todo Write general description for this property
-     * @required
-     * @var bool $closed public property
-     */
-    public $closed;
-
-    /**
      * Defines whether the order will go through anti-fraud
      * @maps antifraud_enabled
      * @var bool|null $antifraudEnabled public property
@@ -104,6 +97,13 @@ class CreateOrderRequest implements JsonSerializable
     public $device;
 
     /**
+     * @todo Write general description for this property
+     * @required
+     * @var bool $closed public property
+     */
+    public $closed;
+
+    /**
      * Currency
      * @var string|null $currency public property
      */
@@ -118,12 +118,12 @@ class CreateOrderRequest implements JsonSerializable
      * @param string                $customerId       Initialization value for $this->customerId
      * @param CreateShippingRequest $shipping         Initialization value for $this->shipping
      * @param array                 $metadata         Initialization value for $this->metadata
-     * @param bool                  $closed           Initialization value for $this->closed
      * @param bool                  $antifraudEnabled Initialization value for $this->antifraudEnabled
      * @param string                $ip               Initialization value for $this->ip
      * @param string                $sessionId        Initialization value for $this->sessionId
      * @param CreateLocationRequest $location         Initialization value for $this->location
      * @param CreateDeviceRequest   $device           Initialization value for $this->device
+     * @param bool                  $closed           Initialization value for $this->closed
      * @param string                $currency         Initialization value for $this->currency
      */
     public function __construct()
@@ -137,12 +137,12 @@ class CreateOrderRequest implements JsonSerializable
                 $this->customerId       = func_get_arg(4);
                 $this->shipping         = func_get_arg(5);
                 $this->metadata         = func_get_arg(6);
-                $this->closed           = func_get_arg(7);
-                $this->antifraudEnabled = func_get_arg(8);
-                $this->ip               = func_get_arg(9);
-                $this->sessionId        = func_get_arg(10);
-                $this->location         = func_get_arg(11);
-                $this->device           = func_get_arg(12);
+                $this->antifraudEnabled = func_get_arg(7);
+                $this->ip               = func_get_arg(8);
+                $this->sessionId        = func_get_arg(9);
+                $this->location         = func_get_arg(10);
+                $this->device           = func_get_arg(11);
+                $this->closed           = func_get_arg(12);
                 $this->currency         = func_get_arg(13);
                 break;
 
@@ -166,12 +166,12 @@ class CreateOrderRequest implements JsonSerializable
         $json['customer_id']       = $this->customerId;
         $json['shipping']          = $this->shipping;
         $json['metadata']          = $this->metadata;
-        $json['closed']            = $this->closed;
         $json['antifraud_enabled'] = $this->antifraudEnabled;
         $json['ip']                = $this->ip;
         $json['session_id']        = $this->sessionId;
         $json['location']          = $this->location;
         $json['device']            = $this->device;
+        $json['closed']            = $this->closed;
         $json['currency']          = $this->currency;
 
         return $json;

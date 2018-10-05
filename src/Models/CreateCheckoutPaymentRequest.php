@@ -39,30 +39,6 @@ class CreateCheckoutPaymentRequest implements JsonSerializable
     public $successUrl;
 
     /**
-     * Pular tela de sucesso pós-pagamento?
-     * @required
-     * @maps skip_checkout_success_page
-     * @var bool $skipCheckoutSuccessPage public property
-     */
-    public $skipCheckoutSuccessPage;
-
-    /**
-     * Torna o objeto billing address editável
-     * @required
-     * @maps billing_address_editable
-     * @var bool $billingAddressEditable public property
-     */
-    public $billingAddressEditable;
-
-    /**
-     * Endereço de cobrança
-     * @required
-     * @maps billing_address
-     * @var \MundiAPILib\Models\CreateAddressRequest $billingAddress public property
-     */
-    public $billingAddress;
-
-    /**
      * Default payment method
      * @maps default_payment_method
      * @var string|null $defaultPaymentMethod public property
@@ -97,18 +73,50 @@ class CreateCheckoutPaymentRequest implements JsonSerializable
     public $boleto;
 
     /**
-     * Torna o objeto editável
+     * Customer is editable?
      * @maps customer_editable
      * @var bool|null $customerEditable public property
      */
     public $customerEditable;
 
     /**
-     * Tempo em minutos para a expiração
+     * Time in minutes for expiration
      * @maps expires_in
      * @var integer|null $expiresIn public property
      */
     public $expiresIn;
+
+    /**
+     * Skip postpay success screen?
+     * @required
+     * @maps skip_checkout_success_page
+     * @var bool $skipCheckoutSuccessPage public property
+     */
+    public $skipCheckoutSuccessPage;
+
+    /**
+     * Billing Address is editable?
+     * @required
+     * @maps billing_address_editable
+     * @var bool $billingAddressEditable public property
+     */
+    public $billingAddressEditable;
+
+    /**
+     * Billing Address
+     * @required
+     * @maps billing_address
+     * @var \MundiAPILib\Models\CreateAddressRequest $billingAddress public property
+     */
+    public $billingAddress;
+
+    /**
+     * Bank Transfer payment request
+     * @required
+     * @maps bank_transfer
+     * @var \MundiAPILib\Models\CreateCheckoutBankTransferRequest $bankTransfer public property
+     */
+    public $bankTransfer;
 
     /**
      * Constructor to set initial or default values of member properties
@@ -118,12 +126,6 @@ class CreateCheckoutPaymentRequest implements JsonSerializable
      *                                                                              >acceptedMultiPaymentMethods
      * @param string                                 $successUrl                  Initialization value for $this-
      *                                                                              >successUrl
-     * @param bool                                   $skipCheckoutSuccessPage     Initialization value for $this-
-     *                                                                              >skipCheckoutSuccessPage
-     * @param bool                                   $billingAddressEditable      Initialization value for $this-
-     *                                                                              >billingAddressEditable
-     * @param CreateAddressRequest                   $billingAddress              Initialization value for $this-
-     *                                                                              >billingAddress
      * @param string                                 $defaultPaymentMethod        Initialization value for $this-
      *                                                                              >defaultPaymentMethod
      * @param string                                 $gatewayAffiliationId        Initialization value for $this-
@@ -138,23 +140,32 @@ class CreateCheckoutPaymentRequest implements JsonSerializable
      *                                                                              >customerEditable
      * @param integer                                $expiresIn                   Initialization value for $this-
      *                                                                              >expiresIn
+     * @param bool                                   $skipCheckoutSuccessPage     Initialization value for $this-
+     *                                                                              >skipCheckoutSuccessPage
+     * @param bool                                   $billingAddressEditable      Initialization value for $this-
+     *                                                                              >billingAddressEditable
+     * @param CreateAddressRequest                   $billingAddress              Initialization value for $this-
+     *                                                                              >billingAddress
+     * @param CreateCheckoutBankTransferRequest      $bankTransfer                Initialization value for $this-
+     *                                                                              >bankTransfer
      */
     public function __construct()
     {
-        if (13 == func_num_args()) {
+        if (14 == func_num_args()) {
             $this->acceptedPaymentMethods      = func_get_arg(0);
             $this->acceptedMultiPaymentMethods = func_get_arg(1);
             $this->successUrl                  = func_get_arg(2);
-            $this->skipCheckoutSuccessPage     = func_get_arg(3);
-            $this->billingAddressEditable      = func_get_arg(4);
-            $this->billingAddress              = func_get_arg(5);
-            $this->defaultPaymentMethod        = func_get_arg(6);
-            $this->gatewayAffiliationId        = func_get_arg(7);
-            $this->creditCard                  = func_get_arg(8);
-            $this->debitCard                   = func_get_arg(9);
-            $this->boleto                      = func_get_arg(10);
-            $this->customerEditable            = func_get_arg(11);
-            $this->expiresIn                   = func_get_arg(12);
+            $this->defaultPaymentMethod        = func_get_arg(3);
+            $this->gatewayAffiliationId        = func_get_arg(4);
+            $this->creditCard                  = func_get_arg(5);
+            $this->debitCard                   = func_get_arg(6);
+            $this->boleto                      = func_get_arg(7);
+            $this->customerEditable            = func_get_arg(8);
+            $this->expiresIn                   = func_get_arg(9);
+            $this->skipCheckoutSuccessPage     = func_get_arg(10);
+            $this->billingAddressEditable      = func_get_arg(11);
+            $this->billingAddress              = func_get_arg(12);
+            $this->bankTransfer                = func_get_arg(13);
         }
     }
 
@@ -168,9 +179,6 @@ class CreateCheckoutPaymentRequest implements JsonSerializable
         $json['accepted_payment_methods']       = $this->acceptedPaymentMethods;
         $json['accepted_multi_payment_methods'] = $this->acceptedMultiPaymentMethods;
         $json['success_url']                    = $this->successUrl;
-        $json['skip_checkout_success_page']     = $this->skipCheckoutSuccessPage;
-        $json['billing_address_editable']       = $this->billingAddressEditable;
-        $json['billing_address']                = $this->billingAddress;
         $json['default_payment_method']         = $this->defaultPaymentMethod;
         $json['gateway_affiliation_id']         = $this->gatewayAffiliationId;
         $json['credit_card']                    = $this->creditCard;
@@ -178,6 +186,10 @@ class CreateCheckoutPaymentRequest implements JsonSerializable
         $json['boleto']                         = $this->boleto;
         $json['customer_editable']              = $this->customerEditable;
         $json['expires_in']                     = $this->expiresIn;
+        $json['skip_checkout_success_page']     = $this->skipCheckoutSuccessPage;
+        $json['billing_address_editable']       = $this->billingAddressEditable;
+        $json['billing_address']                = $this->billingAddress;
+        $json['bank_transfer']                  = $this->bankTransfer;
 
         return $json;
     }

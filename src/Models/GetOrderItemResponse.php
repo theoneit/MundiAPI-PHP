@@ -44,13 +44,6 @@ class GetOrderItemResponse implements JsonSerializable
     public $quantity;
 
     /**
-     * Category
-     * @required
-     * @var string $category public property
-     */
-    public $category;
-
-    /**
      * Seller data
      * @maps GetSellerResponse
      * @var \MundiAPILib\Models\GetSellerResponse|null $getSellerResponse public property
@@ -58,13 +51,20 @@ class GetOrderItemResponse implements JsonSerializable
     public $getSellerResponse;
 
     /**
+     * Category
+     * @required
+     * @var string $category public property
+     */
+    public $category;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string            $id                Initialization value for $this->id
      * @param integer           $amount            Initialization value for $this->amount
      * @param string            $description       Initialization value for $this->description
      * @param integer           $quantity          Initialization value for $this->quantity
-     * @param string            $category          Initialization value for $this->category
      * @param GetSellerResponse $getSellerResponse Initialization value for $this->getSellerResponse
+     * @param string            $category          Initialization value for $this->category
      */
     public function __construct()
     {
@@ -73,8 +73,8 @@ class GetOrderItemResponse implements JsonSerializable
             $this->amount            = func_get_arg(1);
             $this->description       = func_get_arg(2);
             $this->quantity          = func_get_arg(3);
-            $this->category          = func_get_arg(4);
-            $this->getSellerResponse = func_get_arg(5);
+            $this->getSellerResponse = func_get_arg(4);
+            $this->category          = func_get_arg(5);
         }
     }
 
@@ -89,8 +89,8 @@ class GetOrderItemResponse implements JsonSerializable
         $json['amount']            = $this->amount;
         $json['description']       = $this->description;
         $json['quantity']          = $this->quantity;
-        $json['category']          = $this->category;
         $json['GetSellerResponse'] = $this->getSellerResponse;
+        $json['category']          = $this->category;
 
         return $json;
     }

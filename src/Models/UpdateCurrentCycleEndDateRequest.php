@@ -11,27 +11,27 @@ use JsonSerializable;
 use MundiAPILib\Utils\DateTimeHelper;
 
 /**
- *Request for updating the start date from a subscription
+ *Request to update the end date of the current subscription cycle
  */
-class UpdateSubscriptionStartDateRequest implements JsonSerializable
+class UpdateCurrentCycleEndDateRequest implements JsonSerializable
 {
     /**
-     * The date when the subscription periods will start
+     * Current cycle end date
      * @required
-     * @maps start_at
+     * @maps end_at
      * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
-     * @var \DateTime $startAt public property
+     * @var \DateTime $endAt public property
      */
-    public $startAt;
+    public $endAt;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param \DateTime $startAt Initialization value for $this->startAt
+     * @param \DateTime $endAt Initialization value for $this->endAt
      */
     public function __construct()
     {
         if (1 == func_num_args()) {
-            $this->startAt = func_get_arg(0);
+            $this->endAt = func_get_arg(0);
         }
     }
 
@@ -42,7 +42,7 @@ class UpdateSubscriptionStartDateRequest implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['start_at'] = DateTimeHelper::toRfc3339DateTime($this->startAt);
+        $json['end_at'] = DateTimeHelper::toRfc3339DateTime($this->endAt);
 
         return $json;
     }

@@ -73,6 +73,14 @@ class GetBoletoTransactionResponse extends GetTransactionResponse implements Jso
 
     /**
      * @todo Write general description for this property
+     * @maps due_at
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $dueAt public property
+     */
+    public $dueAt;
+
+    /**
+     * @todo Write general description for this property
      * @required
      * @maps qr_code
      * @var string $qrCode public property
@@ -103,6 +111,14 @@ class GetBoletoTransactionResponse extends GetTransactionResponse implements Jso
 
     /**
      * @todo Write general description for this property
+     * @maps paid_at
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $paidAt public property
+     */
+    public $paidAt;
+
+    /**
+     * @todo Write general description for this property
      * @required
      * @maps paid_amount
      * @var string $paidAmount public property
@@ -117,22 +133,6 @@ class GetBoletoTransactionResponse extends GetTransactionResponse implements Jso
     public $type;
 
     /**
-     * @todo Write general description for this property
-     * @maps due_at
-     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
-     * @var \DateTime|null $dueAt public property
-     */
-    public $dueAt;
-
-    /**
-     * @todo Write general description for this property
-     * @maps paid_at
-     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
-     * @var \DateTime|null $paidAt public property
-     */
-    public $paidAt;
-
-    /**
      * Constructor to set initial or default values of member properties
      * @param string                     $url            Initialization value for $this->url
      * @param string                     $barCode        Initialization value for $this->barCode
@@ -141,14 +141,14 @@ class GetBoletoTransactionResponse extends GetTransactionResponse implements Jso
      * @param string                     $documentNumber Initialization value for $this->documentNumber
      * @param string                     $instructions   Initialization value for $this->instructions
      * @param GetBillingAddressResponse  $billingAddress Initialization value for $this->billingAddress
+     * @param \DateTime                  $dueAt          Initialization value for $this->dueAt
      * @param string                     $qrCode         Initialization value for $this->qrCode
      * @param string                     $line           Initialization value for $this->line
      * @param string                     $pdfPassword    Initialization value for $this->pdfPassword
      * @param string                     $pdf            Initialization value for $this->pdf
+     * @param \DateTime                  $paidAt         Initialization value for $this->paidAt
      * @param string                     $paidAmount     Initialization value for $this->paidAmount
      * @param string                     $type           Initialization value for $this->type
-     * @param \DateTime                  $dueAt          Initialization value for $this->dueAt
-     * @param \DateTime                  $paidAt         Initialization value for $this->paidAt
      */
     public function __construct()
     {
@@ -160,14 +160,14 @@ class GetBoletoTransactionResponse extends GetTransactionResponse implements Jso
             $this->documentNumber = func_get_arg(4);
             $this->instructions   = func_get_arg(5);
             $this->billingAddress = func_get_arg(6);
-            $this->qrCode         = func_get_arg(7);
-            $this->line           = func_get_arg(8);
-            $this->pdfPassword    = func_get_arg(9);
-            $this->pdf            = func_get_arg(10);
-            $this->paidAmount     = func_get_arg(11);
-            $this->type           = func_get_arg(12);
-            $this->dueAt          = func_get_arg(13);
-            $this->paidAt         = func_get_arg(14);
+            $this->dueAt          = func_get_arg(7);
+            $this->qrCode         = func_get_arg(8);
+            $this->line           = func_get_arg(9);
+            $this->pdfPassword    = func_get_arg(10);
+            $this->pdf            = func_get_arg(11);
+            $this->paidAt         = func_get_arg(12);
+            $this->paidAmount     = func_get_arg(13);
+            $this->type           = func_get_arg(14);
         }
     }
 
@@ -185,16 +185,16 @@ class GetBoletoTransactionResponse extends GetTransactionResponse implements Jso
         $json['document_number'] = $this->documentNumber;
         $json['instructions']    = $this->instructions;
         $json['billing_address'] = $this->billingAddress;
+        $json['due_at']          = isset($this->dueAt) ?
+            DateTimeHelper::toRfc3339DateTime($this->dueAt) : null;
         $json['qr_code']         = $this->qrCode;
         $json['line']            = $this->line;
         $json['pdf_password']    = $this->pdfPassword;
         $json['pdf']             = $this->pdf;
-        $json['paid_amount']     = $this->paidAmount;
-        $json['type']            = $this->type;
-        $json['due_at']          = isset($this->dueAt) ?
-            DateTimeHelper::toRfc3339DateTime($this->dueAt) : null;
         $json['paid_at']         = isset($this->paidAt) ?
             DateTimeHelper::toRfc3339DateTime($this->paidAt) : null;
+        $json['paid_amount']     = $this->paidAmount;
+        $json['type']            = $this->type;
         $json = array_merge($json, parent::jsonSerialize());
 
         return $json;

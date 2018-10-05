@@ -97,18 +97,18 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
     public $acquirerReturnCode;
 
     /**
+     * Number of installments
+     * @var integer|null $installments public property
+     */
+    public $installments;
+
+    /**
      * 3D-S authentication Url
      * @required
      * @maps threed_authentication_url
      * @var string $threedAuthenticationUrl public property
      */
     public $threedAuthenticationUrl;
-
-    /**
-     * Number of installments
-     * @var integer|null $installments public property
-     */
-    public $installments;
 
     /**
      * Constructor to set initial or default values of member properties
@@ -122,8 +122,8 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
      * @param GetCardResponse $card                    Initialization value for $this->card
      * @param string          $acquirerMessage         Initialization value for $this->acquirerMessage
      * @param string          $acquirerReturnCode      Initialization value for $this->acquirerReturnCode
-     * @param string          $threedAuthenticationUrl Initialization value for $this->threedAuthenticationUrl
      * @param integer         $installments            Initialization value for $this->installments
+     * @param string          $threedAuthenticationUrl Initialization value for $this->threedAuthenticationUrl
      */
     public function __construct()
     {
@@ -138,8 +138,8 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
             $this->card                    = func_get_arg(7);
             $this->acquirerMessage         = func_get_arg(8);
             $this->acquirerReturnCode      = func_get_arg(9);
-            $this->threedAuthenticationUrl = func_get_arg(10);
-            $this->installments            = func_get_arg(11);
+            $this->installments            = func_get_arg(10);
+            $this->threedAuthenticationUrl = func_get_arg(11);
         }
     }
 
@@ -160,8 +160,8 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
         $json['card']                      = $this->card;
         $json['acquirer_message']          = $this->acquirerMessage;
         $json['acquirer_return_code']      = $this->acquirerReturnCode;
-        $json['threed_authentication_url'] = $this->threedAuthenticationUrl;
         $json['installments']              = $this->installments;
+        $json['threed_authentication_url'] = $this->threedAuthenticationUrl;
         $json = array_merge($json, parent::jsonSerialize());
 
         return $json;

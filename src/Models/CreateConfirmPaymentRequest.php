@@ -22,6 +22,13 @@ class CreateConfirmPaymentRequest implements JsonSerializable
     public $description;
 
     /**
+     * Amount
+     * @maps Amount
+     * @var integer|null $amount public property
+     */
+    public $amount;
+
+    /**
      * Code reference
      * @required
      * @maps Code
@@ -30,24 +37,17 @@ class CreateConfirmPaymentRequest implements JsonSerializable
     public $code;
 
     /**
-     * Amount
-     * @maps Amount
-     * @var integer|null $amount public property
-     */
-    public $amount;
-
-    /**
      * Constructor to set initial or default values of member properties
      * @param string  $description Initialization value for $this->description
-     * @param string  $code        Initialization value for $this->code
      * @param integer $amount      Initialization value for $this->amount
+     * @param string  $code        Initialization value for $this->code
      */
     public function __construct()
     {
         if (3 == func_num_args()) {
             $this->description = func_get_arg(0);
-            $this->code        = func_get_arg(1);
-            $this->amount      = func_get_arg(2);
+            $this->amount      = func_get_arg(1);
+            $this->code        = func_get_arg(2);
         }
     }
 
@@ -59,8 +59,8 @@ class CreateConfirmPaymentRequest implements JsonSerializable
     {
         $json = array();
         $json['description'] = $this->description;
-        $json['Code']        = $this->code;
         $json['Amount']      = $this->amount;
+        $json['Code']        = $this->code;
 
         return $json;
     }

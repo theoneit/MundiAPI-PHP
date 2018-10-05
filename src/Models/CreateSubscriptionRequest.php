@@ -133,13 +133,6 @@ class CreateSubscriptionRequest implements JsonSerializable
     public $setup;
 
     /**
-     * Increments
-     * @required
-     * @var \MundiAPILib\Models\CreateIncrementRequest[] $increments public property
-     */
-    public $increments;
-
-    /**
      * Plan id
      * @maps plan_id
      * @var string|null $planId public property
@@ -222,6 +215,13 @@ class CreateSubscriptionRequest implements JsonSerializable
     public $boletoDueDays;
 
     /**
+     * Increments
+     * @required
+     * @var \MundiAPILib\Models\CreateIncrementRequest[] $increments public property
+     */
+    public $increments;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param CreateCustomerRequest       $customer             Initialization value for $this->customer
      * @param CreateCardRequest           $card                 Initialization value for $this->card
@@ -239,7 +239,6 @@ class CreateSubscriptionRequest implements JsonSerializable
      * @param array                       $discounts            Initialization value for $this->discounts
      * @param array                       $metadata             Initialization value for $this->metadata
      * @param CreateSetupRequest          $setup                Initialization value for $this->setup
-     * @param array                       $increments           Initialization value for $this->increments
      * @param string                      $planId               Initialization value for $this->planId
      * @param string                      $customerId           Initialization value for $this->customerId
      * @param string                      $cardId               Initialization value for $this->cardId
@@ -252,6 +251,7 @@ class CreateSubscriptionRequest implements JsonSerializable
      * @param string                      $gatewayAffiliationId Initialization value for $this->gatewayAffiliationId
      * @param integer                     $quantity             Initialization value for $this->quantity
      * @param integer                     $boletoDueDays        Initialization value for $this->boletoDueDays
+     * @param array                       $increments           Initialization value for $this->increments
      */
     public function __construct()
     {
@@ -272,19 +272,19 @@ class CreateSubscriptionRequest implements JsonSerializable
             $this->discounts            = func_get_arg(13);
             $this->metadata             = func_get_arg(14);
             $this->setup                = func_get_arg(15);
-            $this->increments           = func_get_arg(16);
-            $this->planId               = func_get_arg(17);
-            $this->customerId           = func_get_arg(18);
-            $this->cardId               = func_get_arg(19);
-            $this->billingDay           = func_get_arg(20);
-            $this->installments         = func_get_arg(21);
-            $this->startAt              = func_get_arg(22);
-            $this->minimumPrice         = func_get_arg(23);
-            $this->cycles               = func_get_arg(24);
-            $this->cardToken            = func_get_arg(25);
-            $this->gatewayAffiliationId = func_get_arg(26);
-            $this->quantity             = func_get_arg(27);
-            $this->boletoDueDays        = func_get_arg(28);
+            $this->planId               = func_get_arg(16);
+            $this->customerId           = func_get_arg(17);
+            $this->cardId               = func_get_arg(18);
+            $this->billingDay           = func_get_arg(19);
+            $this->installments         = func_get_arg(20);
+            $this->startAt              = func_get_arg(21);
+            $this->minimumPrice         = func_get_arg(22);
+            $this->cycles               = func_get_arg(23);
+            $this->cardToken            = func_get_arg(24);
+            $this->gatewayAffiliationId = func_get_arg(25);
+            $this->quantity             = func_get_arg(26);
+            $this->boletoDueDays        = func_get_arg(27);
+            $this->increments           = func_get_arg(28);
         }
     }
 
@@ -311,7 +311,6 @@ class CreateSubscriptionRequest implements JsonSerializable
         $json['discounts']              = $this->discounts;
         $json['metadata']               = $this->metadata;
         $json['setup']                  = $this->setup;
-        $json['increments']             = $this->increments;
         $json['plan_id']                = $this->planId;
         $json['customer_id']            = $this->customerId;
         $json['card_id']                = $this->cardId;
@@ -325,6 +324,7 @@ class CreateSubscriptionRequest implements JsonSerializable
         $json['gateway_affiliation_id'] = $this->gatewayAffiliationId;
         $json['quantity']               = $this->quantity;
         $json['boleto_due_days']        = $this->boletoDueDays;
+        $json['increments']             = $this->increments;
 
         return $json;
     }

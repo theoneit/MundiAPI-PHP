@@ -37,17 +37,25 @@ class CreateSplitRequest implements JsonSerializable
     public $recipientId;
 
     /**
+     * The split options request
+     * @var \MundiAPILib\Models\CreateSplitOptionsRequest|null $options public property
+     */
+    public $options;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param string  $type        Initialization value for $this->type
-     * @param integer $amount      Initialization value for $this->amount
-     * @param string  $recipientId Initialization value for $this->recipientId
+     * @param string                    $type        Initialization value for $this->type
+     * @param integer                   $amount      Initialization value for $this->amount
+     * @param string                    $recipientId Initialization value for $this->recipientId
+     * @param CreateSplitOptionsRequest $options     Initialization value for $this->options
      */
     public function __construct()
     {
-        if (3 == func_num_args()) {
+        if (4 == func_num_args()) {
             $this->type        = func_get_arg(0);
             $this->amount      = func_get_arg(1);
             $this->recipientId = func_get_arg(2);
+            $this->options     = func_get_arg(3);
         }
     }
 
@@ -61,6 +69,7 @@ class CreateSplitRequest implements JsonSerializable
         $json['type']         = $this->type;
         $json['amount']       = $this->amount;
         $json['recipient_id'] = $this->recipientId;
+        $json['options']      = $this->options;
 
         return $json;
     }

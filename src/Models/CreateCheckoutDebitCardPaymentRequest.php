@@ -15,13 +15,6 @@ use JsonSerializable;
 class CreateCheckoutDebitCardPaymentRequest implements JsonSerializable
 {
     /**
-     * Creates payment authentication
-     * @required
-     * @var \MundiAPILib\Models\CreatePaymentAuthenticationRequest $authentication public property
-     */
-    public $authentication;
-
-    /**
      * Card invoice text descriptor
      * @maps statement_descriptor
      * @var string|null $statementDescriptor public property
@@ -29,16 +22,23 @@ class CreateCheckoutDebitCardPaymentRequest implements JsonSerializable
     public $statementDescriptor;
 
     /**
+     * Creates payment authentication
+     * @required
+     * @var \MundiAPILib\Models\CreatePaymentAuthenticationRequest $authentication public property
+     */
+    public $authentication;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param CreatePaymentAuthenticationRequest $authentication      Initialization value for $this->authentication
      * @param string                             $statementDescriptor Initialization value for $this-
      *                                                                  >statementDescriptor
+     * @param CreatePaymentAuthenticationRequest $authentication      Initialization value for $this->authentication
      */
     public function __construct()
     {
         if (2 == func_num_args()) {
-            $this->authentication      = func_get_arg(0);
-            $this->statementDescriptor = func_get_arg(1);
+            $this->statementDescriptor = func_get_arg(0);
+            $this->authentication      = func_get_arg(1);
         }
     }
 
@@ -49,8 +49,8 @@ class CreateCheckoutDebitCardPaymentRequest implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['authentication']       = $this->authentication;
         $json['statement_descriptor'] = $this->statementDescriptor;
+        $json['authentication']       = $this->authentication;
 
         return $json;
     }
