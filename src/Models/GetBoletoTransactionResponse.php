@@ -133,6 +133,14 @@ class GetBoletoTransactionResponse extends GetTransactionResponse implements Jso
     public $type;
 
     /**
+     * @todo Write general description for this property
+     * @maps credit_at
+     * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
+     * @var \DateTime|null $creditAt public property
+     */
+    public $creditAt;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string                     $url            Initialization value for $this->url
      * @param string                     $barCode        Initialization value for $this->barCode
@@ -149,10 +157,11 @@ class GetBoletoTransactionResponse extends GetTransactionResponse implements Jso
      * @param \DateTime                  $paidAt         Initialization value for $this->paidAt
      * @param string                     $paidAmount     Initialization value for $this->paidAmount
      * @param string                     $type           Initialization value for $this->type
+     * @param \DateTime                  $creditAt       Initialization value for $this->creditAt
      */
     public function __construct()
     {
-        if (15 == func_num_args()) {
+        if (16 == func_num_args()) {
             $this->url            = func_get_arg(0);
             $this->barCode        = func_get_arg(1);
             $this->nossoNumero    = func_get_arg(2);
@@ -168,6 +177,7 @@ class GetBoletoTransactionResponse extends GetTransactionResponse implements Jso
             $this->paidAt         = func_get_arg(12);
             $this->paidAmount     = func_get_arg(13);
             $this->type           = func_get_arg(14);
+            $this->creditAt       = func_get_arg(15);
         }
     }
 
@@ -195,6 +205,8 @@ class GetBoletoTransactionResponse extends GetTransactionResponse implements Jso
             DateTimeHelper::toRfc3339DateTime($this->paidAt) : null;
         $json['paid_amount']     = $this->paidAmount;
         $json['type']            = $this->type;
+        $json['credit_at']       = isset($this->creditAt) ?
+            DateTimeHelper::toRfc3339DateTime($this->creditAt) : null;
         $json = array_merge($json, parent::jsonSerialize());
 
         return $json;

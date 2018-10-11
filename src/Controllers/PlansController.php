@@ -71,7 +71,7 @@ class PlansController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK – PHP 0.13.38',
+            'user-agent'    => 'MundiSDK - PHP 0.13.40',
             'Accept'        => 'application/json',
             'content-type'  => 'application/json; charset=utf-8'
         );
@@ -136,7 +136,7 @@ class PlansController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK – PHP 0.13.38',
+            'user-agent'    => 'MundiSDK - PHP 0.13.40',
             'Accept'        => 'application/json',
             'content-type'  => 'application/json; charset=utf-8'
         );
@@ -196,7 +196,7 @@ class PlansController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK – PHP 0.13.38',
+            'user-agent'    => 'MundiSDK - PHP 0.13.40',
             'Accept'        => 'application/json'
         );
 
@@ -255,7 +255,7 @@ class PlansController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK – PHP 0.13.38',
+            'user-agent'    => 'MundiSDK - PHP 0.13.40',
             'Accept'        => 'application/json'
         );
 
@@ -316,7 +316,7 @@ class PlansController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK – PHP 0.13.38',
+            'user-agent'    => 'MundiSDK - PHP 0.13.40',
             'Accept'        => 'application/json',
             'content-type'  => 'application/json; charset=utf-8'
         );
@@ -371,7 +371,7 @@ class PlansController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK – PHP 0.13.38',
+            'user-agent'    => 'MundiSDK - PHP 0.13.40',
             'Accept'        => 'application/json',
             'content-type'  => 'application/json; charset=utf-8'
         );
@@ -449,7 +449,7 @@ class PlansController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK – PHP 0.13.38',
+            'user-agent'    => 'MundiSDK - PHP 0.13.40',
             'Accept'        => 'application/json'
         );
 
@@ -510,7 +510,7 @@ class PlansController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK – PHP 0.13.38',
+            'user-agent'    => 'MundiSDK - PHP 0.13.40',
             'Accept'        => 'application/json',
             'content-type'  => 'application/json; charset=utf-8'
         );
@@ -573,7 +573,7 @@ class PlansController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK – PHP 0.13.38',
+            'user-agent'    => 'MundiSDK - PHP 0.13.40',
             'Accept'        => 'application/json'
         );
 
@@ -635,7 +635,7 @@ class PlansController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK – PHP 0.13.38',
+            'user-agent'    => 'MundiSDK - PHP 0.13.40',
             'Accept'        => 'application/json'
         );
 
