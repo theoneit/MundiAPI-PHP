@@ -10,9 +10,9 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- *The apple pay header request
+ *The ApplePay header request
  */
-class ApplePayHeaderRequest implements JsonSerializable
+class CreateApplePayHeaderRequest implements JsonSerializable
 {
     /**
      * SHA–256 hash, Base64 string codified

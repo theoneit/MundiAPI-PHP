@@ -596,8 +596,8 @@ function getSubscriptions(
 #### Example Usage
 
 ```php
-$page = 217;
-$size = 217;
+$page = 216;
+$size = 216;
 $code = 'code';
 $billingType = 'billing_type';
 $customerId = 'customer_id';
@@ -829,8 +829,8 @@ function getDiscounts(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 125;
-$size = 125;
+$page = 216;
+$size = 216;
 
 $result = $subscriptions->getDiscounts($subscriptionId, $page, $size);
 
@@ -894,8 +894,8 @@ function getIncrements(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 125;
-$size = 125;
+$page = 216;
+$size = 216;
 
 $result = $subscriptions->getIncrements($subscriptionId, $page, $size);
 
@@ -966,8 +966,8 @@ function getUsagesDetails(
 ```php
 $subscriptionId = 'subscription_id';
 $cycleId = 'cycle_id';
-$size = 125;
-$page = 125;
+$size = 216;
+$page = 216;
 $itemId = 'item_id';
 $group = 'group';
 
@@ -1009,8 +1009,8 @@ function getUsages(
 ```php
 $subscriptionId = 'subscription_id';
 $itemId = 'item_id';
-$page = 125;
-$size = 125;
+$page = 216;
+$size = 216;
 $code = 'code';
 $group = 'group';
 
@@ -1057,8 +1057,8 @@ function getSubscriptionItems(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 125;
-$size = 125;
+$page = 216;
+$size = 216;
 $name = 'name';
 $code = 'code';
 $status = 'status';
@@ -1195,6 +1195,37 @@ $result = $subscriptions->updateCurrentCycleEndDate($subscriptionId, $request);
 ```
 
 
+### <a name="update_current_cycle_status"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.updateCurrentCycleStatus") updateCurrentCycleStatus
+
+> TODO: Add a method description
+
+
+```php
+function updateCurrentCycleStatus(
+        $subscriptionId,
+        $request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | Subscription Id |
+| request |  ``` Required ```  | Request for updating the end date of the subscription current status |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+$request = new UpdateCurrentCycleStatusRequest();
+
+$subscriptions->updateCurrentCycleStatus($subscriptionId, $request);
+
+```
+
+
 [Back to List of Controllers](#list_of_controllers)
 
 ## <a name="orders_controller"></a>![Class: ](https://apidocs.io/img/class.png ".OrdersController") OrdersController
@@ -1294,8 +1325,8 @@ function getOrders(
 #### Example Usage
 
 ```php
-$page = 125;
-$size = 125;
+$page = 174;
+$size = 174;
 $code = 'code';
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
@@ -1745,8 +1776,8 @@ function getPlans(
 #### Example Usage
 
 ```php
-$page = 34;
-$size = 34;
+$page = 174;
+$size = 174;
 $name = 'name';
 $status = 'status';
 $billingType = 'billing_type';
@@ -2018,8 +2049,8 @@ function getInvoices(
 #### Example Usage
 
 ```php
-$page = 34;
-$size = 34;
+$page = 11;
+$size = 11;
 $code = 'code';
 $customerId = 'customer_id';
 $subscriptionId = 'subscription_id';
@@ -2061,6 +2092,64 @@ $invoiceId = 'invoice_id';
 $request = new UpdateMetadataRequest();
 
 $result = $invoices->updateInvoiceMetadata($invoiceId, $request);
+
+```
+
+
+### <a name="remove_invoice_usage"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.removeInvoiceUsage") removeInvoiceUsage
+
+> Remove a usage from an invoice
+
+
+```php
+function removeInvoiceUsage(
+        $invoiceId,
+        $usageId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| invoiceId |  ``` Required ```  | Invoice Id |
+| usageId |  ``` Required ```  | Usage Id |
+
+
+
+#### Example Usage
+
+```php
+$invoiceId = 'invoice_id';
+$usageId = 'usage_id';
+
+$result = $invoices->removeInvoiceUsage($invoiceId, $usageId);
+
+```
+
+
+### <a name="remove_invoice_usages"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.removeInvoiceUsages") removeInvoiceUsages
+
+> Remove usages from an invoice
+
+
+```php
+function removeInvoiceUsages($invoiceId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| invoiceId |  ``` Required ```  | Invoice Id |
+
+
+
+#### Example Usage
+
+```php
+$invoiceId = 'invoice_id';
+
+$result = $invoices->removeInvoiceUsages($invoiceId);
 
 ```
 
@@ -2225,8 +2314,8 @@ function getAccessTokens(
 
 ```php
 $customerId = 'customer_id';
-$page = 75;
-$size = 75;
+$page = 11;
+$size = 11;
 
 $result = $customers->getAccessTokens($customerId, $page, $size);
 
@@ -2259,8 +2348,8 @@ function getAddresses(
 
 ```php
 $customerId = 'customer_id';
-$page = 75;
-$size = 75;
+$page = 11;
+$size = 11;
 
 $result = $customers->getAddresses($customerId, $page, $size);
 
@@ -2293,8 +2382,8 @@ function getCards(
 
 ```php
 $customerId = 'customer_id';
-$page = 75;
-$size = 75;
+$page = 11;
+$size = 11;
 
 $result = $customers->getCards($customerId, $page, $size);
 
@@ -2935,8 +3024,8 @@ function getCharges(
 #### Example Usage
 
 ```php
-$page = 75;
-$size = 75;
+$page = 224;
+$size = 224;
 $code = 'code';
 $status = 'status';
 $paymentMethod = 'payment_method';
@@ -3211,8 +3300,8 @@ function getTransfers(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 239;
-$size = 239;
+$page = 224;
+$size = 224;
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
@@ -3356,8 +3445,8 @@ function getAnticipations(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 239;
-$size = 239;
+$page = 224;
+$size = 224;
 $status = 'status';
 $timeframe = 'timeframe';
 $paymentDateSince = date("D M d, Y G:i");
@@ -3482,8 +3571,8 @@ function getRecipients(
 #### Example Usage
 
 ```php
-$page = 239;
-$size = 239;
+$page = 61;
+$size = 61;
 
 $result = $recipients->getRecipients($page, $size);
 
@@ -3814,8 +3903,8 @@ function getSellers(
 #### Example Usage
 
 ```php
-$page = 239;
-$size = 239;
+$page = 61;
+$size = 61;
 $name = 'name';
 $document = 'document';
 $code = 'code';

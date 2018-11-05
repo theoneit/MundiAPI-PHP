@@ -69,7 +69,7 @@ class InvoicesController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.40',
+            'user-agent'    => 'MundiSDK - PHP 0.13.41',
             'Accept'        => 'application/json'
         );
 
@@ -128,7 +128,7 @@ class InvoicesController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.40',
+            'user-agent'    => 'MundiSDK - PHP 0.13.41',
             'Accept'        => 'application/json'
         );
 
@@ -190,7 +190,7 @@ class InvoicesController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.40',
+            'user-agent'    => 'MundiSDK - PHP 0.13.41',
             'Accept'        => 'application/json'
         );
 
@@ -251,7 +251,7 @@ class InvoicesController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.40',
+            'user-agent'    => 'MundiSDK - PHP 0.13.41',
             'Accept'        => 'application/json',
             'content-type'  => 'application/json; charset=utf-8'
         );
@@ -338,7 +338,7 @@ class InvoicesController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.40',
+            'user-agent'    => 'MundiSDK - PHP 0.13.41',
             'Accept'        => 'application/json'
         );
 
@@ -399,7 +399,7 @@ class InvoicesController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.40',
+            'user-agent'    => 'MundiSDK - PHP 0.13.41',
             'Accept'        => 'application/json',
             'content-type'  => 'application/json; charset=utf-8'
         );
@@ -415,6 +415,127 @@ class InvoicesController extends BaseController
 
         //and invoke the API call request to fetch the response
         $response = Request::patch($_queryUrl, $_headers, Request\Body::Json($request));
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetInvoiceResponse');
+    }
+
+    /**
+     * Remove a usage from an invoice
+     *
+     * @param string $invoiceId  Invoice Id
+     * @param string $usageId    Usage Id
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function removeInvoiceUsage(
+        $invoiceId,
+        $usageId
+    ) {
+
+        //the base uri for api requests
+        $_queryBuilder = Configuration::$BASEURI;
+        
+        //prepare query string for API call
+        $_queryBuilder = $_queryBuilder.'/invoices/{invoice_id}/usages/{usage_id}';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'invoice_id' => $invoiceId,
+            'usage_id'   => $usageId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => 'MundiSDK - PHP 0.13.41',
+            'Accept'        => 'application/json'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::delete($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetInvoiceResponse');
+    }
+
+    /**
+     * Remove usages from an invoice
+     *
+     * @param string $invoiceId  Invoice Id
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function removeInvoiceUsages(
+        $invoiceId
+    ) {
+
+        //the base uri for api requests
+        $_queryBuilder = Configuration::$BASEURI;
+        
+        //prepare query string for API call
+        $_queryBuilder = $_queryBuilder.'/invoices/{invoice_id}/usages';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'invoice_id' => $invoiceId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => 'MundiSDK - PHP 0.13.41',
+            'Accept'        => 'application/json'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::delete($_queryUrl, $_headers);
 
         $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
         $_httpContext = new HttpContext($_httpRequest, $_httpResponse);

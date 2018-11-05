@@ -22,23 +22,33 @@ class CreateCardPaymentTokenRequest implements JsonSerializable
     public $type;
 
     /**
-     * The apple pay authentication request
+     * The ApplePay authentication request
      * @required
      * @maps apple_pay
-     * @var \MundiAPILib\Models\ApplePayRequest $applePay public property
+     * @var \MundiAPILib\Models\CreateApplePayRequest $applePay public property
      */
     public $applePay;
 
     /**
+     * The GooglePay authentication request
+     * @required
+     * @maps google_pay
+     * @var \MundiAPILib\Models\CreateGooglePayRequest $googlePay public property
+     */
+    public $googlePay;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param string          $type     Initialization value for $this->type
-     * @param ApplePayRequest $applePay Initialization value for $this->applePay
+     * @param string                 $type      Initialization value for $this->type
+     * @param CreateApplePayRequest  $applePay  Initialization value for $this->applePay
+     * @param CreateGooglePayRequest $googlePay Initialization value for $this->googlePay
      */
     public function __construct()
     {
-        if (2 == func_num_args()) {
-            $this->type     = func_get_arg(0);
-            $this->applePay = func_get_arg(1);
+        if (3 == func_num_args()) {
+            $this->type      = func_get_arg(0);
+            $this->applePay  = func_get_arg(1);
+            $this->googlePay = func_get_arg(2);
         }
     }
 
@@ -49,8 +59,9 @@ class CreateCardPaymentTokenRequest implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['type']      = $this->type;
-        $json['apple_pay'] = $this->applePay;
+        $json['type']       = $this->type;
+        $json['apple_pay']  = $this->applePay;
+        $json['google_pay'] = $this->googlePay;
 
         return $json;
     }

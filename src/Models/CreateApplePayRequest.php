@@ -12,7 +12,7 @@ use JsonSerializable;
 /**
  *The ApplePay Token Payment Request
  */
-class ApplePayRequest implements JsonSerializable
+class CreateApplePayRequest implements JsonSerializable
 {
     /**
      * The token version
@@ -29,9 +29,9 @@ class ApplePayRequest implements JsonSerializable
     public $data;
 
     /**
-     * The apple pay header request
+     * The ApplePay header request
      * @required
-     * @var \MundiAPILib\Models\ApplePayHeaderRequest $header public property
+     * @var \MundiAPILib\Models\CreateApplePayHeaderRequest $header public property
      */
     public $header;
 
@@ -52,11 +52,11 @@ class ApplePayRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                $version            Initialization value for $this->version
-     * @param string                $data               Initialization value for $this->data
-     * @param ApplePayHeaderRequest $header             Initialization value for $this->header
-     * @param string                $signature          Initialization value for $this->signature
-     * @param string                $merchantIdentifier Initialization value for $this->merchantIdentifier
+     * @param string                      $version            Initialization value for $this->version
+     * @param string                      $data               Initialization value for $this->data
+     * @param CreateApplePayHeaderRequest $header             Initialization value for $this->header
+     * @param string                      $signature          Initialization value for $this->signature
+     * @param string                      $merchantIdentifier Initialization value for $this->merchantIdentifier
      */
     public function __construct()
     {

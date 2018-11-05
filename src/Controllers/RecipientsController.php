@@ -71,7 +71,7 @@ class RecipientsController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.40',
+            'user-agent'    => 'MundiSDK - PHP 0.13.41',
             'Accept'        => 'application/json',
             'content-type'  => 'application/json; charset=utf-8'
         );
@@ -134,7 +134,7 @@ class RecipientsController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.40',
+            'user-agent'    => 'MundiSDK - PHP 0.13.41',
             'Accept'        => 'application/json'
         );
 
@@ -212,7 +212,7 @@ class RecipientsController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.40',
+            'user-agent'    => 'MundiSDK - PHP 0.13.41',
             'Accept'        => 'application/json'
         );
 
@@ -273,7 +273,7 @@ class RecipientsController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.40',
+            'user-agent'    => 'MundiSDK - PHP 0.13.41',
             'Accept'        => 'application/json',
             'content-type'  => 'application/json; charset=utf-8'
         );
@@ -336,7 +336,7 @@ class RecipientsController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.40',
+            'user-agent'    => 'MundiSDK - PHP 0.13.41',
             'Accept'        => 'application/json'
         );
 
@@ -405,7 +405,7 @@ class RecipientsController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.40',
+            'user-agent'    => 'MundiSDK - PHP 0.13.41',
             'Accept'        => 'application/json'
         );
 
@@ -492,7 +492,7 @@ class RecipientsController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'       => 'MundiSDK - PHP 0.13.40',
+            'user-agent'       => 'MundiSDK - PHP 0.13.41',
             'Accept'           => 'application/json'
         );
 
@@ -553,7 +553,7 @@ class RecipientsController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.40',
+            'user-agent'    => 'MundiSDK - PHP 0.13.41',
             'Accept'        => 'application/json',
             'content-type'  => 'application/json; charset=utf-8'
         );
@@ -615,7 +615,7 @@ class RecipientsController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.40',
+            'user-agent'    => 'MundiSDK - PHP 0.13.41',
             'Accept'        => 'application/json',
             'content-type'  => 'application/json; charset=utf-8'
         );
@@ -675,7 +675,7 @@ class RecipientsController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.40',
+            'user-agent'    => 'MundiSDK - PHP 0.13.41',
             'Accept'        => 'application/json'
         );
 
@@ -737,7 +737,7 @@ class RecipientsController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.40',
+            'user-agent'    => 'MundiSDK - PHP 0.13.41',
             'Accept'        => 'application/json'
         );
 
@@ -796,7 +796,7 @@ class RecipientsController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.40',
+            'user-agent'    => 'MundiSDK - PHP 0.13.41',
             'Accept'        => 'application/json'
         );
 
@@ -857,7 +857,7 @@ class RecipientsController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.40',
+            'user-agent'    => 'MundiSDK - PHP 0.13.41',
             'Accept'        => 'application/json',
             'content-type'  => 'application/json; charset=utf-8'
         );
@@ -912,7 +912,7 @@ class RecipientsController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.40',
+            'user-agent'    => 'MundiSDK - PHP 0.13.41',
             'Accept'        => 'application/json',
             'content-type'  => 'application/json; charset=utf-8'
         );
@@ -974,7 +974,7 @@ class RecipientsController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.40',
+            'user-agent'    => 'MundiSDK - PHP 0.13.41',
             'Accept'        => 'application/json',
             'content-type'  => 'application/json; charset=utf-8'
         );
