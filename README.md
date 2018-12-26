@@ -141,6 +141,7 @@ $client = new MundiAPILib\MundiAPIClient($basicAuthUserName, $basicAuthPassword)
 * [RecipientsController](#recipients_controller)
 * [TokensController](#tokens_controller)
 * [SellersController](#sellers_controller)
+* [TransactionsController](#transactions_controller)
 
 ## <a name="subscriptions_controller"></a>![Class: ](https://apidocs.io/img/class.png ".SubscriptionsController") SubscriptionsController
 
@@ -596,8 +597,8 @@ function getSubscriptions(
 #### Example Usage
 
 ```php
-$page = 216;
-$size = 216;
+$page = 89;
+$size = 89;
 $code = 'code';
 $billingType = 'billing_type';
 $customerId = 'customer_id';
@@ -829,8 +830,8 @@ function getDiscounts(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 216;
-$size = 216;
+$page = 180;
+$size = 180;
 
 $result = $subscriptions->getDiscounts($subscriptionId, $page, $size);
 
@@ -894,8 +895,8 @@ function getIncrements(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 216;
-$size = 216;
+$page = 180;
+$size = 180;
 
 $result = $subscriptions->getIncrements($subscriptionId, $page, $size);
 
@@ -966,8 +967,8 @@ function getUsagesDetails(
 ```php
 $subscriptionId = 'subscription_id';
 $cycleId = 'cycle_id';
-$size = 216;
-$page = 216;
+$size = 180;
+$page = 180;
 $itemId = 'item_id';
 $group = 'group';
 
@@ -1009,8 +1010,8 @@ function getUsages(
 ```php
 $subscriptionId = 'subscription_id';
 $itemId = 'item_id';
-$page = 216;
-$size = 216;
+$page = 180;
+$size = 180;
 $code = 'code';
 $group = 'group';
 
@@ -1057,8 +1058,8 @@ function getSubscriptionItems(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 216;
-$size = 216;
+$page = 180;
+$size = 180;
 $name = 'name';
 $code = 'code';
 $status = 'status';
@@ -1325,8 +1326,8 @@ function getOrders(
 #### Example Usage
 
 ```php
-$page = 174;
-$size = 174;
+$page = 180;
+$size = 180;
 $code = 'code';
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
@@ -1776,8 +1777,8 @@ function getPlans(
 #### Example Usage
 
 ```php
-$page = 174;
-$size = 174;
+$page = 17;
+$size = 17;
 $name = 'name';
 $status = 'status';
 $billingType = 'billing_type';
@@ -2049,8 +2050,8 @@ function getInvoices(
 #### Example Usage
 
 ```php
-$page = 11;
-$size = 11;
+$page = 230;
+$size = 230;
 $code = 'code';
 $customerId = 'customer_id';
 $subscriptionId = 'subscription_id';
@@ -2314,8 +2315,8 @@ function getAccessTokens(
 
 ```php
 $customerId = 'customer_id';
-$page = 11;
-$size = 11;
+$page = 230;
+$size = 230;
 
 $result = $customers->getAccessTokens($customerId, $page, $size);
 
@@ -2348,8 +2349,8 @@ function getAddresses(
 
 ```php
 $customerId = 'customer_id';
-$page = 11;
-$size = 11;
+$page = 230;
+$size = 230;
 
 $result = $customers->getAddresses($customerId, $page, $size);
 
@@ -2382,8 +2383,8 @@ function getCards(
 
 ```php
 $customerId = 'customer_id';
-$page = 11;
-$size = 11;
+$page = 230;
+$size = 230;
 
 $result = $customers->getCards($customerId, $page, $size);
 
@@ -3024,8 +3025,8 @@ function getCharges(
 #### Example Usage
 
 ```php
-$page = 224;
-$size = 224;
+$page = 66;
+$size = 66;
 $code = 'code';
 $status = 'status';
 $paymentMethod = 'payment_method';
@@ -3194,6 +3195,40 @@ $result = $charges->confirmPayment($chargeId, $request);
 ```
 
 
+### <a name="get_charge_transactions"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.getChargeTransactions") getChargeTransactions
+
+> TODO: Add a method description
+
+
+```php
+function getChargeTransactions(
+        $chargeId,
+        $page = null,
+        $size = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| chargeId |  ``` Required ```  | Charge Id |
+| page |  ``` Optional ```  | Page number |
+| size |  ``` Optional ```  | Page size |
+
+
+
+#### Example Usage
+
+```php
+$chargeId = 'charge_id';
+$page = 66;
+$size = 66;
+
+$result = $charges->getChargeTransactions($chargeId, $page, $size);
+
+```
+
+
 [Back to List of Controllers](#list_of_controllers)
 
 ## <a name="recipients_controller"></a>![Class: ](https://apidocs.io/img/class.png ".RecipientsController") RecipientsController
@@ -3300,8 +3335,8 @@ function getTransfers(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 224;
-$size = 224;
+$page = 66;
+$size = 66;
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
@@ -3445,8 +3480,8 @@ function getAnticipations(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 224;
-$size = 224;
+$page = 25;
+$size = 25;
 $status = 'status';
 $timeframe = 'timeframe';
 $paymentDateSince = date("D M d, Y G:i");
@@ -3571,8 +3606,8 @@ function getRecipients(
 #### Example Usage
 
 ```php
-$page = 61;
-$size = 61;
+$page = 25;
+$size = 25;
 
 $result = $recipients->getRecipients($page, $size);
 
@@ -3903,8 +3938,8 @@ function getSellers(
 #### Example Usage
 
 ```php
-$page = 61;
-$size = 61;
+$page = 25;
+$size = 25;
 $name = 'name';
 $document = 'document';
 $code = 'code';
@@ -3976,6 +4011,45 @@ $sellerId = 'seller_id';
 $request = new UpdateMetadataRequest();
 
 $result = $sellers->updateSellerMetadata($sellerId, $request);
+
+```
+
+
+[Back to List of Controllers](#list_of_controllers)
+
+## <a name="transactions_controller"></a>![Class: ](https://apidocs.io/img/class.png ".TransactionsController") TransactionsController
+
+### Get singleton instance
+
+The singleton instance of the ``` TransactionsController ``` class can be accessed from the API Client.
+
+```php
+$transactions = $client->getTransactions();
+```
+
+### <a name="get_transaction"></a>![Method: ](https://apidocs.io/img/method.png ".TransactionsController.getTransaction") getTransaction
+
+> TODO: Add a method description
+
+
+```php
+function getTransaction($transactionId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| transactionId |  ``` Required ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$transactionId = 'transaction_id';
+
+$result = $transactions->getTransaction($transactionId);
 
 ```
 

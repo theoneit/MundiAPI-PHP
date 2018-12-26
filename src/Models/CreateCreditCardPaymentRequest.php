@@ -93,6 +93,13 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
     public $token;
 
     /**
+     * Indicates whether a particular payment will enter the offline retry flow
+     * @maps auto_recovery
+     * @var bool|null $autoRecovery public property
+     */
+    public $autoRecovery;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param integer                            $installments         Initialization value for $this->installments
      * @param string                             $statementDescriptor  Initialization value for $this-
@@ -110,11 +117,12 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
      *                                                                   >merchantCategoryCode
      * @param CreatePaymentAuthenticationRequest $authentication       Initialization value for $this->authentication
      * @param CreateCardPaymentTokenRequest      $token                Initialization value for $this->token
+     * @param bool                               $autoRecovery         Initialization value for $this->autoRecovery
      */
     public function __construct()
     {
         switch (func_num_args()) {
-            case 12:
+            case 13:
                 $this->installments         = func_get_arg(0);
                 $this->statementDescriptor  = func_get_arg(1);
                 $this->card                 = func_get_arg(2);
@@ -127,6 +135,7 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
                 $this->merchantCategoryCode = func_get_arg(9);
                 $this->authentication       = func_get_arg(10);
                 $this->token                = func_get_arg(11);
+                $this->autoRecovery         = func_get_arg(12);
                 break;
 
             default:
@@ -155,6 +164,7 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
         $json['merchant_category_code'] = $this->merchantCategoryCode;
         $json['authentication']         = $this->authentication;
         $json['token']                  = $this->token;
+        $json['auto_recovery']          = $this->autoRecovery;
 
         return $json;
     }

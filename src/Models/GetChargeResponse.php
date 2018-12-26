@@ -154,6 +154,14 @@ class GetChargeResponse implements JsonSerializable
     public $canceledAmount;
 
     /**
+     * Paid amount
+     * @required
+     * @maps paid_amount
+     * @var integer $paidAmount public property
+     */
+    public $paidAmount;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string                  $id              Initialization value for $this->id
      * @param string                  $code            Initialization value for $this->code
@@ -173,10 +181,11 @@ class GetChargeResponse implements JsonSerializable
      * @param \DateTime               $paidAt          Initialization value for $this->paidAt
      * @param \DateTime               $canceledAt      Initialization value for $this->canceledAt
      * @param integer                 $canceledAmount  Initialization value for $this->canceledAmount
+     * @param integer                 $paidAmount      Initialization value for $this->paidAmount
      */
     public function __construct()
     {
-        if (18 == func_num_args()) {
+        if (19 == func_num_args()) {
             $this->id              = func_get_arg(0);
             $this->code            = func_get_arg(1);
             $this->gatewayId       = func_get_arg(2);
@@ -195,6 +204,7 @@ class GetChargeResponse implements JsonSerializable
             $this->paidAt          = func_get_arg(15);
             $this->canceledAt      = func_get_arg(16);
             $this->canceledAmount  = func_get_arg(17);
+            $this->paidAmount      = func_get_arg(18);
         }
     }
 
@@ -225,6 +235,7 @@ class GetChargeResponse implements JsonSerializable
         $json['canceled_at']      = isset($this->canceledAt) ?
             DateTimeHelper::toRfc3339DateTime($this->canceledAt) : null;
         $json['canceled_amount']  = $this->canceledAmount;
+        $json['paid_amount']      = $this->paidAmount;
 
         return $json;
     }
