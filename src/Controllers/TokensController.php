@@ -71,7 +71,7 @@ class TokensController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.41',
+            'user-agent'    => 'MundiSDK - PHP 0.13.42',
             'Accept'        => 'application/json'
         );
 
@@ -132,7 +132,7 @@ class TokensController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.41',
+            'user-agent'    => 'MundiSDK - PHP 0.13.42',
             'Accept'        => 'application/json',
             'content-type'  => 'application/json; charset=utf-8'
         );
