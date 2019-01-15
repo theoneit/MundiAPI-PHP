@@ -55,11 +55,8 @@ class PlansController extends BaseController
         $request
     ) {
 
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/plans/{plan_id}/items';
+        $_queryBuilder = '/plans/{plan_id}/items';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -67,14 +64,17 @@ class PlansController extends BaseController
             ));
 
         //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.42',
+            'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
             'content-type'  => 'application/json; charset=utf-8'
         );
+
+        //json encode body
+        $_bodyJson = Request\Body::Json($request);
 
         //set HTTP basic auth parameters
         Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
@@ -86,7 +86,7 @@ class PlansController extends BaseController
         }
 
         //and invoke the API call request to fetch the response
-        $response = Request::post($_queryUrl, $_headers, Request\Body::Json($request));
+        $response = Request::post($_queryUrl, $_headers, $_bodyJson);
 
         $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
         $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
@@ -119,11 +119,8 @@ class PlansController extends BaseController
         $body
     ) {
 
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/plans/{plan_id}/items/{plan_item_id}';
+        $_queryBuilder = '/plans/{plan_id}/items/{plan_item_id}';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -132,14 +129,17 @@ class PlansController extends BaseController
             ));
 
         //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.42',
+            'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
             'content-type'  => 'application/json; charset=utf-8'
         );
+
+        //json encode body
+        $_bodyJson = Request\Body::Json($body);
 
         //set HTTP basic auth parameters
         Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
@@ -151,7 +151,7 @@ class PlansController extends BaseController
         }
 
         //and invoke the API call request to fetch the response
-        $response = Request::put($_queryUrl, $_headers, Request\Body::Json($body));
+        $response = Request::put($_queryUrl, $_headers, $_bodyJson);
 
         $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
         $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
@@ -180,11 +180,8 @@ class PlansController extends BaseController
         $planId
     ) {
 
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/plans/{plan_id}';
+        $_queryBuilder = '/plans/{plan_id}';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -192,11 +189,11 @@ class PlansController extends BaseController
             ));
 
         //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.42',
+            'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json'
         );
 
@@ -239,11 +236,8 @@ class PlansController extends BaseController
         $planId
     ) {
 
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/plans/{plan_id}';
+        $_queryBuilder = '/plans/{plan_id}';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -251,11 +245,11 @@ class PlansController extends BaseController
             ));
 
         //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.42',
+            'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json'
         );
 
@@ -300,11 +294,8 @@ class PlansController extends BaseController
         $request
     ) {
 
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/plans/{plan_id}';
+        $_queryBuilder = '/plans/{plan_id}';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -312,14 +303,17 @@ class PlansController extends BaseController
             ));
 
         //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.42',
+            'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
             'content-type'  => 'application/json; charset=utf-8'
         );
+
+        //json encode body
+        $_bodyJson = Request\Body::Json($request);
 
         //set HTTP basic auth parameters
         Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
@@ -331,7 +325,7 @@ class PlansController extends BaseController
         }
 
         //and invoke the API call request to fetch the response
-        $response = Request::put($_queryUrl, $_headers, Request\Body::Json($request));
+        $response = Request::put($_queryUrl, $_headers, $_bodyJson);
 
         $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
         $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
@@ -360,21 +354,21 @@ class PlansController extends BaseController
         $body
     ) {
 
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/plans';
+        $_queryBuilder = '/plans';
 
         //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.42',
+            'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
             'content-type'  => 'application/json; charset=utf-8'
         );
+
+        //json encode body
+        $_bodyJson = Request\Body::Json($body);
 
         //set HTTP basic auth parameters
         Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
@@ -386,7 +380,7 @@ class PlansController extends BaseController
         }
 
         //and invoke the API call request to fetch the response
-        $response = Request::post($_queryUrl, $_headers, Request\Body::Json($body));
+        $response = Request::post($_queryUrl, $_headers, $_bodyJson);
 
         $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
         $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
@@ -427,11 +421,8 @@ class PlansController extends BaseController
         $createdUntil = null
     ) {
 
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/plans';
+        $_queryBuilder = '/plans';
 
         //process optional query parameters
         APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
@@ -445,11 +436,11 @@ class PlansController extends BaseController
         ));
 
         //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.42',
+            'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json'
         );
 
@@ -494,11 +485,8 @@ class PlansController extends BaseController
         $request
     ) {
 
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/Plans/{plan_id}/metadata';
+        $_queryBuilder = '/Plans/{plan_id}/metadata';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -506,14 +494,17 @@ class PlansController extends BaseController
             ));
 
         //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.42',
+            'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
             'content-type'  => 'application/json; charset=utf-8'
         );
+
+        //json encode body
+        $_bodyJson = Request\Body::Json($request);
 
         //set HTTP basic auth parameters
         Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
@@ -525,7 +516,7 @@ class PlansController extends BaseController
         }
 
         //and invoke the API call request to fetch the response
-        $response = Request::patch($_queryUrl, $_headers, Request\Body::Json($request));
+        $response = Request::patch($_queryUrl, $_headers, $_bodyJson);
 
         $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
         $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
@@ -556,11 +547,8 @@ class PlansController extends BaseController
         $planItemId
     ) {
 
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/plans/{plan_id}/items/{plan_item_id}';
+        $_queryBuilder = '/plans/{plan_id}/items/{plan_item_id}';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -569,11 +557,11 @@ class PlansController extends BaseController
             ));
 
         //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.42',
+            'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json'
         );
 
@@ -618,11 +606,8 @@ class PlansController extends BaseController
         $planItemId
     ) {
 
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/plans/{plan_id}/items/{plan_item_id}';
+        $_queryBuilder = '/plans/{plan_id}/items/{plan_item_id}';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -631,11 +616,11 @@ class PlansController extends BaseController
             ));
 
         //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.42',
+            'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json'
         );
 

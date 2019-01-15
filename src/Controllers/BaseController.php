@@ -21,14 +21,16 @@ use Unirest\Request;
 class BaseController
 {
     /**
+     * User-agent to be sent with API calls
+     * @var string
+     */
+    const USER_AGENT = 'MundiSDK - PHP 0.13.43';
+
+    /**
      * HttpCallBack instance associated with this controller
      * @var HttpCallBack
      */
     private $httpCallBack = null;
-
-     /**
-     * Constructor that sets the timeout of requests
-     */
 
     /**
      * Set HttpCallBack for this controller

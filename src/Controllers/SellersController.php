@@ -53,11 +53,8 @@ class SellersController extends BaseController
         $id
     ) {
 
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/sellers/{id}';
+        $_queryBuilder = '/sellers/{id}';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -65,11 +62,11 @@ class SellersController extends BaseController
             ));
 
         //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.42',
+            'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json'
         );
 
@@ -112,11 +109,8 @@ class SellersController extends BaseController
         $sellerId
     ) {
 
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/sellers/{sellerId}';
+        $_queryBuilder = '/sellers/{sellerId}';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -124,11 +118,11 @@ class SellersController extends BaseController
             ));
 
         //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.42',
+            'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json'
         );
 
@@ -171,21 +165,21 @@ class SellersController extends BaseController
         $request
     ) {
 
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/sellers/';
+        $_queryBuilder = '/sellers/';
 
         //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.42',
+            'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
             'content-type'  => 'application/json; charset=utf-8'
         );
+
+        //json encode body
+        $_bodyJson = Request\Body::Json($request);
 
         //set HTTP basic auth parameters
         Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
@@ -197,7 +191,7 @@ class SellersController extends BaseController
         }
 
         //and invoke the API call request to fetch the response
-        $response = Request::post($_queryUrl, $_headers, Request\Body::Json($request));
+        $response = Request::post($_queryUrl, $_headers, $_bodyJson);
 
         $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
         $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
@@ -242,11 +236,8 @@ class SellersController extends BaseController
         $createdUntil = null
     ) {
 
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/sellers';
+        $_queryBuilder = '/sellers';
 
         //process optional query parameters
         APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
@@ -262,11 +253,11 @@ class SellersController extends BaseController
         ));
 
         //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.42',
+            'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json'
         );
 
@@ -311,11 +302,8 @@ class SellersController extends BaseController
         $request
     ) {
 
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/sellers/{id}';
+        $_queryBuilder = '/sellers/{id}';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -323,14 +311,17 @@ class SellersController extends BaseController
             ));
 
         //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.42',
+            'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
             'content-type'  => 'application/json; charset=utf-8'
         );
+
+        //json encode body
+        $_bodyJson = Request\Body::Json($request);
 
         //set HTTP basic auth parameters
         Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
@@ -342,7 +333,7 @@ class SellersController extends BaseController
         }
 
         //and invoke the API call request to fetch the response
-        $response = Request::put($_queryUrl, $_headers, Request\Body::Json($request));
+        $response = Request::put($_queryUrl, $_headers, $_bodyJson);
 
         $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
         $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
@@ -373,11 +364,8 @@ class SellersController extends BaseController
         $request
     ) {
 
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
         //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/sellers/{seller_id}/metadata';
+        $_queryBuilder = '/sellers/{seller_id}/metadata';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -385,14 +373,17 @@ class SellersController extends BaseController
             ));
 
         //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => 'MundiSDK - PHP 0.13.42',
+            'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
             'content-type'  => 'application/json; charset=utf-8'
         );
+
+        //json encode body
+        $_bodyJson = Request\Body::Json($request);
 
         //set HTTP basic auth parameters
         Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
@@ -404,7 +395,7 @@ class SellersController extends BaseController
         }
 
         //and invoke the API call request to fetch the response
-        $response = Request::patch($_queryUrl, $_headers, Request\Body::Json($request));
+        $response = Request::patch($_queryUrl, $_headers, $_bodyJson);
 
         $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
         $_httpContext = new HttpContext($_httpRequest, $_httpResponse);

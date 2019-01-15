@@ -597,8 +597,8 @@ function getSubscriptions(
 #### Example Usage
 
 ```php
-$page = 89;
-$size = 89;
+$page = 131;
+$size = 131;
 $code = 'code';
 $billingType = 'billing_type';
 $customerId = 'customer_id';
@@ -830,8 +830,8 @@ function getDiscounts(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 180;
-$size = 180;
+$page = 131;
+$size = 131;
 
 $result = $subscriptions->getDiscounts($subscriptionId, $page, $size);
 
@@ -895,8 +895,8 @@ function getIncrements(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 180;
-$size = 180;
+$page = 131;
+$size = 131;
 
 $result = $subscriptions->getIncrements($subscriptionId, $page, $size);
 
@@ -967,8 +967,8 @@ function getUsagesDetails(
 ```php
 $subscriptionId = 'subscription_id';
 $cycleId = 'cycle_id';
-$size = 180;
-$page = 180;
+$size = 131;
+$page = 131;
 $itemId = 'item_id';
 $group = 'group';
 
@@ -1010,8 +1010,8 @@ function getUsages(
 ```php
 $subscriptionId = 'subscription_id';
 $itemId = 'item_id';
-$page = 180;
-$size = 180;
+$page = 131;
+$size = 131;
 $code = 'code';
 $group = 'group';
 
@@ -1058,8 +1058,8 @@ function getSubscriptionItems(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 180;
-$size = 180;
+$page = 131;
+$size = 131;
 $name = 'name';
 $code = 'code';
 $status = 'status';
@@ -1326,8 +1326,8 @@ function getOrders(
 #### Example Usage
 
 ```php
-$page = 180;
-$size = 180;
+$page = 39;
+$size = 39;
 $code = 'code';
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
@@ -1777,8 +1777,8 @@ function getPlans(
 #### Example Usage
 
 ```php
-$page = 17;
-$size = 17;
+$page = 203;
+$size = 203;
 $name = 'name';
 $status = 'status';
 $billingType = 'billing_type';
@@ -2050,8 +2050,8 @@ function getInvoices(
 #### Example Usage
 
 ```php
-$page = 230;
-$size = 230;
+$page = 203;
+$size = 203;
 $code = 'code';
 $customerId = 'customer_id';
 $subscriptionId = 'subscription_id';
@@ -2315,8 +2315,8 @@ function getAccessTokens(
 
 ```php
 $customerId = 'customer_id';
-$page = 230;
-$size = 230;
+$page = 203;
+$size = 203;
 
 $result = $customers->getAccessTokens($customerId, $page, $size);
 
@@ -2349,8 +2349,8 @@ function getAddresses(
 
 ```php
 $customerId = 'customer_id';
-$page = 230;
-$size = 230;
+$page = 203;
+$size = 203;
 
 $result = $customers->getAddresses($customerId, $page, $size);
 
@@ -2383,8 +2383,8 @@ function getCards(
 
 ```php
 $customerId = 'customer_id';
-$page = 230;
-$size = 230;
+$page = 203;
+$size = 203;
 
 $result = $customers->getCards($customerId, $page, $size);
 
@@ -3025,8 +3025,8 @@ function getCharges(
 #### Example Usage
 
 ```php
-$page = 66;
-$size = 66;
+$page = 245;
+$size = 245;
 $code = 'code';
 $status = 'status';
 $paymentMethod = 'payment_method';
@@ -3221,8 +3221,8 @@ function getChargeTransactions(
 
 ```php
 $chargeId = 'charge_id';
-$page = 66;
-$size = 66;
+$page = 153;
+$size = 153;
 
 $result = $charges->getChargeTransactions($chargeId, $page, $size);
 
@@ -3335,8 +3335,8 @@ function getTransfers(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 66;
-$size = 66;
+$page = 153;
+$size = 153;
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
@@ -3480,8 +3480,8 @@ function getAnticipations(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 25;
-$size = 25;
+$page = 153;
+$size = 153;
 $status = 'status';
 $timeframe = 'timeframe';
 $paymentDateSince = date("D M d, Y G:i");
@@ -3606,8 +3606,8 @@ function getRecipients(
 #### Example Usage
 
 ```php
-$page = 25;
-$size = 25;
+$page = 153;
+$size = 153;
 
 $result = $recipients->getRecipients($page, $size);
 
@@ -3938,8 +3938,8 @@ function getSellers(
 #### Example Usage
 
 ```php
-$page = 25;
-$size = 25;
+$page = 195;
+$size = 195;
 $name = 'name';
 $document = 'document';
 $code = 'code';
