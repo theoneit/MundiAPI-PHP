@@ -178,6 +178,14 @@ class GetInvoiceResponse implements JsonSerializable
     public $totalIncrement;
 
     /**
+     * Subscription Id
+     * @required
+     * @maps subscription_id
+     * @var string $subscriptionId public property
+     */
+    public $subscriptionId;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string                     $id             Initialization value for $this->id
      * @param string                     $code           Initialization value for $this->code
@@ -201,10 +209,11 @@ class GetInvoiceResponse implements JsonSerializable
      * @param \DateTime                  $seenAt         Initialization value for $this->seenAt
      * @param integer                    $totalDiscount  Initialization value for $this->totalDiscount
      * @param integer                    $totalIncrement Initialization value for $this->totalIncrement
+     * @param string                     $subscriptionId Initialization value for $this->subscriptionId
      */
     public function __construct()
     {
-        if (22 == func_num_args()) {
+        if (23 == func_num_args()) {
             $this->id             = func_get_arg(0);
             $this->code           = func_get_arg(1);
             $this->url            = func_get_arg(2);
@@ -227,6 +236,7 @@ class GetInvoiceResponse implements JsonSerializable
             $this->seenAt         = func_get_arg(19);
             $this->totalDiscount  = func_get_arg(20);
             $this->totalIncrement = func_get_arg(21);
+            $this->subscriptionId = func_get_arg(22);
         }
     }
 
@@ -263,6 +273,7 @@ class GetInvoiceResponse implements JsonSerializable
             DateTimeHelper::toRfc3339DateTime($this->seenAt) : null;
         $json['total_discount']  = $this->totalDiscount;
         $json['total_increment'] = $this->totalIncrement;
+        $json['subscription_id'] = $this->subscriptionId;
 
         return $json;
     }
