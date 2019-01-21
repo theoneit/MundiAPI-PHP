@@ -77,6 +77,13 @@ class CreateShippingRequest implements JsonSerializable
     public $estimatedDeliveryDate;
 
     /**
+     * Shipping type
+     * @required
+     * @var string $type public property
+     */
+    public $type;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param integer               $amount                Initialization value for $this->amount
      * @param string                $description           Initialization value for $this->description
@@ -86,10 +93,11 @@ class CreateShippingRequest implements JsonSerializable
      * @param CreateAddressRequest  $address               Initialization value for $this->address
      * @param \DateTime             $maxDeliveryDate       Initialization value for $this->maxDeliveryDate
      * @param \DateTime             $estimatedDeliveryDate Initialization value for $this->estimatedDeliveryDate
+     * @param string                $type                  Initialization value for $this->type
      */
     public function __construct()
     {
-        if (8 == func_num_args()) {
+        if (9 == func_num_args()) {
             $this->amount                = func_get_arg(0);
             $this->description           = func_get_arg(1);
             $this->recipientName         = func_get_arg(2);
@@ -98,6 +106,7 @@ class CreateShippingRequest implements JsonSerializable
             $this->address               = func_get_arg(5);
             $this->maxDeliveryDate       = func_get_arg(6);
             $this->estimatedDeliveryDate = func_get_arg(7);
+            $this->type                  = func_get_arg(8);
         }
     }
 
@@ -118,6 +127,7 @@ class CreateShippingRequest implements JsonSerializable
             DateTimeHelper::toRfc3339DateTime($this->maxDeliveryDate) : null;
         $json['estimated_delivery_date'] = isset($this->estimatedDeliveryDate) ?
             DateTimeHelper::toRfc3339DateTime($this->estimatedDeliveryDate) : null;
+        $json['type']                    = $this->type;
 
         return $json;
     }

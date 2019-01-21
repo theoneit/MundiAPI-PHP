@@ -61,23 +61,42 @@ class UpdateChargePaymentMethodRequest implements JsonSerializable
     public $voucher;
 
     /**
+     * Cash data
+     * @required
+     * @var \MundiAPILib\Models\CreateCashPaymentRequest $cash public property
+     */
+    public $cash;
+
+    /**
+     * Bank Transfer data
+     * @required
+     * @maps bank_transfer
+     * @var \MundiAPILib\Models\CreateBankTransferPaymentRequest $bankTransfer public property
+     */
+    public $bankTransfer;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param bool                           $updateSubscription Initialization value for $this->updateSubscription
-     * @param string                         $paymentMethod      Initialization value for $this->paymentMethod
-     * @param CreateCreditCardPaymentRequest $creditCard         Initialization value for $this->creditCard
-     * @param CreateDebitCardPaymentRequest  $debitCard          Initialization value for $this->debitCard
-     * @param CreateBoletoPaymentRequest     $boleto             Initialization value for $this->boleto
-     * @param CreateVoucherPaymentRequest    $voucher            Initialization value for $this->voucher
+     * @param bool                             $updateSubscription Initialization value for $this->updateSubscription
+     * @param string                           $paymentMethod      Initialization value for $this->paymentMethod
+     * @param CreateCreditCardPaymentRequest   $creditCard         Initialization value for $this->creditCard
+     * @param CreateDebitCardPaymentRequest    $debitCard          Initialization value for $this->debitCard
+     * @param CreateBoletoPaymentRequest       $boleto             Initialization value for $this->boleto
+     * @param CreateVoucherPaymentRequest      $voucher            Initialization value for $this->voucher
+     * @param CreateCashPaymentRequest         $cash               Initialization value for $this->cash
+     * @param CreateBankTransferPaymentRequest $bankTransfer       Initialization value for $this->bankTransfer
      */
     public function __construct()
     {
-        if (6 == func_num_args()) {
+        if (8 == func_num_args()) {
             $this->updateSubscription = func_get_arg(0);
             $this->paymentMethod      = func_get_arg(1);
             $this->creditCard         = func_get_arg(2);
             $this->debitCard          = func_get_arg(3);
             $this->boleto             = func_get_arg(4);
             $this->voucher            = func_get_arg(5);
+            $this->cash               = func_get_arg(6);
+            $this->bankTransfer       = func_get_arg(7);
         }
     }
 
@@ -94,6 +113,8 @@ class UpdateChargePaymentMethodRequest implements JsonSerializable
         $json['debit_card']          = $this->debitCard;
         $json['boleto']              = $this->boleto;
         $json['voucher']             = $this->voucher;
+        $json['cash']                = $this->cash;
+        $json['bank_transfer']       = $this->bankTransfer;
 
         return $json;
     }
