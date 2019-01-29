@@ -597,8 +597,8 @@ function getSubscriptions(
 #### Example Usage
 
 ```php
-$page = 99;
-$size = 99;
+$page = 218;
+$size = 218;
 $code = 'code';
 $billingType = 'billing_type';
 $customerId = 'customer_id';
@@ -830,8 +830,8 @@ function getDiscounts(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 99;
-$size = 99;
+$page = 218;
+$size = 218;
 
 $result = $subscriptions->getDiscounts($subscriptionId, $page, $size);
 
@@ -895,8 +895,8 @@ function getIncrements(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 58;
-$size = 58;
+$page = 218;
+$size = 218;
 
 $result = $subscriptions->getIncrements($subscriptionId, $page, $size);
 
@@ -967,8 +967,8 @@ function getUsagesDetails(
 ```php
 $subscriptionId = 'subscription_id';
 $cycleId = 'cycle_id';
-$size = 58;
-$page = 58;
+$size = 218;
+$page = 218;
 $itemId = 'item_id';
 $group = 'group';
 
@@ -1010,8 +1010,8 @@ function getUsages(
 ```php
 $subscriptionId = 'subscription_id';
 $itemId = 'item_id';
-$page = 58;
-$size = 58;
+$page = 218;
+$size = 218;
 $code = 'code';
 $group = 'group';
 
@@ -1058,8 +1058,8 @@ function getSubscriptionItems(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 58;
-$size = 58;
+$page = 218;
+$size = 218;
 $name = 'name';
 $code = 'code';
 $status = 'status';
@@ -1227,6 +1227,71 @@ $subscriptions->updateCurrentCycleStatus($subscriptionId, $request);
 ```
 
 
+### <a name="get_subscription_cycles"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getSubscriptionCycles") getSubscriptionCycles
+
+> TODO: Add a method description
+
+
+```php
+function getSubscriptionCycles(
+        $subscriptionId,
+        $page,
+        $size)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | Subscription Id |
+| page |  ``` Required ```  | Page number |
+| size |  ``` Required ```  | Page size |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+$page = 'page';
+$size = 'size';
+
+$result = $subscriptions->getSubscriptionCycles($subscriptionId, $page, $size);
+
+```
+
+
+### <a name="get_subscription_cycle_by_id"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getSubscriptionCycleById") getSubscriptionCycleById
+
+> TODO: Add a method description
+
+
+```php
+function getSubscriptionCycleById(
+        $subscriptionId,
+        $cycleId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | The subscription id |
+| cycleId |  ``` Required ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+$cycleId = 'cycleId';
+
+$result = $subscriptions->getSubscriptionCycleById($subscriptionId, $cycleId);
+
+```
+
+
 [Back to List of Controllers](#list_of_controllers)
 
 ## <a name="orders_controller"></a>![Class: ](https://apidocs.io/img/class.png ".OrdersController") OrdersController
@@ -1326,8 +1391,8 @@ function getOrders(
 #### Example Usage
 
 ```php
-$page = 58;
-$size = 58;
+$page = 176;
+$size = 176;
 $code = 'code';
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
@@ -1777,8 +1842,8 @@ function getPlans(
 #### Example Usage
 
 ```php
-$page = 149;
-$size = 149;
+$page = 13;
+$size = 13;
 $name = 'name';
 $status = 'status';
 $billingType = 'billing_type';
@@ -2053,8 +2118,8 @@ function getInvoices(
 #### Example Usage
 
 ```php
-$page = 149;
-$size = 149;
+$page = 13;
+$size = 13;
 $code = 'code';
 $customerId = 'customer_id';
 $subscriptionId = 'subscription_id';
@@ -2260,8 +2325,8 @@ function getAccessTokens(
 
 ```php
 $customerId = 'customer_id';
-$page = 149;
-$size = 149;
+$page = 13;
+$size = 13;
 
 $result = $customers->getAccessTokens($customerId, $page, $size);
 
@@ -2294,8 +2359,8 @@ function getAddresses(
 
 ```php
 $customerId = 'customer_id';
-$page = 149;
-$size = 149;
+$page = 13;
+$size = 13;
 
 $result = $customers->getAddresses($customerId, $page, $size);
 
@@ -2328,8 +2393,8 @@ function getCards(
 
 ```php
 $customerId = 'customer_id';
-$page = 108;
-$size = 108;
+$page = 13;
+$size = 13;
 
 $result = $customers->getCards($customerId, $page, $size);
 
@@ -2970,8 +3035,8 @@ function getCharges(
 #### Example Usage
 
 ```php
-$page = 108;
-$size = 108;
+$page = 104;
+$size = 104;
 $code = 'code';
 $status = 'status';
 $paymentMethod = 'payment_method';
@@ -3166,8 +3231,8 @@ function getChargeTransactions(
 
 ```php
 $chargeId = 'charge_id';
-$page = 199;
-$size = 199;
+$page = 104;
+$size = 104;
 
 $result = $charges->getChargeTransactions($chargeId, $page, $size);
 
@@ -3280,8 +3345,8 @@ function getTransfers(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 199;
-$size = 199;
+$page = 62;
+$size = 62;
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
@@ -3425,8 +3490,8 @@ function getAnticipations(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 199;
-$size = 199;
+$page = 62;
+$size = 62;
 $status = 'status';
 $timeframe = 'timeframe';
 $paymentDateSince = date("D M d, Y G:i");
@@ -3551,8 +3616,8 @@ function getRecipients(
 #### Example Usage
 
 ```php
-$page = 199;
-$size = 199;
+$page = 62;
+$size = 62;
 
 $result = $recipients->getRecipients($page, $size);
 
@@ -3883,8 +3948,8 @@ function getSellers(
 #### Example Usage
 
 ```php
-$page = 199;
-$size = 199;
+$page = 154;
+$size = 154;
 $name = 'name';
 $document = 'document';
 $code = 'code';
