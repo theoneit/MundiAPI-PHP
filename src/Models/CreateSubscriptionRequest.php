@@ -222,6 +222,12 @@ class CreateSubscriptionRequest implements JsonSerializable
     public $increments;
 
     /**
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\CreatePeriodRequest|null $period public property
+     */
+    public $period;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param CreateCustomerRequest       $customer             Initialization value for $this->customer
      * @param CreateCardRequest           $card                 Initialization value for $this->card
@@ -252,10 +258,11 @@ class CreateSubscriptionRequest implements JsonSerializable
      * @param integer                     $quantity             Initialization value for $this->quantity
      * @param integer                     $boletoDueDays        Initialization value for $this->boletoDueDays
      * @param array                       $increments           Initialization value for $this->increments
+     * @param CreatePeriodRequest         $period               Initialization value for $this->period
      */
     public function __construct()
     {
-        if (29 == func_num_args()) {
+        if (30 == func_num_args()) {
             $this->customer             = func_get_arg(0);
             $this->card                 = func_get_arg(1);
             $this->code                 = func_get_arg(2);
@@ -285,6 +292,7 @@ class CreateSubscriptionRequest implements JsonSerializable
             $this->quantity             = func_get_arg(26);
             $this->boletoDueDays        = func_get_arg(27);
             $this->increments           = func_get_arg(28);
+            $this->period               = func_get_arg(29);
         }
     }
 
@@ -325,6 +333,7 @@ class CreateSubscriptionRequest implements JsonSerializable
         $json['quantity']               = $this->quantity;
         $json['boleto_due_days']        = $this->boletoDueDays;
         $json['increments']             = $this->increments;
+        $json['period']                 = $this->period;
 
         return $json;
     }

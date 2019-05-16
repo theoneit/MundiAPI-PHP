@@ -597,8 +597,8 @@ function getSubscriptions(
 #### Example Usage
 
 ```php
-$page = 218;
-$size = 218;
+$page = 49;
+$size = 49;
 $code = 'code';
 $billingType = 'billing_type';
 $customerId = 'customer_id';
@@ -830,8 +830,8 @@ function getDiscounts(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 218;
-$size = 218;
+$page = 49;
+$size = 49;
 
 $result = $subscriptions->getDiscounts($subscriptionId, $page, $size);
 
@@ -895,8 +895,8 @@ function getIncrements(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 218;
-$size = 218;
+$page = 49;
+$size = 49;
 
 $result = $subscriptions->getIncrements($subscriptionId, $page, $size);
 
@@ -967,8 +967,8 @@ function getUsagesDetails(
 ```php
 $subscriptionId = 'subscription_id';
 $cycleId = 'cycle_id';
-$size = 218;
-$page = 218;
+$size = 49;
+$page = 49;
 $itemId = 'item_id';
 $group = 'group';
 
@@ -1010,8 +1010,8 @@ function getUsages(
 ```php
 $subscriptionId = 'subscription_id';
 $itemId = 'item_id';
-$page = 218;
-$size = 218;
+$page = 49;
+$size = 49;
 $code = 'code';
 $group = 'group';
 
@@ -1058,8 +1058,8 @@ function getSubscriptionItems(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 218;
-$size = 218;
+$page = 7;
+$size = 7;
 $name = 'name';
 $code = 'code';
 $status = 'status';
@@ -1165,13 +1165,13 @@ $result = $subscriptions->updateSubscriptionBillingDate($subscriptionId, $reques
 ```
 
 
-### <a name="update_current_cycle_end_date"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.updateCurrentCycleEndDate") updateCurrentCycleEndDate
+### <a name="update_latest_period_end_at"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.updateLatestPeriodEndAt") updateLatestPeriodEndAt
 
 > TODO: Add a method description
 
 
 ```php
-function updateCurrentCycleEndDate(
+function updateLatestPeriodEndAt(
         $subscriptionId,
         $request)
 ```
@@ -1191,7 +1191,7 @@ function updateCurrentCycleEndDate(
 $subscriptionId = 'subscription_id';
 $request = new UpdateCurrentCycleEndDateRequest();
 
-$result = $subscriptions->updateCurrentCycleEndDate($subscriptionId, $request);
+$result = $subscriptions->updateLatestPeriodEndAt($subscriptionId, $request);
 
 ```
 
@@ -1288,6 +1288,33 @@ $subscriptionId = 'subscription_id';
 $cycleId = 'cycleId';
 
 $result = $subscriptions->getSubscriptionCycleById($subscriptionId, $cycleId);
+
+```
+
+
+### <a name="renew_subscription"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.renewSubscription") renewSubscription
+
+> TODO: Add a method description
+
+
+```php
+function renewSubscription($subscriptionId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+
+$result = $subscriptions->renewSubscription($subscriptionId);
 
 ```
 
@@ -1391,8 +1418,8 @@ function getOrders(
 #### Example Usage
 
 ```php
-$page = 176;
-$size = 176;
+$page = 99;
+$size = 99;
 $code = 'code';
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
@@ -1842,8 +1869,8 @@ function getPlans(
 #### Example Usage
 
 ```php
-$page = 13;
-$size = 13;
+$page = 99;
+$size = 99;
 $name = 'name';
 $status = 'status';
 $billingType = 'billing_type';
@@ -2118,8 +2145,8 @@ function getInvoices(
 #### Example Usage
 
 ```php
-$page = 13;
-$size = 13;
+$page = 190;
+$size = 190;
 $code = 'code';
 $customerId = 'customer_id';
 $subscriptionId = 'subscription_id';
@@ -2161,6 +2188,33 @@ $invoiceId = 'invoice_id';
 $request = new UpdateMetadataRequest();
 
 $result = $invoices->updateInvoiceMetadata($invoiceId, $request);
+
+```
+
+
+### <a name="get_partial_invoice"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.getPartialInvoice") getPartialInvoice
+
+> TODO: Add a method description
+
+
+```php
+function getPartialInvoice($subscriptionId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | Subscription Id |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+
+$result = $invoices->getPartialInvoice($subscriptionId);
 
 ```
 
@@ -2325,8 +2379,8 @@ function getAccessTokens(
 
 ```php
 $customerId = 'customer_id';
-$page = 13;
-$size = 13;
+$page = 190;
+$size = 190;
 
 $result = $customers->getAccessTokens($customerId, $page, $size);
 
@@ -2359,8 +2413,8 @@ function getAddresses(
 
 ```php
 $customerId = 'customer_id';
-$page = 13;
-$size = 13;
+$page = 190;
+$size = 190;
 
 $result = $customers->getAddresses($customerId, $page, $size);
 
@@ -2393,8 +2447,8 @@ function getCards(
 
 ```php
 $customerId = 'customer_id';
-$page = 13;
-$size = 13;
+$page = 190;
+$size = 190;
 
 $result = $customers->getCards($customerId, $page, $size);
 
@@ -3035,8 +3089,8 @@ function getCharges(
 #### Example Usage
 
 ```php
-$page = 104;
-$size = 104;
+$page = 148;
+$size = 148;
 $code = 'code';
 $status = 'status';
 $paymentMethod = 'payment_method';
@@ -3231,8 +3285,8 @@ function getChargeTransactions(
 
 ```php
 $chargeId = 'charge_id';
-$page = 104;
-$size = 104;
+$page = 240;
+$size = 240;
 
 $result = $charges->getChargeTransactions($chargeId, $page, $size);
 
@@ -3345,8 +3399,8 @@ function getTransfers(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 62;
-$size = 62;
+$page = 240;
+$size = 240;
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
@@ -3490,8 +3544,8 @@ function getAnticipations(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 62;
-$size = 62;
+$page = 240;
+$size = 240;
 $status = 'status';
 $timeframe = 'timeframe';
 $paymentDateSince = date("D M d, Y G:i");
@@ -3616,8 +3670,8 @@ function getRecipients(
 #### Example Usage
 
 ```php
-$page = 62;
-$size = 62;
+$page = 240;
+$size = 240;
 
 $result = $recipients->getRecipients($page, $size);
 
@@ -3948,8 +4002,8 @@ function getSellers(
 #### Example Usage
 
 ```php
-$page = 154;
-$size = 154;
+$page = 76;
+$size = 76;
 $name = 'name';
 $document = 'document';
 $code = 'code';

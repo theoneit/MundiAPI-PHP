@@ -1973,13 +1973,13 @@ class SubscriptionsController extends BaseController
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function updateCurrentCycleEndDate(
+    public function updateLatestPeriodEndAt(
         $subscriptionId,
         $request
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = '/subscriptions/{subscription_id}/cycle-end-date';
+        $_queryBuilder = '/subscriptions/{subscription_id}/periods/latest/end-at';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -2024,7 +2024,7 @@ class SubscriptionsController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetSubscriptionItemResponse');
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetSubscriptionResponse');
     }
 
     /**
@@ -2193,6 +2193,62 @@ class SubscriptionsController extends BaseController
 
         //and invoke the API call request to fetch the response
         $response = Request::get($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetPeriodResponse');
+    }
+
+    /**
+     * @todo Add general description for this endpoint
+     *
+     * @param string $subscriptionId  TODO: type description here
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function renewSubscription(
+        $subscriptionId
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/subscriptions/{subscription_id}/cycles';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'subscription_id' => $subscriptionId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::post($_queryUrl, $_headers);
 
         $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
         $_httpContext = new HttpContext($_httpRequest, $_httpResponse);

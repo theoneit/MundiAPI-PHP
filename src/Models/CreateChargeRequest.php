@@ -67,18 +67,26 @@ class CreateChargeRequest implements JsonSerializable
     public $dueAt;
 
     /**
+     * @todo Write general description for this property
+     * @required
+     * @var \MundiAPILib\Models\CreateAntifraudRequest $antifraud public property
+     */
+    public $antifraud;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param string                 $code       Initialization value for $this->code
-     * @param integer                $amount     Initialization value for $this->amount
-     * @param string                 $customerId Initialization value for $this->customerId
-     * @param CreateCustomerRequest  $customer   Initialization value for $this->customer
-     * @param CreatePaymentRequest   $payment    Initialization value for $this->payment
-     * @param array                  $metadata   Initialization value for $this->metadata
-     * @param \DateTime              $dueAt      Initialization value for $this->dueAt
+     * @param string                  $code       Initialization value for $this->code
+     * @param integer                 $amount     Initialization value for $this->amount
+     * @param string                  $customerId Initialization value for $this->customerId
+     * @param CreateCustomerRequest   $customer   Initialization value for $this->customer
+     * @param CreatePaymentRequest    $payment    Initialization value for $this->payment
+     * @param array                   $metadata   Initialization value for $this->metadata
+     * @param \DateTime               $dueAt      Initialization value for $this->dueAt
+     * @param CreateAntifraudRequest  $antifraud  Initialization value for $this->antifraud
      */
     public function __construct()
     {
-        if (7 == func_num_args()) {
+        if (8 == func_num_args()) {
             $this->code       = func_get_arg(0);
             $this->amount     = func_get_arg(1);
             $this->customerId = func_get_arg(2);
@@ -86,6 +94,7 @@ class CreateChargeRequest implements JsonSerializable
             $this->payment    = func_get_arg(4);
             $this->metadata   = func_get_arg(5);
             $this->dueAt      = func_get_arg(6);
+            $this->antifraud  = func_get_arg(7);
         }
     }
 
@@ -104,6 +113,7 @@ class CreateChargeRequest implements JsonSerializable
         $json['metadata']    = $this->metadata;
         $json['due_at']      = isset($this->dueAt) ?
             DateTimeHelper::toRfc3339DateTime($this->dueAt) : null;
+        $json['antifraud']   = $this->antifraud;
 
         return $json;
     }

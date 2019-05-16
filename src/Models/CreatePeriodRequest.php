@@ -11,12 +11,12 @@ use JsonSerializable;
 use MundiAPILib\Utils\DateTimeHelper;
 
 /**
- *Request to update the end date of the current subscription cycle
+ * @todo Write general description for this model
  */
-class UpdateCurrentCycleEndDateRequest implements JsonSerializable
+class CreatePeriodRequest implements JsonSerializable
 {
     /**
-     * Current cycle end date
+     * @todo Write general description for this property
      * @maps end_at
      * @factory \MundiAPILib\Utils\DateTimeHelper::fromRfc3339DateTime
      * @var \DateTime|null $endAt public property
