@@ -1,9 +1,7 @@
 <?php
 
-\MundiAPILib\Configuration::$basicAuthPassword = '';
-
 $apiClient = new \MundiAPILib\MundiAPIClient(
-    'YOUR SECRET KEY',
+    $testSecretKey,
     ''
 );
 
@@ -30,4 +28,4 @@ $request->customer = $customer;
 
 $result = $orderController->createOrder($request);
 
-echo json_encode($result, JSON_PRETTY_PRINT);
+return $result;

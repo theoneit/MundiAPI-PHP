@@ -1,9 +1,7 @@
 <?php
 
-\MundiAPILib\Configuration::$basicAuthPassword = '';
-
 $apiClient = new \MundiAPILib\MundiAPIClient(
-    'YOUR SECRET KEY',
+    $testSecretKey,
     ''
 );
 
@@ -28,7 +26,7 @@ $checkout->bankTransfer->bank = ["237", "001", "341"];
 $checkout->boleto = new \MundiAPILib\Models\CreateCheckoutBoletoPaymentRequest();
 $checkout->boleto->bank = "033";
 $checkout->boleto->instructions ="Pagar ate o vencimento";
-$checkout->boleto->dueAt = "2021-07-25T00:00:00Z";
+$checkout->boleto->dueAt = new \DateTime("2021-07-25T00:00:00Z");
 
 //Credit Card Payment Setup;
 $checkout->creditCard = new \MundiAPILib\Models\CreateCheckoutCreditCardPaymentRequest();
@@ -49,10 +47,10 @@ $checkout->creditCard->installments[1]->total = 2500;
 $checkout->debitCard = new \MundiAPILib\Models\CreateCheckoutDebitCardPaymentRequest();
 // Debit card Authentication Setup;
 $checkout->debitCard->authentication = new \MundiAPILib\Models\CreatePaymentAuthenticationRequest();
-$checkout->debitCard->authentication->mtype = 'none';
-$checkout->debitCard->authentication->threed_secure = new \MundiAPILib\Models\CreateThreeDSecureRequest();
-$checkout->debitCard->authentication->threed_secure->mpi = "acquirer";
-$checkout->debitCard->authentication->threed_secure->success_url = "https://www.mundipagg.com";
+$checkout->debitCard->authentication->type = 'threed_secure';
+$checkout->debitCard->authentication->threedSecure = new \MundiAPILib\Models\CreateThreeDSecureRequest();
+$checkout->debitCard->authentication->threedSecure->mpi = "acquirer";
+$checkout->debitCard->authentication->threedSecure->successUrl = "https://www.mundipagg.com";
 
 $request = new \MundiAPILib\Models\CreateOrderRequest();
 
@@ -71,4 +69,4 @@ $result = new \MundiAPILib\Models\GetOrderResponse();
 $result->checkouts = [new \MundiAPILib\Models\GetCheckoutPaymentResponse()];
 $result = $orderController->createOrder($request);
 
-echo json_encode($result, JSON_PRETTY_PRINT);
+return $result;

@@ -1,9 +1,7 @@
 <?php
 
-\MundiAPILib\Configuration::$basicAuthPassword = '';
-
 $apiClient = new \MundiAPILib\MundiAPIClient(
-    'YOUR SECRET KEY',
+    $testSecretKey,
     ''
 );
 
@@ -24,7 +22,7 @@ $customer->address->country = "US";
 $boleto = new \MundiAPILib\Models\CreateBoletoPaymentRequest();
 $boleto->bank = "033";
 $boleto->instructions = "Pagar até o vencimento";
-$boleto->dueAt = '2019-12-31T00:00:00Z';
+$boleto->dueAt = new \DateTime('2019-12-31T00:00:00Z');
 
 $request = new \MundiAPILib\Models\CreateOrderRequest();
 
@@ -40,4 +38,4 @@ $request->customer = $customer;
 
 $result = $orderController->createOrder($request);
 
-echo json_encode($result, JSON_PRETTY_PRINT);
+return $result;
