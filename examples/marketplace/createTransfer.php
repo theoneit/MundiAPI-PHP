@@ -13,7 +13,7 @@ $apiClient = new \MundiAPILib\MundiAPIClient(
 $recipientsController = $apiClient->getRecipients();
 
 $request = new \MundiAPILib\Models\CreateTransferRequest();
-$request->amount = 100;
+$request->amount = 100; // this value should be in cents
 
 $recipientId = "rp_ExAmPlExxxxxxxxx";
 

@@ -15,7 +15,7 @@ $chargesController = $apiClient->getCharges();
 $chargeId = "ch_ExAmPlExxxxxxxxx";
 $request = new \MundiAPILib\Models\CreateCaptureChargeRequest();
 $request->code = "new_code";
-$request->amount = 100;
+$request->amount = 100; // this value should be in cents
 
 $result = $chargesController->captureCharge($chargeId, $request);
 

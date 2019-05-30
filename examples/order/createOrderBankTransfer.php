@@ -24,7 +24,7 @@ $request = new \MundiAPILib\Models\CreateOrderRequest();
 $request->items = [new \MundiAPILib\Models\CreateOrderItemRequest()];
 $request->items[0]->description = "Tesseract Bracelet";
 $request->items[0]->quantity = 3;
-$request->items[0]->amount = 1490;
+$request->items[0]->amount = 1490; // this value should be in cents
 
 $request->payments = [new \MundiAPILib\Models\CreatePaymentRequest()];
 $request->payments[0]->paymentMethod = "bank_transfer";

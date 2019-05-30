@@ -14,7 +14,7 @@ $chargesController = $apiClient->getCharges();
 
 $chargeId = "ch_ExAmPlExxxxxxxxx";
 $request = new \MundiAPILib\Models\CreateCancelChargeRequest();
-$request->amount = 100;
+$request->amount = 100; // this value should be in cents
 
 $result = $chargesController->cancelCharge($chargeId, $request);
 

@@ -19,7 +19,7 @@ $request->interval = "month";
 $request->intervalCount = 3;
 $request->billingType = "prepaid";
 $request->installments = 3;
-$request->minimumPrice = 10000;
+$request->minimumPrice = 10000; // this value should be in cents
 $request->boletoDueDays = 5;
 
 $request->customer = new \MundiAPILib\Models\CreateCustomerRequest();
@@ -45,13 +45,13 @@ $request->items = [
 $request->items[0]->description = "Musculação";
 $request->items[0]->quantity = 1;
 $request->items[0]->pricingScheme = new \MundiAPILib\Models\CreatePricingSchemeRequest();
-$request->items[0]->pricingScheme->price = 18990;
+$request->items[0]->pricingScheme->price = 18990; // this value should be in cents
 
 $request->items[1]->description = "Matrícula";
 $request->items[1]->quantity = 1;
 $request->items[1]->cycles = 1;
 $request->items[1]->pricingScheme = new \MundiAPILib\Models\CreatePricingSchemeRequest();
-$request->items[1]->pricingScheme->price = 5990;
+$request->items[1]->pricingScheme->price = 5990; // this value should be in cents
 
 $result = $subscriptionsController->createSubscription($request);
 
