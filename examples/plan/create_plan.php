@@ -16,7 +16,10 @@ $request->billingType = "prepaid";
 $request->minimumPrice = 10000;
 $request->installments = [3];
 $request->paymentMethods = ["credit_card", "boleto"];
-$request->items = [new \MundiAPILib\Models\CreatePlanItemRequest(), new \MundiAPILib\Models\CreatePlanItemRequest()];
+$request->items = [
+    new \MundiAPILib\Models\CreatePlanItemRequest(),
+    new \MundiAPILib\Models\CreatePlanItemRequest()
+];
 // Plan Item 1
 $request->items[0]->name = "Musculação";
 $request->items[0]->quantity = 1;
