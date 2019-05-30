@@ -1,8 +1,11 @@
 <?php
 
+$secretKey = 'YOUR SECRET KEY'; //the secret key will be provided by MundiPagg.
+$basicAuthPassword = ''; //fill it with an empty string
+
 $apiClient = new \MundiAPILib\MundiAPIClient(
-    $testSecretKey,
-    ''
+    $secretKey,
+    $basicAuthPassword
 );
 
 $orderController = $apiClient->getOrders();
@@ -39,11 +42,11 @@ $request->payments[0]->split = [
     new \MundiAPILib\Models\CreateSplitRequest()
 ];
 
-$request->payments[0]->split[0]->recipientId = "rp_L4kwWE5FDuNdXYQP";
+$request->payments[0]->split[0]->recipientId = "rp_ExAmPlExxxxxxxxx";
 $request->payments[0]->split[0]->amount = 100000;
 $request->payments[0]->split[0]->type = "flat";
 
-$request->payments[0]->split[1]->recipientId = "rp_4jl0ra2h3bI8VBvR";
+$request->payments[0]->split[1]->recipientId = "rp_ExAmPlExxxxxxxxx";
 $request->payments[0]->split[1]->amount = 100000;
 $request->payments[0]->split[1]->type = "flat";
 

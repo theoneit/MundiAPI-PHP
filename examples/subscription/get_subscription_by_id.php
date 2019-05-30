@@ -1,13 +1,16 @@
 <?php
 
+$secretKey = 'YOUR SECRET KEY'; //the secret key will be provided by MundiPagg.
+$basicAuthPassword = ''; //fill it with an empty string
+
 $apiClient = new \MundiAPILib\MundiAPIClient(
-    $testSecretKey,
-    ''
+    $secretKey,
+    $basicAuthPassword
 );
 
 $subscriptionsController = $apiClient->getSubscriptions();
 
-$subscriptionId = "sub_2EvZ8GdFYZhXkbe4";
+$subscriptionId = "sub_ExAmPlExxxxxxxxx";
 
 $result = $subscriptionsController->getSubscription($subscriptionId);
 

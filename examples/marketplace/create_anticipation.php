@@ -1,8 +1,11 @@
 <?php
 
+$secretKey = 'YOUR SECRET KEY'; //the secret key will be provided by MundiPagg.
+$basicAuthPassword = ''; //fill it with an empty string
+
 $apiClient = new \MundiAPILib\MundiAPIClient(
-    $testSecretKey,
-    ''
+    $secretKey,
+    $basicAuthPassword
 );
 
 $recipientsController = $apiClient->getRecipients();
@@ -12,7 +15,7 @@ $request->amount = 10000;
 $request->timeframe = "start";
 $request->paymentDate = DateTime::createFromFormat("Y-m-d", "2020-12-12");
 
-$recipientId = "rp_RElaP4NMCJu08V9m";
+$recipientId = "rp_ExAmPlExxxxxxxxx";
 
 $result = $recipientsController->createAnticipation($recipientId, $request);
 
