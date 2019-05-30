@@ -41,4 +41,4 @@ $request->phones->mobilePhone->number = "000000000";
 
 $result = $customerController->createCustomer($request);
 
-return $result;
+echo json_encode($result, JSON_PRETTY_PRINT);

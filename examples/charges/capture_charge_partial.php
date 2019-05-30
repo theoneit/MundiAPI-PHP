@@ -19,4 +19,4 @@ $request->amount = 100;
 
 $result = $chargesController->captureCharge($chargeId, $request);
 
-return $result;
+echo json_encode($result, JSON_PRETTY_PRINT);

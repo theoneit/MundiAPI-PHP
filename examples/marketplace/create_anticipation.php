@@ -21,4 +21,4 @@ $recipientId = "rp_ExAmPlExxxxxxxxx";
 
 $result = $recipientsController->createAnticipation($recipientId, $request);
 
-return $result;
+echo json_encode($result, JSON_PRETTY_PRINT);

@@ -28,4 +28,4 @@ $request->metadata->id = "my_address_id";
 
 $result = $customerController->createAddress($customerId, $request);
 
-return $result;
+echo json_encode($result, JSON_PRETTY_PRINT);

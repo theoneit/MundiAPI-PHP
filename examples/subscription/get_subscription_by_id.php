@@ -16,4 +16,4 @@ $subscriptionId = "sub_ExAmPlExxxxxxxxx";
 
 $result = $subscriptionsController->getSubscription($subscriptionId);
 
-return $result;
+echo json_encode($result, JSON_PRETTY_PRINT);

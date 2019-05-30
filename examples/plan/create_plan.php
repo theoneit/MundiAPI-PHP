@@ -42,4 +42,4 @@ $request->items[1]->price = 18990;
 
 $result = $plansController->createPlan($request);
 
-return $result;
+echo json_encode($result, JSON_PRETTY_PRINT);

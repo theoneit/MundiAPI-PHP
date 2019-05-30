@@ -16,4 +16,4 @@ $invoiceId = "in_ExAmPlExxxxxxxxx";
 
 $result = $invoicesController->getInvoice($invoiceId);
 
-return $result;
+echo json_encode($result, JSON_PRETTY_PRINT);

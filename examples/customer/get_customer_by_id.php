@@ -16,4 +16,4 @@ $customerId = "cus_ExAmPlExxxxxxxxx";
 
 $result = $customersController->getCustomer($customerId);
 
-return $result;
+echo json_encode($result, JSON_PRETTY_PRINT);

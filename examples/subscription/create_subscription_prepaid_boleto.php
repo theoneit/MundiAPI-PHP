@@ -55,4 +55,4 @@ $request->items[1]->pricingScheme->price = 5990;
 
 $result = $subscriptionsController->createSubscription($request);
 
-return $result;
+echo json_encode($result, JSON_PRETTY_PRINT);

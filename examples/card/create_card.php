@@ -42,6 +42,6 @@ $request->options->verifyCard = true;
 $createdCustomer = $customerController->createCustomer($customer);
 $result = $customerController->createCard($createdCustomer->id, $request);
 
-return $result;
+echo json_encode($result, JSON_PRETTY_PRINT);
     
     

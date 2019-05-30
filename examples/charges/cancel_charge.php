@@ -17,4 +17,4 @@ $request = new \MundiAPILib\Models\CreateCancelChargeRequest();
 
 $result = $chargesController->cancelCharge($chargeId, $request);
 
-return $result;
+echo json_encode($result, JSON_PRETTY_PRINT);

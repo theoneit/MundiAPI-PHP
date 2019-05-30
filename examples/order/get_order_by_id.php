@@ -16,4 +16,4 @@ $orderId = "or_ExAmPlExxxxxxxxx";
 
 $result = $orderController->getOrder($orderId);
 
-return $result;
+echo json_encode($result, JSON_PRETTY_PRINT);

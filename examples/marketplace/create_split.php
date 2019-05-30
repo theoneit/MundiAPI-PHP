@@ -55,4 +55,4 @@ $request->payments[0]->split[1]->type = "flat";
 
 $result = $orderController->createOrder($request);
 
-return $result;
+echo json_encode($result, JSON_PRETTY_PRINT);

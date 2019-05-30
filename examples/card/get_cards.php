@@ -16,4 +16,4 @@ $customerId = "cus_ExAmPlExxxxxxxxx";
 
 $result = $customerController->getCards($customerId, 1, 30);
 
-return $result;
+echo json_encode($result, JSON_PRETTY_PRINT);

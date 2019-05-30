@@ -16,4 +16,4 @@ $chargeId = "ch_ExAmPlExxxxxxxxx";
 
 $result = $chargesController->getCharge($chargeId);
 
-return $result;
+echo json_encode($result, JSON_PRETTY_PRINT);

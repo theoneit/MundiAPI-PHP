@@ -31,4 +31,4 @@ $request->card->billingAddress->country = "BR";
 
 $result = $subscriptionsController->updateSubscriptionCard($subscriptionId, $request);
 
-return $result;
+echo json_encode($result, JSON_PRETTY_PRINT);

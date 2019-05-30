@@ -20,4 +20,4 @@ $customerId = "cus_ExAmPlExxxxxxxxx";
 
 $result = $customerController->updateCustomer($customerId, $request);
 
-return $result;
+echo json_encode($result, JSON_PRETTY_PRINT);

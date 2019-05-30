@@ -19,4 +19,4 @@ $request->cancelPendingInvoices = true;
 
 $result = $subscriptionsController->cancelSubscription($subscriptionId, $request);
 
-return $result;
+echo json_encode($result, JSON_PRETTY_PRINT);

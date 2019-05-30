@@ -18,5 +18,5 @@ $request->code = "new_code";
 
 $result = $chargesController->captureCharge($chargeId, $request);
 
-return $result;
+echo json_encode($result, JSON_PRETTY_PRINT);
 
