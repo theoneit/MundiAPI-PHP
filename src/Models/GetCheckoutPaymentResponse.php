@@ -119,8 +119,7 @@ class GetCheckoutPaymentResponse implements JsonSerializable
 
     /**
      * Dados do comprador
-     * @required
-     * @var \MundiAPILib\Models\GetCustomerResponse $customer public property
+     * @var \MundiAPILib\Models\GetCustomerResponse|null $customer public property
      */
     public $customer;
 
@@ -134,7 +133,7 @@ class GetCheckoutPaymentResponse implements JsonSerializable
     /**
      * Configurações de cartão de crédito
      * @required
-     * @maps credit_Card
+     * @maps credit_card
      * @var \MundiAPILib\Models\GetCheckoutCreditCardPaymentResponse $creditCard public property
      */
     public $creditCard;
@@ -199,51 +198,64 @@ class GetCheckoutPaymentResponse implements JsonSerializable
     public $debitCard;
 
     /**
+     * Bank transfer payment response
+     * @maps bank_transfer
+     * @var \MundiAPILib\Models\GetCheckoutBankTransferPaymentResponse|null $bankTransfer public property
+     */
+    public $bankTransfer;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param string                                $id                      Initialization value for $this->id
-     * @param integer                               $amount                  Initialization value for $this->amount
-     * @param string                                $defaultPaymentMethod    Initialization value for $this-
-     *                                                                         >defaultPaymentMethod
-     * @param string                                $successUrl              Initialization value for $this-
-     *                                                                         >successUrl
-     * @param string                                $paymentUrl              Initialization value for $this-
-     *                                                                         >paymentUrl
-     * @param string                                $gatewayAffiliationId    Initialization value for $this-
-     *                                                                         >gatewayAffiliationId
-     * @param array                                 $acceptedPaymentMethods  Initialization value for $this-
-     *                                                                         >acceptedPaymentMethods
-     * @param string                                $status                  Initialization value for $this->status
-     * @param bool                                  $skipCheckoutSuccessPage Initialization value for $this-
-     *                                                                         >skipCheckoutSuccessPage
-     * @param \DateTime                             $createdAt               Initialization value for $this-
-     *                                                                         >createdAt
-     * @param \DateTime                             $updatedAt               Initialization value for $this-
-     *                                                                         >updatedAt
-     * @param \DateTime                             $canceledAt              Initialization value for $this-
-     *                                                                         >canceledAt
-     * @param bool                                  $customerEditable        Initialization value for $this-
-     *                                                                         >customerEditable
-     * @param GetCustomerResponse                   $customer                Initialization value for $this->customer
-     * @param GetAddressResponse                    $billingaddress          Initialization value for $this-
-     *                                                                         >billingaddress
-     * @param GetCheckoutCreditCardPaymentResponse  $creditCard              Initialization value for $this-
-     *                                                                         >creditCard
-     * @param GetCheckoutBoletoPaymentResponse      $boleto                  Initialization value for $this->boleto
-     * @param bool                                  $billingAddressEditable  Initialization value for $this-
-     *                                                                         >billingAddressEditable
-     * @param GetShippingResponse                   $shipping                Initialization value for $this->shipping
-     * @param bool                                  $shippable               Initialization value for $this-
-     *                                                                         >shippable
-     * @param \DateTime                             $closedAt                Initialization value for $this->closedAt
-     * @param \DateTime                             $expiresAt               Initialization value for $this-
-     *                                                                         >expiresAt
-     * @param string                                $currency                Initialization value for $this->currency
-     * @param GetCheckoutDebitCardPaymentResponse   $debitCard               Initialization value for $this-
-     *                                                                         >debitCard
+     * @param string                                  $id                      Initialization value for $this->id
+     * @param integer                                 $amount                  Initialization value for $this->amount
+     * @param string                                  $defaultPaymentMethod    Initialization value for $this-
+     *                                                                           >defaultPaymentMethod
+     * @param string                                  $successUrl              Initialization value for $this-
+     *                                                                           >successUrl
+     * @param string                                  $paymentUrl              Initialization value for $this-
+     *                                                                           >paymentUrl
+     * @param string                                  $gatewayAffiliationId    Initialization value for $this-
+     *                                                                           >gatewayAffiliationId
+     * @param array                                   $acceptedPaymentMethods  Initialization value for $this-
+     *                                                                           >acceptedPaymentMethods
+     * @param string                                  $status                  Initialization value for $this->status
+     * @param bool                                    $skipCheckoutSuccessPage Initialization value for $this-
+     *                                                                           >skipCheckoutSuccessPage
+     * @param \DateTime                               $createdAt               Initialization value for $this-
+     *                                                                           >createdAt
+     * @param \DateTime                               $updatedAt               Initialization value for $this-
+     *                                                                           >updatedAt
+     * @param \DateTime                               $canceledAt              Initialization value for $this-
+     *                                                                           >canceledAt
+     * @param bool                                    $customerEditable        Initialization value for $this-
+     *                                                                           >customerEditable
+     * @param GetCustomerResponse                     $customer                Initialization value for $this-
+     *                                                                           >customer
+     * @param GetAddressResponse                      $billingaddress          Initialization value for $this-
+     *                                                                           >billingaddress
+     * @param GetCheckoutCreditCardPaymentResponse    $creditCard              Initialization value for $this-
+     *                                                                           >creditCard
+     * @param GetCheckoutBoletoPaymentResponse        $boleto                  Initialization value for $this->boleto
+     * @param bool                                    $billingAddressEditable  Initialization value for $this-
+     *                                                                           >billingAddressEditable
+     * @param GetShippingResponse                     $shipping                Initialization value for $this-
+     *                                                                           >shipping
+     * @param bool                                    $shippable               Initialization value for $this-
+     *                                                                           >shippable
+     * @param \DateTime                               $closedAt                Initialization value for $this-
+     *                                                                           >closedAt
+     * @param \DateTime                               $expiresAt               Initialization value for $this-
+     *                                                                           >expiresAt
+     * @param string                                  $currency                Initialization value for $this-
+     *                                                                           >currency
+     * @param GetCheckoutDebitCardPaymentResponse     $debitCard               Initialization value for $this-
+     *                                                                           >debitCard
+     * @param GetCheckoutBankTransferPaymentResponse  $bankTransfer            Initialization value for $this-
+     *                                                                           >bankTransfer
      */
     public function __construct()
     {
-        if (24 == func_num_args()) {
+        if (25 == func_num_args()) {
             $this->id                      = func_get_arg(0);
             $this->amount                  = func_get_arg(1);
             $this->defaultPaymentMethod    = func_get_arg(2);
@@ -268,6 +280,7 @@ class GetCheckoutPaymentResponse implements JsonSerializable
             $this->expiresAt               = func_get_arg(21);
             $this->currency                = func_get_arg(22);
             $this->debitCard               = func_get_arg(23);
+            $this->bankTransfer            = func_get_arg(24);
         }
     }
 
@@ -294,7 +307,7 @@ class GetCheckoutPaymentResponse implements JsonSerializable
         $json['customer_editable']          = $this->customerEditable;
         $json['customer']                   = $this->customer;
         $json['billingaddress']             = $this->billingaddress;
-        $json['credit_Card']                = $this->creditCard;
+        $json['credit_card']                = $this->creditCard;
         $json['boleto']                     = $this->boleto;
         $json['billing_address_editable']   = $this->billingAddressEditable;
         $json['shipping']                   = $this->shipping;
@@ -305,6 +318,7 @@ class GetCheckoutPaymentResponse implements JsonSerializable
             DateTimeHelper::toRfc3339DateTime($this->expiresAt) : null;
         $json['currency']                   = $this->currency;
         $json['debit_card']                 = $this->debitCard;
+        $json['bank_transfer']              = $this->bankTransfer;
 
         return $json;
     }

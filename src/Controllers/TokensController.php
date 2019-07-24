@@ -103,14 +103,16 @@ class TokensController extends BaseController
     /**
      * @todo Add general description for this endpoint
      *
-     * @param string                    $publicKey  Public key
-     * @param Models\CreateTokenRequest $request    Request for creating a token
+     * @param string                    $publicKey       Public key
+     * @param Models\CreateTokenRequest $request         Request for creating a token
+     * @param string                    $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createToken(
         $publicKey,
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -118,7 +120,7 @@ class TokensController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'public_key' => $publicKey,
+            'public_key'      => $publicKey,
             ));
 
         //validate and preprocess url
@@ -128,7 +130,8 @@ class TokensController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body

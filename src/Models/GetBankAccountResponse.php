@@ -120,8 +120,7 @@ class GetBankAccountResponse implements JsonSerializable
 
     /**
      * Recipient
-     * @required
-     * @var \MundiAPILib\Models\GetRecipientResponse $recipient public property
+     * @var \MundiAPILib\Models\GetRecipientResponse|null $recipient public property
      */
     public $recipient;
 

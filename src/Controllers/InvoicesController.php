@@ -45,12 +45,14 @@ class InvoicesController extends BaseController
     /**
      * Cancels an invoice
      *
-     * @param string $invoiceId  Invoice id
+     * @param string $invoiceId       Invoice id
+     * @param string $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function cancelInvoice(
-        $invoiceId
+        $invoiceId,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -58,7 +60,7 @@ class InvoicesController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'invoice_id' => $invoiceId,
+            'invoice_id'      => $invoiceId,
             ));
 
         //validate and preprocess url
@@ -67,7 +69,8 @@ class InvoicesController extends BaseController
         //prepare headers
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json'
+            'Accept'        => 'application/json',
+            'idempotency-key' => $idempotencyKey
         );
 
         //set HTTP basic auth parameters
@@ -160,13 +163,15 @@ class InvoicesController extends BaseController
      * @param string                      $subscriptionId  Subscription Id
      * @param string                      $cycleId         Cycle Id
      * @param Models\CreateInvoiceRequest $request         (optional) TODO: type description here
+     * @param string                      $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createInvoice(
         $subscriptionId,
         $cycleId,
-        $request = null
+        $request = null,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -185,7 +190,8 @@ class InvoicesController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -222,14 +228,16 @@ class InvoicesController extends BaseController
     /**
      * Updates the status from an invoice
      *
-     * @param string                            $invoiceId  Invoice Id
-     * @param Models\UpdateInvoiceStatusRequest $request    Request for updating an invoice's status
+     * @param string                            $invoiceId       Invoice Id
+     * @param Models\UpdateInvoiceStatusRequest $request         Request for updating an invoice's status
+     * @param string                            $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function updateInvoiceStatus(
         $invoiceId,
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -237,7 +245,7 @@ class InvoicesController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'invoice_id' => $invoiceId,
+            'invoice_id'      => $invoiceId,
             ));
 
         //validate and preprocess url
@@ -247,7 +255,8 @@ class InvoicesController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -367,14 +376,16 @@ class InvoicesController extends BaseController
     /**
      * Updates the metadata from an invoice
      *
-     * @param string                       $invoiceId  The invoice id
-     * @param Models\UpdateMetadataRequest $request    Request for updating the invoice metadata
+     * @param string                       $invoiceId       The invoice id
+     * @param Models\UpdateMetadataRequest $request         Request for updating the invoice metadata
+     * @param string                       $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function updateInvoiceMetadata(
         $invoiceId,
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -382,7 +393,7 @@ class InvoicesController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'invoice_id' => $invoiceId,
+            'invoice_id'      => $invoiceId,
             ));
 
         //validate and preprocess url
@@ -392,7 +403,8 @@ class InvoicesController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body

@@ -44,16 +44,18 @@ class CustomersController extends BaseController
     /**
      * Updates a card
      *
-     * @param string                   $customerId  Customer Id
-     * @param string                   $cardId      Card id
-     * @param Models\UpdateCardRequest $request     Request for updating a card
+     * @param string                   $customerId      Customer Id
+     * @param string                   $cardId          Card id
+     * @param Models\UpdateCardRequest $request         Request for updating a card
+     * @param string                   $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function updateCard(
         $customerId,
         $cardId,
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -61,8 +63,8 @@ class CustomersController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'customer_id' => $customerId,
-            'card_id'     => $cardId,
+            'customer_id'     => $customerId,
+            'card_id'         => $cardId,
             ));
 
         //validate and preprocess url
@@ -72,7 +74,8 @@ class CustomersController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -109,16 +112,18 @@ class CustomersController extends BaseController
     /**
      * Updates an address
      *
-     * @param string                      $customerId  Customer Id
-     * @param string                      $addressId   Address Id
-     * @param Models\UpdateAddressRequest $request     Request for updating an address
+     * @param string                      $customerId      Customer Id
+     * @param string                      $addressId       Address Id
+     * @param Models\UpdateAddressRequest $request         Request for updating an address
+     * @param string                      $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function updateAddress(
         $customerId,
         $addressId,
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -126,8 +131,8 @@ class CustomersController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'customer_id' => $customerId,
-            'address_id'  => $addressId,
+            'customer_id'     => $customerId,
+            'address_id'      => $addressId,
             ));
 
         //validate and preprocess url
@@ -137,7 +142,8 @@ class CustomersController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -169,61 +175,6 @@ class CustomersController extends BaseController
         $mapper = $this->getJsonMapper();
 
         return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetAddressResponse');
-    }
-
-    /**
-     * Creates a new customer
-     *
-     * @param Models\CreateCustomerRequest $request Request for creating a customer
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function createCustomer(
-        $request
-    ) {
-
-        //prepare query string for API call
-        $_queryBuilder = '/customers';
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
-        );
-
-        //json encode body
-        $_bodyJson = Request\Body::Json($request);
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::post($_queryUrl, $_headers, $_bodyJson);
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetCustomerResponse');
     }
 
     /**
@@ -598,14 +549,16 @@ class CustomersController extends BaseController
     /**
      * Creates a access token for a customer
      *
-     * @param string                          $customerId  Customer Id
-     * @param Models\CreateAccessTokenRequest $request     Request for creating a access token
+     * @param string                          $customerId      Customer Id
+     * @param Models\CreateAccessTokenRequest $request         Request for creating a access token
+     * @param string                          $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createAccessToken(
         $customerId,
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -613,7 +566,7 @@ class CustomersController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'customer_id' => $customerId,
+            'customer_id'     => $customerId,
             ));
 
         //validate and preprocess url
@@ -623,7 +576,8 @@ class CustomersController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -660,14 +614,16 @@ class CustomersController extends BaseController
     /**
      * Delete a customer's access token
      *
-     * @param string $customerId  Customer Id
-     * @param string $tokenId     Token Id
+     * @param string $customerId      Customer Id
+     * @param string $tokenId         Token Id
+     * @param string $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function deleteAccessToken(
         $customerId,
-        $tokenId
+        $tokenId,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -675,8 +631,8 @@ class CustomersController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'customer_id' => $customerId,
-            'token_id'    => $tokenId,
+            'customer_id'     => $customerId,
+            'token_id'        => $tokenId,
             ));
 
         //validate and preprocess url
@@ -685,7 +641,8 @@ class CustomersController extends BaseController
         //prepare headers
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json'
+            'Accept'        => 'application/json',
+            'idempotency-key' => $idempotencyKey
         );
 
         //set HTTP basic auth parameters
@@ -719,14 +676,16 @@ class CustomersController extends BaseController
     /**
      * Updates the metadata a customer
      *
-     * @param string                       $customerId  The customer id
-     * @param Models\UpdateMetadataRequest $request     Request for updating the customer metadata
+     * @param string                       $customerId      The customer id
+     * @param Models\UpdateMetadataRequest $request         Request for updating the customer metadata
+     * @param string                       $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function updateCustomerMetadata(
         $customerId,
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -734,7 +693,7 @@ class CustomersController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'customer_id' => $customerId,
+            'customer_id'     => $customerId,
             ));
 
         //validate and preprocess url
@@ -744,7 +703,8 @@ class CustomersController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -781,14 +741,16 @@ class CustomersController extends BaseController
     /**
      * Updates a customer
      *
-     * @param string                       $customerId  Customer id
-     * @param Models\UpdateCustomerRequest $request     Request for updating a customer
+     * @param string                       $customerId      Customer id
+     * @param Models\UpdateCustomerRequest $request         Request for updating a customer
+     * @param string                       $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function updateCustomer(
         $customerId,
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -796,7 +758,7 @@ class CustomersController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'customer_id' => $customerId,
+            'customer_id'     => $customerId,
             ));
 
         //validate and preprocess url
@@ -806,7 +768,8 @@ class CustomersController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -902,14 +865,16 @@ class CustomersController extends BaseController
     /**
      * Delete a Customer's address
      *
-     * @param string $customerId  Customer Id
-     * @param string $addressId   Address Id
+     * @param string $customerId      Customer Id
+     * @param string $addressId       Address Id
+     * @param string $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function deleteAddress(
         $customerId,
-        $addressId
+        $addressId,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -917,8 +882,8 @@ class CustomersController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'customer_id' => $customerId,
-            'address_id'  => $addressId,
+            'customer_id'     => $customerId,
+            'address_id'      => $addressId,
             ));
 
         //validate and preprocess url
@@ -927,7 +892,8 @@ class CustomersController extends BaseController
         //prepare headers
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json'
+            'Accept'        => 'application/json',
+            'idempotency-key' => $idempotencyKey
         );
 
         //set HTTP basic auth parameters
@@ -961,14 +927,16 @@ class CustomersController extends BaseController
     /**
      * Delete a customer's card
      *
-     * @param string $customerId  Customer Id
-     * @param string $cardId      Card Id
+     * @param string $customerId      Customer Id
+     * @param string $cardId          Card Id
+     * @param string $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function deleteCard(
         $customerId,
-        $cardId
+        $cardId,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -976,8 +944,8 @@ class CustomersController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'customer_id' => $customerId,
-            'card_id'     => $cardId,
+            'customer_id'     => $customerId,
+            'card_id'         => $cardId,
             ));
 
         //validate and preprocess url
@@ -986,7 +954,8 @@ class CustomersController extends BaseController
         //prepare headers
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json'
+            'Accept'        => 'application/json',
+            'idempotency-key' => $idempotencyKey
         );
 
         //set HTTP basic auth parameters
@@ -1020,14 +989,16 @@ class CustomersController extends BaseController
     /**
      * Creates a new address for a customer
      *
-     * @param string                      $customerId  Customer Id
-     * @param Models\CreateAddressRequest $request     Request for creating an address
+     * @param string                      $customerId      Customer Id
+     * @param Models\CreateAddressRequest $request         Request for creating an address
+     * @param string                      $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createAddress(
         $customerId,
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -1035,7 +1006,7 @@ class CustomersController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'customer_id' => $customerId,
+            'customer_id'     => $customerId,
             ));
 
         //validate and preprocess url
@@ -1045,7 +1016,8 @@ class CustomersController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -1141,14 +1113,16 @@ class CustomersController extends BaseController
     /**
      * Creates a new card for a customer
      *
-     * @param string                   $customerId  Customer id
-     * @param Models\CreateCardRequest $request     Request for creating a card
+     * @param string                   $customerId      Customer id
+     * @param Models\CreateCardRequest $request         Request for creating a card
+     * @param string                   $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createCard(
         $customerId,
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -1156,7 +1130,7 @@ class CustomersController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'customer_id' => $customerId,
+            'customer_id'     => $customerId,
             ));
 
         //validate and preprocess url
@@ -1166,7 +1140,8 @@ class CustomersController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -1274,14 +1249,16 @@ class CustomersController extends BaseController
     /**
      * Renew a card
      *
-     * @param string $customerId  Customer id
-     * @param string $cardId      Card Id
+     * @param string $customerId      Customer id
+     * @param string $cardId          Card Id
+     * @param string $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function renewCard(
         $customerId,
-        $cardId
+        $cardId,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -1289,8 +1266,8 @@ class CustomersController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'customer_id' => $customerId,
-            'card_id'     => $cardId,
+            'customer_id'     => $customerId,
+            'card_id'         => $cardId,
             ));
 
         //validate and preprocess url
@@ -1299,7 +1276,8 @@ class CustomersController extends BaseController
         //prepare headers
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json'
+            'Accept'        => 'application/json',
+            'idempotency-key' => $idempotencyKey
         );
 
         //set HTTP basic auth parameters
@@ -1328,5 +1306,63 @@ class CustomersController extends BaseController
         $mapper = $this->getJsonMapper();
 
         return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetCardResponse');
+    }
+
+    /**
+     * Creates a new customer
+     *
+     * @param Models\CreateCustomerRequest $request         Request for creating a customer
+     * @param string                       $idempotencyKey  (optional) TODO: type description here
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function createCustomer(
+        $request,
+        $idempotencyKey = null
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/customers';
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json',
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
+        );
+
+        //json encode body
+        $_bodyJson = Request\Body::Json($request);
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::post($_queryUrl, $_headers, $_bodyJson);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetCustomerResponse');
     }
 }

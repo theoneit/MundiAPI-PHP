@@ -34,18 +34,26 @@ class CreateCheckoutCreditCardPaymentRequest implements JsonSerializable
     public $authentication;
 
     /**
+     * Authorize and capture?
+     * @var bool|null $capture public property
+     */
+    public $capture;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string                             $statementDescriptor Initialization value for $this-
      *                                                                  >statementDescriptor
      * @param array                              $installments        Initialization value for $this->installments
      * @param CreatePaymentAuthenticationRequest $authentication      Initialization value for $this->authentication
+     * @param bool                               $capture             Initialization value for $this->capture
      */
     public function __construct()
     {
-        if (3 == func_num_args()) {
+        if (4 == func_num_args()) {
             $this->statementDescriptor = func_get_arg(0);
             $this->installments        = func_get_arg(1);
             $this->authentication      = func_get_arg(2);
+            $this->capture             = func_get_arg(3);
         }
     }
 
@@ -59,6 +67,7 @@ class CreateCheckoutCreditCardPaymentRequest implements JsonSerializable
         $json['statement_descriptor'] = $this->statementDescriptor;
         $json['installments']         = $this->installments;
         $json['authentication']       = $this->authentication;
+        $json['capture']              = $this->capture;
 
         return $json;
     }

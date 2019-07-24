@@ -87,10 +87,10 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
     public $authentication;
 
     /**
-     * The Credit card payment token request
-     * @var \MundiAPILib\Models\CreateCardPaymentTokenRequest|null $token public property
+     * The Credit card payment contactless request
+     * @var \MundiAPILib\Models\CreateCardPaymentTokenRequest|null $contactless public property
      */
-    public $token;
+    public $contactless;
 
     /**
      * Indicates whether a particular payment will enter the offline retry flow
@@ -116,7 +116,7 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
      * @param integer                            $merchantCategoryCode Initialization value for $this-
      *                                                                   >merchantCategoryCode
      * @param CreatePaymentAuthenticationRequest $authentication       Initialization value for $this->authentication
-     * @param CreateCardPaymentTokenRequest      $token                Initialization value for $this->token
+     * @param CreateCardPaymentTokenRequest      $contactless          Initialization value for $this->contactless
      * @param bool                               $autoRecovery         Initialization value for $this->autoRecovery
      */
     public function __construct()
@@ -134,7 +134,7 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
                 $this->extendedLimitCode    = func_get_arg(8);
                 $this->merchantCategoryCode = func_get_arg(9);
                 $this->authentication       = func_get_arg(10);
-                $this->token                = func_get_arg(11);
+                $this->contactless          = func_get_arg(11);
                 $this->autoRecovery         = func_get_arg(12);
                 break;
 
@@ -163,7 +163,7 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
         $json['extended_limit_code']    = $this->extendedLimitCode;
         $json['merchant_category_code'] = $this->merchantCategoryCode;
         $json['authentication']         = $this->authentication;
-        $json['token']                  = $this->token;
+        $json['contactless']            = $this->contactless;
         $json['auto_recovery']          = $this->autoRecovery;
 
         return $json;

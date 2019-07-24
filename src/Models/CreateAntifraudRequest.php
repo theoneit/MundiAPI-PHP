@@ -24,14 +24,14 @@ class CreateAntifraudRequest implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\ClearSaleRequest $clearsale public property
+     * @var \MundiAPILib\Models\CreateClearSaleRequest $clearsale public property
      */
     public $clearsale;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string           $type      Initialization value for $this->type
-     * @param ClearSaleRequest $clearsale Initialization value for $this->clearsale
+     * @param string                 $type      Initialization value for $this->type
+     * @param CreateClearSaleRequest $clearsale Initialization value for $this->clearsale
      */
     public function __construct()
     {

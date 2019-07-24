@@ -47,8 +47,7 @@ class GetCheckoutPaymentSettingsResponse implements JsonSerializable
 
     /**
      * Customer
-     * @required
-     * @var \MundiAPILib\Models\GetCustomerResponse $customer public property
+     * @var \MundiAPILib\Models\GetCustomerResponse|null $customer public property
      */
     public $customer;
 

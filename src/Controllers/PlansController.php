@@ -45,14 +45,16 @@ class PlansController extends BaseController
     /**
      * Adds a new item to a plan
      *
-     * @param string                       $planId  Plan id
-     * @param Models\CreatePlanItemRequest $request Request for creating a plan item
+     * @param string                       $planId          Plan id
+     * @param Models\CreatePlanItemRequest $request         Request for creating a plan item
+     * @param string                       $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createPlanItem(
         $planId,
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -60,7 +62,7 @@ class PlansController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'plan_id' => $planId,
+            'plan_id'         => $planId,
             ));
 
         //validate and preprocess url
@@ -70,7 +72,8 @@ class PlansController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -107,16 +110,18 @@ class PlansController extends BaseController
     /**
      * Updates a plan item
      *
-     * @param string                       $planId       Plan id
-     * @param string                       $planItemId   Plan item id
-     * @param Models\UpdatePlanItemRequest $body         Request for updating the plan item
+     * @param string                       $planId          Plan id
+     * @param string                       $planItemId      Plan item id
+     * @param Models\UpdatePlanItemRequest $body            Request for updating the plan item
+     * @param string                       $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function updatePlanItem(
         $planId,
         $planItemId,
-        $body
+        $body,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -124,8 +129,8 @@ class PlansController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'plan_id'      => $planId,
-            'plan_item_id' => $planItemId,
+            'plan_id'         => $planId,
+            'plan_item_id'    => $planItemId,
             ));
 
         //validate and preprocess url
@@ -135,7 +140,8 @@ class PlansController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -228,12 +234,14 @@ class PlansController extends BaseController
     /**
      * Deletes a plan
      *
-     * @param string $planId  Plan id
+     * @param string $planId          Plan id
+     * @param string $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function deletePlan(
-        $planId
+        $planId,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -241,7 +249,7 @@ class PlansController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'plan_id' => $planId,
+            'plan_id'         => $planId,
             ));
 
         //validate and preprocess url
@@ -250,7 +258,8 @@ class PlansController extends BaseController
         //prepare headers
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json'
+            'Accept'        => 'application/json',
+            'idempotency-key' => $idempotencyKey
         );
 
         //set HTTP basic auth parameters
@@ -284,14 +293,16 @@ class PlansController extends BaseController
     /**
      * Updates a plan
      *
-     * @param string                   $planId  Plan id
-     * @param Models\UpdatePlanRequest $request Request for updating a plan
+     * @param string                   $planId          Plan id
+     * @param Models\UpdatePlanRequest $request         Request for updating a plan
+     * @param string                   $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function updatePlan(
         $planId,
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -299,7 +310,7 @@ class PlansController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'plan_id' => $planId,
+            'plan_id'         => $planId,
             ));
 
         //validate and preprocess url
@@ -309,7 +320,8 @@ class PlansController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -346,12 +358,14 @@ class PlansController extends BaseController
     /**
      * Creates a new plan
      *
-     * @param Models\CreatePlanRequest $body Request for creating a plan
+     * @param Models\CreatePlanRequest $body            Request for creating a plan
+     * @param string                   $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createPlan(
-        $body
+        $body,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -364,7 +378,8 @@ class PlansController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -475,14 +490,16 @@ class PlansController extends BaseController
     /**
      * Updates the metadata from a plan
      *
-     * @param string                       $planId  The plan id
-     * @param Models\UpdateMetadataRequest $request Request for updating the plan metadata
+     * @param string                       $planId          The plan id
+     * @param Models\UpdateMetadataRequest $request         Request for updating the plan metadata
+     * @param string                       $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function updatePlanMetadata(
         $planId,
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -490,7 +507,7 @@ class PlansController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'plan_id' => $planId,
+            'plan_id'         => $planId,
             ));
 
         //validate and preprocess url
@@ -500,7 +517,8 @@ class PlansController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -596,14 +614,16 @@ class PlansController extends BaseController
     /**
      * Removes an item from a plan
      *
-     * @param string $planId       Plan id
-     * @param string $planItemId   Plan item id
+     * @param string $planId          Plan id
+     * @param string $planItemId      Plan item id
+     * @param string $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function deletePlanItem(
         $planId,
-        $planItemId
+        $planItemId,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -611,8 +631,8 @@ class PlansController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'plan_id'      => $planId,
-            'plan_item_id' => $planItemId,
+            'plan_id'         => $planId,
+            'plan_item_id'    => $planItemId,
             ));
 
         //validate and preprocess url
@@ -621,7 +641,8 @@ class PlansController extends BaseController
         //prepare headers
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json'
+            'Accept'        => 'application/json',
+            'idempotency-key' => $idempotencyKey
         );
 
         //set HTTP basic auth parameters
