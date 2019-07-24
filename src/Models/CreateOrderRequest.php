@@ -52,8 +52,7 @@ class CreateOrderRequest implements JsonSerializable
 
     /**
      * Shipping data
-     * @required
-     * @var \MundiAPILib\Models\CreateShippingRequest $shipping public property
+     * @var \MundiAPILib\Models\CreateShippingRequest|null $shipping public property
      */
     public $shipping;
 
@@ -111,8 +110,7 @@ class CreateOrderRequest implements JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @required
-     * @var \MundiAPILib\Models\CreateAntifraudRequest $antifraud public property
+     * @var \MundiAPILib\Models\CreateAntifraudRequest|null $antifraud public property
      */
     public $antifraud;
 

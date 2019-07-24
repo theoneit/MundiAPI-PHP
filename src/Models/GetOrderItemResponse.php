@@ -58,6 +58,13 @@ class GetOrderItemResponse implements JsonSerializable
     public $category;
 
     /**
+     * Code
+     * @required
+     * @var string $code public property
+     */
+    public $code;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string            $id                Initialization value for $this->id
      * @param integer           $amount            Initialization value for $this->amount
@@ -65,16 +72,18 @@ class GetOrderItemResponse implements JsonSerializable
      * @param integer           $quantity          Initialization value for $this->quantity
      * @param GetSellerResponse $getSellerResponse Initialization value for $this->getSellerResponse
      * @param string            $category          Initialization value for $this->category
+     * @param string            $code              Initialization value for $this->code
      */
     public function __construct()
     {
-        if (6 == func_num_args()) {
+        if (7 == func_num_args()) {
             $this->id                = func_get_arg(0);
             $this->amount            = func_get_arg(1);
             $this->description       = func_get_arg(2);
             $this->quantity          = func_get_arg(3);
             $this->getSellerResponse = func_get_arg(4);
             $this->category          = func_get_arg(5);
+            $this->code              = func_get_arg(6);
         }
     }
 
@@ -91,6 +100,7 @@ class GetOrderItemResponse implements JsonSerializable
         $json['quantity']          = $this->quantity;
         $json['GetSellerResponse'] = $this->getSellerResponse;
         $json['category']          = $this->category;
+        $json['code']              = $this->code;
 
         return $json;
     }

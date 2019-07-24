@@ -16,33 +16,29 @@ class CreateVoucherPaymentRequest implements JsonSerializable
 {
     /**
      * The text that will be shown on the voucher's statement
-     * @required
      * @maps statement_descriptor
-     * @var string $statementDescriptor public property
+     * @var string|null $statementDescriptor public property
      */
     public $statementDescriptor;
 
     /**
      * Card id
-     * @required
      * @maps card_id
-     * @var string $cardId public property
+     * @var string|null $cardId public property
      */
     public $cardId;
 
     /**
      * Card token
-     * @required
      * @maps card_token
-     * @var string $cardToken public property
+     * @var string|null $cardToken public property
      */
     public $cardToken;
 
     /**
      * Card info
-     * @required
      * @maps Card
-     * @var \MundiAPILib\Models\CreateCardRequest $card public property
+     * @var \MundiAPILib\Models\CreateCardRequest|null $card public property
      */
     public $card;
 

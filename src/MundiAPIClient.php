@@ -25,20 +25,20 @@ class MundiAPIClient
         Configuration::$basicAuthPassword = $basicAuthPassword ? $basicAuthPassword : Configuration::$basicAuthPassword;
     }
     /**
-     * Singleton access to Subscriptions controller
-     * @return Controllers\SubscriptionsController The *Singleton* instance
-     */
-    public function getSubscriptions()
-    {
-        return Controllers\SubscriptionsController::getInstance();
-    }
-    /**
      * Singleton access to Orders controller
      * @return Controllers\OrdersController The *Singleton* instance
      */
     public function getOrders()
     {
         return Controllers\OrdersController::getInstance();
+    }
+    /**
+     * Singleton access to Subscriptions controller
+     * @return Controllers\SubscriptionsController The *Singleton* instance
+     */
+    public function getSubscriptions()
+    {
+        return Controllers\SubscriptionsController::getInstance();
     }
     /**
      * Singleton access to Plans controller

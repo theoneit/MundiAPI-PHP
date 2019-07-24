@@ -98,9 +98,8 @@ class CreateCardRequest implements JsonSerializable
 
     /**
      * Document number for the card's holder
-     * @required
      * @maps holder_document
-     * @var string $holderDocument public property
+     * @var string|null $holderDocument public property
      */
     public $holderDocument;
 

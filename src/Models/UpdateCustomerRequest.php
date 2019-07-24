@@ -16,43 +16,37 @@ class UpdateCustomerRequest implements JsonSerializable
 {
     /**
      * Name
-     * @required
-     * @var string $name public property
+     * @var string|null $name public property
      */
     public $name;
 
     /**
      * Email
-     * @required
-     * @var string $email public property
+     * @var string|null $email public property
      */
     public $email;
 
     /**
      * Document number
-     * @required
-     * @var string $document public property
+     * @var string|null $document public property
      */
     public $document;
 
     /**
      * Person type
-     * @required
-     * @var string $type public property
+     * @var string|null $type public property
      */
     public $type;
 
     /**
      * Address
-     * @required
-     * @var \MundiAPILib\Models\CreateAddressRequest $address public property
+     * @var \MundiAPILib\Models\CreateAddressRequest|null $address public property
      */
     public $address;
 
     /**
      * Metadata
-     * @required
-     * @var array $metadata public property
+     * @var array|null $metadata public property
      */
     public $metadata;
 
@@ -64,10 +58,15 @@ class UpdateCustomerRequest implements JsonSerializable
 
     /**
      * Código de referência do cliente no sistema da loja. Max: 52 caracteres
-     * @required
-     * @var string $code public property
+     * @var string|null $code public property
      */
     public $code;
+
+    /**
+     * Gênero do cliente
+     * @var string|null $gender public property
+     */
+    public $gender;
 
     /**
      * Constructor to set initial or default values of member properties
@@ -79,10 +78,11 @@ class UpdateCustomerRequest implements JsonSerializable
      * @param array                $metadata Initialization value for $this->metadata
      * @param CreatePhonesRequest  $phones   Initialization value for $this->phones
      * @param string               $code     Initialization value for $this->code
+     * @param string               $gender   Initialization value for $this->gender
      */
     public function __construct()
     {
-        if (8 == func_num_args()) {
+        if (9 == func_num_args()) {
             $this->name     = func_get_arg(0);
             $this->email    = func_get_arg(1);
             $this->document = func_get_arg(2);
@@ -91,6 +91,7 @@ class UpdateCustomerRequest implements JsonSerializable
             $this->metadata = func_get_arg(5);
             $this->phones   = func_get_arg(6);
             $this->code     = func_get_arg(7);
+            $this->gender   = func_get_arg(8);
         }
     }
 
@@ -109,6 +110,7 @@ class UpdateCustomerRequest implements JsonSerializable
         $json['metadata'] = $this->metadata;
         $json['phones']   = $this->phones;
         $json['code']     = $this->code;
+        $json['gender']   = $this->gender;
 
         return $json;
     }

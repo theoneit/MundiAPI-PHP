@@ -45,14 +45,16 @@ class RecipientsController extends BaseController
     /**
      * Updates recipient metadata
      *
-     * @param string                       $recipientId  Recipient id
-     * @param Models\UpdateMetadataRequest $request      Metadata
+     * @param string                       $recipientId     Recipient id
+     * @param Models\UpdateMetadataRequest $request         Metadata
+     * @param string                       $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function updateRecipientMetadata(
         $recipientId,
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -60,7 +62,7 @@ class RecipientsController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'recipient_id' => $recipientId,
+            'recipient_id'    => $recipientId,
             ));
 
         //validate and preprocess url
@@ -70,7 +72,8 @@ class RecipientsController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -241,14 +244,16 @@ class RecipientsController extends BaseController
     /**
      * Creates an anticipation
      *
-     * @param string                           $recipientId  Recipient id
-     * @param Models\CreateAnticipationRequest $request      Anticipation data
+     * @param string                           $recipientId     Recipient id
+     * @param Models\CreateAnticipationRequest $request         Anticipation data
+     * @param string                           $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createAnticipation(
         $recipientId,
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -256,7 +261,7 @@ class RecipientsController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'recipient_id' => $recipientId,
+            'recipient_id'    => $recipientId,
             ));
 
         //validate and preprocess url
@@ -266,7 +271,8 @@ class RecipientsController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -512,14 +518,16 @@ class RecipientsController extends BaseController
     /**
      * Updates a recipient
      *
-     * @param string                        $recipientId  Recipient id
-     * @param Models\UpdateRecipientRequest $request      Recipient data
+     * @param string                        $recipientId     Recipient id
+     * @param Models\UpdateRecipientRequest $request         Recipient data
+     * @param string                        $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function updateRecipient(
         $recipientId,
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -527,7 +535,7 @@ class RecipientsController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'recipient_id' => $recipientId,
+            'recipient_id'    => $recipientId,
             ));
 
         //validate and preprocess url
@@ -537,7 +545,8 @@ class RecipientsController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -574,14 +583,16 @@ class RecipientsController extends BaseController
     /**
      * Updates the default bank account from a recipient
      *
-     * @param string                                   $recipientId  Recipient id
-     * @param Models\UpdateRecipientBankAccountRequest $request      Bank account data
+     * @param string                                   $recipientId     Recipient id
+     * @param Models\UpdateRecipientBankAccountRequest $request         Bank account data
+     * @param string                                   $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function updateRecipientDefaultBankAccount(
         $recipientId,
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -589,7 +600,7 @@ class RecipientsController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'recipient_id' => $recipientId,
+            'recipient_id'    => $recipientId,
             ));
 
         //validate and preprocess url
@@ -599,7 +610,8 @@ class RecipientsController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -807,14 +819,16 @@ class RecipientsController extends BaseController
     /**
      * Creates a transfer for a recipient
      *
-     * @param string                       $recipientId  Recipient Id
-     * @param Models\CreateTransferRequest $request      Transfer data
+     * @param string                       $recipientId     Recipient Id
+     * @param Models\CreateTransferRequest $request         Transfer data
+     * @param string                       $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createTransfer(
         $recipientId,
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -822,7 +836,7 @@ class RecipientsController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'recipient_id' => $recipientId,
+            'recipient_id'    => $recipientId,
             ));
 
         //validate and preprocess url
@@ -832,7 +846,8 @@ class RecipientsController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -869,12 +884,14 @@ class RecipientsController extends BaseController
     /**
      * Creates a new recipient
      *
-     * @param Models\CreateRecipientRequest $request Recipient data
+     * @param Models\CreateRecipientRequest $request         Recipient data
+     * @param string                        $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createRecipient(
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -887,7 +904,8 @@ class RecipientsController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -924,14 +942,16 @@ class RecipientsController extends BaseController
     /**
      * @todo Add general description for this endpoint
      *
-     * @param string                               $recipientId  Recipient Identificator
-     * @param Models\UpdateTransferSettingsRequest $request      TODO: type description here
+     * @param string                               $recipientId     Recipient Identificator
+     * @param Models\UpdateTransferSettingsRequest $request         TODO: type description here
+     * @param string                               $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function updateRecipientTransferSettings(
         $recipientId,
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -939,7 +959,7 @@ class RecipientsController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'recipient_id' => $recipientId,
+            'recipient_id'    => $recipientId,
             ));
 
         //validate and preprocess url
@@ -949,7 +969,8 @@ class RecipientsController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body

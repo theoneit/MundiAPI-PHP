@@ -45,14 +45,16 @@ class ChargesController extends BaseController
     /**
      * Updates the card from a charge
      *
-     * @param string                         $chargeId  Charge id
-     * @param Models\UpdateChargeCardRequest $request   Request for updating a charge's card
+     * @param string                         $chargeId        Charge id
+     * @param Models\UpdateChargeCardRequest $request         Request for updating a charge's card
+     * @param string                         $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function updateChargeCard(
         $chargeId,
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -60,7 +62,7 @@ class ChargesController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'charge_id' => $chargeId,
+            'charge_id'       => $chargeId,
             ));
 
         //validate and preprocess url
@@ -70,7 +72,8 @@ class ChargesController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -107,14 +110,17 @@ class ChargesController extends BaseController
     /**
      * Updates a charge's payment method
      *
-     * @param string                                  $chargeId  Charge id
-     * @param Models\UpdateChargePaymentMethodRequest $request   Request for updating the payment method from a charge
+     * @param string                                  $chargeId        Charge id
+     * @param Models\UpdateChargePaymentMethodRequest $request         Request for updating the payment method from a
+     *                                                                 charge
+     * @param string                                  $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function updateChargePaymentMethod(
         $chargeId,
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -122,7 +128,7 @@ class ChargesController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'charge_id' => $chargeId,
+            'charge_id'       => $chargeId,
             ));
 
         //validate and preprocess url
@@ -132,7 +138,8 @@ class ChargesController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -169,12 +176,14 @@ class ChargesController extends BaseController
     /**
      * Creates a new charge
      *
-     * @param Models\CreateChargeRequest $request Request for creating a charge
+     * @param Models\CreateChargeRequest $request         Request for creating a charge
+     * @param string                     $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createCharge(
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -187,7 +196,8 @@ class ChargesController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -280,12 +290,14 @@ class ChargesController extends BaseController
     /**
      * Retries a charge
      *
-     * @param string $chargeId  Charge id
+     * @param string $chargeId        Charge id
+     * @param string $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function retryCharge(
-        $chargeId
+        $chargeId,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -293,7 +305,7 @@ class ChargesController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'charge_id' => $chargeId,
+            'charge_id'       => $chargeId,
             ));
 
         //validate and preprocess url
@@ -302,7 +314,8 @@ class ChargesController extends BaseController
         //prepare headers
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json'
+            'Accept'        => 'application/json',
+            'idempotency-key' => $idempotencyKey
         );
 
         //set HTTP basic auth parameters
@@ -416,14 +429,16 @@ class ChargesController extends BaseController
     /**
      * Updates the metadata from a charge
      *
-     * @param string                       $chargeId  The charge id
-     * @param Models\UpdateMetadataRequest $request   Request for updating the charge metadata
+     * @param string                       $chargeId        The charge id
+     * @param Models\UpdateMetadataRequest $request         Request for updating the charge metadata
+     * @param string                       $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function updateChargeMetadata(
         $chargeId,
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -431,7 +446,7 @@ class ChargesController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'charge_id' => $chargeId,
+            'charge_id'       => $chargeId,
             ));
 
         //validate and preprocess url
@@ -441,7 +456,8 @@ class ChargesController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -478,14 +494,16 @@ class ChargesController extends BaseController
     /**
      * Cancel a charge
      *
-     * @param string                           $chargeId  Charge id
-     * @param Models\CreateCancelChargeRequest $request   (optional) Request for cancelling a charge
+     * @param string                           $chargeId        Charge id
+     * @param Models\CreateCancelChargeRequest $request         (optional) Request for cancelling a charge
+     * @param string                           $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function cancelCharge(
         $chargeId,
-        $request = null
+        $request = null,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -493,7 +511,7 @@ class ChargesController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'charge_id' => $chargeId,
+            'charge_id'       => $chargeId,
             ));
 
         //validate and preprocess url
@@ -503,7 +521,8 @@ class ChargesController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -540,14 +559,16 @@ class ChargesController extends BaseController
     /**
      * Captures a charge
      *
-     * @param string                            $chargeId  Charge id
-     * @param Models\CreateCaptureChargeRequest $request   (optional) Request for capturing a charge
+     * @param string                            $chargeId        Charge id
+     * @param Models\CreateCaptureChargeRequest $request         (optional) Request for capturing a charge
+     * @param string                            $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function captureCharge(
         $chargeId,
-        $request = null
+        $request = null,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -555,7 +576,7 @@ class ChargesController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'charge_id' => $chargeId,
+            'charge_id'       => $chargeId,
             ));
 
         //validate and preprocess url
@@ -565,7 +586,8 @@ class ChargesController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -602,14 +624,16 @@ class ChargesController extends BaseController
     /**
      * Updates the due date from a charge
      *
-     * @param string                            $chargeId  Charge Id
-     * @param Models\UpdateChargeDueDateRequest $request   Request for updating the due date
+     * @param string                            $chargeId        Charge Id
+     * @param Models\UpdateChargeDueDateRequest $request         Request for updating the due date
+     * @param string                            $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function updateChargeDueDate(
         $chargeId,
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -617,7 +641,7 @@ class ChargesController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'charge_id' => $chargeId,
+            'charge_id'       => $chargeId,
             ));
 
         //validate and preprocess url
@@ -627,7 +651,8 @@ class ChargesController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -664,14 +689,16 @@ class ChargesController extends BaseController
     /**
      * @todo Add general description for this endpoint
      *
-     * @param string                             $chargeId  TODO: type description here
-     * @param Models\CreateConfirmPaymentRequest $request   (optional) Request for confirm payment
+     * @param string                             $chargeId        TODO: type description here
+     * @param Models\CreateConfirmPaymentRequest $request         (optional) Request for confirm payment
+     * @param string                             $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function confirmPayment(
         $chargeId,
-        $request = null
+        $request = null,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -679,7 +706,7 @@ class ChargesController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'charge_id' => $chargeId,
+            'charge_id'       => $chargeId,
             ));
 
         //validate and preprocess url
@@ -689,7 +716,8 @@ class ChargesController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body

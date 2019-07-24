@@ -101,12 +101,14 @@ class SellersController extends BaseController
     /**
      * @todo Add general description for this endpoint
      *
-     * @param string $sellerId Seller Id
+     * @param string $sellerId        Seller Id
+     * @param string $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function deleteSeller(
-        $sellerId
+        $sellerId,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -114,7 +116,7 @@ class SellersController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'sellerId' => $sellerId,
+            'sellerId'        => $sellerId,
             ));
 
         //validate and preprocess url
@@ -123,7 +125,8 @@ class SellersController extends BaseController
         //prepare headers
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json'
+            'Accept'        => 'application/json',
+            'idempotency-key' => $idempotencyKey
         );
 
         //set HTTP basic auth parameters
@@ -157,12 +160,14 @@ class SellersController extends BaseController
     /**
      * @todo Add general description for this endpoint
      *
-     * @param Models\CreateSellerRequest $request Seller Model
+     * @param Models\CreateSellerRequest $request         Seller Model
+     * @param string                     $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createSeller(
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -175,7 +180,8 @@ class SellersController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -292,14 +298,16 @@ class SellersController extends BaseController
     /**
      * @todo Add general description for this endpoint
      *
-     * @param string                     $id      TODO: type description here
-     * @param Models\UpdateSellerRequest $request Update Seller model
+     * @param string                     $id              TODO: type description here
+     * @param Models\UpdateSellerRequest $request         Update Seller model
+     * @param string                     $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function updateSeller(
         $id,
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -307,7 +315,7 @@ class SellersController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'id'      => $id,
+            'id'              => $id,
             ));
 
         //validate and preprocess url
@@ -317,7 +325,8 @@ class SellersController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
@@ -354,14 +363,16 @@ class SellersController extends BaseController
     /**
      * @todo Add general description for this endpoint
      *
-     * @param string                       $sellerId  Seller Id
-     * @param Models\UpdateMetadataRequest $request   Request for updating the charge metadata
+     * @param string                       $sellerId        Seller Id
+     * @param Models\UpdateMetadataRequest $request         Request for updating the charge metadata
+     * @param string                       $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function updateSellerMetadata(
         $sellerId,
-        $request
+        $request,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
@@ -369,7 +380,7 @@ class SellersController extends BaseController
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'seller_id' => $sellerId,
+            'seller_id'       => $sellerId,
             ));
 
         //validate and preprocess url
@@ -379,7 +390,8 @@ class SellersController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'content-type'  => 'application/json; charset=utf-8',
+            'idempotency-key' => $idempotencyKey
         );
 
         //json encode body

@@ -63,9 +63,8 @@ class GetSubscriptionResponse implements JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @required
      * @maps current_cycle
-     * @var \MundiAPILib\Models\GetPeriodResponse $currentCycle public property
+     * @var \MundiAPILib\Models\GetPeriodResponse|null $currentCycle public property
      */
     public $currentCycle;
 
@@ -118,8 +117,7 @@ class GetSubscriptionResponse implements JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @required
-     * @var \MundiAPILib\Models\GetCustomerResponse $customer public property
+     * @var \MundiAPILib\Models\GetCustomerResponse|null $customer public property
      */
     public $customer;
 

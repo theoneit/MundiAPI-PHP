@@ -32,9 +32,8 @@ class GetUsagesDetailsResponse implements JsonSerializable
 
     /**
      * Period Details
-     * @required
      * @maps Period
-     * @var \MundiAPILib\Models\GetPeriodResponse $period public property
+     * @var \MundiAPILib\Models\GetPeriodResponse|null $period public property
      */
     public $period;
 

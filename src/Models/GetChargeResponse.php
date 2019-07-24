@@ -95,30 +95,26 @@ class GetChargeResponse implements JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @required
      * @maps last_transaction
-     * @var \MundiAPILib\Models\GetTransactionResponse $lastTransaction public property
+     * @var \MundiAPILib\Models\GetTransactionResponse|null $lastTransaction public property
      */
     public $lastTransaction;
 
     /**
      * @todo Write general description for this property
-     * @required
-     * @var \MundiAPILib\Models\GetInvoiceResponse $invoice public property
+     * @var \MundiAPILib\Models\GetInvoiceResponse|null $invoice public property
      */
     public $invoice;
 
     /**
      * @todo Write general description for this property
-     * @required
-     * @var \MundiAPILib\Models\GetOrderResponse $order public property
+     * @var \MundiAPILib\Models\GetOrderResponse|null $order public property
      */
     public $order;
 
     /**
      * @todo Write general description for this property
-     * @required
-     * @var \MundiAPILib\Models\GetCustomerResponse $customer public property
+     * @var \MundiAPILib\Models\GetCustomerResponse|null $customer public property
      */
     public $customer;
 

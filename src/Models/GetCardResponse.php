@@ -96,8 +96,7 @@ class GetCardResponse implements JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @required
-     * @var \MundiAPILib\Models\GetCustomerResponse $customer public property
+     * @var \MundiAPILib\Models\GetCustomerResponse|null $customer public property
      */
     public $customer;
 
