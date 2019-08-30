@@ -55,20 +55,20 @@ class CreateDebitCardPaymentRequest implements JsonSerializable
 
     /**
      * The Debit card payment token request
-     * @var \MundiAPILib\Models\CreateCardPaymentTokenRequest|null $token public property
+     * @var \MundiAPILib\Models\CreateCardPaymentContactlessRequest|null $token public property
      */
     public $token;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                             $statementDescriptor Initialization value for $this-
-     *                                                                  >statementDescriptor
-     * @param CreateCardRequest                  $card                Initialization value for $this->card
-     * @param string                             $cardId              Initialization value for $this->cardId
-     * @param string                             $cardToken           Initialization value for $this->cardToken
-     * @param bool                               $recurrence          Initialization value for $this->recurrence
-     * @param CreatePaymentAuthenticationRequest $authentication      Initialization value for $this->authentication
-     * @param CreateCardPaymentTokenRequest      $token               Initialization value for $this->token
+     * @param string                              $statementDescriptor Initialization value for $this-
+     *                                                                   >statementDescriptor
+     * @param CreateCardRequest                   $card                Initialization value for $this->card
+     * @param string                              $cardId              Initialization value for $this->cardId
+     * @param string                              $cardToken           Initialization value for $this->cardToken
+     * @param bool                                $recurrence          Initialization value for $this->recurrence
+     * @param CreatePaymentAuthenticationRequest  $authentication      Initialization value for $this->authentication
+     * @param CreateCardPaymentContactlessRequest $token               Initialization value for $this->token
      */
     public function __construct()
     {
