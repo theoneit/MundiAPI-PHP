@@ -628,8 +628,8 @@ function getSubscriptions(
 #### Example Usage
 
 ```php
-$page = 29;
-$size = 29;
+$page = 46;
+$size = 46;
 $code = 'code';
 $billingType = 'billing_type';
 $customerId = 'customer_id';
@@ -876,8 +876,8 @@ function getDiscounts(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 29;
-$size = 29;
+$page = 46;
+$size = 46;
 
 $result = $subscriptions->getDiscounts($subscriptionId, $page, $size);
 
@@ -944,8 +944,8 @@ function getIncrements(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 29;
-$size = 29;
+$page = 46;
+$size = 46;
 
 $result = $subscriptions->getIncrements($subscriptionId, $page, $size);
 
@@ -1019,8 +1019,8 @@ function getUsagesDetails(
 ```php
 $subscriptionId = 'subscription_id';
 $cycleId = 'cycle_id';
-$size = 29;
-$page = 29;
+$size = 46;
+$page = 46;
 $itemId = 'item_id';
 $group = 'group';
 
@@ -1062,8 +1062,8 @@ function getUsages(
 ```php
 $subscriptionId = 'subscription_id';
 $itemId = 'item_id';
-$page = 29;
-$size = 29;
+$page = 46;
+$size = 46;
 $code = 'code';
 $group = 'group';
 
@@ -1110,8 +1110,8 @@ function getSubscriptionItems(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 29;
-$size = 29;
+$page = 46;
+$size = 46;
 $name = 'name';
 $code = 'code';
 $status = 'status';
@@ -1390,6 +1390,37 @@ $result = $subscriptions->renewSubscription($subscriptionId, $idempotencyKey);
 ```
 
 
+### <a name="get_usage_report"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getUsageReport") getUsageReport
+
+> TODO: Add a method description
+
+
+```php
+function getUsageReport(
+        $subscriptionId,
+        $periodId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | The subscription Id |
+| periodId |  ``` Required ```  | The period Id |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+$periodId = 'period_id';
+
+$result = $subscriptions->getUsageReport($subscriptionId, $periodId);
+
+```
+
+
 [Back to List of Controllers](#list_of_controllers)
 
 ## <a name="orders_controller"></a>![Class: ](https://apidocs.io/img/class.png ".OrdersController") OrdersController
@@ -1493,8 +1524,8 @@ function getOrders(
 #### Example Usage
 
 ```php
-$page = 193;
-$size = 193;
+$page = 46;
+$size = 46;
 $code = 'code';
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
@@ -1980,8 +2011,8 @@ function getPlans(
 #### Example Usage
 
 ```php
-$page = 193;
-$size = 193;
+$page = 4;
+$size = 4;
 $name = 'name';
 $status = 'status';
 $billingType = 'billing_type';
@@ -2272,8 +2303,8 @@ function getInvoices(
 #### Example Usage
 
 ```php
-$page = 193;
-$size = 193;
+$page = 4;
+$size = 4;
 $code = 'code';
 $customerId = 'customer_id';
 $subscriptionId = 'subscription_id';
@@ -2488,8 +2519,8 @@ function getAccessTokens(
 
 ```php
 $customerId = 'customer_id';
-$page = 193;
-$size = 193;
+$page = 4;
+$size = 4;
 
 $result = $customers->getAccessTokens($customerId, $page, $size);
 
@@ -2522,8 +2553,8 @@ function getAddresses(
 
 ```php
 $customerId = 'customer_id';
-$page = 193;
-$size = 193;
+$page = 4;
+$size = 4;
 
 $result = $customers->getAddresses($customerId, $page, $size);
 
@@ -2556,8 +2587,8 @@ function getCards(
 
 ```php
 $customerId = 'customer_id';
-$page = 193;
-$size = 193;
+$page = 4;
+$size = 4;
 
 $result = $customers->getCards($customerId, $page, $size);
 
@@ -3270,8 +3301,8 @@ function getCharges(
 #### Example Usage
 
 ```php
-$page = 234;
-$size = 234;
+$page = 4;
+$size = 4;
 $code = 'code';
 $status = 'status';
 $paymentMethod = 'payment_method';
@@ -3481,8 +3512,8 @@ function getChargeTransactions(
 
 ```php
 $chargeId = 'charge_id';
-$page = 234;
-$size = 234;
+$page = 96;
+$size = 96;
 
 $result = $charges->getChargeTransactions($chargeId, $page, $size);
 
@@ -3598,8 +3629,8 @@ function getTransfers(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 234;
-$size = 234;
+$page = 96;
+$size = 96;
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
@@ -3746,8 +3777,8 @@ function getAnticipations(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 234;
-$size = 234;
+$page = 96;
+$size = 96;
 $status = 'status';
 $timeframe = 'timeframe';
 $paymentDateSince = date("D M d, Y G:i");
@@ -3878,8 +3909,8 @@ function getRecipients(
 #### Example Usage
 
 ```php
-$page = 234;
-$size = 234;
+$page = 96;
+$size = 96;
 
 $result = $recipients->getRecipients($page, $size);
 
@@ -4231,8 +4262,8 @@ function getSellers(
 #### Example Usage
 
 ```php
-$page = 234;
-$size = 234;
+$page = 96;
+$size = 96;
 $name = 'name';
 $document = 'document';
 $code = 'code';

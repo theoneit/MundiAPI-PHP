@@ -24,7 +24,7 @@ class BaseController
      * User-agent to be sent with API calls
      * @var string
      */
-    const USER_AGENT = 'MundiSDK - PHP 0.16.0-beta.0';
+    const USER_AGENT = 'MundiSDK - PHP 0.16.1';
 
     /**
      * HttpCallBack instance associated with this controller
