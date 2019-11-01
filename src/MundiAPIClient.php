@@ -104,4 +104,12 @@ class MundiAPIClient
     {
         return Controllers\TransactionsController::getInstance();
     }
+    /**
+     * Singleton access to Transfers controller
+     * @return Controllers\TransfersController The *Singleton* instance
+     */
+    public function getTransfers()
+    {
+        return Controllers\TransfersController::getInstance();
+    }
 }

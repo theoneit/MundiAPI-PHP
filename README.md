@@ -142,6 +142,7 @@ $client = new MundiAPILib\MundiAPIClient($basicAuthUserName, $basicAuthPassword)
 * [TokensController](#tokens_controller)
 * [PlansController](#plans_controller)
 * [TransactionsController](#transactions_controller)
+* [TransfersController](#transfers_controller)
 
 ## <a name="customers_controller"></a>![Class: ](https://apidocs.io/img/class.png ".CustomersController") CustomersController
 
@@ -301,8 +302,8 @@ function getAddresses(
 
 ```php
 $customerId = 'customer_id';
-$page = 33;
-$size = 33;
+$page = 196;
+$size = 196;
 
 $result = $customers->getAddresses($customerId, $page, $size);
 
@@ -533,8 +534,8 @@ function getAccessTokens(
 
 ```php
 $customerId = 'customer_id';
-$page = 33;
-$size = 33;
+$page = 196;
+$size = 196;
 
 $result = $customers->getAccessTokens($customerId, $page, $size);
 
@@ -672,8 +673,8 @@ function getCards(
 
 ```php
 $customerId = 'customer_id';
-$page = 33;
-$size = 33;
+$page = 196;
+$size = 196;
 
 $result = $customers->getCards($customerId, $page, $size);
 
@@ -1000,8 +1001,8 @@ function getCharges(
 #### Example Usage
 
 ```php
-$page = 246;
-$size = 246;
+$page = 196;
+$size = 196;
 $code = 'code';
 $status = 'status';
 $paymentMethod = 'payment_method';
@@ -1273,8 +1274,8 @@ function getChargeTransactions(
 
 ```php
 $chargeId = 'charge_id';
-$page = 246;
-$size = 246;
+$page = 154;
+$size = 154;
 
 $result = $charges->getChargeTransactions($chargeId, $page, $size);
 
@@ -1449,8 +1450,8 @@ function getRecipients(
 #### Example Usage
 
 ```php
-$page = 246;
-$size = 246;
+$page = 154;
+$size = 154;
 
 $result = $recipients->getRecipients($page, $size);
 
@@ -1522,8 +1523,8 @@ function getAnticipations(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 246;
-$size = 246;
+$page = 154;
+$size = 154;
 $status = 'status';
 $timeframe = 'timeframe';
 $paymentDateSince = date("D M d, Y G:i");
@@ -1694,8 +1695,8 @@ function getTransfers(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 246;
-$size = 246;
+$page = 154;
+$size = 154;
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
@@ -1834,6 +1835,111 @@ $timeframe = 'timeframe';
 $paymentDate = date("D M d, Y G:i");
 
 $result = $recipients->getAnticipationLimits($recipientId, $timeframe, $paymentDate);
+
+```
+
+
+### <a name="create_withdraw"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.createWithdraw") createWithdraw
+
+> TODO: Add a method description
+
+
+```php
+function createWithdraw(
+        $recipientId,
+        $request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | TODO: Add a parameter description |
+| request |  ``` Required ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$recipientId = 'recipient_id';
+$request = new CreateWithdrawRequest();
+
+$result = $recipients->createWithdraw($recipientId, $request);
+
+```
+
+
+### <a name="get_withdraw_by_id"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getWithdrawById") getWithdrawById
+
+> TODO: Add a method description
+
+
+```php
+function getWithdrawById(
+        $recipientId,
+        $withdrawalId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | TODO: Add a parameter description |
+| withdrawalId |  ``` Required ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$recipientId = 'recipient_id';
+$withdrawalId = 'withdrawal_id';
+
+$result = $recipients->getWithdrawById($recipientId, $withdrawalId);
+
+```
+
+
+### <a name="get_withdrawals"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getWithdrawals") getWithdrawals
+
+> Gets a paginated list of transfers for the recipient
+
+
+```php
+function getWithdrawals(
+        $recipientId,
+        $page = null,
+        $size = null,
+        $status = null,
+        $createdSince = null,
+        $createdUntil = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | TODO: Add a parameter description |
+| page |  ``` Optional ```  | TODO: Add a parameter description |
+| size |  ``` Optional ```  | TODO: Add a parameter description |
+| status |  ``` Optional ```  | TODO: Add a parameter description |
+| createdSince |  ``` Optional ```  | TODO: Add a parameter description |
+| createdUntil |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$recipientId = 'recipient_id';
+$page = 154;
+$size = 154;
+$status = 'status';
+$createdSince = date("D M d, Y G:i");
+$createdUntil = date("D M d, Y G:i");
+
+$result = $recipients->getWithdrawals($recipientId, $page, $size, $status, $createdSince, $createdUntil);
 
 ```
 
@@ -2217,8 +2323,8 @@ function getUsagesDetails(
 ```php
 $subscriptionId = 'subscription_id';
 $cycleId = 'cycle_id';
-$size = 83;
-$page = 83;
+$size = 154;
+$page = 154;
 $itemId = 'item_id';
 $group = 'group';
 
@@ -2420,8 +2526,8 @@ function getIncrements(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 83;
-$size = 83;
+$page = 246;
+$size = 246;
 
 $result = $subscriptions->getIncrements($subscriptionId, $page, $size);
 
@@ -2532,8 +2638,8 @@ function getUsages(
 ```php
 $subscriptionId = 'subscription_id';
 $itemId = 'item_id';
-$page = 83;
-$size = 83;
+$page = 246;
+$size = 246;
 $code = 'code';
 $group = 'group';
 
@@ -2867,8 +2973,8 @@ function getDiscounts(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 83;
-$size = 83;
+$page = 246;
+$size = 246;
 
 $result = $subscriptions->getDiscounts($subscriptionId, $page, $size);
 
@@ -2952,8 +3058,8 @@ function getSubscriptions(
 #### Example Usage
 
 ```php
-$page = 83;
-$size = 83;
+$page = 246;
+$size = 246;
 $code = 'code';
 $billingType = 'billing_type';
 $customerId = 'customer_id';
@@ -3039,8 +3145,8 @@ function getSubscriptionItems(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 83;
-$size = 83;
+$page = 246;
+$size = 246;
 $name = 'name';
 $code = 'code';
 $status = 'status';
@@ -3359,8 +3465,8 @@ function getInvoices(
 #### Example Usage
 
 ```php
-$page = 83;
-$size = 83;
+$page = 246;
+$size = 246;
 $code = 'code';
 $customerId = 'customer_id';
 $subscriptionId = 'subscription_id';
@@ -3519,8 +3625,8 @@ function getOrders(
 #### Example Usage
 
 ```php
-$page = 41;
-$size = 41;
+$page = 246;
+$size = 246;
 $code = 'code';
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
@@ -3840,8 +3946,8 @@ function getSellers(
 #### Example Usage
 
 ```php
-$page = 41;
-$size = 41;
+$page = 82;
+$size = 82;
 $name = 'name';
 $document = 'document';
 $code = 'code';
@@ -4144,8 +4250,8 @@ function getPlans(
 #### Example Usage
 
 ```php
-$page = 41;
-$size = 41;
+$page = 82;
+$size = 82;
 $name = 'name';
 $status = 'status';
 $billingType = 'billing_type';
@@ -4414,6 +4520,90 @@ function getTransaction($transactionId)
 $transactionId = 'transaction_id';
 
 $result = $transactions->getTransaction($transactionId);
+
+```
+
+
+[Back to List of Controllers](#list_of_controllers)
+
+## <a name="transfers_controller"></a>![Class: ](https://apidocs.io/img/class.png ".TransfersController") TransfersController
+
+### Get singleton instance
+
+The singleton instance of the ``` TransfersController ``` class can be accessed from the API Client.
+
+```php
+$transfers = $client->getTransfers();
+```
+
+### <a name="create_transfer"></a>![Method: ](https://apidocs.io/img/method.png ".TransfersController.createTransfer") createTransfer
+
+> TODO: Add a method description
+
+
+```php
+function createTransfer($request)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| request |  ``` Required ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$request = new CreateTransfer();
+
+$result = $transfers->createTransfer($request);
+
+```
+
+
+### <a name="get_transfer_by_id"></a>![Method: ](https://apidocs.io/img/method.png ".TransfersController.getTransferById") getTransferById
+
+> TODO: Add a method description
+
+
+```php
+function getTransferById($transferId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| transferId |  ``` Required ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$transferId = 'transfer_id';
+
+$result = $transfers->getTransferById($transferId);
+
+```
+
+
+### <a name="get_transfers"></a>![Method: ](https://apidocs.io/img/method.png ".TransfersController.getTransfers") getTransfers
+
+> Gets all transfers
+
+
+```php
+function getTransfers()
+```
+
+#### Example Usage
+
+```php
+
+$result = $transfers->getTransfers();
 
 ```
 
