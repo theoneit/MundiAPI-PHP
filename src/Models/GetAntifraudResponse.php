@@ -46,19 +46,28 @@ class GetAntifraudResponse implements JsonSerializable
     public $providerName;
 
     /**
+     * @todo Write general description for this property
+     * @required
+     * @var string $score public property
+     */
+    public $score;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string $status        Initialization value for $this->status
      * @param string $returnCode    Initialization value for $this->returnCode
      * @param string $returnMessage Initialization value for $this->returnMessage
      * @param string $providerName  Initialization value for $this->providerName
+     * @param string $score         Initialization value for $this->score
      */
     public function __construct()
     {
-        if (4 == func_num_args()) {
+        if (5 == func_num_args()) {
             $this->status        = func_get_arg(0);
             $this->returnCode    = func_get_arg(1);
             $this->returnMessage = func_get_arg(2);
             $this->providerName  = func_get_arg(3);
+            $this->score         = func_get_arg(4);
         }
     }
 
@@ -73,6 +82,7 @@ class GetAntifraudResponse implements JsonSerializable
         $json['return_code']    = $this->returnCode;
         $json['return_message'] = $this->returnMessage;
         $json['provider_name']  = $this->providerName;
+        $json['score']          = $this->score;
 
         return $json;
     }
