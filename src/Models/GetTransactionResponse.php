@@ -127,6 +127,12 @@ class GetTransactionResponse implements JsonSerializable
     public $antifraudResponse;
 
     /**
+     * @todo Write general description for this property
+     * @var array|null $metadata public property
+     */
+    public $metadata;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string                      $gatewayId         Initialization value for $this->gatewayId
      * @param integer                     $amount            Initialization value for $this->amount
@@ -142,10 +148,11 @@ class GetTransactionResponse implements JsonSerializable
      * @param string                      $id                Initialization value for $this->id
      * @param GetGatewayResponseResponse  $gatewayResponse   Initialization value for $this->gatewayResponse
      * @param GetAntifraudResponse        $antifraudResponse Initialization value for $this->antifraudResponse
+     * @param array                       $metadata          Initialization value for $this->metadata
      */
     public function __construct()
     {
-        if (14 == func_num_args()) {
+        if (15 == func_num_args()) {
             $this->gatewayId         = func_get_arg(0);
             $this->amount            = func_get_arg(1);
             $this->status            = func_get_arg(2);
@@ -160,6 +167,7 @@ class GetTransactionResponse implements JsonSerializable
             $this->id                = func_get_arg(11);
             $this->gatewayResponse   = func_get_arg(12);
             $this->antifraudResponse = func_get_arg(13);
+            $this->metadata          = func_get_arg(14);
         }
     }
 
@@ -185,6 +193,7 @@ class GetTransactionResponse implements JsonSerializable
         $json['id']                 = $this->id;
         $json['gateway_response']   = $this->gatewayResponse;
         $json['antifraud_response'] = $this->antifraudResponse;
+        $json['metadata']           = $this->metadata;
 
         return $json;
     }
