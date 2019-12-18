@@ -76,6 +76,14 @@ class UpdateChargePaymentMethodRequest implements JsonSerializable
     public $bankTransfer;
 
     /**
+     * @todo Write general description for this property
+     * @required
+     * @maps private_label
+     * @var \MundiAPILib\Models\CreatePrivateLabelPaymentRequest $privateLabel public property
+     */
+    public $privateLabel;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param bool                             $updateSubscription Initialization value for $this->updateSubscription
      * @param string                           $paymentMethod      Initialization value for $this->paymentMethod
@@ -85,10 +93,11 @@ class UpdateChargePaymentMethodRequest implements JsonSerializable
      * @param CreateVoucherPaymentRequest      $voucher            Initialization value for $this->voucher
      * @param CreateCashPaymentRequest         $cash               Initialization value for $this->cash
      * @param CreateBankTransferPaymentRequest $bankTransfer       Initialization value for $this->bankTransfer
+     * @param CreatePrivateLabelPaymentRequest $privateLabel       Initialization value for $this->privateLabel
      */
     public function __construct()
     {
-        if (8 == func_num_args()) {
+        if (9 == func_num_args()) {
             $this->updateSubscription = func_get_arg(0);
             $this->paymentMethod      = func_get_arg(1);
             $this->creditCard         = func_get_arg(2);
@@ -97,6 +106,7 @@ class UpdateChargePaymentMethodRequest implements JsonSerializable
             $this->voucher            = func_get_arg(5);
             $this->cash               = func_get_arg(6);
             $this->bankTransfer       = func_get_arg(7);
+            $this->privateLabel       = func_get_arg(8);
         }
     }
 
@@ -115,6 +125,7 @@ class UpdateChargePaymentMethodRequest implements JsonSerializable
         $json['voucher']             = $this->voucher;
         $json['cash']                = $this->cash;
         $json['bank_transfer']       = $this->bankTransfer;
+        $json['private_label']       = $this->privateLabel;
 
         return $json;
     }

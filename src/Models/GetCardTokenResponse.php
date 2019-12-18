@@ -69,6 +69,13 @@ class GetCardTokenResponse implements JsonSerializable
     public $type;
 
     /**
+     * @todo Write general description for this property
+     * @required
+     * @var string $label public property
+     */
+    public $label;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string $lastFourDigits Initialization value for $this->lastFourDigits
      * @param string $holderName     Initialization value for $this->holderName
@@ -77,10 +84,11 @@ class GetCardTokenResponse implements JsonSerializable
      * @param string $expYear        Initialization value for $this->expYear
      * @param string $brand          Initialization value for $this->brand
      * @param string $type           Initialization value for $this->type
+     * @param string $label          Initialization value for $this->label
      */
     public function __construct()
     {
-        if (7 == func_num_args()) {
+        if (8 == func_num_args()) {
             $this->lastFourDigits = func_get_arg(0);
             $this->holderName     = func_get_arg(1);
             $this->holderDocument = func_get_arg(2);
@@ -88,6 +96,7 @@ class GetCardTokenResponse implements JsonSerializable
             $this->expYear        = func_get_arg(4);
             $this->brand          = func_get_arg(5);
             $this->type           = func_get_arg(6);
+            $this->label          = func_get_arg(7);
         }
     }
 
@@ -105,6 +114,7 @@ class GetCardTokenResponse implements JsonSerializable
         $json['exp_year']         = $this->expYear;
         $json['brand']            = $this->brand;
         $json['type']             = $this->type;
+        $json['label']            = $this->label;
 
         return $json;
     }

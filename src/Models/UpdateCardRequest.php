@@ -62,6 +62,13 @@ class UpdateCardRequest implements JsonSerializable
     public $metadata;
 
     /**
+     * @todo Write general description for this property
+     * @required
+     * @var string $label public property
+     */
+    public $label;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string               $holderName       Initialization value for $this->holderName
      * @param integer              $expMonth         Initialization value for $this->expMonth
@@ -69,16 +76,18 @@ class UpdateCardRequest implements JsonSerializable
      * @param string               $billingAddressId Initialization value for $this->billingAddressId
      * @param CreateAddressRequest $billingAddress   Initialization value for $this->billingAddress
      * @param array                $metadata         Initialization value for $this->metadata
+     * @param string               $label            Initialization value for $this->label
      */
     public function __construct()
     {
-        if (6 == func_num_args()) {
+        if (7 == func_num_args()) {
             $this->holderName       = func_get_arg(0);
             $this->expMonth         = func_get_arg(1);
             $this->expYear          = func_get_arg(2);
             $this->billingAddressId = func_get_arg(3);
             $this->billingAddress   = func_get_arg(4);
             $this->metadata         = func_get_arg(5);
+            $this->label            = func_get_arg(6);
         }
     }
 
@@ -95,6 +104,7 @@ class UpdateCardRequest implements JsonSerializable
         $json['billing_address_id'] = $this->billingAddressId;
         $json['billing_address']    = $this->billingAddress;
         $json['metadata']           = $this->metadata;
+        $json['label']              = $this->label;
 
         return $json;
     }

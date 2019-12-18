@@ -112,6 +112,14 @@ class CreatePaymentRequest implements JsonSerializable
     public $cash;
 
     /**
+     * Settings for private label payment
+     * @required
+     * @maps private_label
+     * @var \MundiAPILib\Models\CreatePrivateLabelPaymentRequest $privateLabel public property
+     */
+    public $privateLabel;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string                           $paymentMethod        Initialization value for $this->paymentMethod
      * @param CreateCreditCardPaymentRequest   $creditCard           Initialization value for $this->creditCard
@@ -129,10 +137,11 @@ class CreatePaymentRequest implements JsonSerializable
      * @param CreateCustomerRequest            $customer             Initialization value for $this->customer
      * @param array                            $metadata             Initialization value for $this->metadata
      * @param CreateCashPaymentRequest         $cash                 Initialization value for $this->cash
+     * @param CreatePrivateLabelPaymentRequest $privateLabel         Initialization value for $this->privateLabel
      */
     public function __construct()
     {
-        if (15 == func_num_args()) {
+        if (16 == func_num_args()) {
             $this->paymentMethod        = func_get_arg(0);
             $this->creditCard           = func_get_arg(1);
             $this->debitCard            = func_get_arg(2);
@@ -148,6 +157,7 @@ class CreatePaymentRequest implements JsonSerializable
             $this->customer             = func_get_arg(12);
             $this->metadata             = func_get_arg(13);
             $this->cash                 = func_get_arg(14);
+            $this->privateLabel         = func_get_arg(15);
         }
     }
 
@@ -173,6 +183,7 @@ class CreatePaymentRequest implements JsonSerializable
         $json['customer']               = $this->customer;
         $json['metadata']               = $this->metadata;
         $json['cash']                   = $this->cash;
+        $json['private_label']          = $this->privateLabel;
 
         return $json;
     }

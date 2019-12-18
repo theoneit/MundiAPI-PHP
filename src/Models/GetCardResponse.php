@@ -139,6 +139,13 @@ class GetCardResponse implements JsonSerializable
     public $firstSixDigits;
 
     /**
+     * @todo Write general description for this property
+     * @required
+     * @var string $label public property
+     */
+    public $label;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string                     $id             Initialization value for $this->id
      * @param string                     $lastFourDigits Initialization value for $this->lastFourDigits
@@ -156,10 +163,11 @@ class GetCardResponse implements JsonSerializable
      * @param string                     $holderDocument Initialization value for $this->holderDocument
      * @param \DateTime                  $deletedAt      Initialization value for $this->deletedAt
      * @param string                     $firstSixDigits Initialization value for $this->firstSixDigits
+     * @param string                     $label          Initialization value for $this->label
      */
     public function __construct()
     {
-        if (16 == func_num_args()) {
+        if (17 == func_num_args()) {
             $this->id             = func_get_arg(0);
             $this->lastFourDigits = func_get_arg(1);
             $this->brand          = func_get_arg(2);
@@ -176,6 +184,7 @@ class GetCardResponse implements JsonSerializable
             $this->holderDocument = func_get_arg(13);
             $this->deletedAt      = func_get_arg(14);
             $this->firstSixDigits = func_get_arg(15);
+            $this->label          = func_get_arg(16);
         }
     }
 
@@ -203,6 +212,7 @@ class GetCardResponse implements JsonSerializable
         $json['deleted_at']       = isset($this->deletedAt) ?
             DateTimeHelper::toRfc3339DateTime($this->deletedAt) : null;
         $json['first_six_digits'] = $this->firstSixDigits;
+        $json['label']            = $this->label;
 
         return $json;
     }

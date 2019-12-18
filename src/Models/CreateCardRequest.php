@@ -112,6 +112,13 @@ class CreateCardRequest implements JsonSerializable
     public $privateLabel;
 
     /**
+     * @todo Write general description for this property
+     * @required
+     * @var string $label public property
+     */
+    public $label;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string                   $number           Initialization value for $this->number
      * @param string                   $holderName       Initialization value for $this->holderName
@@ -126,11 +133,12 @@ class CreateCardRequest implements JsonSerializable
      * @param CreateCardOptionsRequest $options          Initialization value for $this->options
      * @param string                   $holderDocument   Initialization value for $this->holderDocument
      * @param bool                     $privateLabel     Initialization value for $this->privateLabel
+     * @param string                   $label            Initialization value for $this->label
      */
     public function __construct()
     {
         switch (func_num_args()) {
-            case 13:
+            case 14:
                 $this->number           = func_get_arg(0);
                 $this->holderName       = func_get_arg(1);
                 $this->expMonth         = func_get_arg(2);
@@ -144,6 +152,7 @@ class CreateCardRequest implements JsonSerializable
                 $this->options          = func_get_arg(10);
                 $this->holderDocument   = func_get_arg(11);
                 $this->privateLabel     = func_get_arg(12);
+                $this->label            = func_get_arg(13);
                 break;
 
             default:
@@ -172,6 +181,7 @@ class CreateCardRequest implements JsonSerializable
         $json['options']            = $this->options;
         $json['holder_document']    = $this->holderDocument;
         $json['private_label']      = $this->privateLabel;
+        $json['label']              = $this->label;
 
         return $json;
     }
