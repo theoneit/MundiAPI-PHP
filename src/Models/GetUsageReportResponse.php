@@ -22,13 +22,33 @@ class GetUsageReportResponse implements JsonSerializable
     public $url;
 
     /**
+     * @todo Write general description for this property
+     * @required
+     * @maps usage_report_url
+     * @var string $usageReportUrl public property
+     */
+    public $usageReportUrl;
+
+    /**
+     * @todo Write general description for this property
+     * @required
+     * @maps grouped_report_url
+     * @var string $groupedReportUrl public property
+     */
+    public $groupedReportUrl;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param string $url Initialization value for $this->url
+     * @param string $url              Initialization value for $this->url
+     * @param string $usageReportUrl   Initialization value for $this->usageReportUrl
+     * @param string $groupedReportUrl Initialization value for $this->groupedReportUrl
      */
     public function __construct()
     {
-        if (1 == func_num_args()) {
-            $this->url = func_get_arg(0);
+        if (3 == func_num_args()) {
+            $this->url              = func_get_arg(0);
+            $this->usageReportUrl   = func_get_arg(1);
+            $this->groupedReportUrl = func_get_arg(2);
         }
     }
 
@@ -39,7 +59,9 @@ class GetUsageReportResponse implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['url'] = $this->url;
+        $json['url']                = $this->url;
+        $json['usage_report_url']   = $this->usageReportUrl;
+        $json['grouped_report_url'] = $this->groupedReportUrl;
 
         return $json;
     }

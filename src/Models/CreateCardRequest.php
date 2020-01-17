@@ -119,6 +119,18 @@ class CreateCardRequest implements JsonSerializable
     public $label;
 
     /**
+     * Identifier
+     * @var string|null $id public property
+     */
+    public $id;
+
+    /**
+     * token identifier
+     * @var string|null $token public property
+     */
+    public $token;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string                   $number           Initialization value for $this->number
      * @param string                   $holderName       Initialization value for $this->holderName
@@ -134,11 +146,13 @@ class CreateCardRequest implements JsonSerializable
      * @param string                   $holderDocument   Initialization value for $this->holderDocument
      * @param bool                     $privateLabel     Initialization value for $this->privateLabel
      * @param string                   $label            Initialization value for $this->label
+     * @param string                   $id               Initialization value for $this->id
+     * @param string                   $token            Initialization value for $this->token
      */
     public function __construct()
     {
         switch (func_num_args()) {
-            case 14:
+            case 16:
                 $this->number           = func_get_arg(0);
                 $this->holderName       = func_get_arg(1);
                 $this->expMonth         = func_get_arg(2);
@@ -153,6 +167,8 @@ class CreateCardRequest implements JsonSerializable
                 $this->holderDocument   = func_get_arg(11);
                 $this->privateLabel     = func_get_arg(12);
                 $this->label            = func_get_arg(13);
+                $this->id               = func_get_arg(14);
+                $this->token            = func_get_arg(15);
                 break;
 
             default:
@@ -182,6 +198,8 @@ class CreateCardRequest implements JsonSerializable
         $json['holder_document']    = $this->holderDocument;
         $json['private_label']      = $this->privateLabel;
         $json['label']              = $this->label;
+        $json['id']                 = $this->id;
+        $json['token']              = $this->token;
 
         return $json;
     }
