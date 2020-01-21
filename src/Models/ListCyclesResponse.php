@@ -16,7 +16,7 @@ class ListCyclesResponse implements JsonSerializable
 {
     /**
      * The subscription cycles objects
-     * @var \MundiAPILib\Models\GetPeriodResponse|null $data public property
+     * @var \MundiAPILib\Models\GetPeriodResponse[]|null $data public property
      */
     public $data;
 
@@ -28,8 +28,8 @@ class ListCyclesResponse implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param GetPeriodResponse $data   Initialization value for $this->data
-     * @param PagingResponse    $paging Initialization value for $this->paging
+     * @param array          $data   Initialization value for $this->data
+     * @param PagingResponse $paging Initialization value for $this->paging
      */
     public function __construct()
     {
