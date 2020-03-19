@@ -28,7 +28,7 @@ class GetBoletoTransactionResponse extends GetTransactionResponse implements Jso
     /**
      * @todo Write general description for this property
      * @required
-     * @maps bar_code
+     * @maps barcode
      * @var string $barCode public property
      */
     public $barCode;
@@ -189,7 +189,7 @@ class GetBoletoTransactionResponse extends GetTransactionResponse implements Jso
     {
         $json = array();
         $json['url']             = $this->url;
-        $json['bar_code']        = $this->barCode;
+        $json['barcode']        = $this->barCode;
         $json['nosso_numero']    = $this->nossoNumero;
         $json['bank']            = $this->bank;
         $json['document_number'] = $this->documentNumber;
