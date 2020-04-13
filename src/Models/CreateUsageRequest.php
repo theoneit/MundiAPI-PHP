@@ -51,21 +51,29 @@ class CreateUsageRequest implements JsonSerializable
     public $group;
 
     /**
+     * Field used in item scheme type 'Percent'
+     * @var integer|null $amount public property
+     */
+    public $amount;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param integer   $quantity    Initialization value for $this->quantity
      * @param string    $description Initialization value for $this->description
      * @param \DateTime $usedAt      Initialization value for $this->usedAt
      * @param string    $code        Initialization value for $this->code
      * @param string    $group       Initialization value for $this->group
+     * @param integer   $amount      Initialization value for $this->amount
      */
     public function __construct()
     {
-        if (5 == func_num_args()) {
+        if (6 == func_num_args()) {
             $this->quantity    = func_get_arg(0);
             $this->description = func_get_arg(1);
             $this->usedAt      = func_get_arg(2);
             $this->code        = func_get_arg(3);
             $this->group       = func_get_arg(4);
+            $this->amount      = func_get_arg(5);
         }
     }
 
@@ -81,6 +89,7 @@ class CreateUsageRequest implements JsonSerializable
         $json['used_at']     = DateTimeHelper::toRfc3339DateTime($this->usedAt);
         $json['code']        = $this->code;
         $json['group']       = $this->group;
+        $json['amount']      = $this->amount;
 
         return $json;
     }

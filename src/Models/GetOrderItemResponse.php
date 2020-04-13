@@ -17,7 +17,6 @@ class GetOrderItemResponse implements JsonSerializable
     /**
      * Id
      * @required
-     * @maps id
      * @var string $id public property
      */
     public $id;
