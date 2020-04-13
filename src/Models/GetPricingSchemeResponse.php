@@ -45,19 +45,27 @@ class GetPricingSchemeResponse implements JsonSerializable
     public $minimumPrice;
 
     /**
+     * percentual value used in pricing_scheme Percent
+     * @var double|null $percentage public property
+     */
+    public $percentage;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param integer $price         Initialization value for $this->price
      * @param string  $schemeType    Initialization value for $this->schemeType
      * @param array   $priceBrackets Initialization value for $this->priceBrackets
      * @param integer $minimumPrice  Initialization value for $this->minimumPrice
+     * @param double  $percentage    Initialization value for $this->percentage
      */
     public function __construct()
     {
-        if (4 == func_num_args()) {
+        if (5 == func_num_args()) {
             $this->price         = func_get_arg(0);
             $this->schemeType    = func_get_arg(1);
             $this->priceBrackets = func_get_arg(2);
             $this->minimumPrice  = func_get_arg(3);
+            $this->percentage    = func_get_arg(4);
         }
     }
 
@@ -72,6 +80,7 @@ class GetPricingSchemeResponse implements JsonSerializable
         $json['scheme_type']    = $this->schemeType;
         $json['price_brackets'] = $this->priceBrackets;
         $json['minimum_price']  = $this->minimumPrice;
+        $json['percentage']     = $this->percentage;
 
         return $json;
     }

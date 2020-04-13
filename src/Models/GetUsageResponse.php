@@ -90,6 +90,12 @@ class GetUsageResponse implements JsonSerializable
     public $group;
 
     /**
+     * Field used in item scheme type 'Percent'
+     * @var integer|null $amount public property
+     */
+    public $amount;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string                       $id               Initialization value for $this->id
      * @param integer                      $quantity         Initialization value for $this->quantity
@@ -101,10 +107,11 @@ class GetUsageResponse implements JsonSerializable
      * @param GetSubscriptionItemResponse  $subscriptionItem Initialization value for $this->subscriptionItem
      * @param string                       $code             Initialization value for $this->code
      * @param string                       $group            Initialization value for $this->group
+     * @param integer                      $amount           Initialization value for $this->amount
      */
     public function __construct()
     {
-        if (10 == func_num_args()) {
+        if (11 == func_num_args()) {
             $this->id               = func_get_arg(0);
             $this->quantity         = func_get_arg(1);
             $this->description      = func_get_arg(2);
@@ -115,6 +122,7 @@ class GetUsageResponse implements JsonSerializable
             $this->subscriptionItem = func_get_arg(7);
             $this->code             = func_get_arg(8);
             $this->group            = func_get_arg(9);
+            $this->amount           = func_get_arg(10);
         }
     }
 
@@ -136,6 +144,7 @@ class GetUsageResponse implements JsonSerializable
         $json['subscription_item'] = $this->subscriptionItem;
         $json['code']              = $this->code;
         $json['group']             = $this->group;
+        $json['amount']            = $this->amount;
 
         return $json;
     }

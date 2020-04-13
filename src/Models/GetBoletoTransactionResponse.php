@@ -28,10 +28,9 @@ class GetBoletoTransactionResponse extends GetTransactionResponse implements Jso
     /**
      * @todo Write general description for this property
      * @required
-     * @maps barcode
-     * @var string $barCode public property
+     * @var string $barcode public property
      */
-    public $barCode;
+    public $barcode;
 
     /**
      * @todo Write general description for this property
@@ -143,7 +142,7 @@ class GetBoletoTransactionResponse extends GetTransactionResponse implements Jso
     /**
      * Constructor to set initial or default values of member properties
      * @param string                     $url            Initialization value for $this->url
-     * @param string                     $barCode        Initialization value for $this->barCode
+     * @param string                     $barcode        Initialization value for $this->barcode
      * @param string                     $nossoNumero    Initialization value for $this->nossoNumero
      * @param string                     $bank           Initialization value for $this->bank
      * @param string                     $documentNumber Initialization value for $this->documentNumber
@@ -163,7 +162,7 @@ class GetBoletoTransactionResponse extends GetTransactionResponse implements Jso
     {
         if (16 == func_num_args()) {
             $this->url            = func_get_arg(0);
-            $this->barCode        = func_get_arg(1);
+            $this->barcode        = func_get_arg(1);
             $this->nossoNumero    = func_get_arg(2);
             $this->bank           = func_get_arg(3);
             $this->documentNumber = func_get_arg(4);
@@ -189,7 +188,7 @@ class GetBoletoTransactionResponse extends GetTransactionResponse implements Jso
     {
         $json = array();
         $json['url']             = $this->url;
-        $json['barcode']        = $this->barCode;
+        $json['barcode']         = $this->barcode;
         $json['nosso_numero']    = $this->nossoNumero;
         $json['bank']            = $this->bank;
         $json['document_number'] = $this->documentNumber;
