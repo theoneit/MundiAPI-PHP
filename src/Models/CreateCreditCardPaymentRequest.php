@@ -100,6 +100,13 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
     public $autoRecovery;
 
     /**
+     * AuthOnly, AuthAndCapture, PreAuth
+     * @maps operation_type
+     * @var string|null $operationType public property
+     */
+    public $operationType;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param integer                             $installments         Initialization value for $this->installments
      * @param string                              $statementDescriptor  Initialization value for $this-
@@ -119,11 +126,12 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
      *                                                                    >authentication
      * @param CreateCardPaymentContactlessRequest $contactless          Initialization value for $this->contactless
      * @param bool                                $autoRecovery         Initialization value for $this->autoRecovery
+     * @param string                              $operationType        Initialization value for $this->operationType
      */
     public function __construct()
     {
         switch (func_num_args()) {
-            case 13:
+            case 14:
                 $this->installments         = func_get_arg(0);
                 $this->statementDescriptor  = func_get_arg(1);
                 $this->card                 = func_get_arg(2);
@@ -137,6 +145,7 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
                 $this->authentication       = func_get_arg(10);
                 $this->contactless          = func_get_arg(11);
                 $this->autoRecovery         = func_get_arg(12);
+                $this->operationType        = func_get_arg(13);
                 break;
 
             default:
@@ -166,6 +175,7 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
         $json['authentication']         = $this->authentication;
         $json['contactless']            = $this->contactless;
         $json['auto_recovery']          = $this->autoRecovery;
+        $json['operation_type']         = $this->operationType;
 
         return $json;
     }
