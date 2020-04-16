@@ -21,7 +21,7 @@ $request->billingType = "prepaid";
 $request->installments = 3;
 $request->minimumPrice = 10000; // this value should be in cents
 $request->boletoDueDays = 5;
-
+$request->startAt = "2020-05-01"; 
 $request->customer = new \MundiAPILib\Models\CreateCustomerRequest();
 $request->customer->name = "Tony Stark";
 $request->customer->email = "tonystark@avengers.com";
