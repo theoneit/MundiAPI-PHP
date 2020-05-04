@@ -74,6 +74,14 @@ class CreateChargeRequest implements JsonSerializable
     public $antifraud;
 
     /**
+     * Order Id
+     * @required
+     * @maps order_id
+     * @var string $orderId public property
+     */
+    public $orderId;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string                  $code       Initialization value for $this->code
      * @param integer                 $amount     Initialization value for $this->amount
@@ -83,10 +91,11 @@ class CreateChargeRequest implements JsonSerializable
      * @param array                   $metadata   Initialization value for $this->metadata
      * @param \DateTime               $dueAt      Initialization value for $this->dueAt
      * @param CreateAntifraudRequest  $antifraud  Initialization value for $this->antifraud
+     * @param string                  $orderId    Initialization value for $this->orderId
      */
     public function __construct()
     {
-        if (8 == func_num_args()) {
+        if (9 == func_num_args()) {
             $this->code       = func_get_arg(0);
             $this->amount     = func_get_arg(1);
             $this->customerId = func_get_arg(2);
@@ -95,6 +104,7 @@ class CreateChargeRequest implements JsonSerializable
             $this->metadata   = func_get_arg(5);
             $this->dueAt      = func_get_arg(6);
             $this->antifraud  = func_get_arg(7);
+            $this->orderId    = func_get_arg(8);
         }
     }
 
@@ -114,6 +124,7 @@ class CreateChargeRequest implements JsonSerializable
         $json['due_at']      = isset($this->dueAt) ?
             DateTimeHelper::toRfc3339DateTime($this->dueAt) : null;
         $json['antifraud']   = $this->antifraud;
+        $json['order_id']    = $this->orderId;
 
         return $json;
     }

@@ -28,15 +28,33 @@ class CreateCaptureChargeRequest implements JsonSerializable
     public $amount;
 
     /**
+     * Splits
+     * @var \MundiAPILib\Models\CreateSplitRequest[]|null $split public property
+     */
+    public $split;
+
+    /**
+     * @todo Write general description for this property
+     * @required
+     * @maps operation_reference
+     * @var string $operationReference public property
+     */
+    public $operationReference;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param string  $code   Initialization value for $this->code
-     * @param integer $amount Initialization value for $this->amount
+     * @param string  $code               Initialization value for $this->code
+     * @param integer $amount             Initialization value for $this->amount
+     * @param array   $split              Initialization value for $this->split
+     * @param string  $operationReference Initialization value for $this->operationReference
      */
     public function __construct()
     {
-        if (2 == func_num_args()) {
-            $this->code   = func_get_arg(0);
-            $this->amount = func_get_arg(1);
+        if (4 == func_num_args()) {
+            $this->code               = func_get_arg(0);
+            $this->amount             = func_get_arg(1);
+            $this->split              = func_get_arg(2);
+            $this->operationReference = func_get_arg(3);
         }
     }
 
@@ -47,8 +65,10 @@ class CreateCaptureChargeRequest implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['code']   = $this->code;
-        $json['amount'] = $this->amount;
+        $json['code']                = $this->code;
+        $json['amount']              = $this->amount;
+        $json['split']               = $this->split;
+        $json['operation_reference'] = $this->operationReference;
 
         return $json;
     }
