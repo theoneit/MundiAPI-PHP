@@ -133,6 +133,13 @@ class GetTransactionResponse implements JsonSerializable
     public $metadata;
 
     /**
+     * @todo Write general description for this property
+     * @required
+     * @var \MundiAPILib\Models\GetSplitResponse[] $split public property
+     */
+    public $split;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string                      $gatewayId         Initialization value for $this->gatewayId
      * @param integer                     $amount            Initialization value for $this->amount
@@ -149,10 +156,11 @@ class GetTransactionResponse implements JsonSerializable
      * @param GetGatewayResponseResponse  $gatewayResponse   Initialization value for $this->gatewayResponse
      * @param GetAntifraudResponse        $antifraudResponse Initialization value for $this->antifraudResponse
      * @param array                       $metadata          Initialization value for $this->metadata
+     * @param array                       $split             Initialization value for $this->split
      */
     public function __construct()
     {
-        if (15 == func_num_args()) {
+        if (16 == func_num_args()) {
             $this->gatewayId         = func_get_arg(0);
             $this->amount            = func_get_arg(1);
             $this->status            = func_get_arg(2);
@@ -168,6 +176,7 @@ class GetTransactionResponse implements JsonSerializable
             $this->gatewayResponse   = func_get_arg(12);
             $this->antifraudResponse = func_get_arg(13);
             $this->metadata          = func_get_arg(14);
+            $this->split             = func_get_arg(15);
         }
     }
 
@@ -194,6 +203,7 @@ class GetTransactionResponse implements JsonSerializable
         $json['gateway_response']   = $this->gatewayResponse;
         $json['antifraud_response'] = $this->antifraudResponse;
         $json['metadata']           = $this->metadata;
+        $json['split']              = $this->split;
 
         return $json;
     }

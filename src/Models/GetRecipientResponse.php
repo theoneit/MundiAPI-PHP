@@ -115,37 +115,55 @@ class GetRecipientResponse implements JsonSerializable
     public $metadata;
 
     /**
+     * @todo Write general description for this property
+     * @maps automatic_anticipation_settings
+     * @var \MundiAPILib\Models\GetAutomaticAnticipationResponse|null $automaticAnticipationSettings public property
+     */
+    public $automaticAnticipationSettings;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param string                  $id                 Initialization value for $this->id
-     * @param string                  $name               Initialization value for $this->name
-     * @param string                  $email              Initialization value for $this->email
-     * @param string                  $document           Initialization value for $this->document
-     * @param string                  $description        Initialization value for $this->description
-     * @param string                  $type               Initialization value for $this->type
-     * @param string                  $status             Initialization value for $this->status
-     * @param \DateTime               $createdAt          Initialization value for $this->createdAt
-     * @param \DateTime               $updatedAt          Initialization value for $this->updatedAt
-     * @param \DateTime               $deletedAt          Initialization value for $this->deletedAt
-     * @param GetBankAccountResponse  $defaultBankAccount Initialization value for $this->defaultBankAccount
-     * @param array                   $gatewayRecipients  Initialization value for $this->gatewayRecipients
-     * @param array                   $metadata           Initialization value for $this->metadata
+     * @param string                            $id                            Initialization value for $this->id
+     * @param string                            $name                          Initialization value for $this->name
+     * @param string                            $email                         Initialization value for $this->email
+     * @param string                            $document                      Initialization value for $this-
+     *                                                                           >document
+     * @param string                            $description                   Initialization value for $this-
+     *                                                                           >description
+     * @param string                            $type                          Initialization value for $this->type
+     * @param string                            $status                        Initialization value for $this->status
+     * @param \DateTime                         $createdAt                     Initialization value for $this-
+     *                                                                           >createdAt
+     * @param \DateTime                         $updatedAt                     Initialization value for $this-
+     *                                                                           >updatedAt
+     * @param \DateTime                         $deletedAt                     Initialization value for $this-
+     *                                                                           >deletedAt
+     * @param GetBankAccountResponse            $defaultBankAccount            Initialization value for $this-
+     *                                                                           >defaultBankAccount
+     * @param array                             $gatewayRecipients             Initialization value for $this-
+     *                                                                           >gatewayRecipients
+     * @param array                             $metadata                      Initialization value for $this-
+     *                                                                           >metadata
+     * @param GetAutomaticAnticipationResponse  $automaticAnticipationSettings Initialization value for $this-
+     *                                                                           >automaticAnticipationSettings
      */
     public function __construct()
     {
-        if (13 == func_num_args()) {
-            $this->id                 = func_get_arg(0);
-            $this->name               = func_get_arg(1);
-            $this->email              = func_get_arg(2);
-            $this->document           = func_get_arg(3);
-            $this->description        = func_get_arg(4);
-            $this->type               = func_get_arg(5);
-            $this->status             = func_get_arg(6);
-            $this->createdAt          = func_get_arg(7);
-            $this->updatedAt          = func_get_arg(8);
-            $this->deletedAt          = func_get_arg(9);
-            $this->defaultBankAccount = func_get_arg(10);
-            $this->gatewayRecipients  = func_get_arg(11);
-            $this->metadata           = func_get_arg(12);
+        if (14 == func_num_args()) {
+            $this->id                            = func_get_arg(0);
+            $this->name                          = func_get_arg(1);
+            $this->email                         = func_get_arg(2);
+            $this->document                      = func_get_arg(3);
+            $this->description                   = func_get_arg(4);
+            $this->type                          = func_get_arg(5);
+            $this->status                        = func_get_arg(6);
+            $this->createdAt                     = func_get_arg(7);
+            $this->updatedAt                     = func_get_arg(8);
+            $this->deletedAt                     = func_get_arg(9);
+            $this->defaultBankAccount            = func_get_arg(10);
+            $this->gatewayRecipients             = func_get_arg(11);
+            $this->metadata                      = func_get_arg(12);
+            $this->automaticAnticipationSettings = func_get_arg(13);
         }
     }
 
@@ -156,19 +174,20 @@ class GetRecipientResponse implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['id']                   = $this->id;
-        $json['name']                 = $this->name;
-        $json['email']                = $this->email;
-        $json['document']             = $this->document;
-        $json['description']          = $this->description;
-        $json['type']                 = $this->type;
-        $json['status']               = $this->status;
-        $json['created_at']           = DateTimeHelper::toRfc3339DateTime($this->createdAt);
-        $json['updated_at']           = DateTimeHelper::toRfc3339DateTime($this->updatedAt);
-        $json['deleted_at']           = DateTimeHelper::toRfc3339DateTime($this->deletedAt);
-        $json['default_bank_account'] = $this->defaultBankAccount;
-        $json['gateway_recipients']   = $this->gatewayRecipients;
-        $json['metadata']             = $this->metadata;
+        $json['id']                              = $this->id;
+        $json['name']                            = $this->name;
+        $json['email']                           = $this->email;
+        $json['document']                        = $this->document;
+        $json['description']                     = $this->description;
+        $json['type']                            = $this->type;
+        $json['status']                          = $this->status;
+        $json['created_at']                      = DateTimeHelper::toRfc3339DateTime($this->createdAt);
+        $json['updated_at']                      = DateTimeHelper::toRfc3339DateTime($this->updatedAt);
+        $json['deleted_at']                      = DateTimeHelper::toRfc3339DateTime($this->deletedAt);
+        $json['default_bank_account']            = $this->defaultBankAccount;
+        $json['gateway_recipients']              = $this->gatewayRecipients;
+        $json['metadata']                        = $this->metadata;
+        $json['automatic_anticipation_settings'] = $this->automaticAnticipationSettings;
 
         return $json;
     }

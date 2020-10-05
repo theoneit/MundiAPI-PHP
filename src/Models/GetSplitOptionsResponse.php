@@ -10,35 +10,38 @@ namespace MundiAPILib\Models;
 use JsonSerializable;
 
 /**
- *The Split Options Request
+ * @todo Write general description for this model
  */
-class CreateSplitOptionsRequest implements JsonSerializable
+class GetSplitOptionsResponse implements JsonSerializable
 {
     /**
-     * Liable options
-     * @var bool|null $liable public property
+     * @todo Write general description for this property
+     * @required
+     * @var bool $liable public property
      */
     public $liable;
 
     /**
-     * Charge processing fee
+     * @todo Write general description for this property
+     * @required
      * @maps charge_processing_fee
-     * @var bool|null $chargeProcessingFee public property
+     * @var bool $chargeProcessingFee public property
      */
     public $chargeProcessingFee;
 
     /**
      * @todo Write general description for this property
+     * @required
      * @maps charge_remainder_fee
-     * @var bool|null $chargeRemainderFee public property
+     * @var string $chargeRemainderFee public property
      */
     public $chargeRemainderFee;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param bool $liable              Initialization value for $this->liable
-     * @param bool $chargeProcessingFee Initialization value for $this->chargeProcessingFee
-     * @param bool $chargeRemainderFee  Initialization value for $this->chargeRemainderFee
+     * @param bool   $liable              Initialization value for $this->liable
+     * @param bool   $chargeProcessingFee Initialization value for $this->chargeProcessingFee
+     * @param string $chargeRemainderFee  Initialization value for $this->chargeRemainderFee
      */
     public function __construct()
     {
