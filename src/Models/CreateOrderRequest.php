@@ -115,27 +115,34 @@ class CreateOrderRequest implements JsonSerializable
     public $antifraud;
 
     /**
+     * SubMerchant
+     * @var \MundiAPILib\Models\CreateSubMerchantRequest|null $submerchant public property
+     */
+    public $submerchant;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param array                  $items            Initialization value for $this->items
-     * @param CreateCustomerRequest  $customer         Initialization value for $this->customer
-     * @param array                  $payments         Initialization value for $this->payments
-     * @param string                 $code             Initialization value for $this->code
-     * @param string                 $customerId       Initialization value for $this->customerId
-     * @param CreateShippingRequest  $shipping         Initialization value for $this->shipping
-     * @param array                  $metadata         Initialization value for $this->metadata
-     * @param bool                   $antifraudEnabled Initialization value for $this->antifraudEnabled
-     * @param string                 $ip               Initialization value for $this->ip
-     * @param string                 $sessionId        Initialization value for $this->sessionId
-     * @param CreateLocationRequest  $location         Initialization value for $this->location
-     * @param CreateDeviceRequest    $device           Initialization value for $this->device
-     * @param bool                   $closed           Initialization value for $this->closed
-     * @param string                 $currency         Initialization value for $this->currency
-     * @param CreateAntifraudRequest $antifraud        Initialization value for $this->antifraud
+     * @param array                    $items            Initialization value for $this->items
+     * @param CreateCustomerRequest    $customer         Initialization value for $this->customer
+     * @param array                    $payments         Initialization value for $this->payments
+     * @param string                   $code             Initialization value for $this->code
+     * @param string                   $customerId       Initialization value for $this->customerId
+     * @param CreateShippingRequest    $shipping         Initialization value for $this->shipping
+     * @param array                    $metadata         Initialization value for $this->metadata
+     * @param bool                     $antifraudEnabled Initialization value for $this->antifraudEnabled
+     * @param string                   $ip               Initialization value for $this->ip
+     * @param string                   $sessionId        Initialization value for $this->sessionId
+     * @param CreateLocationRequest    $location         Initialization value for $this->location
+     * @param CreateDeviceRequest      $device           Initialization value for $this->device
+     * @param bool                     $closed           Initialization value for $this->closed
+     * @param string                   $currency         Initialization value for $this->currency
+     * @param CreateAntifraudRequest   $antifraud        Initialization value for $this->antifraud
+     * @param CreateSubMerchantRequest $submerchant      Initialization value for $this->submerchant
      */
     public function __construct()
     {
         switch (func_num_args()) {
-            case 15:
+            case 16:
                 $this->items            = func_get_arg(0);
                 $this->customer         = func_get_arg(1);
                 $this->payments         = func_get_arg(2);
@@ -151,6 +158,7 @@ class CreateOrderRequest implements JsonSerializable
                 $this->closed           = func_get_arg(12);
                 $this->currency         = func_get_arg(13);
                 $this->antifraud        = func_get_arg(14);
+                $this->submerchant      = func_get_arg(15);
                 break;
 
             default:
@@ -181,6 +189,7 @@ class CreateOrderRequest implements JsonSerializable
         $json['closed']            = $this->closed;
         $json['currency']          = $this->currency;
         $json['antifraud']         = $this->antifraud;
+        $json['submerchant']       = $this->submerchant;
 
         return $json;
     }
