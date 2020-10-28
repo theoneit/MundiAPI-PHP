@@ -228,6 +228,12 @@ class CreateSubscriptionRequest implements JsonSerializable
     public $period;
 
     /**
+     * SubMerchant
+     * @var \MundiAPILib\Models\CreateSubMerchantRequest|null $submerchant public property
+     */
+    public $submerchant;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param CreateCustomerRequest       $customer             Initialization value for $this->customer
      * @param CreateCardRequest           $card                 Initialization value for $this->card
@@ -259,10 +265,11 @@ class CreateSubscriptionRequest implements JsonSerializable
      * @param integer                     $boletoDueDays        Initialization value for $this->boletoDueDays
      * @param array                       $increments           Initialization value for $this->increments
      * @param CreatePeriodRequest         $period               Initialization value for $this->period
+     * @param CreateSubMerchantRequest    $submerchant          Initialization value for $this->submerchant
      */
     public function __construct()
     {
-        if (30 == func_num_args()) {
+        if (31 == func_num_args()) {
             $this->customer             = func_get_arg(0);
             $this->card                 = func_get_arg(1);
             $this->code                 = func_get_arg(2);
@@ -293,6 +300,7 @@ class CreateSubscriptionRequest implements JsonSerializable
             $this->boletoDueDays        = func_get_arg(27);
             $this->increments           = func_get_arg(28);
             $this->period               = func_get_arg(29);
+            $this->submerchant          = func_get_arg(30);
         }
     }
 
@@ -334,6 +342,7 @@ class CreateSubscriptionRequest implements JsonSerializable
         $json['boleto_due_days']        = $this->boletoDueDays;
         $json['increments']             = $this->increments;
         $json['period']                 = $this->period;
+        $json['submerchant']            = $this->submerchant;
 
         return $json;
     }
