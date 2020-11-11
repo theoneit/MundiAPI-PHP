@@ -25,38 +25,6 @@ class MundiAPIClient
         Configuration::$basicAuthPassword = $basicAuthPassword ? $basicAuthPassword : Configuration::$basicAuthPassword;
     }
     /**
-     * Singleton access to Subscriptions controller
-     * @return Controllers\SubscriptionsController The *Singleton* instance
-     */
-    public function getSubscriptions()
-    {
-        return Controllers\SubscriptionsController::getInstance();
-    }
-    /**
-     * Singleton access to Orders controller
-     * @return Controllers\OrdersController The *Singleton* instance
-     */
-    public function getOrders()
-    {
-        return Controllers\OrdersController::getInstance();
-    }
-    /**
-     * Singleton access to Plans controller
-     * @return Controllers\PlansController The *Singleton* instance
-     */
-    public function getPlans()
-    {
-        return Controllers\PlansController::getInstance();
-    }
-    /**
-     * Singleton access to Invoices controller
-     * @return Controllers\InvoicesController The *Singleton* instance
-     */
-    public function getInvoices()
-    {
-        return Controllers\InvoicesController::getInstance();
-    }
-    /**
      * Singleton access to Customers controller
      * @return Controllers\CustomersController The *Singleton* instance
      */
@@ -81,12 +49,28 @@ class MundiAPIClient
         return Controllers\RecipientsController::getInstance();
     }
     /**
-     * Singleton access to Tokens controller
-     * @return Controllers\TokensController The *Singleton* instance
+     * Singleton access to Subscriptions controller
+     * @return Controllers\SubscriptionsController The *Singleton* instance
      */
-    public function getTokens()
+    public function getSubscriptions()
     {
-        return Controllers\TokensController::getInstance();
+        return Controllers\SubscriptionsController::getInstance();
+    }
+    /**
+     * Singleton access to Invoices controller
+     * @return Controllers\InvoicesController The *Singleton* instance
+     */
+    public function getInvoices()
+    {
+        return Controllers\InvoicesController::getInstance();
+    }
+    /**
+     * Singleton access to Orders controller
+     * @return Controllers\OrdersController The *Singleton* instance
+     */
+    public function getOrders()
+    {
+        return Controllers\OrdersController::getInstance();
     }
     /**
      * Singleton access to Sellers controller
@@ -95,6 +79,22 @@ class MundiAPIClient
     public function getSellers()
     {
         return Controllers\SellersController::getInstance();
+    }
+    /**
+     * Singleton access to Tokens controller
+     * @return Controllers\TokensController The *Singleton* instance
+     */
+    public function getTokens()
+    {
+        return Controllers\TokensController::getInstance();
+    }
+    /**
+     * Singleton access to Plans controller
+     * @return Controllers\PlansController The *Singleton* instance
+     */
+    public function getPlans()
+    {
+        return Controllers\PlansController::getInstance();
     }
     /**
      * Singleton access to Transactions controller

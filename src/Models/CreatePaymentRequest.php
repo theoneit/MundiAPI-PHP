@@ -120,6 +120,12 @@ class CreatePaymentRequest implements JsonSerializable
     public $privateLabel;
 
     /**
+     * Settings for pix payment
+     * @var \MundiAPILib\Models\CreatePixPaymentRequest|null $pix public property
+     */
+    public $pix;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string                           $paymentMethod        Initialization value for $this->paymentMethod
      * @param CreateCreditCardPaymentRequest   $creditCard           Initialization value for $this->creditCard
@@ -138,10 +144,11 @@ class CreatePaymentRequest implements JsonSerializable
      * @param array                            $metadata             Initialization value for $this->metadata
      * @param CreateCashPaymentRequest         $cash                 Initialization value for $this->cash
      * @param CreatePrivateLabelPaymentRequest $privateLabel         Initialization value for $this->privateLabel
+     * @param CreatePixPaymentRequest          $pix                  Initialization value for $this->pix
      */
     public function __construct()
     {
-        if (16 == func_num_args()) {
+        if (17 == func_num_args()) {
             $this->paymentMethod        = func_get_arg(0);
             $this->creditCard           = func_get_arg(1);
             $this->debitCard            = func_get_arg(2);
@@ -158,6 +165,7 @@ class CreatePaymentRequest implements JsonSerializable
             $this->metadata             = func_get_arg(13);
             $this->cash                 = func_get_arg(14);
             $this->privateLabel         = func_get_arg(15);
+            $this->pix                  = func_get_arg(16);
         }
     }
 
@@ -184,6 +192,7 @@ class CreatePaymentRequest implements JsonSerializable
         $json['metadata']               = $this->metadata;
         $json['cash']                   = $this->cash;
         $json['private_label']          = $this->privateLabel;
+        $json['pix']                    = $this->pix;
 
         return $json;
     }
