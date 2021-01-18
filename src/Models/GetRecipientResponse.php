@@ -122,6 +122,13 @@ class GetRecipientResponse implements JsonSerializable
     public $automaticAnticipationSettings;
 
     /**
+     * @todo Write general description for this property
+     * @maps transfer_settings
+     * @var \MundiAPILib\Models\GetTransferSettingsResponse|null $transferSettings public property
+     */
+    public $transferSettings;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string                            $id                            Initialization value for $this->id
      * @param string                            $name                          Initialization value for $this->name
@@ -146,10 +153,12 @@ class GetRecipientResponse implements JsonSerializable
      *                                                                           >metadata
      * @param GetAutomaticAnticipationResponse  $automaticAnticipationSettings Initialization value for $this-
      *                                                                           >automaticAnticipationSettings
+     * @param GetTransferSettingsResponse       $transferSettings              Initialization value for $this-
+     *                                                                           >transferSettings
      */
     public function __construct()
     {
-        if (14 == func_num_args()) {
+        if (15 == func_num_args()) {
             $this->id                            = func_get_arg(0);
             $this->name                          = func_get_arg(1);
             $this->email                         = func_get_arg(2);
@@ -164,6 +173,7 @@ class GetRecipientResponse implements JsonSerializable
             $this->gatewayRecipients             = func_get_arg(11);
             $this->metadata                      = func_get_arg(12);
             $this->automaticAnticipationSettings = func_get_arg(13);
+            $this->transferSettings              = func_get_arg(14);
         }
     }
 
@@ -188,6 +198,7 @@ class GetRecipientResponse implements JsonSerializable
         $json['gateway_recipients']              = $this->gatewayRecipients;
         $json['metadata']                        = $this->metadata;
         $json['automatic_anticipation_settings'] = $this->automaticAnticipationSettings;
+        $json['transfer_settings']               = $this->transferSettings;
 
         return $json;
     }
