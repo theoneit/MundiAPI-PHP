@@ -119,6 +119,14 @@ class GetCustomerResponse implements JsonSerializable
     public $code;
 
     /**
+     * @todo Write general description for this property
+     * @required
+     * @maps document_type
+     * @var string $documentType public property
+     */
+    public $documentType;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string              $id            Initialization value for $this->id
      * @param string              $name          Initialization value for $this->name
@@ -134,10 +142,11 @@ class GetCustomerResponse implements JsonSerializable
      * @param GetPhonesResponse   $phones        Initialization value for $this->phones
      * @param integer             $fbId          Initialization value for $this->fbId
      * @param string              $code          Initialization value for $this->code
+     * @param string              $documentType  Initialization value for $this->documentType
      */
     public function __construct()
     {
-        if (14 == func_num_args()) {
+        if (15 == func_num_args()) {
             $this->id            = func_get_arg(0);
             $this->name          = func_get_arg(1);
             $this->email         = func_get_arg(2);
@@ -152,6 +161,7 @@ class GetCustomerResponse implements JsonSerializable
             $this->phones        = func_get_arg(11);
             $this->fbId          = func_get_arg(12);
             $this->code          = func_get_arg(13);
+            $this->documentType  = func_get_arg(14);
         }
     }
 
@@ -176,6 +186,7 @@ class GetCustomerResponse implements JsonSerializable
         $json['phones']          = $this->phones;
         $json['fb_id']           = $this->fbId;
         $json['code']            = $this->code;
+        $json['document_type']   = $this->documentType;
 
         return $json;
     }
