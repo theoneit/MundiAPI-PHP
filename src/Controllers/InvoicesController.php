@@ -293,16 +293,17 @@ class InvoicesController extends BaseController
     /**
      * Gets all invoices
      *
-     * @param integer  $page            (optional) Page number
-     * @param integer  $size            (optional) Page size
-     * @param string   $code            (optional) Filter for Invoice's code
-     * @param string   $customerId      (optional) Filter for Invoice's customer id
-     * @param string   $subscriptionId  (optional) Filter for Invoice's subscription id
-     * @param DateTime $createdSince    (optional) Filter for Invoice's creation date start range
-     * @param DateTime $createdUntil    (optional) Filter for Invoices creation date end range
-     * @param string   $status          (optional) Filter for Invoice's status
-     * @param DateTime $dueSince        (optional) Filter for Invoice's due date start range
-     * @param DateTime $dueUntil        (optional) Filter for Invoice's due date end range
+     * @param integer  $page              (optional) Page number
+     * @param integer  $size              (optional) Page size
+     * @param string   $code              (optional) Filter for Invoice's code
+     * @param string   $customerId        (optional) Filter for Invoice's customer id
+     * @param string   $subscriptionId    (optional) Filter for Invoice's subscription id
+     * @param DateTime $createdSince      (optional) Filter for Invoice's creation date start range
+     * @param DateTime $createdUntil      (optional) Filter for Invoices creation date end range
+     * @param string   $status            (optional) Filter for Invoice's status
+     * @param DateTime $dueSince          (optional) Filter for Invoice's due date start range
+     * @param DateTime $dueUntil          (optional) Filter for Invoice's due date end range
+     * @param string   $customerDocument  (optional) Fillter for invoice's document
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
@@ -316,7 +317,8 @@ class InvoicesController extends BaseController
         $createdUntil = null,
         $status = null,
         $dueSince = null,
-        $dueUntil = null
+        $dueUntil = null,
+        $customerDocument = null
     ) {
 
         //prepare query string for API call
@@ -324,16 +326,17 @@ class InvoicesController extends BaseController
 
         //process optional query parameters
         APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
-            'page'            => $page,
-            'size'            => $size,
-            'code'            => $code,
-            'customer_id'     => $customerId,
-            'subscription_id' => $subscriptionId,
-            'created_since'   => DateTimeHelper::toRfc3339DateTime($createdSince),
-            'created_until'   => DateTimeHelper::toRfc3339DateTime($createdUntil),
-            'status'          => $status,
-            'due_since'       => DateTimeHelper::toRfc3339DateTime($dueSince),
-            'due_until'       => DateTimeHelper::toRfc3339DateTime($dueUntil),
+            'page'              => $page,
+            'size'              => $size,
+            'code'              => $code,
+            'customer_id'       => $customerId,
+            'subscription_id'   => $subscriptionId,
+            'created_since'     => DateTimeHelper::toRfc3339DateTime($createdSince),
+            'created_until'     => DateTimeHelper::toRfc3339DateTime($createdUntil),
+            'status'            => $status,
+            'due_since'         => DateTimeHelper::toRfc3339DateTime($dueSince),
+            'due_until'         => DateTimeHelper::toRfc3339DateTime($dueUntil),
+            'customer_document' => $customerDocument,
         ));
 
         //validate and preprocess url
@@ -341,8 +344,8 @@ class InvoicesController extends BaseController
 
         //prepare headers
         $_headers = array (
-            'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json'
+            'user-agent'      => BaseController::USER_AGENT,
+            'Accept'          => 'application/json'
         );
 
         //set HTTP basic auth parameters
