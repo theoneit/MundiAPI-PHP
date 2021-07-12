@@ -11,7 +11,7 @@ use JsonSerializable;
 use MundiAPILib\Utils\DateTimeHelper;
 
 /**
- * @todo Write general description for this model
+ *Response object to bank account
  */
 class GetBankAccountResponse implements JsonSerializable
 {
@@ -132,6 +132,14 @@ class GetBankAccountResponse implements JsonSerializable
     public $metadata;
 
     /**
+     * Pix Key
+     * @required
+     * @maps pix_key
+     * @var string $pixKey public property
+     */
+    public $pixKey;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string                $id                Initialization value for $this->id
      * @param string                $holderName        Initialization value for $this->holderName
@@ -148,10 +156,11 @@ class GetBankAccountResponse implements JsonSerializable
      * @param \DateTime             $deletedAt         Initialization value for $this->deletedAt
      * @param GetRecipientResponse  $recipient         Initialization value for $this->recipient
      * @param array                 $metadata          Initialization value for $this->metadata
+     * @param string                $pixKey            Initialization value for $this->pixKey
      */
     public function __construct()
     {
-        if (15 == func_num_args()) {
+        if (16 == func_num_args()) {
             $this->id                = func_get_arg(0);
             $this->holderName        = func_get_arg(1);
             $this->holderType        = func_get_arg(2);
@@ -167,6 +176,7 @@ class GetBankAccountResponse implements JsonSerializable
             $this->deletedAt         = func_get_arg(12);
             $this->recipient         = func_get_arg(13);
             $this->metadata          = func_get_arg(14);
+            $this->pixKey            = func_get_arg(15);
         }
     }
 
@@ -192,6 +202,7 @@ class GetBankAccountResponse implements JsonSerializable
         $json['deleted_at']          = DateTimeHelper::toRfc3339DateTime($this->deletedAt);
         $json['recipient']           = $this->recipient;
         $json['metadata']            = $this->metadata;
+        $json['pix_key']             = $this->pixKey;
 
         return $json;
     }

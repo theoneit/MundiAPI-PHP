@@ -23,13 +23,29 @@ class UpdateRecipientBankAccountRequest implements JsonSerializable
     public $bankAccount;
 
     /**
+     * Payment mode
+     * @required
+     * @maps payment_mode
+     * @var string $paymentMode public property
+     */
+    public $paymentMode;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param CreateBankAccountRequest $bankAccount Initialization value for $this->bankAccount
+     * @param string                   $paymentMode Initialization value for $this->paymentMode
      */
     public function __construct()
     {
-        if (1 == func_num_args()) {
-            $this->bankAccount = func_get_arg(0);
+        switch (func_num_args()) {
+            case 2:
+                $this->bankAccount = func_get_arg(0);
+                $this->paymentMode = func_get_arg(1);
+                break;
+
+            default:
+                $this->paymentMode = 'bank_transfer';
+                break;
         }
     }
 
@@ -41,6 +57,7 @@ class UpdateRecipientBankAccountRequest implements JsonSerializable
     {
         $json = array();
         $json['bank_account'] = $this->bankAccount;
+        $json['payment_mode'] = $this->paymentMode;
 
         return $json;
     }

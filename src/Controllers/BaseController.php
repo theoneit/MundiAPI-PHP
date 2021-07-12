@@ -24,7 +24,7 @@ class BaseController
      * User-agent to be sent with API calls
      * @var string
      */
-    const USER_AGENT = 'MundiSDK - PHP 2.0.0';
+    const USER_AGENT = 'MundiSDK - PHP 2.1.0';
 
     /**
      * HttpCallBack instance associated with this controller
@@ -58,12 +58,12 @@ class BaseController
     {
         $mapper = new JsonMapper();
         $mapper->arChildClasses['MundiAPILib\\Models\\GetTransactionResponse'] = array(
-            'MundiAPILib\\Models\\GetVoucherTransactionResponse',
             'MundiAPILib\\Models\\GetBankTransferTransactionResponse',
-            'MundiAPILib\\Models\\GetSafetyPayTransactionResponse',
-            'MundiAPILib\\Models\\GetBoletoTransactionResponse',
             'MundiAPILib\\Models\\GetDebitCardTransactionResponse',
+            'MundiAPILib\\Models\\GetVoucherTransactionResponse',
+            'MundiAPILib\\Models\\GetBoletoTransactionResponse',
             'MundiAPILib\\Models\\GetCashTransactionResponse',
+            'MundiAPILib\\Models\\GetSafetyPayTransactionResponse',
             'MundiAPILib\\Models\\GetCreditCardTransactionResponse',
             'MundiAPILib\\Models\\GetPrivateLabelTransactionResponse',
             'MundiAPILib\\Models\\GetPixTransactionResponse'

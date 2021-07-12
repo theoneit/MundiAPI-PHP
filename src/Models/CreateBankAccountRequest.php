@@ -92,6 +92,14 @@ class CreateBankAccountRequest implements JsonSerializable
     public $metadata;
 
     /**
+     * Pix key
+     * @required
+     * @maps pix_key
+     * @var string $pixKey public property
+     */
+    public $pixKey;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string $holderName        Initialization value for $this->holderName
      * @param string $holderType        Initialization value for $this->holderType
@@ -103,10 +111,11 @@ class CreateBankAccountRequest implements JsonSerializable
      * @param string $accountCheckDigit Initialization value for $this->accountCheckDigit
      * @param string $type              Initialization value for $this->type
      * @param array  $metadata          Initialization value for $this->metadata
+     * @param string $pixKey            Initialization value for $this->pixKey
      */
     public function __construct()
     {
-        if (10 == func_num_args()) {
+        if (11 == func_num_args()) {
             $this->holderName        = func_get_arg(0);
             $this->holderType        = func_get_arg(1);
             $this->holderDocument    = func_get_arg(2);
@@ -117,6 +126,7 @@ class CreateBankAccountRequest implements JsonSerializable
             $this->accountCheckDigit = func_get_arg(7);
             $this->type              = func_get_arg(8);
             $this->metadata          = func_get_arg(9);
+            $this->pixKey            = func_get_arg(10);
         }
     }
 
@@ -137,6 +147,7 @@ class CreateBankAccountRequest implements JsonSerializable
         $json['account_check_digit'] = $this->accountCheckDigit;
         $json['type']                = $this->type;
         $json['metadata']            = $this->metadata;
+        $json['pix_key']             = $this->pixKey;
 
         return $json;
     }

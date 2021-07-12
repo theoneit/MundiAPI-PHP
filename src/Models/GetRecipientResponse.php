@@ -129,6 +129,21 @@ class GetRecipientResponse implements JsonSerializable
     public $transferSettings;
 
     /**
+     * Recipient code
+     * @required
+     * @var string $code public property
+     */
+    public $code;
+
+    /**
+     * Payment mode
+     * @required
+     * @maps payment_mode
+     * @var string $paymentMode public property
+     */
+    public $paymentMode;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string                            $id                            Initialization value for $this->id
      * @param string                            $name                          Initialization value for $this->name
@@ -155,25 +170,36 @@ class GetRecipientResponse implements JsonSerializable
      *                                                                           >automaticAnticipationSettings
      * @param GetTransferSettingsResponse       $transferSettings              Initialization value for $this-
      *                                                                           >transferSettings
+     * @param string                            $code                          Initialization value for $this->code
+     * @param string                            $paymentMode                   Initialization value for $this-
+     *                                                                           >paymentMode
      */
     public function __construct()
     {
-        if (15 == func_num_args()) {
-            $this->id                            = func_get_arg(0);
-            $this->name                          = func_get_arg(1);
-            $this->email                         = func_get_arg(2);
-            $this->document                      = func_get_arg(3);
-            $this->description                   = func_get_arg(4);
-            $this->type                          = func_get_arg(5);
-            $this->status                        = func_get_arg(6);
-            $this->createdAt                     = func_get_arg(7);
-            $this->updatedAt                     = func_get_arg(8);
-            $this->deletedAt                     = func_get_arg(9);
-            $this->defaultBankAccount            = func_get_arg(10);
-            $this->gatewayRecipients             = func_get_arg(11);
-            $this->metadata                      = func_get_arg(12);
-            $this->automaticAnticipationSettings = func_get_arg(13);
-            $this->transferSettings              = func_get_arg(14);
+        switch (func_num_args()) {
+            case 17:
+                $this->id                            = func_get_arg(0);
+                $this->name                          = func_get_arg(1);
+                $this->email                         = func_get_arg(2);
+                $this->document                      = func_get_arg(3);
+                $this->description                   = func_get_arg(4);
+                $this->type                          = func_get_arg(5);
+                $this->status                        = func_get_arg(6);
+                $this->createdAt                     = func_get_arg(7);
+                $this->updatedAt                     = func_get_arg(8);
+                $this->deletedAt                     = func_get_arg(9);
+                $this->defaultBankAccount            = func_get_arg(10);
+                $this->gatewayRecipients             = func_get_arg(11);
+                $this->metadata                      = func_get_arg(12);
+                $this->automaticAnticipationSettings = func_get_arg(13);
+                $this->transferSettings              = func_get_arg(14);
+                $this->code                          = func_get_arg(15);
+                $this->paymentMode                   = func_get_arg(16);
+                break;
+
+            default:
+                $this->paymentMode = 'bank_transfer';
+                break;
         }
     }
 
@@ -199,6 +225,8 @@ class GetRecipientResponse implements JsonSerializable
         $json['metadata']                        = $this->metadata;
         $json['automatic_anticipation_settings'] = $this->automaticAnticipationSettings;
         $json['transfer_settings']               = $this->transferSettings;
+        $json['code']                            = $this->code;
+        $json['payment_mode']                    = $this->paymentMode;
 
         return $json;
     }
