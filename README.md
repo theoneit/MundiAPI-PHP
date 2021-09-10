@@ -1,4 +1,4 @@
-### DEPRECATED | CHECK NEW VERSION > https://github.com/pagarme/pagarme-core-api-php
+### DEPRECATED | CHECK NEW VERSION > https://github.com/pagarme/pagarme-core-api-python
 
 # Mundipagg agora é Pagar.me
 
@@ -316,8 +316,8 @@ function getAddresses(
 
 ```php
 $customerId = 'customer_id';
-$page = 74;
-$size = 74;
+$page = 63;
+$size = 63;
 
 $result = $customers->getAddresses($customerId, $page, $size);
 
@@ -548,8 +548,8 @@ function getAccessTokens(
 
 ```php
 $customerId = 'customer_id';
-$page = 74;
-$size = 74;
+$page = 63;
+$size = 63;
 
 $result = $customers->getAccessTokens($customerId, $page, $size);
 
@@ -687,8 +687,8 @@ function getCards(
 
 ```php
 $customerId = 'customer_id';
-$page = 74;
-$size = 74;
+$page = 63;
+$size = 63;
 
 $result = $customers->getCards($customerId, $page, $size);
 
@@ -1015,8 +1015,8 @@ function getCharges(
 #### Example Usage
 
 ```php
-$page = 74;
-$size = 74;
+$page = 63;
+$size = 63;
 $code = 'code';
 $status = 'status';
 $paymentMethod = 'payment_method';
@@ -1288,8 +1288,8 @@ function getChargeTransactions(
 
 ```php
 $chargeId = 'charge_id';
-$page = 74;
-$size = 74;
+$page = 63;
+$size = 63;
 
 $result = $charges->getChargeTransactions($chargeId, $page, $size);
 
@@ -1464,8 +1464,8 @@ function getRecipients(
 #### Example Usage
 
 ```php
-$page = 74;
-$size = 74;
+$page = 227;
+$size = 227;
 
 $result = $recipients->getRecipients($page, $size);
 
@@ -1537,8 +1537,8 @@ function getAnticipations(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 74;
-$size = 74;
+$page = 227;
+$size = 227;
 $status = 'status';
 $timeframe = 'timeframe';
 $paymentDateSince = date("D M d, Y G:i");
@@ -1709,8 +1709,8 @@ function getTransfers(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 166;
-$size = 166;
+$page = 227;
+$size = 227;
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
@@ -1947,8 +1947,8 @@ function getWithdrawals(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 166;
-$size = 166;
+$page = 227;
+$size = 227;
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
@@ -2398,8 +2398,8 @@ function getUsagesDetails(
 ```php
 $subscriptionId = 'subscription_id';
 $cycleId = 'cycle_id';
-$size = 166;
-$page = 166;
+$size = 227;
+$page = 227;
 $itemId = 'item_id';
 $group = 'group';
 
@@ -2601,8 +2601,8 @@ function getIncrements(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 166;
-$size = 166;
+$page = 227;
+$size = 227;
 
 $result = $subscriptions->getIncrements($subscriptionId, $page, $size);
 
@@ -2717,8 +2717,8 @@ function getUsages(
 ```php
 $subscriptionId = 'subscription_id';
 $itemId = 'item_id';
-$page = 166;
-$size = 166;
+$page = 227;
+$size = 227;
 $code = 'code';
 $group = 'group';
 $usedSince = date("D M d, Y G:i");
@@ -3054,8 +3054,8 @@ function getDiscounts(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 124;
-$size = 124;
+$page = 135;
+$size = 135;
 
 $result = $subscriptions->getDiscounts($subscriptionId, $page, $size);
 
@@ -3139,8 +3139,8 @@ function getSubscriptions(
 #### Example Usage
 
 ```php
-$page = 124;
-$size = 124;
+$page = 135;
+$size = 135;
 $code = 'code';
 $billingType = 'billing_type';
 $customerId = 'customer_id';
@@ -3226,8 +3226,8 @@ function getSubscriptionItems(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 124;
-$size = 124;
+$page = 135;
+$size = 135;
 $name = 'name';
 $code = 'code';
 $status = 'status';
@@ -3548,8 +3548,8 @@ function getInvoices(
 #### Example Usage
 
 ```php
-$page = 124;
-$size = 124;
+$page = 135;
+$size = 135;
 $code = 'code';
 $customerId = 'customer_id';
 $subscriptionId = 'subscription_id';
@@ -3709,8 +3709,8 @@ function getOrders(
 #### Example Usage
 
 ```php
-$page = 124;
-$size = 124;
+$page = 135;
+$size = 135;
 $code = 'code';
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
@@ -4030,8 +4030,8 @@ function getSellers(
 #### Example Usage
 
 ```php
-$page = 124;
-$size = 124;
+$page = 135;
+$size = 135;
 $name = 'name';
 $document = 'document';
 $code = 'code';
@@ -4334,8 +4334,8 @@ function getPlans(
 #### Example Usage
 
 ```php
-$page = 216;
-$size = 216;
+$page = 135;
+$size = 135;
 $name = 'name';
 $status = 'status';
 $billingType = 'billing_type';

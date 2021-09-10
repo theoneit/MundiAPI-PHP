@@ -205,6 +205,14 @@ class GetCheckoutPaymentResponse implements JsonSerializable
     public $bankTransfer;
 
     /**
+     * Accepted Brands
+     * @required
+     * @maps accepted_brands
+     * @var array $acceptedBrands public property
+     */
+    public $acceptedBrands;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string                                  $id                      Initialization value for $this->id
      * @param integer                                 $amount                  Initialization value for $this->amount
@@ -252,10 +260,12 @@ class GetCheckoutPaymentResponse implements JsonSerializable
      *                                                                           >debitCard
      * @param GetCheckoutBankTransferPaymentResponse  $bankTransfer            Initialization value for $this-
      *                                                                           >bankTransfer
+     * @param array                                   $acceptedBrands          Initialization value for $this-
+     *                                                                           >acceptedBrands
      */
     public function __construct()
     {
-        if (25 == func_num_args()) {
+        if (26 == func_num_args()) {
             $this->id                      = func_get_arg(0);
             $this->amount                  = func_get_arg(1);
             $this->defaultPaymentMethod    = func_get_arg(2);
@@ -281,6 +291,7 @@ class GetCheckoutPaymentResponse implements JsonSerializable
             $this->currency                = func_get_arg(22);
             $this->debitCard               = func_get_arg(23);
             $this->bankTransfer            = func_get_arg(24);
+            $this->acceptedBrands          = func_get_arg(25);
         }
     }
 
@@ -319,6 +330,7 @@ class GetCheckoutPaymentResponse implements JsonSerializable
         $json['currency']                   = $this->currency;
         $json['debit_card']                 = $this->debitCard;
         $json['bank_transfer']              = $this->bankTransfer;
+        $json['accepted_brands']            = $this->acceptedBrands;
 
         return $json;
     }

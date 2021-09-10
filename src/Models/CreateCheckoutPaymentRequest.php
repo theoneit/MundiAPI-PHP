@@ -119,6 +119,14 @@ class CreateCheckoutPaymentRequest implements JsonSerializable
     public $bankTransfer;
 
     /**
+     * Accepted Brands
+     * @required
+     * @maps accepted_brands
+     * @var array $acceptedBrands public property
+     */
+    public $acceptedBrands;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param array                                  $acceptedPaymentMethods      Initialization value for $this-
      *                                                                              >acceptedPaymentMethods
@@ -148,10 +156,12 @@ class CreateCheckoutPaymentRequest implements JsonSerializable
      *                                                                              >billingAddress
      * @param CreateCheckoutBankTransferRequest      $bankTransfer                Initialization value for $this-
      *                                                                              >bankTransfer
+     * @param array                                  $acceptedBrands              Initialization value for $this-
+     *                                                                              >acceptedBrands
      */
     public function __construct()
     {
-        if (14 == func_num_args()) {
+        if (15 == func_num_args()) {
             $this->acceptedPaymentMethods      = func_get_arg(0);
             $this->acceptedMultiPaymentMethods = func_get_arg(1);
             $this->successUrl                  = func_get_arg(2);
@@ -166,6 +176,7 @@ class CreateCheckoutPaymentRequest implements JsonSerializable
             $this->billingAddressEditable      = func_get_arg(11);
             $this->billingAddress              = func_get_arg(12);
             $this->bankTransfer                = func_get_arg(13);
+            $this->acceptedBrands              = func_get_arg(14);
         }
     }
 
@@ -190,6 +201,7 @@ class CreateCheckoutPaymentRequest implements JsonSerializable
         $json['billing_address_editable']       = $this->billingAddressEditable;
         $json['billing_address']                = $this->billingAddress;
         $json['bank_transfer']                  = $this->bankTransfer;
+        $json['accepted_brands']                = $this->acceptedBrands;
 
         return $json;
     }
