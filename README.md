@@ -1,4 +1,4 @@
-### DEPRECATED | CHECK NEW VERSION > https://github.com/pagarme/pagarme-core-api-python
+### DEPRECATED | CHECK NEW VERSION > https://github.com/pagarme/pagarme-core-api-php
 
 # Mundipagg agora é Pagar.me
 
