@@ -1,17 +1,3 @@
-### DEPRECATED | CHECK NEW VERSION > https://github.com/pagarme/pagarme-core-api-php
-
-# Mundipagg agora é Pagar.me
-
-Buscando trazer a melhor experiência para os nossos clientes, a Mundipagg agora é parte do Pagar.me.
-
-Somamos nossas funcionalidades e agora você tem acesso a uma plataforma financeira completa, que oferece o melhor das duas soluções em uma experiência unificada.
-
-Você pode customizar nossos produtos e serviços da forma que for melhor para o seu e-commerce. Ficou curioso para saber o que muda? Preparamos um FAQ completo explicando tudo.
-
-[Saiba mais](https://mundipagg.zendesk.com/hc/pt-br/categories/4404432249876-Incorpora%C3%A7%C3%A3o-Mundipagg-pelo-Pagar-me)
-
------------------------------------------------------------------------------------------------------------------------------
-
 # Getting started
 
 Mundipagg API
@@ -152,7 +138,6 @@ $client = new MundiAPILib\MundiAPIClient($basicAuthUserName, $basicAuthPassword)
 * [SubscriptionsController](#subscriptions_controller)
 * [InvoicesController](#invoices_controller)
 * [OrdersController](#orders_controller)
-* [SellersController](#sellers_controller)
 * [TokensController](#tokens_controller)
 * [PlansController](#plans_controller)
 * [TransactionsController](#transactions_controller)
@@ -316,8 +301,8 @@ function getAddresses(
 
 ```php
 $customerId = 'customer_id';
-$page = 63;
-$size = 63;
+$page = 49;
+$size = 49;
 
 $result = $customers->getAddresses($customerId, $page, $size);
 
@@ -548,8 +533,8 @@ function getAccessTokens(
 
 ```php
 $customerId = 'customer_id';
-$page = 63;
-$size = 63;
+$page = 7;
+$size = 7;
 
 $result = $customers->getAccessTokens($customerId, $page, $size);
 
@@ -687,8 +672,8 @@ function getCards(
 
 ```php
 $customerId = 'customer_id';
-$page = 63;
-$size = 63;
+$page = 7;
+$size = 7;
 
 $result = $customers->getCards($customerId, $page, $size);
 
@@ -1015,8 +1000,8 @@ function getCharges(
 #### Example Usage
 
 ```php
-$page = 63;
-$size = 63;
+$page = 7;
+$size = 7;
 $code = 'code';
 $status = 'status';
 $paymentMethod = 'payment_method';
@@ -1288,8 +1273,8 @@ function getChargeTransactions(
 
 ```php
 $chargeId = 'charge_id';
-$page = 63;
-$size = 63;
+$page = 7;
+$size = 7;
 
 $result = $charges->getChargeTransactions($chargeId, $page, $size);
 
@@ -1464,8 +1449,8 @@ function getRecipients(
 #### Example Usage
 
 ```php
-$page = 227;
-$size = 227;
+$page = 7;
+$size = 7;
 
 $result = $recipients->getRecipients($page, $size);
 
@@ -1537,8 +1522,8 @@ function getAnticipations(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 227;
-$size = 227;
+$page = 7;
+$size = 7;
 $status = 'status';
 $timeframe = 'timeframe';
 $paymentDateSince = date("D M d, Y G:i");
@@ -1709,8 +1694,8 @@ function getTransfers(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 227;
-$size = 227;
+$page = 7;
+$size = 7;
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
@@ -1947,8 +1932,8 @@ function getWithdrawals(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 227;
-$size = 227;
+$page = 7;
+$size = 7;
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
@@ -2398,8 +2383,8 @@ function getUsagesDetails(
 ```php
 $subscriptionId = 'subscription_id';
 $cycleId = 'cycle_id';
-$size = 227;
-$page = 227;
+$size = 99;
+$page = 99;
 $itemId = 'item_id';
 $group = 'group';
 
@@ -2601,8 +2586,8 @@ function getIncrements(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 227;
-$size = 227;
+$page = 99;
+$size = 99;
 
 $result = $subscriptions->getIncrements($subscriptionId, $page, $size);
 
@@ -2717,8 +2702,8 @@ function getUsages(
 ```php
 $subscriptionId = 'subscription_id';
 $itemId = 'item_id';
-$page = 227;
-$size = 227;
+$page = 99;
+$size = 99;
 $code = 'code';
 $group = 'group';
 $usedSince = date("D M d, Y G:i");
@@ -3054,8 +3039,8 @@ function getDiscounts(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 135;
-$size = 135;
+$page = 99;
+$size = 99;
 
 $result = $subscriptions->getDiscounts($subscriptionId, $page, $size);
 
@@ -3139,8 +3124,8 @@ function getSubscriptions(
 #### Example Usage
 
 ```php
-$page = 135;
-$size = 135;
+$page = 99;
+$size = 99;
 $code = 'code';
 $billingType = 'billing_type';
 $customerId = 'customer_id';
@@ -3226,8 +3211,8 @@ function getSubscriptionItems(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 135;
-$size = 135;
+$page = 99;
+$size = 99;
 $name = 'name';
 $code = 'code';
 $status = 'status';
@@ -3548,8 +3533,8 @@ function getInvoices(
 #### Example Usage
 
 ```php
-$page = 135;
-$size = 135;
+$page = 99;
+$size = 99;
 $code = 'code';
 $customerId = 'customer_id';
 $subscriptionId = 'subscription_id';
@@ -3709,8 +3694,8 @@ function getOrders(
 #### Example Usage
 
 ```php
-$page = 135;
-$size = 135;
+$page = 190;
+$size = 190;
 $code = 'code';
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
@@ -3918,227 +3903,6 @@ $result = $orders->updateOrderItem($orderId, $itemId, $request, $idempotencyKey)
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="sellers_controller"></a>![Class: ](https://apidocs.io/img/class.png ".SellersController") SellersController
-
-### Get singleton instance
-
-The singleton instance of the ``` SellersController ``` class can be accessed from the API Client.
-
-```php
-$sellers = $client->getSellers();
-```
-
-### <a name="create_seller"></a>![Method: ](https://apidocs.io/img/method.png ".SellersController.createSeller") createSeller
-
-> TODO: Add a method description
-
-
-```php
-function createSeller(
-        $request,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| request |  ``` Required ```  | Seller Model |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$request = new CreateSellerRequest();
-$idempotencyKey = 'idempotency-key';
-
-$result = $sellers->createSeller($request, $idempotencyKey);
-
-```
-
-
-### <a name="update_seller"></a>![Method: ](https://apidocs.io/img/method.png ".SellersController.updateSeller") updateSeller
-
-> TODO: Add a method description
-
-
-```php
-function updateSeller(
-        $id,
-        $request,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| id |  ``` Required ```  | TODO: Add a parameter description |
-| request |  ``` Required ```  | Update Seller model |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$id = 'id';
-$request = new UpdateSellerRequest();
-$idempotencyKey = 'idempotency-key';
-
-$result = $sellers->updateSeller($id, $request, $idempotencyKey);
-
-```
-
-
-### <a name="get_sellers"></a>![Method: ](https://apidocs.io/img/method.png ".SellersController.getSellers") getSellers
-
-> TODO: Add a method description
-
-
-```php
-function getSellers(
-        $page = null,
-        $size = null,
-        $name = null,
-        $document = null,
-        $code = null,
-        $status = null,
-        $type = null,
-        $createdSince = null,
-        $createdUntil = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| page |  ``` Optional ```  | Page number |
-| size |  ``` Optional ```  | Page size |
-| name |  ``` Optional ```  | TODO: Add a parameter description |
-| document |  ``` Optional ```  | TODO: Add a parameter description |
-| code |  ``` Optional ```  | TODO: Add a parameter description |
-| status |  ``` Optional ```  | TODO: Add a parameter description |
-| type |  ``` Optional ```  | TODO: Add a parameter description |
-| createdSince |  ``` Optional ```  | TODO: Add a parameter description |
-| createdUntil |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$page = 135;
-$size = 135;
-$name = 'name';
-$document = 'document';
-$code = 'code';
-$status = 'status';
-$type = 'type';
-$createdSince = date("D M d, Y G:i");
-$createdUntil = date("D M d, Y G:i");
-
-$result = $sellers->getSellers($page, $size, $name, $document, $code, $status, $type, $createdSince, $createdUntil);
-
-```
-
-
-### <a name="update_seller_metadata"></a>![Method: ](https://apidocs.io/img/method.png ".SellersController.updateSellerMetadata") updateSellerMetadata
-
-> TODO: Add a method description
-
-
-```php
-function updateSellerMetadata(
-        $sellerId,
-        $request,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| sellerId |  ``` Required ```  | Seller Id |
-| request |  ``` Required ```  | Request for updating the charge metadata |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$sellerId = 'seller_id';
-$request = new UpdateMetadataRequest();
-$idempotencyKey = 'idempotency-key';
-
-$result = $sellers->updateSellerMetadata($sellerId, $request, $idempotencyKey);
-
-```
-
-
-### <a name="delete_seller"></a>![Method: ](https://apidocs.io/img/method.png ".SellersController.deleteSeller") deleteSeller
-
-> TODO: Add a method description
-
-
-```php
-function deleteSeller(
-        $sellerId,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| sellerId |  ``` Required ```  | Seller Id |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$sellerId = 'sellerId';
-$idempotencyKey = 'idempotency-key';
-
-$result = $sellers->deleteSeller($sellerId, $idempotencyKey);
-
-```
-
-
-### <a name="get_seller_by_id"></a>![Method: ](https://apidocs.io/img/method.png ".SellersController.getSellerById") getSellerById
-
-> TODO: Add a method description
-
-
-```php
-function getSellerById($id)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| id |  ``` Required ```  | Seller Id |
-
-
-
-#### Example Usage
-
-```php
-$id = 'id';
-
-$result = $sellers->getSellerById($id);
-
-```
-
-
-[Back to List of Controllers](#list_of_controllers)
-
 ## <a name="tokens_controller"></a>![Class: ](https://apidocs.io/img/class.png ".TokensController") TokensController
 
 ### Get singleton instance
@@ -4334,8 +4098,8 @@ function getPlans(
 #### Example Usage
 
 ```php
-$page = 135;
-$size = 135;
+$page = 190;
+$size = 190;
 $name = 'name';
 $status = 'status';
 $billingType = 'billing_type';

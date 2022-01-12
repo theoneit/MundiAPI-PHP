@@ -43,13 +43,6 @@ class GetOrderItemResponse implements JsonSerializable
     public $quantity;
 
     /**
-     * Seller data
-     * @maps GetSellerResponse
-     * @var \MundiAPILib\Models\GetSellerResponse|null $getSellerResponse public property
-     */
-    public $getSellerResponse;
-
-    /**
      * Category
      * @required
      * @var string $category public property
@@ -65,24 +58,22 @@ class GetOrderItemResponse implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string            $id                Initialization value for $this->id
-     * @param integer           $amount            Initialization value for $this->amount
-     * @param string            $description       Initialization value for $this->description
-     * @param integer           $quantity          Initialization value for $this->quantity
-     * @param GetSellerResponse $getSellerResponse Initialization value for $this->getSellerResponse
-     * @param string            $category          Initialization value for $this->category
-     * @param string            $code              Initialization value for $this->code
+     * @param string  $id          Initialization value for $this->id
+     * @param integer $amount      Initialization value for $this->amount
+     * @param string  $description Initialization value for $this->description
+     * @param integer $quantity    Initialization value for $this->quantity
+     * @param string  $category    Initialization value for $this->category
+     * @param string  $code        Initialization value for $this->code
      */
     public function __construct()
     {
-        if (7 == func_num_args()) {
-            $this->id                = func_get_arg(0);
-            $this->amount            = func_get_arg(1);
-            $this->description       = func_get_arg(2);
-            $this->quantity          = func_get_arg(3);
-            $this->getSellerResponse = func_get_arg(4);
-            $this->category          = func_get_arg(5);
-            $this->code              = func_get_arg(6);
+        if (6 == func_num_args()) {
+            $this->id          = func_get_arg(0);
+            $this->amount      = func_get_arg(1);
+            $this->description = func_get_arg(2);
+            $this->quantity    = func_get_arg(3);
+            $this->category    = func_get_arg(4);
+            $this->code        = func_get_arg(5);
         }
     }
 
@@ -93,13 +84,12 @@ class GetOrderItemResponse implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['id']                = $this->id;
-        $json['amount']            = $this->amount;
-        $json['description']       = $this->description;
-        $json['quantity']          = $this->quantity;
-        $json['GetSellerResponse'] = $this->getSellerResponse;
-        $json['category']          = $this->category;
-        $json['code']              = $this->code;
+        $json['id']          = $this->id;
+        $json['amount']      = $this->amount;
+        $json['description'] = $this->description;
+        $json['quantity']    = $this->quantity;
+        $json['category']    = $this->category;
+        $json['code']        = $this->code;
 
         return $json;
     }
