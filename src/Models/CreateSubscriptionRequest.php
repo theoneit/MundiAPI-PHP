@@ -234,42 +234,51 @@ class CreateSubscriptionRequest implements JsonSerializable
     public $submerchant;
 
     /**
+     * Subscription's split
+     * @var \MundiAPILib\Models\CreateSubscriptionSplitRequest|null $split public property
+     */
+    public $split;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param CreateCustomerRequest       $customer             Initialization value for $this->customer
-     * @param CreateCardRequest           $card                 Initialization value for $this->card
-     * @param string                      $code                 Initialization value for $this->code
-     * @param string                      $paymentMethod        Initialization value for $this->paymentMethod
-     * @param string                      $billingType          Initialization value for $this->billingType
-     * @param string                      $statementDescriptor  Initialization value for $this->statementDescriptor
-     * @param string                      $description          Initialization value for $this->description
-     * @param string                      $currency             Initialization value for $this->currency
-     * @param string                      $interval             Initialization value for $this->interval
-     * @param integer                     $intervalCount        Initialization value for $this->intervalCount
-     * @param CreatePricingSchemeRequest  $pricingScheme        Initialization value for $this->pricingScheme
-     * @param array                       $items                Initialization value for $this->items
-     * @param CreateShippingRequest       $shipping             Initialization value for $this->shipping
-     * @param array                       $discounts            Initialization value for $this->discounts
-     * @param array                       $metadata             Initialization value for $this->metadata
-     * @param CreateSetupRequest          $setup                Initialization value for $this->setup
-     * @param string                      $planId               Initialization value for $this->planId
-     * @param string                      $customerId           Initialization value for $this->customerId
-     * @param string                      $cardId               Initialization value for $this->cardId
-     * @param integer                     $billingDay           Initialization value for $this->billingDay
-     * @param integer                     $installments         Initialization value for $this->installments
-     * @param \DateTime                   $startAt              Initialization value for $this->startAt
-     * @param integer                     $minimumPrice         Initialization value for $this->minimumPrice
-     * @param integer                     $cycles               Initialization value for $this->cycles
-     * @param string                      $cardToken            Initialization value for $this->cardToken
-     * @param string                      $gatewayAffiliationId Initialization value for $this->gatewayAffiliationId
-     * @param integer                     $quantity             Initialization value for $this->quantity
-     * @param integer                     $boletoDueDays        Initialization value for $this->boletoDueDays
-     * @param array                       $increments           Initialization value for $this->increments
-     * @param CreatePeriodRequest         $period               Initialization value for $this->period
-     * @param CreateSubMerchantRequest    $submerchant          Initialization value for $this->submerchant
+     * @param CreateCustomerRequest           $customer             Initialization value for $this->customer
+     * @param CreateCardRequest               $card                 Initialization value for $this->card
+     * @param string                          $code                 Initialization value for $this->code
+     * @param string                          $paymentMethod        Initialization value for $this->paymentMethod
+     * @param string                          $billingType          Initialization value for $this->billingType
+     * @param string                          $statementDescriptor  Initialization value for $this-
+     *                                                                >statementDescriptor
+     * @param string                          $description          Initialization value for $this->description
+     * @param string                          $currency             Initialization value for $this->currency
+     * @param string                          $interval             Initialization value for $this->interval
+     * @param integer                         $intervalCount        Initialization value for $this->intervalCount
+     * @param CreatePricingSchemeRequest      $pricingScheme        Initialization value for $this->pricingScheme
+     * @param array                           $items                Initialization value for $this->items
+     * @param CreateShippingRequest           $shipping             Initialization value for $this->shipping
+     * @param array                           $discounts            Initialization value for $this->discounts
+     * @param array                           $metadata             Initialization value for $this->metadata
+     * @param CreateSetupRequest              $setup                Initialization value for $this->setup
+     * @param string                          $planId               Initialization value for $this->planId
+     * @param string                          $customerId           Initialization value for $this->customerId
+     * @param string                          $cardId               Initialization value for $this->cardId
+     * @param integer                         $billingDay           Initialization value for $this->billingDay
+     * @param integer                         $installments         Initialization value for $this->installments
+     * @param \DateTime                       $startAt              Initialization value for $this->startAt
+     * @param integer                         $minimumPrice         Initialization value for $this->minimumPrice
+     * @param integer                         $cycles               Initialization value for $this->cycles
+     * @param string                          $cardToken            Initialization value for $this->cardToken
+     * @param string                          $gatewayAffiliationId Initialization value for $this-
+     *                                                                >gatewayAffiliationId
+     * @param integer                         $quantity             Initialization value for $this->quantity
+     * @param integer                         $boletoDueDays        Initialization value for $this->boletoDueDays
+     * @param array                           $increments           Initialization value for $this->increments
+     * @param CreatePeriodRequest             $period               Initialization value for $this->period
+     * @param CreateSubMerchantRequest        $submerchant          Initialization value for $this->submerchant
+     * @param CreateSubscriptionSplitRequest  $split                Initialization value for $this->split
      */
     public function __construct()
     {
-        if (31 == func_num_args()) {
+        if (32 == func_num_args()) {
             $this->customer             = func_get_arg(0);
             $this->card                 = func_get_arg(1);
             $this->code                 = func_get_arg(2);
@@ -301,6 +310,7 @@ class CreateSubscriptionRequest implements JsonSerializable
             $this->increments           = func_get_arg(28);
             $this->period               = func_get_arg(29);
             $this->submerchant          = func_get_arg(30);
+            $this->split                = func_get_arg(31);
         }
     }
 
@@ -343,6 +353,7 @@ class CreateSubscriptionRequest implements JsonSerializable
         $json['increments']             = $this->increments;
         $json['period']                 = $this->period;
         $json['submerchant']            = $this->submerchant;
+        $json['split']                  = $this->split;
 
         return $json;
     }

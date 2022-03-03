@@ -216,38 +216,47 @@ class GetSubscriptionResponse implements JsonSerializable
     public $boletoDueDays;
 
     /**
+     * Subscription's split response
+     * @required
+     * @var \MundiAPILib\Models\GetSubscriptionSplitResponse $split public property
+     */
+    public $split;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param string               $id                   Initialization value for $this->id
-     * @param string               $code                 Initialization value for $this->code
-     * @param \DateTime            $startAt              Initialization value for $this->startAt
-     * @param string               $interval             Initialization value for $this->interval
-     * @param integer              $intervalCount        Initialization value for $this->intervalCount
-     * @param string               $billingType          Initialization value for $this->billingType
-     * @param GetPeriodResponse    $currentCycle         Initialization value for $this->currentCycle
-     * @param string               $paymentMethod        Initialization value for $this->paymentMethod
-     * @param string               $currency             Initialization value for $this->currency
-     * @param integer              $installments         Initialization value for $this->installments
-     * @param string               $status               Initialization value for $this->status
-     * @param \DateTime            $createdAt            Initialization value for $this->createdAt
-     * @param \DateTime            $updatedAt            Initialization value for $this->updatedAt
-     * @param GetCustomerResponse  $customer             Initialization value for $this->customer
-     * @param GetCardResponse      $card                 Initialization value for $this->card
-     * @param array                $items                Initialization value for $this->items
-     * @param string               $statementDescriptor  Initialization value for $this->statementDescriptor
-     * @param array                $metadata             Initialization value for $this->metadata
-     * @param GetSetupResponse     $setup                Initialization value for $this->setup
-     * @param string               $gatewayAffiliationId Initialization value for $this->gatewayAffiliationId
-     * @param \DateTime            $nextBillingAt        Initialization value for $this->nextBillingAt
-     * @param integer              $billingDay           Initialization value for $this->billingDay
-     * @param integer              $minimumPrice         Initialization value for $this->minimumPrice
-     * @param \DateTime            $canceledAt           Initialization value for $this->canceledAt
-     * @param array                $discounts            Initialization value for $this->discounts
-     * @param array                $increments           Initialization value for $this->increments
-     * @param integer              $boletoDueDays        Initialization value for $this->boletoDueDays
+     * @param string                        $id                   Initialization value for $this->id
+     * @param string                        $code                 Initialization value for $this->code
+     * @param \DateTime                     $startAt              Initialization value for $this->startAt
+     * @param string                        $interval             Initialization value for $this->interval
+     * @param integer                       $intervalCount        Initialization value for $this->intervalCount
+     * @param string                        $billingType          Initialization value for $this->billingType
+     * @param GetPeriodResponse             $currentCycle         Initialization value for $this->currentCycle
+     * @param string                        $paymentMethod        Initialization value for $this->paymentMethod
+     * @param string                        $currency             Initialization value for $this->currency
+     * @param integer                       $installments         Initialization value for $this->installments
+     * @param string                        $status               Initialization value for $this->status
+     * @param \DateTime                     $createdAt            Initialization value for $this->createdAt
+     * @param \DateTime                     $updatedAt            Initialization value for $this->updatedAt
+     * @param GetCustomerResponse           $customer             Initialization value for $this->customer
+     * @param GetCardResponse               $card                 Initialization value for $this->card
+     * @param array                         $items                Initialization value for $this->items
+     * @param string                        $statementDescriptor  Initialization value for $this->statementDescriptor
+     * @param array                         $metadata             Initialization value for $this->metadata
+     * @param GetSetupResponse              $setup                Initialization value for $this->setup
+     * @param string                        $gatewayAffiliationId Initialization value for $this-
+     *                                                              >gatewayAffiliationId
+     * @param \DateTime                     $nextBillingAt        Initialization value for $this->nextBillingAt
+     * @param integer                       $billingDay           Initialization value for $this->billingDay
+     * @param integer                       $minimumPrice         Initialization value for $this->minimumPrice
+     * @param \DateTime                     $canceledAt           Initialization value for $this->canceledAt
+     * @param array                         $discounts            Initialization value for $this->discounts
+     * @param array                         $increments           Initialization value for $this->increments
+     * @param integer                       $boletoDueDays        Initialization value for $this->boletoDueDays
+     * @param GetSubscriptionSplitResponse  $split                Initialization value for $this->split
      */
     public function __construct()
     {
-        if (27 == func_num_args()) {
+        if (28 == func_num_args()) {
             $this->id                   = func_get_arg(0);
             $this->code                 = func_get_arg(1);
             $this->startAt              = func_get_arg(2);
@@ -275,6 +284,7 @@ class GetSubscriptionResponse implements JsonSerializable
             $this->discounts            = func_get_arg(24);
             $this->increments           = func_get_arg(25);
             $this->boletoDueDays        = func_get_arg(26);
+            $this->split                = func_get_arg(27);
         }
     }
 
@@ -314,6 +324,7 @@ class GetSubscriptionResponse implements JsonSerializable
         $json['discounts']              = $this->discounts;
         $json['increments']             = $this->increments;
         $json['boleto_due_days']        = $this->boletoDueDays;
+        $json['split']                  = $this->split;
 
         return $json;
     }
