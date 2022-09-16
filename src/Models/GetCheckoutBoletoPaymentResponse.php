@@ -48,7 +48,7 @@ class GetCheckoutBoletoPaymentResponse implements JsonSerializable
     /**
      * Encode this object to JSON
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         $json = array();
         $json['due_at']       = DateTimeHelper::toRfc3339DateTime($this->dueAt);

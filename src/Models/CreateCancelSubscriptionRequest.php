@@ -43,7 +43,7 @@ class CreateCancelSubscriptionRequest implements JsonSerializable
     /**
      * Encode this object to JSON
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         $json = array();
         $json['cancel_pending_invoices'] = $this->cancelPendingInvoices;

@@ -39,7 +39,7 @@ class UpdateSubscriptionBillingDateRequest implements JsonSerializable
     /**
      * Encode this object to JSON
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         $json = array();
         $json['next_billing_at'] = DateTimeHelper::toRfc3339DateTime($this->nextBillingAt);

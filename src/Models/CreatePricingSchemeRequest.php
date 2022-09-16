@@ -72,7 +72,7 @@ class CreatePricingSchemeRequest implements JsonSerializable
     /**
      * Encode this object to JSON
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         $json = array();
         $json['scheme_type']    = $this->schemeType;

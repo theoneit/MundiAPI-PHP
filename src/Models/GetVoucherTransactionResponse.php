@@ -129,7 +129,7 @@ class GetVoucherTransactionResponse extends GetTransactionResponse implements Js
     /**
      * Encode this object to JSON
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         $json = array();
         $json['statement_descriptor']      = $this->statementDescriptor;

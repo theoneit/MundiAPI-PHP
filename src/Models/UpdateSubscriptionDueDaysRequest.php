@@ -37,7 +37,7 @@ class UpdateSubscriptionDueDaysRequest implements JsonSerializable
     /**
      * Encode this object to JSON
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         $json = array();
         $json['boleto_due_days'] = $this->boletoDueDays;

@@ -78,7 +78,7 @@ class GetBankTransferTransactionResponse extends GetTransactionResponse implemen
     /**
      * Encode this object to JSON
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         $json = array();
         $json['url']         = $this->url;

@@ -69,7 +69,7 @@ class GetSafetyPayTransactionResponse extends GetTransactionResponse implements 
     /**
      * Encode this object to JSON
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         $json = array();
         $json['url']         = $this->url;

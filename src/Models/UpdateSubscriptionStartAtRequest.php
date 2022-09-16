@@ -39,7 +39,7 @@ class UpdateSubscriptionStartAtRequest implements JsonSerializable
     /**
      * Encode this object to JSON
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         $json = array();
         $json['start_at'] = DateTimeHelper::toRfc3339DateTime($this->startAt);

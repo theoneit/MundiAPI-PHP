@@ -147,7 +147,7 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
     /**
      * Encode this object to JSON
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         $json = array();
         $json['statement_descriptor']      = $this->statementDescriptor;

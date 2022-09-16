@@ -72,7 +72,7 @@ class GetPixTransactionResponse extends GetTransactionResponse implements JsonSe
     /**
      * Encode this object to JSON
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         $json = array();
         $json['qr_code']                = $this->qrCode;

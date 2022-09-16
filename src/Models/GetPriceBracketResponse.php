@@ -64,7 +64,7 @@ class GetPriceBracketResponse implements JsonSerializable
     /**
      * Encode this object to JSON
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         $json = array();
         $json['start_quantity'] = $this->startQuantity;
