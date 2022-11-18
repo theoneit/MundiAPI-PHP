@@ -301,8 +301,8 @@ function getAddresses(
 
 ```php
 $customerId = 'customer_id';
-$page = 52;
-$size = 52;
+$page = 32;
+$size = 32;
 
 $result = $customers->getAddresses($customerId, $page, $size);
 
@@ -533,8 +533,8 @@ function getAccessTokens(
 
 ```php
 $customerId = 'customer_id';
-$page = 52;
-$size = 52;
+$page = 32;
+$size = 32;
 
 $result = $customers->getAccessTokens($customerId, $page, $size);
 
@@ -646,117 +646,6 @@ $result = $customers->updateCard($customerId, $cardId, $request, $idempotencyKey
 ```
 
 
-### <a name="get_cards"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getCards") getCards
-
-> Get all cards from a customer
-
-
-```php
-function getCards(
-        $customerId,
-        $page = null,
-        $size = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| customerId |  ``` Required ```  | Customer Id |
-| page |  ``` Optional ```  | Page number |
-| size |  ``` Optional ```  | Page size |
-
-
-
-#### Example Usage
-
-```php
-$customerId = 'customer_id';
-$page = 52;
-$size = 52;
-
-$result = $customers->getCards($customerId, $page, $size);
-
-```
-
-
-### <a name="delete_card"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.deleteCard") deleteCard
-
-> Delete a customer's card
-
-
-```php
-function deleteCard(
-        $customerId,
-        $cardId,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| customerId |  ``` Required ```  | Customer Id |
-| cardId |  ``` Required ```  | Card Id |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$customerId = 'customer_id';
-$cardId = 'card_id';
-$idempotencyKey = 'idempotency-key';
-
-$result = $customers->deleteCard($customerId, $cardId, $idempotencyKey);
-
-```
-
-
-### <a name="get_customers"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getCustomers") getCustomers
-
-> Get all Customers
-
-
-```php
-function getCustomers(
-        $name = null,
-        $document = null,
-        $page = 1,
-        $size = 10,
-        $email = null,
-        $code = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| name |  ``` Optional ```  | Name of the Customer |
-| document |  ``` Optional ```  | Document of the Customer |
-| page |  ``` Optional ```  ``` DefaultValue ```  | Current page the the search |
-| size |  ``` Optional ```  ``` DefaultValue ```  | Quantity pages of the search |
-| email |  ``` Optional ```  | Customer's email |
-| code |  ``` Optional ```  | Customer's code |
-
-
-
-#### Example Usage
-
-```php
-$name = 'name';
-$document = 'document';
-$page = 1;
-$size = 10;
-$email = 'email';
-$code = 'Code';
-
-$result = $customers->getCustomers($name, $document, $page, $size, $email, $code);
-
-```
-
-
 ### <a name="delete_access_token"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.deleteAccessToken") deleteAccessToken
 
 > Delete a customer's access token
@@ -852,6 +741,117 @@ $customerId = 'customer_id';
 $cardId = 'card_id';
 
 $result = $customers->getCard($customerId, $cardId);
+
+```
+
+
+### <a name="get_cards"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getCards") getCards
+
+> Get all cards from a customer
+
+
+```php
+function getCards(
+        $customerId,
+        $page = null,
+        $size = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| customerId |  ``` Required ```  | Customer Id |
+| page |  ``` Optional ```  | Page number |
+| size |  ``` Optional ```  | Page size |
+
+
+
+#### Example Usage
+
+```php
+$customerId = 'customer_id';
+$page = 32;
+$size = 32;
+
+$result = $customers->getCards($customerId, $page, $size);
+
+```
+
+
+### <a name="delete_card"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.deleteCard") deleteCard
+
+> Delete a customer's card
+
+
+```php
+function deleteCard(
+        $customerId,
+        $cardId,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| customerId |  ``` Required ```  | Customer Id |
+| cardId |  ``` Required ```  | Card Id |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$customerId = 'customer_id';
+$cardId = 'card_id';
+$idempotencyKey = 'idempotency-key';
+
+$result = $customers->deleteCard($customerId, $cardId, $idempotencyKey);
+
+```
+
+
+### <a name="get_customers"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getCustomers") getCustomers
+
+> Get all Customers
+
+
+```php
+function getCustomers(
+        $name = null,
+        $document = null,
+        $page = 1,
+        $size = 10,
+        $email = null,
+        $code = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| name |  ``` Optional ```  | Name of the Customer |
+| document |  ``` Optional ```  | Document of the Customer |
+| page |  ``` Optional ```  ``` DefaultValue ```  | Current page the the search |
+| size |  ``` Optional ```  ``` DefaultValue ```  | Quantity pages of the search |
+| email |  ``` Optional ```  | Customer's email |
+| code |  ``` Optional ```  | Customer's code |
+
+
+
+#### Example Usage
+
+```php
+$name = 'name';
+$document = 'document';
+$page = 1;
+$size = 10;
+$email = 'email';
+$code = 'Code';
+
+$result = $customers->getCustomers($name, $document, $page, $size, $email, $code);
 
 ```
 
@@ -1000,8 +1000,8 @@ function getCharges(
 #### Example Usage
 
 ```php
-$page = 52;
-$size = 52;
+$page = 32;
+$size = 32;
 $code = 'code';
 $status = 'status';
 $paymentMethod = 'payment_method';
@@ -1273,8 +1273,8 @@ function getChargeTransactions(
 
 ```php
 $chargeId = 'charge_id';
-$page = 52;
-$size = 52;
+$page = 32;
+$size = 32;
 
 $result = $charges->getChargeTransactions($chargeId, $page, $size);
 
@@ -1449,8 +1449,8 @@ function getRecipients(
 #### Example Usage
 
 ```php
-$page = 144;
-$size = 144;
+$page = 196;
+$size = 196;
 
 $result = $recipients->getRecipients($page, $size);
 
@@ -1522,8 +1522,8 @@ function getAnticipations(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 144;
-$size = 144;
+$page = 196;
+$size = 196;
 $status = 'status';
 $timeframe = 'timeframe';
 $paymentDateSince = date("D M d, Y G:i");
@@ -1631,6 +1631,40 @@ $result = $recipients->getRecipient($recipientId);
 ```
 
 
+### <a name="get_anticipation_limits"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getAnticipationLimits") getAnticipationLimits
+
+> Gets the anticipation limits for a recipient
+
+
+```php
+function getAnticipationLimits(
+        $recipientId,
+        $timeframe,
+        $paymentDate)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+| timeframe |  ``` Required ```  | Timeframe |
+| paymentDate |  ``` Required ```  | Anticipation payment date |
+
+
+
+#### Example Usage
+
+```php
+$recipientId = 'recipient_id';
+$timeframe = 'timeframe';
+$paymentDate = date("D M d, Y G:i");
+
+$result = $recipients->getAnticipationLimits($recipientId, $timeframe, $paymentDate);
+
+```
+
+
 ### <a name="get_transfer"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getTransfer") getTransfer
 
 > Gets a transfer
@@ -1694,8 +1728,8 @@ function getTransfers(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 144;
-$size = 144;
+$page = 196;
+$size = 196;
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
@@ -1804,40 +1838,6 @@ $result = $recipients->createTransfer($recipientId, $request, $idempotencyKey);
 ```
 
 
-### <a name="get_anticipation_limits"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getAnticipationLimits") getAnticipationLimits
-
-> Gets the anticipation limits for a recipient
-
-
-```php
-function getAnticipationLimits(
-        $recipientId,
-        $timeframe,
-        $paymentDate)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| recipientId |  ``` Required ```  | Recipient id |
-| timeframe |  ``` Required ```  | Timeframe |
-| paymentDate |  ``` Required ```  | Anticipation payment date |
-
-
-
-#### Example Usage
-
-```php
-$recipientId = 'recipient_id';
-$timeframe = 'timeframe';
-$paymentDate = date("D M d, Y G:i");
-
-$result = $recipients->getAnticipationLimits($recipientId, $timeframe, $paymentDate);
-
-```
-
-
 ### <a name="create_withdraw"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.createWithdraw") createWithdraw
 
 > TODO: Add a method description
@@ -1932,8 +1932,8 @@ function getWithdrawals(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 144;
-$size = 144;
+$page = 196;
+$size = 196;
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
@@ -2383,8 +2383,8 @@ function getUsagesDetails(
 ```php
 $subscriptionId = 'subscription_id';
 $cycleId = 'cycle_id';
-$size = 144;
-$page = 144;
+$size = 196;
+$page = 196;
 $itemId = 'item_id';
 $group = 'group';
 
@@ -2586,8 +2586,8 @@ function getIncrements(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 144;
-$size = 144;
+$page = 196;
+$size = 196;
 
 $result = $subscriptions->getIncrements($subscriptionId, $page, $size);
 
@@ -2702,8 +2702,8 @@ function getUsages(
 ```php
 $subscriptionId = 'subscription_id';
 $itemId = 'item_id';
-$page = 144;
-$size = 144;
+$page = 196;
+$size = 196;
 $code = 'code';
 $group = 'group';
 $usedSince = date("D M d, Y G:i");
@@ -2812,6 +2812,184 @@ $page = 'page';
 $size = 'size';
 
 $result = $subscriptions->getSubscriptionCycles($subscriptionId, $page, $size);
+
+```
+
+
+### <a name="get_subscriptions"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getSubscriptions") getSubscriptions
+
+> Gets all subscriptions
+
+
+```php
+function getSubscriptions(
+        $page = null,
+        $size = null,
+        $code = null,
+        $billingType = null,
+        $customerId = null,
+        $planId = null,
+        $cardId = null,
+        $status = null,
+        $nextBillingSince = null,
+        $nextBillingUntil = null,
+        $createdSince = null,
+        $createdUntil = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| page |  ``` Optional ```  | Page number |
+| size |  ``` Optional ```  | Page size |
+| code |  ``` Optional ```  | Filter for subscription's code |
+| billingType |  ``` Optional ```  | Filter for subscription's billing type |
+| customerId |  ``` Optional ```  | Filter for subscription's customer id |
+| planId |  ``` Optional ```  | Filter for subscription's plan id |
+| cardId |  ``` Optional ```  | Filter for subscription's card id |
+| status |  ``` Optional ```  | Filter for subscription's status |
+| nextBillingSince |  ``` Optional ```  | Filter for subscription's next billing date start range |
+| nextBillingUntil |  ``` Optional ```  | Filter for subscription's next billing date end range |
+| createdSince |  ``` Optional ```  | Filter for subscription's creation date start range |
+| createdUntil |  ``` Optional ```  | Filter for subscriptions creation date end range |
+
+
+
+#### Example Usage
+
+```php
+$page = 237;
+$size = 237;
+$code = 'code';
+$billingType = 'billing_type';
+$customerId = 'customer_id';
+$planId = 'plan_id';
+$cardId = 'card_id';
+$status = 'status';
+$nextBillingSince = date("D M d, Y G:i");
+$nextBillingUntil = date("D M d, Y G:i");
+$createdSince = date("D M d, Y G:i");
+$createdUntil = date("D M d, Y G:i");
+
+$result = $subscriptions->getSubscriptions($page, $size, $code, $billingType, $customerId, $planId, $cardId, $status, $nextBillingSince, $nextBillingUntil, $createdSince, $createdUntil);
+
+```
+
+
+### <a name="get_discount_by_id"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getDiscountById") getDiscountById
+
+> TODO: Add a method description
+
+
+```php
+function getDiscountById(
+        $subscriptionId,
+        $discountId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | The subscription id |
+| discountId |  ``` Required ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+$discountId = 'discountId';
+
+$result = $subscriptions->getDiscountById($subscriptionId, $discountId);
+
+```
+
+
+### <a name="get_subscription_items"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getSubscriptionItems") getSubscriptionItems
+
+> Get Subscription Items
+
+
+```php
+function getSubscriptionItems(
+        $subscriptionId,
+        $page = null,
+        $size = null,
+        $name = null,
+        $code = null,
+        $status = null,
+        $description = null,
+        $createdSince = null,
+        $createdUntil = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | The subscription id |
+| page |  ``` Optional ```  | Page number |
+| size |  ``` Optional ```  | Page size |
+| name |  ``` Optional ```  | The item name |
+| code |  ``` Optional ```  | Identification code in the client system |
+| status |  ``` Optional ```  | The item statis |
+| description |  ``` Optional ```  | The item description |
+| createdSince |  ``` Optional ```  | Filter for item's creation date start range |
+| createdUntil |  ``` Optional ```  | Filter for item's creation date end range |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+$page = 237;
+$size = 237;
+$name = 'name';
+$code = 'code';
+$status = 'status';
+$description = 'description';
+$createdSince = 'created_since';
+$createdUntil = 'created_until';
+
+$result = $subscriptions->getSubscriptionItems($subscriptionId, $page, $size, $name, $code, $status, $description, $createdSince, $createdUntil);
+
+```
+
+
+### <a name="update_subscription_minium_price"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.updateSubscriptionMiniumPrice") updateSubscriptionMiniumPrice
+
+> Atualização do valor mínimo da assinatura
+
+
+```php
+function updateSubscriptionMiniumPrice(
+        $subscriptionId,
+        $request,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | Subscription Id |
+| request |  ``` Required ```  | Request da requisição com o valor mínimo que será configurado |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+$request = new UpdateSubscriptionMinimumPriceRequest();
+$idempotencyKey = 'idempotency-key';
+
+$result = $subscriptions->updateSubscriptionMiniumPrice($subscriptionId, $request, $idempotencyKey);
 
 ```
 
@@ -3039,8 +3217,8 @@ function getDiscounts(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 235;
-$size = 235;
+$page = 237;
+$size = 237;
 
 $result = $subscriptions->getDiscounts($subscriptionId, $page, $size);
 
@@ -3077,184 +3255,6 @@ $request = new CreateIncrementRequest();
 $idempotencyKey = 'idempotency-key';
 
 $result = $subscriptions->createIncrement($subscriptionId, $request, $idempotencyKey);
-
-```
-
-
-### <a name="get_subscriptions"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getSubscriptions") getSubscriptions
-
-> Gets all subscriptions
-
-
-```php
-function getSubscriptions(
-        $page = null,
-        $size = null,
-        $code = null,
-        $billingType = null,
-        $customerId = null,
-        $planId = null,
-        $cardId = null,
-        $status = null,
-        $nextBillingSince = null,
-        $nextBillingUntil = null,
-        $createdSince = null,
-        $createdUntil = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| page |  ``` Optional ```  | Page number |
-| size |  ``` Optional ```  | Page size |
-| code |  ``` Optional ```  | Filter for subscription's code |
-| billingType |  ``` Optional ```  | Filter for subscription's billing type |
-| customerId |  ``` Optional ```  | Filter for subscription's customer id |
-| planId |  ``` Optional ```  | Filter for subscription's plan id |
-| cardId |  ``` Optional ```  | Filter for subscription's card id |
-| status |  ``` Optional ```  | Filter for subscription's status |
-| nextBillingSince |  ``` Optional ```  | Filter for subscription's next billing date start range |
-| nextBillingUntil |  ``` Optional ```  | Filter for subscription's next billing date end range |
-| createdSince |  ``` Optional ```  | Filter for subscription's creation date start range |
-| createdUntil |  ``` Optional ```  | Filter for subscriptions creation date end range |
-
-
-
-#### Example Usage
-
-```php
-$page = 235;
-$size = 235;
-$code = 'code';
-$billingType = 'billing_type';
-$customerId = 'customer_id';
-$planId = 'plan_id';
-$cardId = 'card_id';
-$status = 'status';
-$nextBillingSince = date("D M d, Y G:i");
-$nextBillingUntil = date("D M d, Y G:i");
-$createdSince = date("D M d, Y G:i");
-$createdUntil = date("D M d, Y G:i");
-
-$result = $subscriptions->getSubscriptions($page, $size, $code, $billingType, $customerId, $planId, $cardId, $status, $nextBillingSince, $nextBillingUntil, $createdSince, $createdUntil);
-
-```
-
-
-### <a name="get_discount_by_id"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getDiscountById") getDiscountById
-
-> TODO: Add a method description
-
-
-```php
-function getDiscountById(
-        $subscriptionId,
-        $discountId)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | The subscription id |
-| discountId |  ``` Required ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$subscriptionId = 'subscription_id';
-$discountId = 'discountId';
-
-$result = $subscriptions->getDiscountById($subscriptionId, $discountId);
-
-```
-
-
-### <a name="get_subscription_items"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getSubscriptionItems") getSubscriptionItems
-
-> Get Subscription Items
-
-
-```php
-function getSubscriptionItems(
-        $subscriptionId,
-        $page = null,
-        $size = null,
-        $name = null,
-        $code = null,
-        $status = null,
-        $description = null,
-        $createdSince = null,
-        $createdUntil = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | The subscription id |
-| page |  ``` Optional ```  | Page number |
-| size |  ``` Optional ```  | Page size |
-| name |  ``` Optional ```  | The item name |
-| code |  ``` Optional ```  | Identification code in the client system |
-| status |  ``` Optional ```  | The item statis |
-| description |  ``` Optional ```  | The item description |
-| createdSince |  ``` Optional ```  | Filter for item's creation date start range |
-| createdUntil |  ``` Optional ```  | Filter for item's creation date end range |
-
-
-
-#### Example Usage
-
-```php
-$subscriptionId = 'subscription_id';
-$page = 235;
-$size = 235;
-$name = 'name';
-$code = 'code';
-$status = 'status';
-$description = 'description';
-$createdSince = 'created_since';
-$createdUntil = 'created_until';
-
-$result = $subscriptions->getSubscriptionItems($subscriptionId, $page, $size, $name, $code, $status, $description, $createdSince, $createdUntil);
-
-```
-
-
-### <a name="update_subscription_minium_price"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.updateSubscriptionMiniumPrice") updateSubscriptionMiniumPrice
-
-> Atualização do valor mínimo da assinatura
-
-
-```php
-function updateSubscriptionMiniumPrice(
-        $subscriptionId,
-        $request,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | Subscription Id |
-| request |  ``` Required ```  | Request da requisição com o valor mínimo que será configurado |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$subscriptionId = 'subscription_id';
-$request = new UpdateSubscriptionMinimumPriceRequest();
-$idempotencyKey = 'idempotency-key';
-
-$result = $subscriptions->updateSubscriptionMiniumPrice($subscriptionId, $request, $idempotencyKey);
 
 ```
 
@@ -3492,37 +3492,6 @@ $result = $invoices->updateInvoiceMetadata($invoiceId, $request, $idempotencyKey
 ```
 
 
-### <a name="cancel_invoice"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.cancelInvoice") cancelInvoice
-
-> Cancels an invoice
-
-
-```php
-function cancelInvoice(
-        $invoiceId,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| invoiceId |  ``` Required ```  | Invoice id |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$invoiceId = 'invoice_id';
-$idempotencyKey = 'idempotency-key';
-
-$result = $invoices->cancelInvoice($invoiceId, $idempotencyKey);
-
-```
-
-
 ### <a name="get_invoices"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.getInvoices") getInvoices
 
 > Gets all invoices
@@ -3564,8 +3533,8 @@ function getInvoices(
 #### Example Usage
 
 ```php
-$page = 235;
-$size = 235;
+$page = 237;
+$size = 237;
 $code = 'code';
 $customerId = 'customer_id';
 $subscriptionId = 'subscription_id';
@@ -3577,6 +3546,37 @@ $dueUntil = date("D M d, Y G:i");
 $customerDocument = 'customer_document';
 
 $result = $invoices->getInvoices($page, $size, $code, $customerId, $subscriptionId, $createdSince, $createdUntil, $status, $dueSince, $dueUntil, $customerDocument);
+
+```
+
+
+### <a name="cancel_invoice"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.cancelInvoice") cancelInvoice
+
+> Cancels an invoice
+
+
+```php
+function cancelInvoice(
+        $invoiceId,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| invoiceId |  ``` Required ```  | Invoice id |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$invoiceId = 'invoice_id';
+$idempotencyKey = 'idempotency-key';
+
+$result = $invoices->cancelInvoice($invoiceId, $idempotencyKey);
 
 ```
 
@@ -3725,8 +3725,8 @@ function getOrders(
 #### Example Usage
 
 ```php
-$page = 235;
-$size = 235;
+$page = 237;
+$size = 237;
 $code = 'code';
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
@@ -4129,8 +4129,8 @@ function getPlans(
 #### Example Usage
 
 ```php
-$page = 235;
-$size = 235;
+$page = 237;
+$size = 237;
 $name = 'name';
 $status = 'status';
 $billingType = 'billing_type';
@@ -4302,37 +4302,6 @@ $result = $plans->deletePlanItem($planId, $planItemId, $idempotencyKey);
 ```
 
 
-### <a name="get_plan_item"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.getPlanItem") getPlanItem
-
-> Gets a plan item
-
-
-```php
-function getPlanItem(
-        $planId,
-        $planItemId)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| planId |  ``` Required ```  | Plan id |
-| planItemId |  ``` Required ```  | Plan item id |
-
-
-
-#### Example Usage
-
-```php
-$planId = 'plan_id';
-$planItemId = 'plan_item_id';
-
-$result = $plans->getPlanItem($planId, $planItemId);
-
-```
-
-
 ### <a name="delete_plan"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.deletePlan") deletePlan
 
 > Deletes a plan
@@ -4360,6 +4329,37 @@ $planId = 'plan_id';
 $idempotencyKey = 'idempotency-key';
 
 $result = $plans->deletePlan($planId, $idempotencyKey);
+
+```
+
+
+### <a name="get_plan_item"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.getPlanItem") getPlanItem
+
+> Gets a plan item
+
+
+```php
+function getPlanItem(
+        $planId,
+        $planItemId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| planId |  ``` Required ```  | Plan id |
+| planItemId |  ``` Required ```  | Plan item id |
+
+
+
+#### Example Usage
+
+```php
+$planId = 'plan_id';
+$planItemId = 'plan_item_id';
+
+$result = $plans->getPlanItem($planId, $planItemId);
 
 ```
 

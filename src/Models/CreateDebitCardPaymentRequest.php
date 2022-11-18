@@ -60,6 +60,13 @@ class CreateDebitCardPaymentRequest implements JsonSerializable
     public $token;
 
     /**
+     * Defines whether the card has been used one or more times.
+     * @maps recurrency_cycle
+     * @var string|null $recurrencyCycle public property
+     */
+    public $recurrencyCycle;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string                              $statementDescriptor Initialization value for $this-
      *                                                                   >statementDescriptor
@@ -69,10 +76,12 @@ class CreateDebitCardPaymentRequest implements JsonSerializable
      * @param bool                                $recurrence          Initialization value for $this->recurrence
      * @param CreatePaymentAuthenticationRequest  $authentication      Initialization value for $this->authentication
      * @param CreateCardPaymentContactlessRequest $token               Initialization value for $this->token
+     * @param string                              $recurrencyCycle     Initialization value for $this-
+     *                                                                   >recurrencyCycle
      */
     public function __construct()
     {
-        if (7 == func_num_args()) {
+        if (8 == func_num_args()) {
             $this->statementDescriptor = func_get_arg(0);
             $this->card                = func_get_arg(1);
             $this->cardId              = func_get_arg(2);
@@ -80,6 +89,7 @@ class CreateDebitCardPaymentRequest implements JsonSerializable
             $this->recurrence          = func_get_arg(4);
             $this->authentication      = func_get_arg(5);
             $this->token               = func_get_arg(6);
+            $this->recurrencyCycle     = func_get_arg(7);
         }
     }
 
@@ -97,6 +107,7 @@ class CreateDebitCardPaymentRequest implements JsonSerializable
         $json['recurrence']           = $this->recurrence;
         $json['authentication']       = $this->authentication;
         $json['token']                = $this->token;
+        $json['recurrency_cycle']     = $this->recurrencyCycle;
 
         return $json;
     }

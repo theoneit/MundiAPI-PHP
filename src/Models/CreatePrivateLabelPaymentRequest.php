@@ -74,6 +74,13 @@ class CreatePrivateLabelPaymentRequest implements JsonSerializable
     public $extendedLimitCode;
 
     /**
+     * Defines whether the card has been used one or more times.
+     * @maps recurrency_cycle
+     * @var string|null $recurrencyCycle public property
+     */
+    public $recurrencyCycle;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param integer           $installments         Initialization value for $this->installments
      * @param string            $statementDescriptor  Initialization value for $this->statementDescriptor
@@ -84,11 +91,12 @@ class CreatePrivateLabelPaymentRequest implements JsonSerializable
      * @param bool              $capture              Initialization value for $this->capture
      * @param bool              $extendedLimitEnabled Initialization value for $this->extendedLimitEnabled
      * @param string            $extendedLimitCode    Initialization value for $this->extendedLimitCode
+     * @param string            $recurrencyCycle      Initialization value for $this->recurrencyCycle
      */
     public function __construct()
     {
         switch (func_num_args()) {
-            case 9:
+            case 10:
                 $this->installments         = func_get_arg(0);
                 $this->statementDescriptor  = func_get_arg(1);
                 $this->card                 = func_get_arg(2);
@@ -98,6 +106,7 @@ class CreatePrivateLabelPaymentRequest implements JsonSerializable
                 $this->capture              = func_get_arg(6);
                 $this->extendedLimitEnabled = func_get_arg(7);
                 $this->extendedLimitCode    = func_get_arg(8);
+                $this->recurrencyCycle      = func_get_arg(9);
                 break;
 
             default:
@@ -123,6 +132,7 @@ class CreatePrivateLabelPaymentRequest implements JsonSerializable
         $json['capture']                = $this->capture;
         $json['extended_limit_enabled'] = $this->extendedLimitEnabled;
         $json['extended_limit_code']    = $this->extendedLimitCode;
+        $json['recurrency_cycle']       = $this->recurrencyCycle;
 
         return $json;
     }

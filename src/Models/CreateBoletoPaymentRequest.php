@@ -76,27 +76,52 @@ class CreateBoletoPaymentRequest implements JsonSerializable
     public $documentNumber;
 
     /**
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\CreateInterestRequest|null $interest public property
+     */
+    public $interest;
+
+    /**
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\CreateFineRequest|null $fine public property
+     */
+    public $fine;
+
+    /**
+     * @todo Write general description for this property
+     * @maps max_days_to_pay_past_due
+     * @var integer|null $maxDaysToPayPastDue public property
+     */
+    public $maxDaysToPayPastDue;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param integer               $retries          Initialization value for $this->retries
-     * @param string                $bank             Initialization value for $this->bank
-     * @param string                $instructions     Initialization value for $this->instructions
-     * @param \DateTime             $dueAt            Initialization value for $this->dueAt
-     * @param CreateAddressRequest  $billingAddress   Initialization value for $this->billingAddress
-     * @param string                $billingAddressId Initialization value for $this->billingAddressId
-     * @param string                $nossoNumero      Initialization value for $this->nossoNumero
-     * @param string                $documentNumber   Initialization value for $this->documentNumber
+     * @param integer                $retries             Initialization value for $this->retries
+     * @param string                 $bank                Initialization value for $this->bank
+     * @param string                 $instructions        Initialization value for $this->instructions
+     * @param \DateTime              $dueAt               Initialization value for $this->dueAt
+     * @param CreateAddressRequest   $billingAddress      Initialization value for $this->billingAddress
+     * @param string                 $billingAddressId    Initialization value for $this->billingAddressId
+     * @param string                 $nossoNumero         Initialization value for $this->nossoNumero
+     * @param string                 $documentNumber      Initialization value for $this->documentNumber
+     * @param CreateInterestRequest  $interest            Initialization value for $this->interest
+     * @param CreateFineRequest      $fine                Initialization value for $this->fine
+     * @param integer                $maxDaysToPayPastDue Initialization value for $this->maxDaysToPayPastDue
      */
     public function __construct()
     {
-        if (8 == func_num_args()) {
-            $this->retries          = func_get_arg(0);
-            $this->bank             = func_get_arg(1);
-            $this->instructions     = func_get_arg(2);
-            $this->dueAt            = func_get_arg(3);
-            $this->billingAddress   = func_get_arg(4);
-            $this->billingAddressId = func_get_arg(5);
-            $this->nossoNumero      = func_get_arg(6);
-            $this->documentNumber   = func_get_arg(7);
+        if (11 == func_num_args()) {
+            $this->retries             = func_get_arg(0);
+            $this->bank                = func_get_arg(1);
+            $this->instructions        = func_get_arg(2);
+            $this->dueAt               = func_get_arg(3);
+            $this->billingAddress      = func_get_arg(4);
+            $this->billingAddressId    = func_get_arg(5);
+            $this->nossoNumero         = func_get_arg(6);
+            $this->documentNumber      = func_get_arg(7);
+            $this->interest            = func_get_arg(8);
+            $this->fine                = func_get_arg(9);
+            $this->maxDaysToPayPastDue = func_get_arg(10);
         }
     }
 
@@ -107,15 +132,18 @@ class CreateBoletoPaymentRequest implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['retries']            = $this->retries;
-        $json['bank']               = $this->bank;
-        $json['instructions']       = $this->instructions;
-        $json['due_at']             = isset($this->dueAt) ?
+        $json['retries']                  = $this->retries;
+        $json['bank']                     = $this->bank;
+        $json['instructions']             = $this->instructions;
+        $json['due_at']                   = isset($this->dueAt) ?
             DateTimeHelper::toRfc3339DateTime($this->dueAt) : null;
-        $json['billing_address']    = $this->billingAddress;
-        $json['billing_address_id'] = $this->billingAddressId;
-        $json['nosso_numero']       = $this->nossoNumero;
-        $json['document_number']    = $this->documentNumber;
+        $json['billing_address']          = $this->billingAddress;
+        $json['billing_address_id']       = $this->billingAddressId;
+        $json['nosso_numero']             = $this->nossoNumero;
+        $json['document_number']          = $this->documentNumber;
+        $json['interest']                 = $this->interest;
+        $json['fine']                     = $this->fine;
+        $json['max_days_to_pay_past_due'] = $this->maxDaysToPayPastDue;
 
         return $json;
     }

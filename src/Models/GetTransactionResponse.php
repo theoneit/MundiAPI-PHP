@@ -140,43 +140,68 @@ class GetTransactionResponse implements JsonSerializable
     public $split;
 
     /**
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\GetInterestResponse|null $interest public property
+     */
+    public $interest;
+
+    /**
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\GetFineResponse|null $fine public property
+     */
+    public $fine;
+
+    /**
+     * @todo Write general description for this property
+     * @maps max_days_to_pay_past_due
+     * @var integer|null $maxDaysToPayPastDue public property
+     */
+    public $maxDaysToPayPastDue;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param string                      $gatewayId         Initialization value for $this->gatewayId
-     * @param integer                     $amount            Initialization value for $this->amount
-     * @param string                      $status            Initialization value for $this->status
-     * @param bool                        $success           Initialization value for $this->success
-     * @param \DateTime                   $createdAt         Initialization value for $this->createdAt
-     * @param \DateTime                   $updatedAt         Initialization value for $this->updatedAt
-     * @param integer                     $attemptCount      Initialization value for $this->attemptCount
-     * @param integer                     $maxAttempts       Initialization value for $this->maxAttempts
-     * @param array                       $splits            Initialization value for $this->splits
-     * @param \DateTime                   $nextAttempt       Initialization value for $this->nextAttempt
-     * @param string                      $transactionType   Initialization value for $this->transactionType
-     * @param string                      $id                Initialization value for $this->id
-     * @param GetGatewayResponseResponse  $gatewayResponse   Initialization value for $this->gatewayResponse
-     * @param GetAntifraudResponse        $antifraudResponse Initialization value for $this->antifraudResponse
-     * @param array                       $metadata          Initialization value for $this->metadata
-     * @param array                       $split             Initialization value for $this->split
+     * @param string                      $gatewayId           Initialization value for $this->gatewayId
+     * @param integer                     $amount              Initialization value for $this->amount
+     * @param string                      $status              Initialization value for $this->status
+     * @param bool                        $success             Initialization value for $this->success
+     * @param \DateTime                   $createdAt           Initialization value for $this->createdAt
+     * @param \DateTime                   $updatedAt           Initialization value for $this->updatedAt
+     * @param integer                     $attemptCount        Initialization value for $this->attemptCount
+     * @param integer                     $maxAttempts         Initialization value for $this->maxAttempts
+     * @param array                       $splits              Initialization value for $this->splits
+     * @param \DateTime                   $nextAttempt         Initialization value for $this->nextAttempt
+     * @param string                      $transactionType     Initialization value for $this->transactionType
+     * @param string                      $id                  Initialization value for $this->id
+     * @param GetGatewayResponseResponse  $gatewayResponse     Initialization value for $this->gatewayResponse
+     * @param GetAntifraudResponse        $antifraudResponse   Initialization value for $this->antifraudResponse
+     * @param array                       $metadata            Initialization value for $this->metadata
+     * @param array                       $split               Initialization value for $this->split
+     * @param GetInterestResponse         $interest            Initialization value for $this->interest
+     * @param GetFineResponse             $fine                Initialization value for $this->fine
+     * @param integer                     $maxDaysToPayPastDue Initialization value for $this->maxDaysToPayPastDue
      */
     public function __construct()
     {
-        if (16 == func_num_args()) {
-            $this->gatewayId         = func_get_arg(0);
-            $this->amount            = func_get_arg(1);
-            $this->status            = func_get_arg(2);
-            $this->success           = func_get_arg(3);
-            $this->createdAt         = func_get_arg(4);
-            $this->updatedAt         = func_get_arg(5);
-            $this->attemptCount      = func_get_arg(6);
-            $this->maxAttempts       = func_get_arg(7);
-            $this->splits            = func_get_arg(8);
-            $this->nextAttempt       = func_get_arg(9);
-            $this->transactionType   = func_get_arg(10);
-            $this->id                = func_get_arg(11);
-            $this->gatewayResponse   = func_get_arg(12);
-            $this->antifraudResponse = func_get_arg(13);
-            $this->metadata          = func_get_arg(14);
-            $this->split             = func_get_arg(15);
+        if (19 == func_num_args()) {
+            $this->gatewayId           = func_get_arg(0);
+            $this->amount              = func_get_arg(1);
+            $this->status              = func_get_arg(2);
+            $this->success             = func_get_arg(3);
+            $this->createdAt           = func_get_arg(4);
+            $this->updatedAt           = func_get_arg(5);
+            $this->attemptCount        = func_get_arg(6);
+            $this->maxAttempts         = func_get_arg(7);
+            $this->splits              = func_get_arg(8);
+            $this->nextAttempt         = func_get_arg(9);
+            $this->transactionType     = func_get_arg(10);
+            $this->id                  = func_get_arg(11);
+            $this->gatewayResponse     = func_get_arg(12);
+            $this->antifraudResponse   = func_get_arg(13);
+            $this->metadata            = func_get_arg(14);
+            $this->split               = func_get_arg(15);
+            $this->interest            = func_get_arg(16);
+            $this->fine                = func_get_arg(17);
+            $this->maxDaysToPayPastDue = func_get_arg(18);
         }
     }
 
@@ -187,23 +212,26 @@ class GetTransactionResponse implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['gateway_id']         = $this->gatewayId;
-        $json['amount']             = $this->amount;
-        $json['status']             = $this->status;
-        $json['success']            = $this->success;
-        $json['created_at']         = DateTimeHelper::toRfc3339DateTime($this->createdAt);
-        $json['updated_at']         = DateTimeHelper::toRfc3339DateTime($this->updatedAt);
-        $json['attempt_count']      = $this->attemptCount;
-        $json['max_attempts']       = $this->maxAttempts;
-        $json['splits']             = $this->splits;
-        $json['next_attempt']       = isset($this->nextAttempt) ?
+        $json['gateway_id']               = $this->gatewayId;
+        $json['amount']                   = $this->amount;
+        $json['status']                   = $this->status;
+        $json['success']                  = $this->success;
+        $json['created_at']               = DateTimeHelper::toRfc3339DateTime($this->createdAt);
+        $json['updated_at']               = DateTimeHelper::toRfc3339DateTime($this->updatedAt);
+        $json['attempt_count']            = $this->attemptCount;
+        $json['max_attempts']             = $this->maxAttempts;
+        $json['splits']                   = $this->splits;
+        $json['next_attempt']             = isset($this->nextAttempt) ?
             DateTimeHelper::toRfc3339DateTime($this->nextAttempt) : null;
-        $json['transaction_type']   = $this->transactionType;
-        $json['id']                 = $this->id;
-        $json['gateway_response']   = $this->gatewayResponse;
-        $json['antifraud_response'] = $this->antifraudResponse;
-        $json['metadata']           = $this->metadata;
-        $json['split']              = $this->split;
+        $json['transaction_type']         = $this->transactionType;
+        $json['id']                       = $this->id;
+        $json['gateway_response']         = $this->gatewayResponse;
+        $json['antifraud_response']       = $this->antifraudResponse;
+        $json['metadata']                 = $this->metadata;
+        $json['split']                    = $this->split;
+        $json['interest']                 = $this->interest;
+        $json['fine']                     = $this->fine;
+        $json['max_days_to_pay_past_due'] = $this->maxDaysToPayPastDue;
 
         return $json;
     }

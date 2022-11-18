@@ -43,19 +43,28 @@ class CreateVoucherPaymentRequest implements JsonSerializable
     public $card;
 
     /**
+     * Defines whether the card has been used one or more times.
+     * @maps recurrency_cycle
+     * @var string|null $recurrencyCycle public property
+     */
+    public $recurrencyCycle;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string            $statementDescriptor Initialization value for $this->statementDescriptor
      * @param string            $cardId              Initialization value for $this->cardId
      * @param string            $cardToken           Initialization value for $this->cardToken
      * @param CreateCardRequest $card                Initialization value for $this->card
+     * @param string            $recurrencyCycle     Initialization value for $this->recurrencyCycle
      */
     public function __construct()
     {
-        if (4 == func_num_args()) {
+        if (5 == func_num_args()) {
             $this->statementDescriptor = func_get_arg(0);
             $this->cardId              = func_get_arg(1);
             $this->cardToken           = func_get_arg(2);
             $this->card                = func_get_arg(3);
+            $this->recurrencyCycle     = func_get_arg(4);
         }
     }
 
@@ -70,6 +79,7 @@ class CreateVoucherPaymentRequest implements JsonSerializable
         $json['card_id']              = $this->cardId;
         $json['card_token']           = $this->cardToken;
         $json['Card']                 = $this->card;
+        $json['recurrency_cycle']     = $this->recurrencyCycle;
 
         return $json;
     }

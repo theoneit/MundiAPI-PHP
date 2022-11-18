@@ -107,6 +107,13 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
     public $operationType;
 
     /**
+     * Defines whether the card has been used one or more times.
+     * @maps recurrency_cycle
+     * @var string|null $recurrencyCycle public property
+     */
+    public $recurrencyCycle;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param integer                             $installments         Initialization value for $this->installments
      * @param string                              $statementDescriptor  Initialization value for $this-
@@ -127,11 +134,13 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
      * @param CreateCardPaymentContactlessRequest $contactless          Initialization value for $this->contactless
      * @param bool                                $autoRecovery         Initialization value for $this->autoRecovery
      * @param string                              $operationType        Initialization value for $this->operationType
+     * @param string                              $recurrencyCycle      Initialization value for $this-
+     *                                                                    >recurrencyCycle
      */
     public function __construct()
     {
         switch (func_num_args()) {
-            case 14:
+            case 15:
                 $this->installments         = func_get_arg(0);
                 $this->statementDescriptor  = func_get_arg(1);
                 $this->card                 = func_get_arg(2);
@@ -146,6 +155,7 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
                 $this->contactless          = func_get_arg(11);
                 $this->autoRecovery         = func_get_arg(12);
                 $this->operationType        = func_get_arg(13);
+                $this->recurrencyCycle      = func_get_arg(14);
                 break;
 
             default:
@@ -176,6 +186,7 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
         $json['contactless']            = $this->contactless;
         $json['auto_recovery']          = $this->autoRecovery;
         $json['operation_type']         = $this->operationType;
+        $json['recurrency_cycle']       = $this->recurrencyCycle;
 
         return $json;
     }

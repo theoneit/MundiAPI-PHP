@@ -158,49 +158,67 @@ class GetChargeResponse implements JsonSerializable
     public $paidAmount;
 
     /**
+     * Defines whether the card has been used one or more times.
+     * @maps recurrency_cycle
+     * @var string|null $recurrencyCycle public property
+     */
+    public $recurrencyCycle;
+
+    /**
+     * interest and fine paid
+     * @maps interest_and_fine_paid
+     * @var integer|null $interestAndFinePaid public property
+     */
+    public $interestAndFinePaid;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param string                  $id              Initialization value for $this->id
-     * @param string                  $code            Initialization value for $this->code
-     * @param string                  $gatewayId       Initialization value for $this->gatewayId
-     * @param integer                 $amount          Initialization value for $this->amount
-     * @param string                  $status          Initialization value for $this->status
-     * @param string                  $currency        Initialization value for $this->currency
-     * @param string                  $paymentMethod   Initialization value for $this->paymentMethod
-     * @param \DateTime               $dueAt           Initialization value for $this->dueAt
-     * @param \DateTime               $createdAt       Initialization value for $this->createdAt
-     * @param \DateTime               $updatedAt       Initialization value for $this->updatedAt
-     * @param GetTransactionResponse  $lastTransaction Initialization value for $this->lastTransaction
-     * @param GetInvoiceResponse      $invoice         Initialization value for $this->invoice
-     * @param GetOrderResponse        $order           Initialization value for $this->order
-     * @param GetCustomerResponse     $customer        Initialization value for $this->customer
-     * @param array                   $metadata        Initialization value for $this->metadata
-     * @param \DateTime               $paidAt          Initialization value for $this->paidAt
-     * @param \DateTime               $canceledAt      Initialization value for $this->canceledAt
-     * @param integer                 $canceledAmount  Initialization value for $this->canceledAmount
-     * @param integer                 $paidAmount      Initialization value for $this->paidAmount
+     * @param string                  $id                  Initialization value for $this->id
+     * @param string                  $code                Initialization value for $this->code
+     * @param string                  $gatewayId           Initialization value for $this->gatewayId
+     * @param integer                 $amount              Initialization value for $this->amount
+     * @param string                  $status              Initialization value for $this->status
+     * @param string                  $currency            Initialization value for $this->currency
+     * @param string                  $paymentMethod       Initialization value for $this->paymentMethod
+     * @param \DateTime               $dueAt               Initialization value for $this->dueAt
+     * @param \DateTime               $createdAt           Initialization value for $this->createdAt
+     * @param \DateTime               $updatedAt           Initialization value for $this->updatedAt
+     * @param GetTransactionResponse  $lastTransaction     Initialization value for $this->lastTransaction
+     * @param GetInvoiceResponse      $invoice             Initialization value for $this->invoice
+     * @param GetOrderResponse        $order               Initialization value for $this->order
+     * @param GetCustomerResponse     $customer            Initialization value for $this->customer
+     * @param array                   $metadata            Initialization value for $this->metadata
+     * @param \DateTime               $paidAt              Initialization value for $this->paidAt
+     * @param \DateTime               $canceledAt          Initialization value for $this->canceledAt
+     * @param integer                 $canceledAmount      Initialization value for $this->canceledAmount
+     * @param integer                 $paidAmount          Initialization value for $this->paidAmount
+     * @param string                  $recurrencyCycle     Initialization value for $this->recurrencyCycle
+     * @param integer                 $interestAndFinePaid Initialization value for $this->interestAndFinePaid
      */
     public function __construct()
     {
-        if (19 == func_num_args()) {
-            $this->id              = func_get_arg(0);
-            $this->code            = func_get_arg(1);
-            $this->gatewayId       = func_get_arg(2);
-            $this->amount          = func_get_arg(3);
-            $this->status          = func_get_arg(4);
-            $this->currency        = func_get_arg(5);
-            $this->paymentMethod   = func_get_arg(6);
-            $this->dueAt           = func_get_arg(7);
-            $this->createdAt       = func_get_arg(8);
-            $this->updatedAt       = func_get_arg(9);
-            $this->lastTransaction = func_get_arg(10);
-            $this->invoice         = func_get_arg(11);
-            $this->order           = func_get_arg(12);
-            $this->customer        = func_get_arg(13);
-            $this->metadata        = func_get_arg(14);
-            $this->paidAt          = func_get_arg(15);
-            $this->canceledAt      = func_get_arg(16);
-            $this->canceledAmount  = func_get_arg(17);
-            $this->paidAmount      = func_get_arg(18);
+        if (21 == func_num_args()) {
+            $this->id                  = func_get_arg(0);
+            $this->code                = func_get_arg(1);
+            $this->gatewayId           = func_get_arg(2);
+            $this->amount              = func_get_arg(3);
+            $this->status              = func_get_arg(4);
+            $this->currency            = func_get_arg(5);
+            $this->paymentMethod       = func_get_arg(6);
+            $this->dueAt               = func_get_arg(7);
+            $this->createdAt           = func_get_arg(8);
+            $this->updatedAt           = func_get_arg(9);
+            $this->lastTransaction     = func_get_arg(10);
+            $this->invoice             = func_get_arg(11);
+            $this->order               = func_get_arg(12);
+            $this->customer            = func_get_arg(13);
+            $this->metadata            = func_get_arg(14);
+            $this->paidAt              = func_get_arg(15);
+            $this->canceledAt          = func_get_arg(16);
+            $this->canceledAmount      = func_get_arg(17);
+            $this->paidAmount          = func_get_arg(18);
+            $this->recurrencyCycle     = func_get_arg(19);
+            $this->interestAndFinePaid = func_get_arg(20);
         }
     }
 
@@ -211,27 +229,29 @@ class GetChargeResponse implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['id']               = $this->id;
-        $json['code']             = $this->code;
-        $json['gateway_id']       = $this->gatewayId;
-        $json['amount']           = $this->amount;
-        $json['status']           = $this->status;
-        $json['currency']         = $this->currency;
-        $json['payment_method']   = $this->paymentMethod;
-        $json['due_at']           = DateTimeHelper::toRfc3339DateTime($this->dueAt);
-        $json['created_at']       = DateTimeHelper::toRfc3339DateTime($this->createdAt);
-        $json['updated_at']       = DateTimeHelper::toRfc3339DateTime($this->updatedAt);
-        $json['last_transaction'] = $this->lastTransaction;
-        $json['invoice']          = $this->invoice;
-        $json['order']            = $this->order;
-        $json['customer']         = $this->customer;
-        $json['metadata']         = $this->metadata;
-        $json['paid_at']          = isset($this->paidAt) ?
+        $json['id']                     = $this->id;
+        $json['code']                   = $this->code;
+        $json['gateway_id']             = $this->gatewayId;
+        $json['amount']                 = $this->amount;
+        $json['status']                 = $this->status;
+        $json['currency']               = $this->currency;
+        $json['payment_method']         = $this->paymentMethod;
+        $json['due_at']                 = DateTimeHelper::toRfc3339DateTime($this->dueAt);
+        $json['created_at']             = DateTimeHelper::toRfc3339DateTime($this->createdAt);
+        $json['updated_at']             = DateTimeHelper::toRfc3339DateTime($this->updatedAt);
+        $json['last_transaction']       = $this->lastTransaction;
+        $json['invoice']                = $this->invoice;
+        $json['order']                  = $this->order;
+        $json['customer']               = $this->customer;
+        $json['metadata']               = $this->metadata;
+        $json['paid_at']                = isset($this->paidAt) ?
             DateTimeHelper::toRfc3339DateTime($this->paidAt) : null;
-        $json['canceled_at']      = isset($this->canceledAt) ?
+        $json['canceled_at']            = isset($this->canceledAt) ?
             DateTimeHelper::toRfc3339DateTime($this->canceledAt) : null;
-        $json['canceled_amount']  = $this->canceledAmount;
-        $json['paid_amount']      = $this->paidAmount;
+        $json['canceled_amount']        = $this->canceledAmount;
+        $json['paid_amount']            = $this->paidAmount;
+        $json['recurrency_cycle']       = $this->recurrencyCycle;
+        $json['interest_and_fine_paid'] = $this->interestAndFinePaid;
 
         return $json;
     }
