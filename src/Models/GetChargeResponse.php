@@ -102,19 +102,19 @@ class GetChargeResponse implements JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var \MundiAPILib\Models\GetInvoiceResponse|null $invoice public property
+     * @var \MundiAPILib\Models\Invoice|null $invoice public property
      */
     public $invoice;
 
     /**
      * @todo Write general description for this property
-     * @var \MundiAPILib\Models\GetOrderResponse|null $order public property
+     * @var \MundiAPILib\Models\Order|null $order public property
      */
     public $order;
 
     /**
      * @todo Write general description for this property
-     * @var \MundiAPILib\Models\GetCustomerResponse|null $customer public property
+     * @var \MundiAPILib\Models\Customer|null $customer public property
      */
     public $customer;
 
@@ -184,9 +184,9 @@ class GetChargeResponse implements JsonSerializable
      * @param \DateTime               $createdAt           Initialization value for $this->createdAt
      * @param \DateTime               $updatedAt           Initialization value for $this->updatedAt
      * @param GetTransactionResponse  $lastTransaction     Initialization value for $this->lastTransaction
-     * @param GetInvoiceResponse      $invoice             Initialization value for $this->invoice
-     * @param GetOrderResponse        $order               Initialization value for $this->order
-     * @param GetCustomerResponse     $customer            Initialization value for $this->customer
+     * @param Invoice                 $invoice             Initialization value for $this->invoice
+     * @param Order                   $order               Initialization value for $this->order
+     * @param Customer                $customer            Initialization value for $this->customer
      * @param array                   $metadata            Initialization value for $this->metadata
      * @param \DateTime               $paidAt              Initialization value for $this->paidAt
      * @param \DateTime               $canceledAt          Initialization value for $this->canceledAt

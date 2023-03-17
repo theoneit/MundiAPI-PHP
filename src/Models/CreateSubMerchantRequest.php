@@ -59,29 +59,29 @@ class CreateSubMerchantRequest implements JsonSerializable
     public $type;
 
     /**
-     * Phone
+     * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\CreatePhoneRequest $phone public property
+     * @var \MundiAPILib\Models\GetPhoneResponse $phone public property
      */
     public $phone;
 
     /**
-     * Address
+     * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\CreateAddressRequest $address public property
+     * @var \MundiAPILib\Models\Address1 $address public property
      */
     public $address;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string               $paymentFacilitatorCode Initialization value for $this->paymentFacilitatorCode
-     * @param string               $code                   Initialization value for $this->code
-     * @param string               $name                   Initialization value for $this->name
-     * @param string               $merchantCategoryCode   Initialization value for $this->merchantCategoryCode
-     * @param string               $document               Initialization value for $this->document
-     * @param string               $type                   Initialization value for $this->type
-     * @param CreatePhoneRequest   $phone                  Initialization value for $this->phone
-     * @param CreateAddressRequest $address                Initialization value for $this->address
+     * @param string           $paymentFacilitatorCode Initialization value for $this->paymentFacilitatorCode
+     * @param string           $code                   Initialization value for $this->code
+     * @param string           $name                   Initialization value for $this->name
+     * @param string           $merchantCategoryCode   Initialization value for $this->merchantCategoryCode
+     * @param string           $document               Initialization value for $this->document
+     * @param string           $type                   Initialization value for $this->type
+     * @param GetPhoneResponse $phone                  Initialization value for $this->phone
+     * @param Address1         $address                Initialization value for $this->address
      */
     public function __construct()
     {

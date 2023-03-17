@@ -45,7 +45,7 @@ class GetOrderResponse implements JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var \MundiAPILib\Models\GetCustomerResponse|null $customer public property
+     * @var \MundiAPILib\Models\Customer|null $customer public property
      */
     public $customer;
 
@@ -92,7 +92,7 @@ class GetOrderResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\GetShippingResponse $shipping public property
+     * @var \MundiAPILib\Models\Shipping $shipping public property
      */
     public $shipping;
 
@@ -123,14 +123,14 @@ class GetOrderResponse implements JsonSerializable
     public $sessionId;
 
     /**
-     * Location
-     * @var \MundiAPILib\Models\GetLocationResponse|null $location public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Location|null $location public property
      */
     public $location;
 
     /**
-     * Device's informations
-     * @var \MundiAPILib\Models\GetDeviceResponse|null $device public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Device|null $device public property
      */
     public $device;
 
@@ -143,24 +143,24 @@ class GetOrderResponse implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string               $id         Initialization value for $this->id
-     * @param string               $code       Initialization value for $this->code
-     * @param string               $currency   Initialization value for $this->currency
-     * @param array                $items      Initialization value for $this->items
-     * @param GetCustomerResponse  $customer   Initialization value for $this->customer
-     * @param string               $status     Initialization value for $this->status
-     * @param \DateTime            $createdAt  Initialization value for $this->createdAt
-     * @param \DateTime            $updatedAt  Initialization value for $this->updatedAt
-     * @param array                $charges    Initialization value for $this->charges
-     * @param string               $invoiceUrl Initialization value for $this->invoiceUrl
-     * @param GetShippingResponse  $shipping   Initialization value for $this->shipping
-     * @param array                $metadata   Initialization value for $this->metadata
-     * @param array                $checkouts  Initialization value for $this->checkouts
-     * @param string               $ip         Initialization value for $this->ip
-     * @param string               $sessionId  Initialization value for $this->sessionId
-     * @param GetLocationResponse  $location   Initialization value for $this->location
-     * @param GetDeviceResponse    $device     Initialization value for $this->device
-     * @param bool                 $closed     Initialization value for $this->closed
+     * @param string    $id         Initialization value for $this->id
+     * @param string    $code       Initialization value for $this->code
+     * @param string    $currency   Initialization value for $this->currency
+     * @param array     $items      Initialization value for $this->items
+     * @param Customer  $customer   Initialization value for $this->customer
+     * @param string    $status     Initialization value for $this->status
+     * @param \DateTime $createdAt  Initialization value for $this->createdAt
+     * @param \DateTime $updatedAt  Initialization value for $this->updatedAt
+     * @param array     $charges    Initialization value for $this->charges
+     * @param string    $invoiceUrl Initialization value for $this->invoiceUrl
+     * @param Shipping  $shipping   Initialization value for $this->shipping
+     * @param array     $metadata   Initialization value for $this->metadata
+     * @param array     $checkouts  Initialization value for $this->checkouts
+     * @param string    $ip         Initialization value for $this->ip
+     * @param string    $sessionId  Initialization value for $this->sessionId
+     * @param Location  $location   Initialization value for $this->location
+     * @param Device    $device     Initialization value for $this->device
+     * @param bool      $closed     Initialization value for $this->closed
      */
     public function __construct()
     {

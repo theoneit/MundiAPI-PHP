@@ -80,7 +80,7 @@ class GetIncrementResponse implements JsonSerializable
     public $subscription;
 
     /**
-     * The Subscription Item
+     * @todo Write general description for this property
      * @maps subscription_item
      * @var \MundiAPILib\Models\GetSubscriptionItemResponse|null $subscriptionItem public property
      */

@@ -86,7 +86,7 @@ class GetCustomerResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\GetAddressResponse $address public property
+     * @var \MundiAPILib\Models\Address $address public property
      */
     public $address;
 
@@ -128,21 +128,21 @@ class GetCustomerResponse implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string              $id            Initialization value for $this->id
-     * @param string              $name          Initialization value for $this->name
-     * @param string              $email         Initialization value for $this->email
-     * @param bool                $delinquent    Initialization value for $this->delinquent
-     * @param \DateTime           $createdAt     Initialization value for $this->createdAt
-     * @param \DateTime           $updatedAt     Initialization value for $this->updatedAt
-     * @param string              $document      Initialization value for $this->document
-     * @param string              $type          Initialization value for $this->type
-     * @param string              $fbAccessToken Initialization value for $this->fbAccessToken
-     * @param GetAddressResponse  $address       Initialization value for $this->address
-     * @param array               $metadata      Initialization value for $this->metadata
-     * @param GetPhonesResponse   $phones        Initialization value for $this->phones
-     * @param integer             $fbId          Initialization value for $this->fbId
-     * @param string              $code          Initialization value for $this->code
-     * @param string              $documentType  Initialization value for $this->documentType
+     * @param string             $id            Initialization value for $this->id
+     * @param string             $name          Initialization value for $this->name
+     * @param string             $email         Initialization value for $this->email
+     * @param bool               $delinquent    Initialization value for $this->delinquent
+     * @param \DateTime          $createdAt     Initialization value for $this->createdAt
+     * @param \DateTime          $updatedAt     Initialization value for $this->updatedAt
+     * @param string             $document      Initialization value for $this->document
+     * @param string             $type          Initialization value for $this->type
+     * @param string             $fbAccessToken Initialization value for $this->fbAccessToken
+     * @param Address            $address       Initialization value for $this->address
+     * @param array              $metadata      Initialization value for $this->metadata
+     * @param GetPhonesResponse  $phones        Initialization value for $this->phones
+     * @param integer            $fbId          Initialization value for $this->fbId
+     * @param string             $code          Initialization value for $this->code
+     * @param string             $documentType  Initialization value for $this->documentType
      */
     public function __construct()
     {

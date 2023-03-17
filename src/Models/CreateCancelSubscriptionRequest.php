@@ -28,14 +28,8 @@ class CreateCancelSubscriptionRequest implements JsonSerializable
      */
     public function __construct()
     {
-        switch (func_num_args()) {
-            case 1:
-                $this->cancelPendingInvoices = func_get_arg(0);
-                break;
-
-            default:
-                $this->cancelPendingInvoices = true;
-                break;
+        if (1 == func_num_args()) {
+            $this->cancelPendingInvoices = func_get_arg(0);
         }
     }
 

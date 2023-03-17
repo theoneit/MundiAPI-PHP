@@ -22,10 +22,10 @@ class CreateSubscriptionItemRequest implements JsonSerializable
     public $description;
 
     /**
-     * Pricing scheme
+     * @todo Write general description for this property
      * @required
      * @maps pricing_scheme
-     * @var \MundiAPILib\Models\CreatePricingSchemeRequest $pricingScheme public property
+     * @var \MundiAPILib\Models\PricingScheme4 $pricingScheme public property
      */
     public $pricingScheme;
 
@@ -79,15 +79,15 @@ class CreateSubscriptionItemRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                     $description   Initialization value for $this->description
-     * @param CreatePricingSchemeRequest $pricingScheme Initialization value for $this->pricingScheme
-     * @param string                     $id            Initialization value for $this->id
-     * @param string                     $planItemId    Initialization value for $this->planItemId
-     * @param array                      $discounts     Initialization value for $this->discounts
-     * @param string                     $name          Initialization value for $this->name
-     * @param integer                    $cycles        Initialization value for $this->cycles
-     * @param integer                    $quantity      Initialization value for $this->quantity
-     * @param integer                    $minimumPrice  Initialization value for $this->minimumPrice
+     * @param string         $description   Initialization value for $this->description
+     * @param PricingScheme4 $pricingScheme Initialization value for $this->pricingScheme
+     * @param string         $id            Initialization value for $this->id
+     * @param string         $planItemId    Initialization value for $this->planItemId
+     * @param array          $discounts     Initialization value for $this->discounts
+     * @param string         $name          Initialization value for $this->name
+     * @param integer        $cycles        Initialization value for $this->cycles
+     * @param integer        $quantity      Initialization value for $this->quantity
+     * @param integer        $minimumPrice  Initialization value for $this->minimumPrice
      */
     public function __construct()
     {

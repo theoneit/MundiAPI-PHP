@@ -22,17 +22,17 @@ class GetPaymentAuthenticationResponse implements JsonSerializable
     public $type;
 
     /**
-     * 3D-S payment authentication response
+     * @todo Write general description for this property
      * @required
      * @maps threed_secure
-     * @var \MundiAPILib\Models\GetThreeDSecureResponse $threedSecure public property
+     * @var \MundiAPILib\Models\ThreedSecure $threedSecure public property
      */
     public $threedSecure;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                  $type         Initialization value for $this->type
-     * @param GetThreeDSecureResponse $threedSecure Initialization value for $this->threedSecure
+     * @param string       $type         Initialization value for $this->type
+     * @param ThreedSecure $threedSecure Initialization value for $this->threedSecure
      */
     public function __construct()
     {

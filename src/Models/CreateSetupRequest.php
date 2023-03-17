@@ -30,17 +30,17 @@ class CreateSetupRequest implements JsonSerializable
     public $description;
 
     /**
-     * Payment data
+     * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\CreatePaymentRequest $payment public property
+     * @var \MundiAPILib\Models\Payment $payment public property
      */
     public $payment;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param integer              $amount      Initialization value for $this->amount
-     * @param string               $description Initialization value for $this->description
-     * @param CreatePaymentRequest $payment     Initialization value for $this->payment
+     * @param integer $amount      Initialization value for $this->amount
+     * @param string  $description Initialization value for $this->description
+     * @param Payment $payment     Initialization value for $this->payment
      */
     public function __construct()
     {

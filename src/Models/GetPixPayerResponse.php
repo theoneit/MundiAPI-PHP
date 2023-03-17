@@ -35,17 +35,18 @@ class GetPixPayerResponse implements JsonSerializable
 
     /**
      * @todo Write general description for this property
+     * @required
      * @maps bank_account
-     * @var \MundiAPILib\Models\GetPixBankAccountResponse|null $bankAccount public property
+     * @var object $bankAccount public property
      */
     public $bankAccount;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                    $name         Initialization value for $this->name
-     * @param string                    $document     Initialization value for $this->document
-     * @param string                    $documentType Initialization value for $this->documentType
-     * @param GetPixBankAccountResponse $bankAccount  Initialization value for $this->bankAccount
+     * @param string $name         Initialization value for $this->name
+     * @param string $document     Initialization value for $this->document
+     * @param string $documentType Initialization value for $this->documentType
+     * @param object $bankAccount  Initialization value for $this->bankAccount
      */
     public function __construct()
     {

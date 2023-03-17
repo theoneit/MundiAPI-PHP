@@ -46,8 +46,8 @@ class GetCheckoutPaymentSettingsResponse implements JsonSerializable
     public $status;
 
     /**
-     * Customer
-     * @var \MundiAPILib\Models\GetCustomerResponse|null $customer public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Customer|null $customer public property
      */
     public $customer;
 
@@ -73,14 +73,14 @@ class GetCheckoutPaymentSettingsResponse implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string              $successUrl             Initialization value for $this->successUrl
-     * @param string              $paymentUrl             Initialization value for $this->paymentUrl
-     * @param array               $acceptedPaymentMethods Initialization value for $this->acceptedPaymentMethods
-     * @param string              $status                 Initialization value for $this->status
-     * @param GetCustomerResponse $customer               Initialization value for $this->customer
-     * @param integer             $amount                 Initialization value for $this->amount
-     * @param string              $defaultPaymentMethod   Initialization value for $this->defaultPaymentMethod
-     * @param string              $gatewayAffiliationId   Initialization value for $this->gatewayAffiliationId
+     * @param string   $successUrl             Initialization value for $this->successUrl
+     * @param string   $paymentUrl             Initialization value for $this->paymentUrl
+     * @param array    $acceptedPaymentMethods Initialization value for $this->acceptedPaymentMethods
+     * @param string   $status                 Initialization value for $this->status
+     * @param Customer $customer               Initialization value for $this->customer
+     * @param integer  $amount                 Initialization value for $this->amount
+     * @param string   $defaultPaymentMethod   Initialization value for $this->defaultPaymentMethod
+     * @param string   $gatewayAffiliationId   Initialization value for $this->gatewayAffiliationId
      */
     public function __construct()
     {

@@ -14,7 +14,7 @@ use MundiAPILib\Utils\DateTimeHelper;
  *Generic response object for getting a transaction.
  *
  * @discriminator transaction_type
- * @discriminatorType transaction
+ * @discriminatorType GetTransactionResponse
  */
 class GetTransactionResponse implements JsonSerializable
 {
@@ -111,10 +111,10 @@ class GetTransactionResponse implements JsonSerializable
     public $id;
 
     /**
-     * The Gateway Response
+     * @todo Write general description for this property
      * @required
      * @maps gateway_response
-     * @var \MundiAPILib\Models\GetGatewayResponseResponse $gatewayResponse public property
+     * @var \MundiAPILib\Models\GatewayResponse $gatewayResponse public property
      */
     public $gatewayResponse;
 
@@ -141,13 +141,13 @@ class GetTransactionResponse implements JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var \MundiAPILib\Models\GetInterestResponse|null $interest public property
+     * @var \MundiAPILib\Models\Interest|null $interest public property
      */
     public $interest;
 
     /**
      * @todo Write general description for this property
-     * @var \MundiAPILib\Models\GetFineResponse|null $fine public property
+     * @var \MundiAPILib\Models\Fine|null $fine public property
      */
     public $fine;
 
@@ -160,25 +160,25 @@ class GetTransactionResponse implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                      $gatewayId           Initialization value for $this->gatewayId
-     * @param integer                     $amount              Initialization value for $this->amount
-     * @param string                      $status              Initialization value for $this->status
-     * @param bool                        $success             Initialization value for $this->success
-     * @param \DateTime                   $createdAt           Initialization value for $this->createdAt
-     * @param \DateTime                   $updatedAt           Initialization value for $this->updatedAt
-     * @param integer                     $attemptCount        Initialization value for $this->attemptCount
-     * @param integer                     $maxAttempts         Initialization value for $this->maxAttempts
-     * @param array                       $splits              Initialization value for $this->splits
-     * @param \DateTime                   $nextAttempt         Initialization value for $this->nextAttempt
-     * @param string                      $transactionType     Initialization value for $this->transactionType
-     * @param string                      $id                  Initialization value for $this->id
-     * @param GetGatewayResponseResponse  $gatewayResponse     Initialization value for $this->gatewayResponse
-     * @param GetAntifraudResponse        $antifraudResponse   Initialization value for $this->antifraudResponse
-     * @param array                       $metadata            Initialization value for $this->metadata
-     * @param array                       $split               Initialization value for $this->split
-     * @param GetInterestResponse         $interest            Initialization value for $this->interest
-     * @param GetFineResponse             $fine                Initialization value for $this->fine
-     * @param integer                     $maxDaysToPayPastDue Initialization value for $this->maxDaysToPayPastDue
+     * @param string                $gatewayId           Initialization value for $this->gatewayId
+     * @param integer               $amount              Initialization value for $this->amount
+     * @param string                $status              Initialization value for $this->status
+     * @param bool                  $success             Initialization value for $this->success
+     * @param \DateTime             $createdAt           Initialization value for $this->createdAt
+     * @param \DateTime             $updatedAt           Initialization value for $this->updatedAt
+     * @param integer               $attemptCount        Initialization value for $this->attemptCount
+     * @param integer               $maxAttempts         Initialization value for $this->maxAttempts
+     * @param array                 $splits              Initialization value for $this->splits
+     * @param \DateTime             $nextAttempt         Initialization value for $this->nextAttempt
+     * @param string                $transactionType     Initialization value for $this->transactionType
+     * @param string                $id                  Initialization value for $this->id
+     * @param GatewayResponse       $gatewayResponse     Initialization value for $this->gatewayResponse
+     * @param GetAntifraudResponse  $antifraudResponse   Initialization value for $this->antifraudResponse
+     * @param array                 $metadata            Initialization value for $this->metadata
+     * @param array                 $split               Initialization value for $this->split
+     * @param Interest              $interest            Initialization value for $this->interest
+     * @param Fine                  $fine                Initialization value for $this->fine
+     * @param integer               $maxDaysToPayPastDue Initialization value for $this->maxDaysToPayPastDue
      */
     public function __construct()
     {

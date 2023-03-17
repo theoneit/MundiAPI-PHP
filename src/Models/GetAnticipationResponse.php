@@ -39,8 +39,8 @@ class GetAnticipationResponse implements JsonSerializable
     public $approvedAmount;
 
     /**
-     * Recipient
-     * @var \MundiAPILib\Models\GetRecipientResponse|null $recipient public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Recipient|null $recipient public property
      */
     public $recipient;
 
@@ -94,16 +94,16 @@ class GetAnticipationResponse implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                $id              Initialization value for $this->id
-     * @param integer               $requestedAmount Initialization value for $this->requestedAmount
-     * @param integer               $approvedAmount  Initialization value for $this->approvedAmount
-     * @param GetRecipientResponse  $recipient       Initialization value for $this->recipient
-     * @param string                $pgid            Initialization value for $this->pgid
-     * @param \DateTime             $createdAt       Initialization value for $this->createdAt
-     * @param \DateTime             $updatedAt       Initialization value for $this->updatedAt
-     * @param \DateTime             $paymentDate     Initialization value for $this->paymentDate
-     * @param string                $status          Initialization value for $this->status
-     * @param string                $timeframe       Initialization value for $this->timeframe
+     * @param string     $id              Initialization value for $this->id
+     * @param integer    $requestedAmount Initialization value for $this->requestedAmount
+     * @param integer    $approvedAmount  Initialization value for $this->approvedAmount
+     * @param Recipient  $recipient       Initialization value for $this->recipient
+     * @param string     $pgid            Initialization value for $this->pgid
+     * @param \DateTime  $createdAt       Initialization value for $this->createdAt
+     * @param \DateTime  $updatedAt       Initialization value for $this->updatedAt
+     * @param \DateTime  $paymentDate     Initialization value for $this->paymentDate
+     * @param string     $status          Initialization value for $this->status
+     * @param string     $timeframe       Initialization value for $this->timeframe
      */
     public function __construct()
     {

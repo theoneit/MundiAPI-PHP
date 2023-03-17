@@ -74,9 +74,9 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
     public $operationType;
 
     /**
-     * Card data
+     * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\GetCardResponse $card public property
+     * @var \MundiAPILib\Models\Card $card public property
      */
     public $card;
 
@@ -112,18 +112,18 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string          $statementDescriptor     Initialization value for $this->statementDescriptor
-     * @param string          $acquirerName            Initialization value for $this->acquirerName
-     * @param string          $acquirerAffiliationCode Initialization value for $this->acquirerAffiliationCode
-     * @param string          $acquirerTid             Initialization value for $this->acquirerTid
-     * @param string          $acquirerNsu             Initialization value for $this->acquirerNsu
-     * @param string          $acquirerAuthCode        Initialization value for $this->acquirerAuthCode
-     * @param string          $operationType           Initialization value for $this->operationType
-     * @param GetCardResponse $card                    Initialization value for $this->card
-     * @param string          $acquirerMessage         Initialization value for $this->acquirerMessage
-     * @param string          $acquirerReturnCode      Initialization value for $this->acquirerReturnCode
-     * @param integer         $installments            Initialization value for $this->installments
-     * @param string          $threedAuthenticationUrl Initialization value for $this->threedAuthenticationUrl
+     * @param string  $statementDescriptor     Initialization value for $this->statementDescriptor
+     * @param string  $acquirerName            Initialization value for $this->acquirerName
+     * @param string  $acquirerAffiliationCode Initialization value for $this->acquirerAffiliationCode
+     * @param string  $acquirerTid             Initialization value for $this->acquirerTid
+     * @param string  $acquirerNsu             Initialization value for $this->acquirerNsu
+     * @param string  $acquirerAuthCode        Initialization value for $this->acquirerAuthCode
+     * @param string  $operationType           Initialization value for $this->operationType
+     * @param Card    $card                    Initialization value for $this->card
+     * @param string  $acquirerMessage         Initialization value for $this->acquirerMessage
+     * @param string  $acquirerReturnCode      Initialization value for $this->acquirerReturnCode
+     * @param integer $installments            Initialization value for $this->installments
+     * @param string  $threedAuthenticationUrl Initialization value for $this->threedAuthenticationUrl
      */
     public function __construct()
     {

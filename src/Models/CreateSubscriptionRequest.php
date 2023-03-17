@@ -16,16 +16,16 @@ use MundiAPILib\Utils\DateTimeHelper;
 class CreateSubscriptionRequest implements JsonSerializable
 {
     /**
-     * Customer
+     * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\CreateCustomerRequest $customer public property
+     * @var \MundiAPILib\Models\Customer8 $customer public property
      */
     public $customer;
 
     /**
-     * Card
+     * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\CreateCardRequest $card public property
+     * @var \MundiAPILib\Models\Card1 $card public property
      */
     public $card;
 
@@ -90,10 +90,10 @@ class CreateSubscriptionRequest implements JsonSerializable
     public $intervalCount;
 
     /**
-     * Subscription pricing scheme
+     * @todo Write general description for this property
      * @required
      * @maps pricing_scheme
-     * @var \MundiAPILib\Models\CreatePricingSchemeRequest $pricingScheme public property
+     * @var \MundiAPILib\Models\PricingScheme4 $pricingScheme public property
      */
     public $pricingScheme;
 
@@ -105,9 +105,9 @@ class CreateSubscriptionRequest implements JsonSerializable
     public $items;
 
     /**
-     * Shipping
+     * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\CreateShippingRequest $shipping public property
+     * @var \MundiAPILib\Models\Shipping3 $shipping public property
      */
     public $shipping;
 
@@ -126,9 +126,9 @@ class CreateSubscriptionRequest implements JsonSerializable
     public $metadata;
 
     /**
-     * Setup data
+     * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\CreateSetupRequest $setup public property
+     * @var \MundiAPILib\Models\Setup1 $setup public property
      */
     public $setup;
 
@@ -228,21 +228,21 @@ class CreateSubscriptionRequest implements JsonSerializable
     public $period;
 
     /**
-     * SubMerchant
-     * @var \MundiAPILib\Models\CreateSubMerchantRequest|null $submerchant public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Submerchant|null $submerchant public property
      */
     public $submerchant;
 
     /**
-     * Subscription's split
-     * @var \MundiAPILib\Models\CreateSubscriptionSplitRequest|null $split public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\UpdateSubscriptionSplitRequest|null $split public property
      */
     public $split;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param CreateCustomerRequest           $customer             Initialization value for $this->customer
-     * @param CreateCardRequest               $card                 Initialization value for $this->card
+     * @param Customer8                       $customer             Initialization value for $this->customer
+     * @param Card1                           $card                 Initialization value for $this->card
      * @param string                          $code                 Initialization value for $this->code
      * @param string                          $paymentMethod        Initialization value for $this->paymentMethod
      * @param string                          $billingType          Initialization value for $this->billingType
@@ -252,12 +252,12 @@ class CreateSubscriptionRequest implements JsonSerializable
      * @param string                          $currency             Initialization value for $this->currency
      * @param string                          $interval             Initialization value for $this->interval
      * @param integer                         $intervalCount        Initialization value for $this->intervalCount
-     * @param CreatePricingSchemeRequest      $pricingScheme        Initialization value for $this->pricingScheme
+     * @param PricingScheme4                  $pricingScheme        Initialization value for $this->pricingScheme
      * @param array                           $items                Initialization value for $this->items
-     * @param CreateShippingRequest           $shipping             Initialization value for $this->shipping
+     * @param Shipping3                       $shipping             Initialization value for $this->shipping
      * @param array                           $discounts            Initialization value for $this->discounts
      * @param array                           $metadata             Initialization value for $this->metadata
-     * @param CreateSetupRequest              $setup                Initialization value for $this->setup
+     * @param Setup1                          $setup                Initialization value for $this->setup
      * @param string                          $planId               Initialization value for $this->planId
      * @param string                          $customerId           Initialization value for $this->customerId
      * @param string                          $cardId               Initialization value for $this->cardId
@@ -273,8 +273,8 @@ class CreateSubscriptionRequest implements JsonSerializable
      * @param integer                         $boletoDueDays        Initialization value for $this->boletoDueDays
      * @param array                           $increments           Initialization value for $this->increments
      * @param CreatePeriodRequest             $period               Initialization value for $this->period
-     * @param CreateSubMerchantRequest        $submerchant          Initialization value for $this->submerchant
-     * @param CreateSubscriptionSplitRequest  $split                Initialization value for $this->split
+     * @param Submerchant                     $submerchant          Initialization value for $this->submerchant
+     * @param UpdateSubscriptionSplitRequest  $split                Initialization value for $this->split
      */
     public function __construct()
     {

@@ -42,27 +42,34 @@ class TokensController extends BaseController
     }
 
     /**
-     * @todo Add general description for this endpoint
+     * CreateToken
      *
-     * @param string                    $publicKey       Public key
-     * @param Models\CreateTokenRequest $request         Request for creating a token
-     * @param string                    $idempotencyKey  (optional) TODO: type description here
+     * @param string               $publicKey       Public key
+     * @param Models\TokensRequest $body            Request for creating a token
+     * @param string               $idempotencyKey  (optional) TODO: type description here
+     * @param string               $appId           (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createToken(
         $publicKey,
-        $request,
-        $idempotencyKey = null
+        $body,
+        $idempotencyKey = null,
+        $appId = null
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = '/tokens?appId={public_key}';
+        $_queryBuilder = '/tokens';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'public_key'      => $publicKey,
             ));
+
+        //process optional query parameters
+        APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
+            'appId'           => $appId,
+        ));
 
         //validate and preprocess url
         $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
@@ -71,12 +78,12 @@ class TokensController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8',
+            'Content-Type'    => 'application/json',
             'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
-        $_bodyJson = Request\Body::Json($request);
+        $_bodyJson = Request\Body::Json($body);
 
         //set HTTP basic auth parameters
         Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
@@ -98,12 +105,37 @@ class TokensController extends BaseController
             $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
         //handle errors defined at the API level
         $this->validateResponse($_httpResponse, $_httpContext);
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetTokenResponse');
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\TokensResponse');
     }
 
     /**
@@ -111,22 +143,29 @@ class TokensController extends BaseController
      *
      * @param string $id         Token id
      * @param string $publicKey  Public key
+     * @param string $appId      (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function getToken(
         $id,
-        $publicKey
+        $publicKey,
+        $appId = null
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = '/tokens/{id}?appId={public_key}';
+        $_queryBuilder = '/tokens/{id}';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'id'         => $id,
             'public_key' => $publicKey,
             ));
+
+        //process optional query parameters
+        APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
+            'appId'      => $appId,
+        ));
 
         //validate and preprocess url
         $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
@@ -157,11 +196,36 @@ class TokensController extends BaseController
             $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
         //handle errors defined at the API level
         $this->validateResponse($_httpResponse, $_httpContext);
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetTokenResponse');
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\TokensResponse');
     }
 }

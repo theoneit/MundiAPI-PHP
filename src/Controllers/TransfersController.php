@@ -42,14 +42,14 @@ class TransfersController extends BaseController
     }
 
     /**
-     * @todo Add general description for this endpoint
+     * CreateTransfer
      *
-     * @param Models\CreateTransfer $request TODO: type description here
+     * @param Models\CreateTransfer $body         TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function createTransfer(
-        $request
+    public function postCreateTransfer(
+        $body
     ) {
 
         //prepare query string for API call
@@ -62,11 +62,11 @@ class TransfersController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8'
+            'Content-Type'    => 'application/json'
         );
 
         //json encode body
-        $_bodyJson = Request\Body::Json($request);
+        $_bodyJson = Request\Body::Json($body);
 
         //set HTTP basic auth parameters
         Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
@@ -88,6 +88,31 @@ class TransfersController extends BaseController
             $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
         //handle errors defined at the API level
         $this->validateResponse($_httpResponse, $_httpContext);
 
@@ -97,7 +122,7 @@ class TransfersController extends BaseController
     }
 
     /**
-     * @todo Add general description for this endpoint
+     * GetTransferById
      *
      * @param string $transferId  TODO: type description here
      * @return mixed response from the API call
@@ -144,6 +169,31 @@ class TransfersController extends BaseController
             $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
         //handle errors defined at the API level
         $this->validateResponse($_httpResponse, $_httpContext);
 
@@ -158,7 +208,7 @@ class TransfersController extends BaseController
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function getTransfers()
+    public function getTransfers1()
     {
 
         //prepare query string for API call
@@ -191,6 +241,31 @@ class TransfersController extends BaseController
         //call on-after Http callback
         if ($this->getHttpCallBack() != null) {
             $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
         }
 
         //handle errors defined at the API level

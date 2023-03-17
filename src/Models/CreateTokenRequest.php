@@ -22,28 +22,22 @@ class CreateTokenRequest implements JsonSerializable
     public $type;
 
     /**
-     * Card data
+     * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\CreateCardTokenRequest $card public property
+     * @var \MundiAPILib\Models\Card11 $card public property
      */
     public $card;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                 $type Initialization value for $this->type
-     * @param CreateCardTokenRequest $card Initialization value for $this->card
+     * @param string $type Initialization value for $this->type
+     * @param Card11 $card Initialization value for $this->card
      */
     public function __construct()
     {
-        switch (func_num_args()) {
-            case 2:
-                $this->type = func_get_arg(0);
-                $this->card = func_get_arg(1);
-                break;
-
-            default:
-                $this->type = 'card';
-                break;
+        if (2 == func_num_args()) {
+            $this->type = func_get_arg(0);
+            $this->card = func_get_arg(1);
         }
     }
 

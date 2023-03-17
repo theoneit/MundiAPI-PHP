@@ -15,9 +15,9 @@ use JsonSerializable;
 class UpdateSubscriptionCardRequest implements JsonSerializable
 {
     /**
-     * Credit card data
+     * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\CreateCardRequest $card public property
+     * @var \MundiAPILib\Models\Card1 $card public property
      */
     public $card;
 
@@ -31,8 +31,8 @@ class UpdateSubscriptionCardRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param CreateCardRequest $card   Initialization value for $this->card
-     * @param string            $cardId Initialization value for $this->cardId
+     * @param Card1  $card   Initialization value for $this->card
+     * @param string $cardId Initialization value for $this->cardId
      */
     public function __construct()
     {

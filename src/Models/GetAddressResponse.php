@@ -106,7 +106,7 @@ class GetAddressResponse implements JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var \MundiAPILib\Models\GetCustomerResponse|null $customer public property
+     * @var \MundiAPILib\Models\Customer|null $customer public property
      */
     public $customer;
 
@@ -143,23 +143,23 @@ class GetAddressResponse implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string               $id           Initialization value for $this->id
-     * @param string               $street       Initialization value for $this->street
-     * @param string               $number       Initialization value for $this->number
-     * @param string               $complement   Initialization value for $this->complement
-     * @param string               $zipCode      Initialization value for $this->zipCode
-     * @param string               $neighborhood Initialization value for $this->neighborhood
-     * @param string               $city         Initialization value for $this->city
-     * @param string               $state        Initialization value for $this->state
-     * @param string               $country      Initialization value for $this->country
-     * @param string               $status       Initialization value for $this->status
-     * @param \DateTime            $createdAt    Initialization value for $this->createdAt
-     * @param \DateTime            $updatedAt    Initialization value for $this->updatedAt
-     * @param GetCustomerResponse  $customer     Initialization value for $this->customer
-     * @param array                $metadata     Initialization value for $this->metadata
-     * @param string               $line1        Initialization value for $this->line1
-     * @param string               $line2        Initialization value for $this->line2
-     * @param \DateTime            $deletedAt    Initialization value for $this->deletedAt
+     * @param string    $id           Initialization value for $this->id
+     * @param string    $street       Initialization value for $this->street
+     * @param string    $number       Initialization value for $this->number
+     * @param string    $complement   Initialization value for $this->complement
+     * @param string    $zipCode      Initialization value for $this->zipCode
+     * @param string    $neighborhood Initialization value for $this->neighborhood
+     * @param string    $city         Initialization value for $this->city
+     * @param string    $state        Initialization value for $this->state
+     * @param string    $country      Initialization value for $this->country
+     * @param string    $status       Initialization value for $this->status
+     * @param \DateTime $createdAt    Initialization value for $this->createdAt
+     * @param \DateTime $updatedAt    Initialization value for $this->updatedAt
+     * @param Customer  $customer     Initialization value for $this->customer
+     * @param array     $metadata     Initialization value for $this->metadata
+     * @param string    $line1        Initialization value for $this->line1
+     * @param string    $line2        Initialization value for $this->line2
+     * @param \DateTime $deletedAt    Initialization value for $this->deletedAt
      */
     public function __construct()
     {

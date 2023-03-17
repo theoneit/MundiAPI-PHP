@@ -53,17 +53,18 @@ class GetPixTransactionResponse extends GetTransactionResponse implements JsonSe
 
     /**
      * @todo Write general description for this property
-     * @var \MundiAPILib\Models\GetPixPayerResponse|null $payer public property
+     * @required
+     * @var object $payer public property
      */
     public $payer;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string               $qrCode                Initialization value for $this->qrCode
-     * @param string               $qrCodeUrl             Initialization value for $this->qrCodeUrl
-     * @param \DateTime            $expiresAt             Initialization value for $this->expiresAt
-     * @param array                $additionalInformation Initialization value for $this->additionalInformation
-     * @param GetPixPayerResponse  $payer                 Initialization value for $this->payer
+     * @param string    $qrCode                Initialization value for $this->qrCode
+     * @param string    $qrCodeUrl             Initialization value for $this->qrCodeUrl
+     * @param \DateTime $expiresAt             Initialization value for $this->expiresAt
+     * @param array     $additionalInformation Initialization value for $this->additionalInformation
+     * @param object    $payer                 Initialization value for $this->payer
      */
     public function __construct()
     {

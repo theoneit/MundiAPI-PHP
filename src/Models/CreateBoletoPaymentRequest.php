@@ -45,10 +45,10 @@ class CreateBoletoPaymentRequest implements JsonSerializable
     public $dueAt;
 
     /**
-     * Card's billing address
+     * @todo Write general description for this property
      * @required
      * @maps billing_address
-     * @var \MundiAPILib\Models\CreateAddressRequest $billingAddress public property
+     * @var \MundiAPILib\Models\BillingAddress1 $billingAddress public property
      */
     public $billingAddress;
 
@@ -77,13 +77,13 @@ class CreateBoletoPaymentRequest implements JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var \MundiAPILib\Models\CreateInterestRequest|null $interest public property
+     * @var \MundiAPILib\Models\Interest|null $interest public property
      */
     public $interest;
 
     /**
      * @todo Write general description for this property
-     * @var \MundiAPILib\Models\CreateFineRequest|null $fine public property
+     * @var \MundiAPILib\Models\Fine|null $fine public property
      */
     public $fine;
 
@@ -96,17 +96,17 @@ class CreateBoletoPaymentRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param integer                $retries             Initialization value for $this->retries
-     * @param string                 $bank                Initialization value for $this->bank
-     * @param string                 $instructions        Initialization value for $this->instructions
-     * @param \DateTime              $dueAt               Initialization value for $this->dueAt
-     * @param CreateAddressRequest   $billingAddress      Initialization value for $this->billingAddress
-     * @param string                 $billingAddressId    Initialization value for $this->billingAddressId
-     * @param string                 $nossoNumero         Initialization value for $this->nossoNumero
-     * @param string                 $documentNumber      Initialization value for $this->documentNumber
-     * @param CreateInterestRequest  $interest            Initialization value for $this->interest
-     * @param CreateFineRequest      $fine                Initialization value for $this->fine
-     * @param integer                $maxDaysToPayPastDue Initialization value for $this->maxDaysToPayPastDue
+     * @param integer          $retries             Initialization value for $this->retries
+     * @param string           $bank                Initialization value for $this->bank
+     * @param string           $instructions        Initialization value for $this->instructions
+     * @param \DateTime        $dueAt               Initialization value for $this->dueAt
+     * @param BillingAddress1  $billingAddress      Initialization value for $this->billingAddress
+     * @param string           $billingAddressId    Initialization value for $this->billingAddressId
+     * @param string           $nossoNumero         Initialization value for $this->nossoNumero
+     * @param string           $documentNumber      Initialization value for $this->documentNumber
+     * @param Interest         $interest            Initialization value for $this->interest
+     * @param Fine             $fine                Initialization value for $this->fine
+     * @param integer          $maxDaysToPayPastDue Initialization value for $this->maxDaysToPayPastDue
      */
     public function __construct()
     {

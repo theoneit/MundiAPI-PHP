@@ -22,8 +22,8 @@ class CreateDebitCardPaymentRequest implements JsonSerializable
     public $statementDescriptor;
 
     /**
-     * Debit card data
-     * @var \MundiAPILib\Models\CreateCardRequest|null $card public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Card1|null $card public property
      */
     public $card;
 
@@ -48,14 +48,14 @@ class CreateDebitCardPaymentRequest implements JsonSerializable
     public $recurrence;
 
     /**
-     * The payment authentication request
-     * @var \MundiAPILib\Models\CreatePaymentAuthenticationRequest|null $authentication public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Authentication2|null $authentication public property
      */
     public $authentication;
 
     /**
-     * The Debit card payment token request
-     * @var \MundiAPILib\Models\CreateCardPaymentContactlessRequest|null $token public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Token|null $token public property
      */
     public $token;
 
@@ -68,16 +68,14 @@ class CreateDebitCardPaymentRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                              $statementDescriptor Initialization value for $this-
-     *                                                                   >statementDescriptor
-     * @param CreateCardRequest                   $card                Initialization value for $this->card
-     * @param string                              $cardId              Initialization value for $this->cardId
-     * @param string                              $cardToken           Initialization value for $this->cardToken
-     * @param bool                                $recurrence          Initialization value for $this->recurrence
-     * @param CreatePaymentAuthenticationRequest  $authentication      Initialization value for $this->authentication
-     * @param CreateCardPaymentContactlessRequest $token               Initialization value for $this->token
-     * @param string                              $recurrencyCycle     Initialization value for $this-
-     *                                                                   >recurrencyCycle
+     * @param string          $statementDescriptor Initialization value for $this->statementDescriptor
+     * @param Card1           $card                Initialization value for $this->card
+     * @param string          $cardId              Initialization value for $this->cardId
+     * @param string          $cardToken           Initialization value for $this->cardToken
+     * @param bool            $recurrence          Initialization value for $this->recurrence
+     * @param Authentication2 $authentication      Initialization value for $this->authentication
+     * @param Token           $token               Initialization value for $this->token
+     * @param string          $recurrencyCycle     Initialization value for $this->recurrencyCycle
      */
     public function __construct()
     {

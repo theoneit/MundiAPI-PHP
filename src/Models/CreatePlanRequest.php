@@ -105,10 +105,10 @@ class CreatePlanRequest implements JsonSerializable
     public $billingType;
 
     /**
-     * Plan's pricing scheme
+     * @todo Write general description for this property
      * @required
      * @maps pricing_scheme
-     * @var \MundiAPILib\Models\CreatePricingSchemeRequest $pricingScheme public property
+     * @var \MundiAPILib\Models\PricingScheme4 $pricingScheme public property
      */
     public $pricingScheme;
 
@@ -147,24 +147,24 @@ class CreatePlanRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                     $name                Initialization value for $this->name
-     * @param string                     $description         Initialization value for $this->description
-     * @param string                     $statementDescriptor Initialization value for $this->statementDescriptor
-     * @param array                      $items               Initialization value for $this->items
-     * @param bool                       $shippable           Initialization value for $this->shippable
-     * @param array                      $paymentMethods      Initialization value for $this->paymentMethods
-     * @param array                      $installments        Initialization value for $this->installments
-     * @param string                     $currency            Initialization value for $this->currency
-     * @param string                     $interval            Initialization value for $this->interval
-     * @param integer                    $intervalCount       Initialization value for $this->intervalCount
-     * @param array                      $billingDays         Initialization value for $this->billingDays
-     * @param string                     $billingType         Initialization value for $this->billingType
-     * @param CreatePricingSchemeRequest $pricingScheme       Initialization value for $this->pricingScheme
-     * @param array                      $metadata            Initialization value for $this->metadata
-     * @param integer                    $minimumPrice        Initialization value for $this->minimumPrice
-     * @param integer                    $cycles              Initialization value for $this->cycles
-     * @param integer                    $quantity            Initialization value for $this->quantity
-     * @param integer                    $trialPeriodDays     Initialization value for $this->trialPeriodDays
+     * @param string         $name                Initialization value for $this->name
+     * @param string         $description         Initialization value for $this->description
+     * @param string         $statementDescriptor Initialization value for $this->statementDescriptor
+     * @param array          $items               Initialization value for $this->items
+     * @param bool           $shippable           Initialization value for $this->shippable
+     * @param array          $paymentMethods      Initialization value for $this->paymentMethods
+     * @param array          $installments        Initialization value for $this->installments
+     * @param string         $currency            Initialization value for $this->currency
+     * @param string         $interval            Initialization value for $this->interval
+     * @param integer        $intervalCount       Initialization value for $this->intervalCount
+     * @param array          $billingDays         Initialization value for $this->billingDays
+     * @param string         $billingType         Initialization value for $this->billingType
+     * @param PricingScheme4 $pricingScheme       Initialization value for $this->pricingScheme
+     * @param array          $metadata            Initialization value for $this->metadata
+     * @param integer        $minimumPrice        Initialization value for $this->minimumPrice
+     * @param integer        $cycles              Initialization value for $this->cycles
+     * @param integer        $quantity            Initialization value for $this->quantity
+     * @param integer        $trialPeriodDays     Initialization value for $this->trialPeriodDays
      */
     public function __construct()
     {

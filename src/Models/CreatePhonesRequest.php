@@ -17,21 +17,21 @@ class CreatePhonesRequest implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @maps home_phone
-     * @var \MundiAPILib\Models\CreatePhoneRequest|null $homePhone public property
+     * @var \MundiAPILib\Models\GetPhoneResponse|null $homePhone public property
      */
     public $homePhone;
 
     /**
      * @todo Write general description for this property
      * @maps mobile_phone
-     * @var \MundiAPILib\Models\CreatePhoneRequest|null $mobilePhone public property
+     * @var \MundiAPILib\Models\GetPhoneResponse|null $mobilePhone public property
      */
     public $mobilePhone;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param CreatePhoneRequest $homePhone   Initialization value for $this->homePhone
-     * @param CreatePhoneRequest $mobilePhone Initialization value for $this->mobilePhone
+     * @param GetPhoneResponse $homePhone   Initialization value for $this->homePhone
+     * @param GetPhoneResponse $mobilePhone Initialization value for $this->mobilePhone
      */
     public function __construct()
     {

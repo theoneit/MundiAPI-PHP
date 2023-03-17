@@ -48,7 +48,7 @@ class GetShippingResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\GetAddressResponse $address public property
+     * @var \MundiAPILib\Models\Address $address public property
      */
     public $address;
 
@@ -77,14 +77,14 @@ class GetShippingResponse implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param integer             $amount                Initialization value for $this->amount
-     * @param string              $description           Initialization value for $this->description
-     * @param string              $recipientName         Initialization value for $this->recipientName
-     * @param string              $recipientPhone        Initialization value for $this->recipientPhone
-     * @param GetAddressResponse  $address               Initialization value for $this->address
-     * @param \DateTime           $maxDeliveryDate       Initialization value for $this->maxDeliveryDate
-     * @param \DateTime           $estimatedDeliveryDate Initialization value for $this->estimatedDeliveryDate
-     * @param string              $type                  Initialization value for $this->type
+     * @param integer   $amount                Initialization value for $this->amount
+     * @param string    $description           Initialization value for $this->description
+     * @param string    $recipientName         Initialization value for $this->recipientName
+     * @param string    $recipientPhone        Initialization value for $this->recipientPhone
+     * @param Address   $address               Initialization value for $this->address
+     * @param \DateTime $maxDeliveryDate       Initialization value for $this->maxDeliveryDate
+     * @param \DateTime $estimatedDeliveryDate Initialization value for $this->estimatedDeliveryDate
+     * @param string    $type                  Initialization value for $this->type
      */
     public function __construct()
     {

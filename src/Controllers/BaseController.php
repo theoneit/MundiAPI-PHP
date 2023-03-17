@@ -24,7 +24,7 @@ class BaseController
      * User-agent to be sent with API calls
      * @var string
      */
-    const USER_AGENT = 'MundiSDK - PHP 2.4.0';
+    const USER_AGENT = 'MundiSDK - PHP 2.4.1';
 
     /**
      * HttpCallBack instance associated with this controller
@@ -73,24 +73,6 @@ class BaseController
 
     protected function validateResponse(HttpResponse $response, HttpContext $_httpContext)
     {
-        if ($response->getStatusCode() == 400) {
-            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
-        }
-        if ($response->getStatusCode() == 401) {
-            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
-        }
-        if ($response->getStatusCode() == 404) {
-            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
-        }
-        if ($response->getStatusCode() == 412) {
-            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
-        }
-        if ($response->getStatusCode() == 422) {
-            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
-        }
-        if ($response->getStatusCode() == 500) {
-            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
-        }
         if (($response->getStatusCode() < 200) || ($response->getStatusCode() > 208)) { //[200,208] = HTTP OK
             throw new APIException('HTTP Response Not OK', $_httpContext);
         }

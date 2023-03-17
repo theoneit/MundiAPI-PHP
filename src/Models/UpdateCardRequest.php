@@ -47,10 +47,10 @@ class UpdateCardRequest implements JsonSerializable
     public $billingAddressId;
 
     /**
-     * Billing address
+     * @todo Write general description for this property
      * @required
      * @maps billing_address
-     * @var \MundiAPILib\Models\CreateAddressRequest $billingAddress public property
+     * @var \MundiAPILib\Models\BillingAddress1 $billingAddress public property
      */
     public $billingAddress;
 
@@ -70,13 +70,13 @@ class UpdateCardRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string               $holderName       Initialization value for $this->holderName
-     * @param integer              $expMonth         Initialization value for $this->expMonth
-     * @param integer              $expYear          Initialization value for $this->expYear
-     * @param string               $billingAddressId Initialization value for $this->billingAddressId
-     * @param CreateAddressRequest $billingAddress   Initialization value for $this->billingAddress
-     * @param array                $metadata         Initialization value for $this->metadata
-     * @param string               $label            Initialization value for $this->label
+     * @param string          $holderName       Initialization value for $this->holderName
+     * @param integer         $expMonth         Initialization value for $this->expMonth
+     * @param integer         $expYear          Initialization value for $this->expYear
+     * @param string          $billingAddressId Initialization value for $this->billingAddressId
+     * @param BillingAddress1 $billingAddress   Initialization value for $this->billingAddress
+     * @param array           $metadata         Initialization value for $this->metadata
+     * @param string          $label            Initialization value for $this->label
      */
     public function __construct()
     {

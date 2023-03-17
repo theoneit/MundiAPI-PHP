@@ -54,9 +54,9 @@ class CreateShippingRequest implements JsonSerializable
     public $addressId;
 
     /**
-     * Address data
+     * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\CreateAddressRequest $address public property
+     * @var \MundiAPILib\Models\Address1 $address public property
      */
     public $address;
 
@@ -85,15 +85,15 @@ class CreateShippingRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param integer               $amount                Initialization value for $this->amount
-     * @param string                $description           Initialization value for $this->description
-     * @param string                $recipientName         Initialization value for $this->recipientName
-     * @param string                $recipientPhone        Initialization value for $this->recipientPhone
-     * @param string                $addressId             Initialization value for $this->addressId
-     * @param CreateAddressRequest  $address               Initialization value for $this->address
-     * @param \DateTime             $maxDeliveryDate       Initialization value for $this->maxDeliveryDate
-     * @param \DateTime             $estimatedDeliveryDate Initialization value for $this->estimatedDeliveryDate
-     * @param string                $type                  Initialization value for $this->type
+     * @param integer   $amount                Initialization value for $this->amount
+     * @param string    $description           Initialization value for $this->description
+     * @param string    $recipientName         Initialization value for $this->recipientName
+     * @param string    $recipientPhone        Initialization value for $this->recipientPhone
+     * @param string    $addressId             Initialization value for $this->addressId
+     * @param Address1  $address               Initialization value for $this->address
+     * @param \DateTime $maxDeliveryDate       Initialization value for $this->maxDeliveryDate
+     * @param \DateTime $estimatedDeliveryDate Initialization value for $this->estimatedDeliveryDate
+     * @param string    $type                  Initialization value for $this->type
      */
     public function __construct()
     {

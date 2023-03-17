@@ -22,10 +22,10 @@ class CreatePlanItemRequest implements JsonSerializable
     public $name;
 
     /**
-     * Item's pricing scheme
+     * @todo Write general description for this property
      * @required
      * @maps pricing_scheme
-     * @var \MundiAPILib\Models\CreatePricingSchemeRequest $pricingScheme public property
+     * @var \MundiAPILib\Models\PricingScheme4 $pricingScheme public property
      */
     public $pricingScheme;
 
@@ -57,12 +57,12 @@ class CreatePlanItemRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                     $name          Initialization value for $this->name
-     * @param CreatePricingSchemeRequest $pricingScheme Initialization value for $this->pricingScheme
-     * @param string                     $id            Initialization value for $this->id
-     * @param string                     $description   Initialization value for $this->description
-     * @param integer                    $cycles        Initialization value for $this->cycles
-     * @param integer                    $quantity      Initialization value for $this->quantity
+     * @param string         $name          Initialization value for $this->name
+     * @param PricingScheme4 $pricingScheme Initialization value for $this->pricingScheme
+     * @param string         $id            Initialization value for $this->id
+     * @param string         $description   Initialization value for $this->description
+     * @param integer        $cycles        Initialization value for $this->cycles
+     * @param integer        $quantity      Initialization value for $this->quantity
      */
     public function __construct()
     {

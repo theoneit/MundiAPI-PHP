@@ -31,17 +31,17 @@ class GetUsagesDetailsResponse implements JsonSerializable
     public $totalAmount;
 
     /**
-     * Period Details
+     * @todo Write general description for this property
      * @maps Period
-     * @var \MundiAPILib\Models\GetPeriodResponse|null $period public property
+     * @var \MundiAPILib\Models\Period|null $period public property
      */
     public $period;
 
     /**
-     * Usages Details
+     * @todo Write general description for this property
      * @required
      * @maps Usages
-     * @var \MundiAPILib\Models\ListUsagesDetailsResponse $usages public property
+     * @var \MundiAPILib\Models\Usages $usages public property
      */
     public $usages;
 
@@ -61,12 +61,12 @@ class GetUsagesDetailsResponse implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                    $subscriptionId Initialization value for $this->subscriptionId
-     * @param integer                   $totalAmount    Initialization value for $this->totalAmount
-     * @param GetPeriodResponse         $period         Initialization value for $this->period
-     * @param ListUsagesDetailsResponse $usages         Initialization value for $this->usages
-     * @param integer                   $totalDiscount  Initialization value for $this->totalDiscount
-     * @param integer                   $totalIncrement Initialization value for $this->totalIncrement
+     * @param string  $subscriptionId Initialization value for $this->subscriptionId
+     * @param integer $totalAmount    Initialization value for $this->totalAmount
+     * @param Period  $period         Initialization value for $this->period
+     * @param Usages  $usages         Initialization value for $this->usages
+     * @param integer $totalDiscount  Initialization value for $this->totalDiscount
+     * @param integer $totalIncrement Initialization value for $this->totalIncrement
      */
     public function __construct()
     {

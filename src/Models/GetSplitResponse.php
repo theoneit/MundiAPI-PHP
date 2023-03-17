@@ -29,8 +29,8 @@ class GetSplitResponse implements JsonSerializable
     public $amount;
 
     /**
-     * Recipient
-     * @var \MundiAPILib\Models\GetRecipientResponse|null $recipient public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Recipient|null $recipient public property
      */
     public $recipient;
 
@@ -59,7 +59,7 @@ class GetSplitResponse implements JsonSerializable
      * Constructor to set initial or default values of member properties
      * @param string                  $type      Initialization value for $this->type
      * @param integer                 $amount    Initialization value for $this->amount
-     * @param GetRecipientResponse    $recipient Initialization value for $this->recipient
+     * @param Recipient               $recipient Initialization value for $this->recipient
      * @param string                  $gatewayId Initialization value for $this->gatewayId
      * @param GetSplitOptionsResponse $options   Initialization value for $this->options
      * @param string                  $id        Initialization value for $this->id

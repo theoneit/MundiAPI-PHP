@@ -55,10 +55,10 @@ class GetTransferResponse implements JsonSerializable
     public $updatedAt;
 
     /**
-     * Bank account
+     * @todo Write general description for this property
      * @required
      * @maps bank_account
-     * @var \MundiAPILib\Models\GetBankAccountResponse $bankAccount public property
+     * @var \MundiAPILib\Models\BankAccount $bankAccount public property
      */
     public $bankAccount;
 
@@ -71,13 +71,13 @@ class GetTransferResponse implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                  $id          Initialization value for $this->id
-     * @param integer                 $amount      Initialization value for $this->amount
-     * @param string                  $status      Initialization value for $this->status
-     * @param \DateTime               $createdAt   Initialization value for $this->createdAt
-     * @param \DateTime               $updatedAt   Initialization value for $this->updatedAt
-     * @param GetBankAccountResponse  $bankAccount Initialization value for $this->bankAccount
-     * @param array                   $metadata    Initialization value for $this->metadata
+     * @param string       $id          Initialization value for $this->id
+     * @param integer      $amount      Initialization value for $this->amount
+     * @param string       $status      Initialization value for $this->status
+     * @param \DateTime    $createdAt   Initialization value for $this->createdAt
+     * @param \DateTime    $updatedAt   Initialization value for $this->updatedAt
+     * @param BankAccount  $bankAccount Initialization value for $this->bankAccount
+     * @param array        $metadata    Initialization value for $this->metadata
      */
     public function __construct()
     {

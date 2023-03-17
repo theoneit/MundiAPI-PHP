@@ -15,23 +15,23 @@ use JsonSerializable;
 class GetAnticipationLimitsResponse implements JsonSerializable
 {
     /**
-     * Max limit
+     * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\GetAnticipationLimitResponse $max public property
+     * @var \MundiAPILib\Models\Max $max public property
      */
     public $max;
 
     /**
-     * Min limit
+     * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\GetAnticipationLimitResponse $min public property
+     * @var \MundiAPILib\Models\Min $min public property
      */
     public $min;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param GetAnticipationLimitResponse $max Initialization value for $this->max
-     * @param GetAnticipationLimitResponse $min Initialization value for $this->min
+     * @param Max $max Initialization value for $this->max
+     * @param Min $min Initialization value for $this->min
      */
     public function __construct()
     {

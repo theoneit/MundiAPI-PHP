@@ -58,7 +58,7 @@ class GetPlanItemResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps pricing_scheme
-     * @var \MundiAPILib\Models\GetPricingSchemeResponse $pricingScheme public property
+     * @var \MundiAPILib\Models\PricingScheme $pricingScheme public property
      */
     public $pricingScheme;
 
@@ -72,7 +72,7 @@ class GetPlanItemResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\GetPlanResponse $plan public property
+     * @var \MundiAPILib\Models\Plan $plan public property
      */
     public $plan;
 
@@ -98,17 +98,17 @@ class GetPlanItemResponse implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                    $id            Initialization value for $this->id
-     * @param string                    $name          Initialization value for $this->name
-     * @param string                    $status        Initialization value for $this->status
-     * @param \DateTime                 $createdAt     Initialization value for $this->createdAt
-     * @param \DateTime                 $updatedAt     Initialization value for $this->updatedAt
-     * @param GetPricingSchemeResponse  $pricingScheme Initialization value for $this->pricingScheme
-     * @param string                    $description   Initialization value for $this->description
-     * @param GetPlanResponse           $plan          Initialization value for $this->plan
-     * @param integer                   $quantity      Initialization value for $this->quantity
-     * @param integer                   $cycles        Initialization value for $this->cycles
-     * @param \DateTime                 $deletedAt     Initialization value for $this->deletedAt
+     * @param string         $id            Initialization value for $this->id
+     * @param string         $name          Initialization value for $this->name
+     * @param string         $status        Initialization value for $this->status
+     * @param \DateTime      $createdAt     Initialization value for $this->createdAt
+     * @param \DateTime      $updatedAt     Initialization value for $this->updatedAt
+     * @param PricingScheme  $pricingScheme Initialization value for $this->pricingScheme
+     * @param string         $description   Initialization value for $this->description
+     * @param Plan           $plan          Initialization value for $this->plan
+     * @param integer        $quantity      Initialization value for $this->quantity
+     * @param integer        $cycles        Initialization value for $this->cycles
+     * @param \DateTime      $deletedAt     Initialization value for $this->deletedAt
      */
     public function __construct()
     {

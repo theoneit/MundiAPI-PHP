@@ -29,10 +29,10 @@ class UpdateSubscriptionItemRequest implements JsonSerializable
     public $status;
 
     /**
-     * Pricing scheme
+     * @todo Write general description for this property
      * @required
      * @maps pricing_scheme
-     * @var \MundiAPILib\Models\UpdatePricingSchemeRequest $pricingScheme public property
+     * @var \MundiAPILib\Models\PricingScheme3 $pricingScheme public property
      */
     public $pricingScheme;
 
@@ -64,13 +64,13 @@ class UpdateSubscriptionItemRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                     $description   Initialization value for $this->description
-     * @param string                     $status        Initialization value for $this->status
-     * @param UpdatePricingSchemeRequest $pricingScheme Initialization value for $this->pricingScheme
-     * @param string                     $name          Initialization value for $this->name
-     * @param integer                    $cycles        Initialization value for $this->cycles
-     * @param integer                    $quantity      Initialization value for $this->quantity
-     * @param integer                    $minimumPrice  Initialization value for $this->minimumPrice
+     * @param string         $description   Initialization value for $this->description
+     * @param string         $status        Initialization value for $this->status
+     * @param PricingScheme3 $pricingScheme Initialization value for $this->pricingScheme
+     * @param string         $name          Initialization value for $this->name
+     * @param integer        $cycles        Initialization value for $this->cycles
+     * @param integer        $quantity      Initialization value for $this->quantity
+     * @param integer        $minimumPrice  Initialization value for $this->minimumPrice
      */
     public function __construct()
     {

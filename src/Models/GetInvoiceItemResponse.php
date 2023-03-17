@@ -32,7 +32,7 @@ class GetInvoiceItemResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps pricing_scheme
-     * @var \MundiAPILib\Models\GetPricingSchemeResponse $pricingScheme public property
+     * @var \MundiAPILib\Models\PricingScheme $pricingScheme public property
      */
     public $pricingScheme;
 
@@ -40,7 +40,7 @@ class GetInvoiceItemResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps price_bracket
-     * @var \MundiAPILib\Models\GetPriceBracketResponse $priceBracket public property
+     * @var \MundiAPILib\Models\PriceBracket $priceBracket public property
      */
     public $priceBracket;
 
@@ -66,13 +66,13 @@ class GetInvoiceItemResponse implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param integer                  $amount             Initialization value for $this->amount
-     * @param string                   $description        Initialization value for $this->description
-     * @param GetPricingSchemeResponse $pricingScheme      Initialization value for $this->pricingScheme
-     * @param GetPriceBracketResponse  $priceBracket       Initialization value for $this->priceBracket
-     * @param integer                  $quantity           Initialization value for $this->quantity
-     * @param string                   $name               Initialization value for $this->name
-     * @param string                   $subscriptionItemId Initialization value for $this->subscriptionItemId
+     * @param integer       $amount             Initialization value for $this->amount
+     * @param string        $description        Initialization value for $this->description
+     * @param PricingScheme $pricingScheme      Initialization value for $this->pricingScheme
+     * @param PriceBracket  $priceBracket       Initialization value for $this->priceBracket
+     * @param integer       $quantity           Initialization value for $this->quantity
+     * @param string        $name               Initialization value for $this->name
+     * @param string        $subscriptionItemId Initialization value for $this->subscriptionItemId
      */
     public function __construct()
     {

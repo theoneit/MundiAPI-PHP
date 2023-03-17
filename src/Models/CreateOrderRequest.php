@@ -22,9 +22,9 @@ class CreateOrderRequest implements JsonSerializable
     public $items;
 
     /**
-     * Customer
+     * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\CreateCustomerRequest $customer public property
+     * @var \MundiAPILib\Models\Customer8 $customer public property
      */
     public $customer;
 
@@ -51,8 +51,8 @@ class CreateOrderRequest implements JsonSerializable
     public $customerId;
 
     /**
-     * Shipping data
-     * @var \MundiAPILib\Models\CreateShippingRequest|null $shipping public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Shipping3|null $shipping public property
      */
     public $shipping;
 
@@ -84,14 +84,14 @@ class CreateOrderRequest implements JsonSerializable
     public $sessionId;
 
     /**
-     * Request's location
-     * @var \MundiAPILib\Models\CreateLocationRequest|null $location public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Location|null $location public property
      */
     public $location;
 
     /**
-     * Device's informations
-     * @var \MundiAPILib\Models\CreateDeviceRequest|null $device public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Device1|null $device public property
      */
     public $device;
 
@@ -115,55 +115,49 @@ class CreateOrderRequest implements JsonSerializable
     public $antifraud;
 
     /**
-     * SubMerchant
-     * @var \MundiAPILib\Models\CreateSubMerchantRequest|null $submerchant public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Submerchant|null $submerchant public property
      */
     public $submerchant;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param array                    $items            Initialization value for $this->items
-     * @param CreateCustomerRequest    $customer         Initialization value for $this->customer
-     * @param array                    $payments         Initialization value for $this->payments
-     * @param string                   $code             Initialization value for $this->code
-     * @param string                   $customerId       Initialization value for $this->customerId
-     * @param CreateShippingRequest    $shipping         Initialization value for $this->shipping
-     * @param array                    $metadata         Initialization value for $this->metadata
-     * @param bool                     $antifraudEnabled Initialization value for $this->antifraudEnabled
-     * @param string                   $ip               Initialization value for $this->ip
-     * @param string                   $sessionId        Initialization value for $this->sessionId
-     * @param CreateLocationRequest    $location         Initialization value for $this->location
-     * @param CreateDeviceRequest      $device           Initialization value for $this->device
-     * @param bool                     $closed           Initialization value for $this->closed
-     * @param string                   $currency         Initialization value for $this->currency
-     * @param CreateAntifraudRequest   $antifraud        Initialization value for $this->antifraud
-     * @param CreateSubMerchantRequest $submerchant      Initialization value for $this->submerchant
+     * @param array                  $items            Initialization value for $this->items
+     * @param Customer8              $customer         Initialization value for $this->customer
+     * @param array                  $payments         Initialization value for $this->payments
+     * @param string                 $code             Initialization value for $this->code
+     * @param string                 $customerId       Initialization value for $this->customerId
+     * @param Shipping3              $shipping         Initialization value for $this->shipping
+     * @param array                  $metadata         Initialization value for $this->metadata
+     * @param bool                   $antifraudEnabled Initialization value for $this->antifraudEnabled
+     * @param string                 $ip               Initialization value for $this->ip
+     * @param string                 $sessionId        Initialization value for $this->sessionId
+     * @param Location               $location         Initialization value for $this->location
+     * @param Device1                $device           Initialization value for $this->device
+     * @param bool                   $closed           Initialization value for $this->closed
+     * @param string                 $currency         Initialization value for $this->currency
+     * @param CreateAntifraudRequest $antifraud        Initialization value for $this->antifraud
+     * @param Submerchant            $submerchant      Initialization value for $this->submerchant
      */
     public function __construct()
     {
-        switch (func_num_args()) {
-            case 16:
-                $this->items            = func_get_arg(0);
-                $this->customer         = func_get_arg(1);
-                $this->payments         = func_get_arg(2);
-                $this->code             = func_get_arg(3);
-                $this->customerId       = func_get_arg(4);
-                $this->shipping         = func_get_arg(5);
-                $this->metadata         = func_get_arg(6);
-                $this->antifraudEnabled = func_get_arg(7);
-                $this->ip               = func_get_arg(8);
-                $this->sessionId        = func_get_arg(9);
-                $this->location         = func_get_arg(10);
-                $this->device           = func_get_arg(11);
-                $this->closed           = func_get_arg(12);
-                $this->currency         = func_get_arg(13);
-                $this->antifraud        = func_get_arg(14);
-                $this->submerchant      = func_get_arg(15);
-                break;
-
-            default:
-                $this->closed = true;
-                break;
+        if (16 == func_num_args()) {
+            $this->items            = func_get_arg(0);
+            $this->customer         = func_get_arg(1);
+            $this->payments         = func_get_arg(2);
+            $this->code             = func_get_arg(3);
+            $this->customerId       = func_get_arg(4);
+            $this->shipping         = func_get_arg(5);
+            $this->metadata         = func_get_arg(6);
+            $this->antifraudEnabled = func_get_arg(7);
+            $this->ip               = func_get_arg(8);
+            $this->sessionId        = func_get_arg(9);
+            $this->location         = func_get_arg(10);
+            $this->device           = func_get_arg(11);
+            $this->closed           = func_get_arg(12);
+            $this->currency         = func_get_arg(13);
+            $this->antifraud        = func_get_arg(14);
+            $this->submerchant      = func_get_arg(15);
         }
     }
 

@@ -22,17 +22,17 @@ class CreatePaymentAuthenticationRequest implements JsonSerializable
     public $type;
 
     /**
-     * The 3D-S authentication object
+     * @todo Write general description for this property
      * @required
      * @maps threed_secure
-     * @var \MundiAPILib\Models\CreateThreeDSecureRequest $threedSecure public property
+     * @var \MundiAPILib\Models\ThreedSecure1 $threedSecure public property
      */
     public $threedSecure;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                    $type         Initialization value for $this->type
-     * @param CreateThreeDSecureRequest $threedSecure Initialization value for $this->threedSecure
+     * @param string        $type         Initialization value for $this->type
+     * @param ThreedSecure1 $threedSecure Initialization value for $this->threedSecure
      */
     public function __construct()
     {

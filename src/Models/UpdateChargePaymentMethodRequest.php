@@ -31,47 +31,47 @@ class UpdateChargePaymentMethodRequest implements JsonSerializable
     public $paymentMethod;
 
     /**
-     * Credit card data
+     * @todo Write general description for this property
      * @required
      * @maps credit_card
-     * @var \MundiAPILib\Models\CreateCreditCardPaymentRequest $creditCard public property
+     * @var \MundiAPILib\Models\CreditCard1 $creditCard public property
      */
     public $creditCard;
 
     /**
-     * Debit card data
+     * @todo Write general description for this property
      * @required
      * @maps debit_card
-     * @var \MundiAPILib\Models\CreateDebitCardPaymentRequest $debitCard public property
+     * @var \MundiAPILib\Models\DebitCard1 $debitCard public property
      */
     public $debitCard;
 
     /**
-     * Boleto data
+     * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\CreateBoletoPaymentRequest $boleto public property
+     * @var \MundiAPILib\Models\Boleto1 $boleto public property
      */
     public $boleto;
 
     /**
-     * Voucher data
+     * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\CreateVoucherPaymentRequest $voucher public property
+     * @var \MundiAPILib\Models\Voucher $voucher public property
      */
     public $voucher;
 
     /**
-     * Cash data
+     * @todo Write general description for this property
      * @required
      * @var \MundiAPILib\Models\CreateCashPaymentRequest $cash public property
      */
     public $cash;
 
     /**
-     * Bank Transfer data
+     * @todo Write general description for this property
      * @required
      * @maps bank_transfer
-     * @var \MundiAPILib\Models\CreateBankTransferPaymentRequest $bankTransfer public property
+     * @var \MundiAPILib\Models\BankTransfer1 $bankTransfer public property
      */
     public $bankTransfer;
 
@@ -79,21 +79,21 @@ class UpdateChargePaymentMethodRequest implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps private_label
-     * @var \MundiAPILib\Models\CreatePrivateLabelPaymentRequest $privateLabel public property
+     * @var \MundiAPILib\Models\PrivateLabel $privateLabel public property
      */
     public $privateLabel;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param bool                             $updateSubscription Initialization value for $this->updateSubscription
-     * @param string                           $paymentMethod      Initialization value for $this->paymentMethod
-     * @param CreateCreditCardPaymentRequest   $creditCard         Initialization value for $this->creditCard
-     * @param CreateDebitCardPaymentRequest    $debitCard          Initialization value for $this->debitCard
-     * @param CreateBoletoPaymentRequest       $boleto             Initialization value for $this->boleto
-     * @param CreateVoucherPaymentRequest      $voucher            Initialization value for $this->voucher
-     * @param CreateCashPaymentRequest         $cash               Initialization value for $this->cash
-     * @param CreateBankTransferPaymentRequest $bankTransfer       Initialization value for $this->bankTransfer
-     * @param CreatePrivateLabelPaymentRequest $privateLabel       Initialization value for $this->privateLabel
+     * @param bool                     $updateSubscription Initialization value for $this->updateSubscription
+     * @param string                   $paymentMethod      Initialization value for $this->paymentMethod
+     * @param CreditCard1              $creditCard         Initialization value for $this->creditCard
+     * @param DebitCard1               $debitCard          Initialization value for $this->debitCard
+     * @param Boleto1                  $boleto             Initialization value for $this->boleto
+     * @param Voucher                  $voucher            Initialization value for $this->voucher
+     * @param CreateCashPaymentRequest $cash               Initialization value for $this->cash
+     * @param BankTransfer1            $bankTransfer       Initialization value for $this->bankTransfer
+     * @param PrivateLabel             $privateLabel       Initialization value for $this->privateLabel
      */
     public function __construct()
     {

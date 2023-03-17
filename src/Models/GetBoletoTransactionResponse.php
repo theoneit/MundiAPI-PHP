@@ -66,7 +66,7 @@ class GetBoletoTransactionResponse extends GetTransactionResponse implements Jso
      * @todo Write general description for this property
      * @required
      * @maps billing_address
-     * @var \MundiAPILib\Models\GetBillingAddressResponse $billingAddress public property
+     * @var \MundiAPILib\Models\BillingAddress $billingAddress public property
      */
     public $billingAddress;
 
@@ -141,22 +141,22 @@ class GetBoletoTransactionResponse extends GetTransactionResponse implements Jso
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                     $url            Initialization value for $this->url
-     * @param string                     $barcode        Initialization value for $this->barcode
-     * @param string                     $nossoNumero    Initialization value for $this->nossoNumero
-     * @param string                     $bank           Initialization value for $this->bank
-     * @param string                     $documentNumber Initialization value for $this->documentNumber
-     * @param string                     $instructions   Initialization value for $this->instructions
-     * @param GetBillingAddressResponse  $billingAddress Initialization value for $this->billingAddress
-     * @param \DateTime                  $dueAt          Initialization value for $this->dueAt
-     * @param string                     $qrCode         Initialization value for $this->qrCode
-     * @param string                     $line           Initialization value for $this->line
-     * @param string                     $pdfPassword    Initialization value for $this->pdfPassword
-     * @param string                     $pdf            Initialization value for $this->pdf
-     * @param \DateTime                  $paidAt         Initialization value for $this->paidAt
-     * @param string                     $paidAmount     Initialization value for $this->paidAmount
-     * @param string                     $type           Initialization value for $this->type
-     * @param \DateTime                  $creditAt       Initialization value for $this->creditAt
+     * @param string          $url            Initialization value for $this->url
+     * @param string          $barcode        Initialization value for $this->barcode
+     * @param string          $nossoNumero    Initialization value for $this->nossoNumero
+     * @param string          $bank           Initialization value for $this->bank
+     * @param string          $documentNumber Initialization value for $this->documentNumber
+     * @param string          $instructions   Initialization value for $this->instructions
+     * @param BillingAddress  $billingAddress Initialization value for $this->billingAddress
+     * @param \DateTime       $dueAt          Initialization value for $this->dueAt
+     * @param string          $qrCode         Initialization value for $this->qrCode
+     * @param string          $line           Initialization value for $this->line
+     * @param string          $pdfPassword    Initialization value for $this->pdfPassword
+     * @param string          $pdf            Initialization value for $this->pdf
+     * @param \DateTime       $paidAt         Initialization value for $this->paidAt
+     * @param string          $paidAmount     Initialization value for $this->paidAmount
+     * @param string          $type           Initialization value for $this->type
+     * @param \DateTime       $creditAt       Initialization value for $this->creditAt
      */
     public function __construct()
     {

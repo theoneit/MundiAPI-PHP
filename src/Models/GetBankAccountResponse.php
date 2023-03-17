@@ -119,8 +119,8 @@ class GetBankAccountResponse implements JsonSerializable
     public $deletedAt;
 
     /**
-     * Recipient
-     * @var \MundiAPILib\Models\GetRecipientResponse|null $recipient public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Recipient|null $recipient public property
      */
     public $recipient;
 
@@ -141,22 +141,22 @@ class GetBankAccountResponse implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                $id                Initialization value for $this->id
-     * @param string                $holderName        Initialization value for $this->holderName
-     * @param string                $holderType        Initialization value for $this->holderType
-     * @param string                $bank              Initialization value for $this->bank
-     * @param string                $branchNumber      Initialization value for $this->branchNumber
-     * @param string                $branchCheckDigit  Initialization value for $this->branchCheckDigit
-     * @param string                $accountNumber     Initialization value for $this->accountNumber
-     * @param string                $accountCheckDigit Initialization value for $this->accountCheckDigit
-     * @param string                $type              Initialization value for $this->type
-     * @param string                $status            Initialization value for $this->status
-     * @param \DateTime             $createdAt         Initialization value for $this->createdAt
-     * @param \DateTime             $updatedAt         Initialization value for $this->updatedAt
-     * @param \DateTime             $deletedAt         Initialization value for $this->deletedAt
-     * @param GetRecipientResponse  $recipient         Initialization value for $this->recipient
-     * @param array                 $metadata          Initialization value for $this->metadata
-     * @param string                $pixKey            Initialization value for $this->pixKey
+     * @param string     $id                Initialization value for $this->id
+     * @param string     $holderName        Initialization value for $this->holderName
+     * @param string     $holderType        Initialization value for $this->holderType
+     * @param string     $bank              Initialization value for $this->bank
+     * @param string     $branchNumber      Initialization value for $this->branchNumber
+     * @param string     $branchCheckDigit  Initialization value for $this->branchCheckDigit
+     * @param string     $accountNumber     Initialization value for $this->accountNumber
+     * @param string     $accountCheckDigit Initialization value for $this->accountCheckDigit
+     * @param string     $type              Initialization value for $this->type
+     * @param string     $status            Initialization value for $this->status
+     * @param \DateTime  $createdAt         Initialization value for $this->createdAt
+     * @param \DateTime  $updatedAt         Initialization value for $this->updatedAt
+     * @param \DateTime  $deletedAt         Initialization value for $this->deletedAt
+     * @param Recipient  $recipient         Initialization value for $this->recipient
+     * @param array      $metadata          Initialization value for $this->metadata
+     * @param string     $pixKey            Initialization value for $this->pixKey
      */
     public function __construct()
     {

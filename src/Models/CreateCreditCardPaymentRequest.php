@@ -28,8 +28,8 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
     public $statementDescriptor;
 
     /**
-     * Credit card data
-     * @var \MundiAPILib\Models\CreateCardRequest|null $card public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Card1|null $card public property
      */
     public $card;
 
@@ -81,14 +81,14 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
     public $merchantCategoryCode;
 
     /**
-     * The payment authentication request
-     * @var \MundiAPILib\Models\CreatePaymentAuthenticationRequest|null $authentication public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Authentication2|null $authentication public property
      */
     public $authentication;
 
     /**
-     * The Credit card payment contactless request
-     * @var \MundiAPILib\Models\CreateCardPaymentContactlessRequest|null $contactless public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Contactless|null $contactless public property
      */
     public $contactless;
 
@@ -115,27 +115,21 @@ class CreateCreditCardPaymentRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param integer                             $installments         Initialization value for $this->installments
-     * @param string                              $statementDescriptor  Initialization value for $this-
-     *                                                                    >statementDescriptor
-     * @param CreateCardRequest                   $card                 Initialization value for $this->card
-     * @param string                              $cardId               Initialization value for $this->cardId
-     * @param string                              $cardToken            Initialization value for $this->cardToken
-     * @param bool                                $recurrence           Initialization value for $this->recurrence
-     * @param bool                                $capture              Initialization value for $this->capture
-     * @param bool                                $extendedLimitEnabled Initialization value for $this-
-     *                                                                    >extendedLimitEnabled
-     * @param string                              $extendedLimitCode    Initialization value for $this-
-     *                                                                    >extendedLimitCode
-     * @param integer                             $merchantCategoryCode Initialization value for $this-
-     *                                                                    >merchantCategoryCode
-     * @param CreatePaymentAuthenticationRequest  $authentication       Initialization value for $this-
-     *                                                                    >authentication
-     * @param CreateCardPaymentContactlessRequest $contactless          Initialization value for $this->contactless
-     * @param bool                                $autoRecovery         Initialization value for $this->autoRecovery
-     * @param string                              $operationType        Initialization value for $this->operationType
-     * @param string                              $recurrencyCycle      Initialization value for $this-
-     *                                                                    >recurrencyCycle
+     * @param integer         $installments         Initialization value for $this->installments
+     * @param string          $statementDescriptor  Initialization value for $this->statementDescriptor
+     * @param Card1           $card                 Initialization value for $this->card
+     * @param string          $cardId               Initialization value for $this->cardId
+     * @param string          $cardToken            Initialization value for $this->cardToken
+     * @param bool            $recurrence           Initialization value for $this->recurrence
+     * @param bool            $capture              Initialization value for $this->capture
+     * @param bool            $extendedLimitEnabled Initialization value for $this->extendedLimitEnabled
+     * @param string          $extendedLimitCode    Initialization value for $this->extendedLimitCode
+     * @param integer         $merchantCategoryCode Initialization value for $this->merchantCategoryCode
+     * @param Authentication2 $authentication       Initialization value for $this->authentication
+     * @param Contactless     $contactless          Initialization value for $this->contactless
+     * @param bool            $autoRecovery         Initialization value for $this->autoRecovery
+     * @param string          $operationType        Initialization value for $this->operationType
+     * @param string          $recurrencyCycle      Initialization value for $this->recurrencyCycle
      */
     public function __construct()
     {

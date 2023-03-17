@@ -30,8 +30,8 @@ class GetBalanceResponse implements JsonSerializable
     public $availableAmount;
 
     /**
-     * Recipient
-     * @var \MundiAPILib\Models\GetRecipientResponse|null $recipient public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Recipient|null $recipient public property
      */
     public $recipient;
 
@@ -53,11 +53,11 @@ class GetBalanceResponse implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string               $currency           Initialization value for $this->currency
-     * @param integer              $availableAmount    Initialization value for $this->availableAmount
-     * @param GetRecipientResponse $recipient          Initialization value for $this->recipient
-     * @param integer              $waitingFundsAmount Initialization value for $this->waitingFundsAmount
-     * @param integer              $transferredAmount  Initialization value for $this->transferredAmount
+     * @param string    $currency           Initialization value for $this->currency
+     * @param integer   $availableAmount    Initialization value for $this->availableAmount
+     * @param Recipient $recipient          Initialization value for $this->recipient
+     * @param integer   $waitingFundsAmount Initialization value for $this->waitingFundsAmount
+     * @param integer   $transferredAmount  Initialization value for $this->transferredAmount
      */
     public function __construct()
     {

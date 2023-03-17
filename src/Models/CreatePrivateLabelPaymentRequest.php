@@ -28,8 +28,8 @@ class CreatePrivateLabelPaymentRequest implements JsonSerializable
     public $statementDescriptor;
 
     /**
-     * Card data
-     * @var \MundiAPILib\Models\CreateCardRequest|null $card public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Card1|null $card public property
      */
     public $card;
 
@@ -82,16 +82,16 @@ class CreatePrivateLabelPaymentRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param integer           $installments         Initialization value for $this->installments
-     * @param string            $statementDescriptor  Initialization value for $this->statementDescriptor
-     * @param CreateCardRequest $card                 Initialization value for $this->card
-     * @param string            $cardId               Initialization value for $this->cardId
-     * @param string            $cardToken            Initialization value for $this->cardToken
-     * @param bool              $recurrence           Initialization value for $this->recurrence
-     * @param bool              $capture              Initialization value for $this->capture
-     * @param bool              $extendedLimitEnabled Initialization value for $this->extendedLimitEnabled
-     * @param string            $extendedLimitCode    Initialization value for $this->extendedLimitCode
-     * @param string            $recurrencyCycle      Initialization value for $this->recurrencyCycle
+     * @param integer $installments         Initialization value for $this->installments
+     * @param string  $statementDescriptor  Initialization value for $this->statementDescriptor
+     * @param Card1   $card                 Initialization value for $this->card
+     * @param string  $cardId               Initialization value for $this->cardId
+     * @param string  $cardToken            Initialization value for $this->cardToken
+     * @param bool    $recurrence           Initialization value for $this->recurrence
+     * @param bool    $capture              Initialization value for $this->capture
+     * @param bool    $extendedLimitEnabled Initialization value for $this->extendedLimitEnabled
+     * @param string  $extendedLimitCode    Initialization value for $this->extendedLimitCode
+     * @param string  $recurrencyCycle      Initialization value for $this->recurrencyCycle
      */
     public function __construct()
     {

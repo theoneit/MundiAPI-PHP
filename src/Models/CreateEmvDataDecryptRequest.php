@@ -22,7 +22,7 @@ class CreateEmvDataDecryptRequest implements JsonSerializable
     public $cipher;
 
     /**
-     * Dukpt data request
+     * @todo Write general description for this property
      * @var \MundiAPILib\Models\CreateEmvDataDukptDecryptRequest|null $dukpt public property
      */
     public $dukpt;

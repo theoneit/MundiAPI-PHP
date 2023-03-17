@@ -15,10 +15,10 @@ use JsonSerializable;
 class UpdateRecipientBankAccountRequest implements JsonSerializable
 {
     /**
-     * Bank account
+     * @todo Write general description for this property
      * @required
      * @maps bank_account
-     * @var \MundiAPILib\Models\CreateBankAccountRequest $bankAccount public property
+     * @var \MundiAPILib\Models\BankAccount1 $bankAccount public property
      */
     public $bankAccount;
 
@@ -32,20 +32,14 @@ class UpdateRecipientBankAccountRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param CreateBankAccountRequest $bankAccount Initialization value for $this->bankAccount
-     * @param string                   $paymentMode Initialization value for $this->paymentMode
+     * @param BankAccount1 $bankAccount Initialization value for $this->bankAccount
+     * @param string       $paymentMode Initialization value for $this->paymentMode
      */
     public function __construct()
     {
-        switch (func_num_args()) {
-            case 2:
-                $this->bankAccount = func_get_arg(0);
-                $this->paymentMode = func_get_arg(1);
-                break;
-
-            default:
-                $this->paymentMode = 'bank_transfer';
-                break;
+        if (2 == func_num_args()) {
+            $this->bankAccount = func_get_arg(0);
+            $this->paymentMode = func_get_arg(1);
         }
     }
 

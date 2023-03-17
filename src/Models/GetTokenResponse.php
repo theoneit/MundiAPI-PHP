@@ -49,17 +49,17 @@ class GetTokenResponse implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\GetCardTokenResponse $card public property
+     * @var \MundiAPILib\Models\Card9 $card public property
      */
     public $card;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                $id        Initialization value for $this->id
-     * @param string                $type      Initialization value for $this->type
-     * @param \DateTime             $createdAt Initialization value for $this->createdAt
-     * @param string                $expiresAt Initialization value for $this->expiresAt
-     * @param GetCardTokenResponse  $card      Initialization value for $this->card
+     * @param string    $id        Initialization value for $this->id
+     * @param string    $type      Initialization value for $this->type
+     * @param \DateTime $createdAt Initialization value for $this->createdAt
+     * @param string    $expiresAt Initialization value for $this->expiresAt
+     * @param Card9     $card      Initialization value for $this->card
      */
     public function __construct()
     {

@@ -23,17 +23,16 @@ class GetCheckoutDebitCardPaymentResponse implements JsonSerializable
     public $statementDescriptor;
 
     /**
-     * Payment Authentication response object data
+     * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\GetPaymentAuthenticationResponse $authentication public property
+     * @var \MundiAPILib\Models\Authentication $authentication public property
      */
     public $authentication;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                           $statementDescriptor Initialization value for $this-
-     *                                                                >statementDescriptor
-     * @param GetPaymentAuthenticationResponse $authentication      Initialization value for $this->authentication
+     * @param string         $statementDescriptor Initialization value for $this->statementDescriptor
+     * @param Authentication $authentication      Initialization value for $this->authentication
      */
     public function __construct()
     {

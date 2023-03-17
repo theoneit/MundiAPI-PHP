@@ -31,9 +31,9 @@ class UpdateChargeCardRequest implements JsonSerializable
     public $cardId;
 
     /**
-     * Card data
+     * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\CreateCardRequest $card public property
+     * @var \MundiAPILib\Models\Card1 $card public property
      */
     public $card;
 
@@ -46,10 +46,10 @@ class UpdateChargeCardRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param bool              $updateSubscription Initialization value for $this->updateSubscription
-     * @param string            $cardId             Initialization value for $this->cardId
-     * @param CreateCardRequest $card               Initialization value for $this->card
-     * @param bool              $recurrence         Initialization value for $this->recurrence
+     * @param bool   $updateSubscription Initialization value for $this->updateSubscription
+     * @param string $cardId             Initialization value for $this->cardId
+     * @param Card1  $card               Initialization value for $this->card
+     * @param bool   $recurrence         Initialization value for $this->recurrence
      */
     public function __construct()
     {

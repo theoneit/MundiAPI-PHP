@@ -70,7 +70,7 @@ class GetUsageResponse implements JsonSerializable
     public $deletedAt;
 
     /**
-     * Subscription item
+     * @todo Write general description for this property
      * @required
      * @maps subscription_item
      * @var \MundiAPILib\Models\GetSubscriptionItemResponse $subscriptionItem public property

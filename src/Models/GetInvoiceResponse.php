@@ -76,14 +76,14 @@ class GetInvoiceResponse implements JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var \MundiAPILib\Models\GetCustomerResponse|null $customer public property
+     * @var \MundiAPILib\Models\Customer|null $customer public property
      */
     public $customer;
 
     /**
      * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\GetChargeResponse $charge public property
+     * @var \MundiAPILib\Models\Charge $charge public property
      */
     public $charge;
 
@@ -98,7 +98,7 @@ class GetInvoiceResponse implements JsonSerializable
      * @todo Write general description for this property
      * @required
      * @maps billing_address
-     * @var \MundiAPILib\Models\GetBillingAddressResponse $billingAddress public property
+     * @var \MundiAPILib\Models\BillingAddress $billingAddress public property
      */
     public $billingAddress;
 
@@ -111,14 +111,14 @@ class GetInvoiceResponse implements JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var \MundiAPILib\Models\GetPeriodResponse|null $cycle public property
+     * @var \MundiAPILib\Models\Cycle|null $cycle public property
      */
     public $cycle;
 
     /**
      * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\GetShippingResponse $shipping public property
+     * @var \MundiAPILib\Models\Shipping $shipping public property
      */
     public $shipping;
 
@@ -185,29 +185,29 @@ class GetInvoiceResponse implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                     $id             Initialization value for $this->id
-     * @param string                     $code           Initialization value for $this->code
-     * @param string                     $url            Initialization value for $this->url
-     * @param integer                    $amount         Initialization value for $this->amount
-     * @param string                     $status         Initialization value for $this->status
-     * @param string                     $paymentMethod  Initialization value for $this->paymentMethod
-     * @param \DateTime                  $createdAt      Initialization value for $this->createdAt
-     * @param array                      $items          Initialization value for $this->items
-     * @param GetCustomerResponse        $customer       Initialization value for $this->customer
-     * @param GetChargeResponse          $charge         Initialization value for $this->charge
-     * @param integer                    $installments   Initialization value for $this->installments
-     * @param GetBillingAddressResponse  $billingAddress Initialization value for $this->billingAddress
-     * @param GetSubscriptionResponse    $subscription   Initialization value for $this->subscription
-     * @param GetPeriodResponse          $cycle          Initialization value for $this->cycle
-     * @param GetShippingResponse        $shipping       Initialization value for $this->shipping
-     * @param array                      $metadata       Initialization value for $this->metadata
-     * @param \DateTime                  $dueAt          Initialization value for $this->dueAt
-     * @param \DateTime                  $canceledAt     Initialization value for $this->canceledAt
-     * @param \DateTime                  $billingAt      Initialization value for $this->billingAt
-     * @param \DateTime                  $seenAt         Initialization value for $this->seenAt
-     * @param integer                    $totalDiscount  Initialization value for $this->totalDiscount
-     * @param integer                    $totalIncrement Initialization value for $this->totalIncrement
-     * @param string                     $subscriptionId Initialization value for $this->subscriptionId
+     * @param string                   $id             Initialization value for $this->id
+     * @param string                   $code           Initialization value for $this->code
+     * @param string                   $url            Initialization value for $this->url
+     * @param integer                  $amount         Initialization value for $this->amount
+     * @param string                   $status         Initialization value for $this->status
+     * @param string                   $paymentMethod  Initialization value for $this->paymentMethod
+     * @param \DateTime                $createdAt      Initialization value for $this->createdAt
+     * @param array                    $items          Initialization value for $this->items
+     * @param Customer                 $customer       Initialization value for $this->customer
+     * @param Charge                   $charge         Initialization value for $this->charge
+     * @param integer                  $installments   Initialization value for $this->installments
+     * @param BillingAddress           $billingAddress Initialization value for $this->billingAddress
+     * @param GetSubscriptionResponse  $subscription   Initialization value for $this->subscription
+     * @param Cycle                    $cycle          Initialization value for $this->cycle
+     * @param Shipping                 $shipping       Initialization value for $this->shipping
+     * @param array                    $metadata       Initialization value for $this->metadata
+     * @param \DateTime                $dueAt          Initialization value for $this->dueAt
+     * @param \DateTime                $canceledAt     Initialization value for $this->canceledAt
+     * @param \DateTime                $billingAt      Initialization value for $this->billingAt
+     * @param \DateTime                $seenAt         Initialization value for $this->seenAt
+     * @param integer                  $totalDiscount  Initialization value for $this->totalDiscount
+     * @param integer                  $totalIncrement Initialization value for $this->totalIncrement
+     * @param string                   $subscriptionId Initialization value for $this->subscriptionId
      */
     public function __construct()
     {

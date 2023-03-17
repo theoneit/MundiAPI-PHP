@@ -44,15 +44,15 @@ class CustomersController extends BaseController
     /**
      * Creates a access token for a customer
      *
-     * @param string                          $customerId      Customer Id
-     * @param Models\CreateAccessTokenRequest $request         Request for creating a access token
-     * @param string                          $idempotencyKey  (optional) TODO: type description here
+     * @param string                              $customerId      Customer Id
+     * @param Models\CustomersAccessTokensRequest $body            Request for creating a access token
+     * @param string                              $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createAccessToken(
         $customerId,
-        $request,
+        $body,
         $idempotencyKey = null
     ) {
 
@@ -71,12 +71,12 @@ class CustomersController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8',
+            'Content-Type'    => 'application/json',
             'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
-        $_bodyJson = Request\Body::Json($request);
+        $_bodyJson = Request\Body::Json($body);
 
         //set HTTP basic auth parameters
         Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
@@ -98,69 +98,29 @@ class CustomersController extends BaseController
             $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetAccessTokenResponse');
-    }
-
-    /**
-     * Updates a customer
-     *
-     * @param string                       $customerId      Customer id
-     * @param Models\UpdateCustomerRequest $request         Request for updating a customer
-     * @param string                       $idempotencyKey  (optional) TODO: type description here
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function updateCustomer(
-        $customerId,
-        $request,
-        $idempotencyKey = null
-    ) {
-
-        //prepare query string for API call
-        $_queryBuilder = '/customers/{customer_id}';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'customer_id'     => $customerId,
-            ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8',
-            'idempotency-key' => $idempotencyKey
-        );
-
-        //json encode body
-        $_bodyJson = Request\Body::Json($request);
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::PUT, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
         }
 
-        //and invoke the API call request to fetch the response
-        $response = Request::put($_queryUrl, $_headers, $_bodyJson);
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
 
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
 
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
         }
 
         //handle errors defined at the API level
@@ -168,556 +128,7 @@ class CustomersController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetCustomerResponse');
-    }
-
-    /**
-     * Delete a Customer's access tokens
-     *
-     * @param string $customerId  Customer Id
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function deleteAccessTokens(
-        $customerId
-    ) {
-
-        //prepare query string for API call
-        $_queryBuilder = '/customers/{customer_id}/access-tokens/';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'customer_id' => $customerId,
-            ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json'
-        );
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::get($_queryUrl, $_headers);
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListAccessTokensResponse');
-    }
-
-    /**
-     * Get a customer
-     *
-     * @param string $customerId  Customer Id
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function getCustomer(
-        $customerId
-    ) {
-
-        //prepare query string for API call
-        $_queryBuilder = '/customers/{customer_id}';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'customer_id' => $customerId,
-            ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json'
-        );
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::get($_queryUrl, $_headers);
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetCustomerResponse');
-    }
-
-    /**
-     * Gets all adressess from a customer
-     *
-     * @param string  $customerId  Customer id
-     * @param integer $page        (optional) Page number
-     * @param integer $size        (optional) Page size
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function getAddresses(
-        $customerId,
-        $page = null,
-        $size = null
-    ) {
-
-        //prepare query string for API call
-        $_queryBuilder = '/customers/{customer_id}/addresses';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'customer_id' => $customerId,
-            ));
-
-        //process optional query parameters
-        APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
-            'page'        => $page,
-            'size'        => $size,
-        ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json'
-        );
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::get($_queryUrl, $_headers);
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListAddressesResponse');
-    }
-
-    /**
-     * Get a Customer's access token
-     *
-     * @param string $customerId  Customer Id
-     * @param string $tokenId     Token Id
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function getAccessToken(
-        $customerId,
-        $tokenId
-    ) {
-
-        //prepare query string for API call
-        $_queryBuilder = '/customers/{customer_id}/access-tokens/{token_id}';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'customer_id' => $customerId,
-            'token_id'    => $tokenId,
-            ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json'
-        );
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::get($_queryUrl, $_headers);
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetAccessTokenResponse');
-    }
-
-    /**
-     * Get a customer's address
-     *
-     * @param string $customerId  Customer id
-     * @param string $addressId   Address Id
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function getAddress(
-        $customerId,
-        $addressId
-    ) {
-
-        //prepare query string for API call
-        $_queryBuilder = '/customers/{customer_id}/addresses/{address_id}';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'customer_id' => $customerId,
-            'address_id'  => $addressId,
-            ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json'
-        );
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::get($_queryUrl, $_headers);
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetAddressResponse');
-    }
-
-    /**
-     * Creates a new card for a customer
-     *
-     * @param string                   $customerId      Customer id
-     * @param Models\CreateCardRequest $request         Request for creating a card
-     * @param string                   $idempotencyKey  (optional) TODO: type description here
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function createCard(
-        $customerId,
-        $request,
-        $idempotencyKey = null
-    ) {
-
-        //prepare query string for API call
-        $_queryBuilder = '/customers/{customer_id}/cards';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'customer_id'     => $customerId,
-            ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8',
-            'idempotency-key' => $idempotencyKey
-        );
-
-        //json encode body
-        $_bodyJson = Request\Body::Json($request);
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::post($_queryUrl, $_headers, $_bodyJson);
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetCardResponse');
-    }
-
-    /**
-     * Renew a card
-     *
-     * @param string $customerId      Customer id
-     * @param string $cardId          Card Id
-     * @param string $idempotencyKey  (optional) TODO: type description here
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function renewCard(
-        $customerId,
-        $cardId,
-        $idempotencyKey = null
-    ) {
-
-        //prepare query string for API call
-        $_queryBuilder = '/customers/{customer_id}/cards/{card_id}/renew';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'customer_id'     => $customerId,
-            'card_id'         => $cardId,
-            ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json',
-            'idempotency-key' => $idempotencyKey
-        );
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::post($_queryUrl, $_headers);
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetCardResponse');
-    }
-
-    /**
-     * Creates a new customer
-     *
-     * @param Models\CreateCustomerRequest $request         Request for creating a customer
-     * @param string                       $idempotencyKey  (optional) TODO: type description here
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function createCustomer(
-        $request,
-        $idempotencyKey = null
-    ) {
-
-        //prepare query string for API call
-        $_queryBuilder = '/customers';
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8',
-            'idempotency-key' => $idempotencyKey
-        );
-
-        //json encode body
-        $_bodyJson = Request\Body::Json($request);
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::post($_queryUrl, $_headers, $_bodyJson);
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetCustomerResponse');
-    }
-
-    /**
-     * Updates an address
-     *
-     * @param string                      $customerId      Customer Id
-     * @param string                      $addressId       Address Id
-     * @param Models\UpdateAddressRequest $request         Request for updating an address
-     * @param string                      $idempotencyKey  (optional) TODO: type description here
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function updateAddress(
-        $customerId,
-        $addressId,
-        $request,
-        $idempotencyKey = null
-    ) {
-
-        //prepare query string for API call
-        $_queryBuilder = '/customers/{customer_id}/addresses/{address_id}';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'customer_id'     => $customerId,
-            'address_id'      => $addressId,
-            ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8',
-            'idempotency-key' => $idempotencyKey
-        );
-
-        //json encode body
-        $_bodyJson = Request\Body::Json($request);
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::PUT, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::put($_queryUrl, $_headers, $_bodyJson);
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetAddressResponse');
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\CustomersAccessTokensResponse');
     }
 
     /**
@@ -778,31 +189,56 @@ class CustomersController extends BaseController
             $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
         //handle errors defined at the API level
         $this->validateResponse($_httpResponse, $_httpContext);
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListAccessTokensResponse');
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\CustomersAccessTokensResponse1');
     }
 
     /**
-     * Updates the metadata a customer
+     * Updates a customer
      *
-     * @param string                       $customerId      The customer id
-     * @param Models\UpdateMetadataRequest $request         Request for updating the customer metadata
-     * @param string                       $idempotencyKey  (optional) TODO: type description here
+     * @param string                  $customerId      Customer id
+     * @param Models\CustomersRequest $body            Request for updating a customer
+     * @param string                  $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function updateCustomerMetadata(
+    public function updateCustomer(
         $customerId,
-        $request,
+        $body,
         $idempotencyKey = null
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = '/Customers/{customer_id}/metadata';
+        $_queryBuilder = '/customers/{customer_id}';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -816,142 +252,12 @@ class CustomersController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8',
+            'Content-Type'    => 'application/json',
             'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
-        $_bodyJson = Request\Body::Json($request);
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::PATCH, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::patch($_queryUrl, $_headers, $_bodyJson);
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetCustomerResponse');
-    }
-
-    /**
-     * Delete a Customer's address
-     *
-     * @param string $customerId      Customer Id
-     * @param string $addressId       Address Id
-     * @param string $idempotencyKey  (optional) TODO: type description here
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function deleteAddress(
-        $customerId,
-        $addressId,
-        $idempotencyKey = null
-    ) {
-
-        //prepare query string for API call
-        $_queryBuilder = '/customers/{customer_id}/addresses/{address_id}';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'customer_id'     => $customerId,
-            'address_id'      => $addressId,
-            ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json',
-            'idempotency-key' => $idempotencyKey
-        );
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::delete($_queryUrl, $_headers);
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetAddressResponse');
-    }
-
-    /**
-     * Updates a card
-     *
-     * @param string                   $customerId      Customer Id
-     * @param string                   $cardId          Card id
-     * @param Models\UpdateCardRequest $request         Request for updating a card
-     * @param string                   $idempotencyKey  (optional) TODO: type description here
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function updateCard(
-        $customerId,
-        $cardId,
-        $request,
-        $idempotencyKey = null
-    ) {
-
-        //prepare query string for API call
-        $_queryBuilder = '/customers/{customer_id}/cards/{card_id}';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'customer_id'     => $customerId,
-            'card_id'         => $cardId,
-            ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8',
-            'idempotency-key' => $idempotencyKey
-        );
-
-        //json encode body
-        $_bodyJson = Request\Body::Json($request);
+        $_bodyJson = Request\Body::Json($body);
 
         //set HTTP basic auth parameters
         Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
@@ -973,12 +279,464 @@ class CustomersController extends BaseController
             $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
         //handle errors defined at the API level
         $this->validateResponse($_httpResponse, $_httpContext);
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetCardResponse');
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\CustomersResponse');
+    }
+
+    /**
+     * Get a customer
+     *
+     * @param string $customerId  Customer Id
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function getCustomer(
+        $customerId
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/customers/{customer_id}';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'customer_id' => $customerId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::get($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\CustomersResponse');
+    }
+
+    /**
+     * Delete a Customer's access tokens
+     *
+     * @param string $customerId  Customer Id
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function deleteAccessTokens(
+        $customerId
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/customers/{customer_id}/access-tokens/';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'customer_id' => $customerId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::get($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\CustomersAccessTokensResponse1');
+    }
+
+    /**
+     * Gets all adressess from a customer
+     *
+     * @param string  $customerId  Customer id
+     * @param integer $page        (optional) Page number
+     * @param integer $size        (optional) Page size
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function getAddresses(
+        $customerId,
+        $page = null,
+        $size = null
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/customers/{customer_id}/addresses';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'customer_id' => $customerId,
+            ));
+
+        //process optional query parameters
+        APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
+            'page'        => $page,
+            'size'        => $size,
+        ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::get($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\CustomersAddressesResponse');
+    }
+
+    /**
+     * Creates a new address for a customer
+     *
+     * @param string                           $customerId      Customer Id
+     * @param Models\CustomersAddressesRequest $body            Request for creating an address
+     * @param string                           $idempotencyKey  (optional) TODO: type description here
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function createAddress(
+        $customerId,
+        $body,
+        $idempotencyKey = null
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/customers/{customer_id}/addresses';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'customer_id'     => $customerId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json',
+            'Content-Type'    => 'application/json',
+            'idempotency-key' => $idempotencyKey
+        );
+
+        //json encode body
+        $_bodyJson = Request\Body::Json($body);
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::post($_queryUrl, $_headers, $_bodyJson);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\CustomersAddressesResponse1');
+    }
+
+    /**
+     * Get a Customer's access token
+     *
+     * @param string $customerId  Customer Id
+     * @param string $tokenId     Token Id
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function getAccessToken(
+        $customerId,
+        $tokenId
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/customers/{customer_id}/access-tokens/{token_id}';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'customer_id' => $customerId,
+            'token_id'    => $tokenId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::get($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\CustomersAccessTokensResponse');
     }
 
     /**
@@ -1035,69 +793,29 @@ class CustomersController extends BaseController
             $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetAccessTokenResponse');
-    }
-
-    /**
-     * Creates a new address for a customer
-     *
-     * @param string                      $customerId      Customer Id
-     * @param Models\CreateAddressRequest $request         Request for creating an address
-     * @param string                      $idempotencyKey  (optional) TODO: type description here
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function createAddress(
-        $customerId,
-        $request,
-        $idempotencyKey = null
-    ) {
-
-        //prepare query string for API call
-        $_queryBuilder = '/customers/{customer_id}/addresses';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'customer_id'     => $customerId,
-            ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8',
-            'idempotency-key' => $idempotencyKey
-        );
-
-        //json encode body
-        $_bodyJson = Request\Body::Json($request);
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
         }
 
-        //and invoke the API call request to fetch the response
-        $response = Request::post($_queryUrl, $_headers, $_bodyJson);
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
 
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
 
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
         }
 
         //handle errors defined at the API level
@@ -1105,29 +823,29 @@ class CustomersController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetAddressResponse');
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\CustomersAccessTokensResponse');
     }
 
     /**
-     * Get a customer's card
+     * Get a customer's address
      *
      * @param string $customerId  Customer id
-     * @param string $cardId      Card id
+     * @param string $addressId   Address Id
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function getCard(
+    public function getAddress(
         $customerId,
-        $cardId
+        $addressId
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = '/customers/{customer_id}/cards/{card_id}';
+        $_queryBuilder = '/customers/{customer_id}/addresses/{address_id}';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'customer_id' => $customerId,
-            'card_id'     => $cardId,
+            'address_id'  => $addressId,
             ));
 
         //validate and preprocess url
@@ -1159,12 +877,307 @@ class CustomersController extends BaseController
             $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
         //handle errors defined at the API level
         $this->validateResponse($_httpResponse, $_httpContext);
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetCardResponse');
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\CustomersAddressesResponse1');
+    }
+
+    /**
+     * Updates an address
+     *
+     * @param string                            $customerId      Customer Id
+     * @param string                            $addressId       Address Id
+     * @param Models\CustomersAddressesRequest1 $body            Request for updating an address
+     * @param string                            $idempotencyKey  (optional) TODO: type description here
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function updateAddress(
+        $customerId,
+        $addressId,
+        $body,
+        $idempotencyKey = null
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/customers/{customer_id}/addresses/{address_id}';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'customer_id'     => $customerId,
+            'address_id'      => $addressId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json',
+            'Content-Type'    => 'application/json',
+            'idempotency-key' => $idempotencyKey
+        );
+
+        //json encode body
+        $_bodyJson = Request\Body::Json($body);
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::PUT, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::put($_queryUrl, $_headers, $_bodyJson);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\CustomersAddressesResponse1');
+    }
+
+    /**
+     * Delete a Customer's address
+     *
+     * @param string $customerId      Customer Id
+     * @param string $addressId       Address Id
+     * @param string $idempotencyKey  (optional) TODO: type description here
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function deleteAddress(
+        $customerId,
+        $addressId,
+        $idempotencyKey = null
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/customers/{customer_id}/addresses/{address_id}';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'customer_id'     => $customerId,
+            'address_id'      => $addressId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json',
+            'idempotency-key' => $idempotencyKey
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::delete($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\CustomersAddressesResponse1');
+    }
+
+    /**
+     * Creates a new card for a customer
+     *
+     * @param string                       $customerId      Customer id
+     * @param Models\CustomersCardsRequest $body            Request for creating a card
+     * @param string                       $idempotencyKey  (optional) TODO: type description here
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function createCard(
+        $customerId,
+        $body,
+        $idempotencyKey = null
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/customers/{customer_id}/cards';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'customer_id'     => $customerId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json',
+            'Content-Type'    => 'application/json',
+            'idempotency-key' => $idempotencyKey
+        );
+
+        //json encode body
+        $_bodyJson = Request\Body::Json($body);
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::post($_queryUrl, $_headers, $_bodyJson);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\CustomersCardsResponse');
     }
 
     /**
@@ -1225,31 +1238,56 @@ class CustomersController extends BaseController
             $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
         //handle errors defined at the API level
         $this->validateResponse($_httpResponse, $_httpContext);
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListCardsResponse');
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\CustomersCardsResponse1');
     }
 
     /**
-     * Delete a customer's card
+     * Renew a card
      *
-     * @param string $customerId      Customer Id
+     * @param string $customerId      Customer id
      * @param string $cardId          Card Id
      * @param string $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function deleteCard(
+    public function renewCard(
         $customerId,
         $cardId,
         $idempotencyKey = null
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = '/customers/{customer_id}/cards/{card_id}';
+        $_queryBuilder = '/customers/{customer_id}/cards/{card_id}/renew';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
@@ -1271,13 +1309,13 @@ class CustomersController extends BaseController
         Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
 
         //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);
+        $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
         if ($this->getHttpCallBack() != null) {
             $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
-        $response = Request::delete($_queryUrl, $_headers);
+        $response = Request::post($_queryUrl, $_headers);
 
         $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
         $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
@@ -1287,12 +1325,120 @@ class CustomersController extends BaseController
             $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
         //handle errors defined at the API level
         $this->validateResponse($_httpResponse, $_httpContext);
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetCardResponse');
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\CustomersCardsRenewResponse');
+    }
+
+    /**
+     * Creates a new customer
+     *
+     * @param Models\CustomersRequest1 $body            Request for creating a customer
+     * @param string                   $idempotencyKey  (optional) TODO: type description here
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function createCustomer(
+        $body,
+        $idempotencyKey = null
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/customers';
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json',
+            'Content-Type'    => 'application/json',
+            'idempotency-key' => $idempotencyKey
+        );
+
+        //json encode body
+        $_bodyJson = Request\Body::Json($body);
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::post($_queryUrl, $_headers, $_bodyJson);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\CustomersResponse');
     }
 
     /**
@@ -1358,11 +1504,390 @@ class CustomersController extends BaseController
             $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
         //handle errors defined at the API level
         $this->validateResponse($_httpResponse, $_httpContext);
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListCustomersResponse');
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\CustomersResponse3');
+    }
+
+    /**
+     * Updates the metadata a customer
+     *
+     * @param string                          $customerId      The customer id
+     * @param Models\CustomersMetadataRequest $body            Request for updating the customer metadata
+     * @param string                          $idempotencyKey  (optional) TODO: type description here
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function updateCustomerMetadata(
+        $customerId,
+        $body,
+        $idempotencyKey = null
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/Customers/{customer_id}/metadata';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'customer_id'     => $customerId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json',
+            'Content-Type'    => 'application/json',
+            'idempotency-key' => $idempotencyKey
+        );
+
+        //json encode body
+        $_bodyJson = Request\Body::Json($body);
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::PATCH, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::patch($_queryUrl, $_headers, $_bodyJson);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\CustomersMetadataResponse');
+    }
+
+    /**
+     * Updates a card
+     *
+     * @param string                        $customerId      Customer Id
+     * @param string                        $cardId          Card id
+     * @param Models\CustomersCardsRequest1 $body            Request for updating a card
+     * @param string                        $idempotencyKey  (optional) TODO: type description here
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function updateCard(
+        $customerId,
+        $cardId,
+        $body,
+        $idempotencyKey = null
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/customers/{customer_id}/cards/{card_id}';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'customer_id'     => $customerId,
+            'card_id'         => $cardId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json',
+            'Content-Type'    => 'application/json',
+            'idempotency-key' => $idempotencyKey
+        );
+
+        //json encode body
+        $_bodyJson = Request\Body::Json($body);
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::PUT, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::put($_queryUrl, $_headers, $_bodyJson);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\CustomersCardsResponse');
+    }
+
+    /**
+     * Delete a customer's card
+     *
+     * @param string $customerId      Customer Id
+     * @param string $cardId          Card Id
+     * @param string $idempotencyKey  (optional) TODO: type description here
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function deleteCard(
+        $customerId,
+        $cardId,
+        $idempotencyKey = null
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/customers/{customer_id}/cards/{card_id}';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'customer_id'     => $customerId,
+            'card_id'         => $cardId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json',
+            'idempotency-key' => $idempotencyKey
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::delete($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\CustomersCardsResponse');
+    }
+
+    /**
+     * Get a customer's card
+     *
+     * @param string $customerId  Customer id
+     * @param string $cardId      Card id
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function getCard(
+        $customerId,
+        $cardId
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/customers/{customer_id}/cards/{card_id}';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'customer_id' => $customerId,
+            'card_id'     => $cardId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::get($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\CustomersCardsResponse');
     }
 }

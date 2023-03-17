@@ -37,8 +37,8 @@ class CancelSplitRequest implements JsonSerializable
     public $recipientId;
 
     /**
-     * The split options request
-     * @var \MundiAPILib\Models\CreateSplitOptionsRequest|null $options public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Options2|null $options public property
      */
     public $options;
 
@@ -51,11 +51,11 @@ class CancelSplitRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                    $type        Initialization value for $this->type
-     * @param integer                   $amount      Initialization value for $this->amount
-     * @param string                    $recipientId Initialization value for $this->recipientId
-     * @param CreateSplitOptionsRequest $options     Initialization value for $this->options
-     * @param string                    $splitRuleId Initialization value for $this->splitRuleId
+     * @param string   $type        Initialization value for $this->type
+     * @param integer  $amount      Initialization value for $this->amount
+     * @param string   $recipientId Initialization value for $this->recipientId
+     * @param Options2 $options     Initialization value for $this->options
+     * @param string   $splitRuleId Initialization value for $this->splitRuleId
      */
     public function __construct()
     {

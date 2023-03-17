@@ -38,16 +38,16 @@ class CreateChargeRequest implements JsonSerializable
     public $customerId;
 
     /**
-     * Customer data
+     * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\CreateCustomerRequest $customer public property
+     * @var \MundiAPILib\Models\Customer8 $customer public property
      */
     public $customer;
 
     /**
-     * Payment data
+     * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\CreatePaymentRequest $payment public property
+     * @var \MundiAPILib\Models\Payment $payment public property
      */
     public $payment;
 
@@ -86,8 +86,8 @@ class CreateChargeRequest implements JsonSerializable
      * @param string                  $code       Initialization value for $this->code
      * @param integer                 $amount     Initialization value for $this->amount
      * @param string                  $customerId Initialization value for $this->customerId
-     * @param CreateCustomerRequest   $customer   Initialization value for $this->customer
-     * @param CreatePaymentRequest    $payment    Initialization value for $this->payment
+     * @param Customer8               $customer   Initialization value for $this->customer
+     * @param Payment                 $payment    Initialization value for $this->payment
      * @param array                   $metadata   Initialization value for $this->metadata
      * @param \DateTime               $dueAt      Initialization value for $this->dueAt
      * @param CreateAntifraudRequest  $antifraud  Initialization value for $this->antifraud

@@ -42,7 +42,7 @@ class TransactionsController extends BaseController
     }
 
     /**
-     * @todo Add general description for this endpoint
+     * GetTransaction
      *
      * @param string $transactionId  TODO: type description here
      * @return mixed response from the API call
@@ -87,6 +87,31 @@ class TransactionsController extends BaseController
         //call on-after Http callback
         if ($this->getHttpCallBack() != null) {
             $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
         }
 
         //handle errors defined at the API level

@@ -47,17 +47,17 @@ class GetAccessTokenResponse implements JsonSerializable
 
     /**
      * @todo Write general description for this property
-     * @var \MundiAPILib\Models\GetCustomerResponse|null $customer public property
+     * @var \MundiAPILib\Models\Customer|null $customer public property
      */
     public $customer;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string               $id        Initialization value for $this->id
-     * @param string               $code      Initialization value for $this->code
-     * @param string               $status    Initialization value for $this->status
-     * @param \DateTime            $createdAt Initialization value for $this->createdAt
-     * @param GetCustomerResponse  $customer  Initialization value for $this->customer
+     * @param string    $id        Initialization value for $this->id
+     * @param string    $code      Initialization value for $this->code
+     * @param string    $status    Initialization value for $this->status
+     * @param \DateTime $createdAt Initialization value for $this->createdAt
+     * @param Customer  $customer  Initialization value for $this->customer
      */
     public function __construct()
     {

@@ -36,9 +36,9 @@ class CreateVoucherPaymentRequest implements JsonSerializable
     public $cardToken;
 
     /**
-     * Card info
+     * @todo Write general description for this property
      * @maps Card
-     * @var \MundiAPILib\Models\CreateCardRequest|null $card public property
+     * @var \MundiAPILib\Models\Card1|null $card public property
      */
     public $card;
 
@@ -51,11 +51,11 @@ class CreateVoucherPaymentRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string            $statementDescriptor Initialization value for $this->statementDescriptor
-     * @param string            $cardId              Initialization value for $this->cardId
-     * @param string            $cardToken           Initialization value for $this->cardToken
-     * @param CreateCardRequest $card                Initialization value for $this->card
-     * @param string            $recurrencyCycle     Initialization value for $this->recurrencyCycle
+     * @param string $statementDescriptor Initialization value for $this->statementDescriptor
+     * @param string $cardId              Initialization value for $this->cardId
+     * @param string $cardToken           Initialization value for $this->cardToken
+     * @param Card1  $card                Initialization value for $this->card
+     * @param string $recurrencyCycle     Initialization value for $this->recurrencyCycle
      */
     public function __construct()
     {

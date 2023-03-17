@@ -53,10 +53,10 @@ class CreateCardRequest implements JsonSerializable
     public $cvv;
 
     /**
-     * Card's billing address
+     * @todo Write general description for this property
      * @required
      * @maps billing_address
-     * @var \MundiAPILib\Models\CreateAddressRequest $billingAddress public property
+     * @var \MundiAPILib\Models\BillingAddress1 $billingAddress public property
      */
     public $billingAddress;
 
@@ -90,9 +90,9 @@ class CreateCardRequest implements JsonSerializable
     public $type;
 
     /**
-     * Options for creating the card
+     * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\CreateCardOptionsRequest $options public property
+     * @var \MundiAPILib\Models\Options1 $options public property
      */
     public $options;
 
@@ -132,48 +132,42 @@ class CreateCardRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                   $number           Initialization value for $this->number
-     * @param string                   $holderName       Initialization value for $this->holderName
-     * @param integer                  $expMonth         Initialization value for $this->expMonth
-     * @param integer                  $expYear          Initialization value for $this->expYear
-     * @param string                   $cvv              Initialization value for $this->cvv
-     * @param CreateAddressRequest     $billingAddress   Initialization value for $this->billingAddress
-     * @param string                   $brand            Initialization value for $this->brand
-     * @param string                   $billingAddressId Initialization value for $this->billingAddressId
-     * @param array                    $metadata         Initialization value for $this->metadata
-     * @param string                   $type             Initialization value for $this->type
-     * @param CreateCardOptionsRequest $options          Initialization value for $this->options
-     * @param string                   $holderDocument   Initialization value for $this->holderDocument
-     * @param bool                     $privateLabel     Initialization value for $this->privateLabel
-     * @param string                   $label            Initialization value for $this->label
-     * @param string                   $id               Initialization value for $this->id
-     * @param string                   $token            Initialization value for $this->token
+     * @param string          $number           Initialization value for $this->number
+     * @param string          $holderName       Initialization value for $this->holderName
+     * @param integer         $expMonth         Initialization value for $this->expMonth
+     * @param integer         $expYear          Initialization value for $this->expYear
+     * @param string          $cvv              Initialization value for $this->cvv
+     * @param BillingAddress1 $billingAddress   Initialization value for $this->billingAddress
+     * @param string          $brand            Initialization value for $this->brand
+     * @param string          $billingAddressId Initialization value for $this->billingAddressId
+     * @param array           $metadata         Initialization value for $this->metadata
+     * @param string          $type             Initialization value for $this->type
+     * @param Options1        $options          Initialization value for $this->options
+     * @param string          $holderDocument   Initialization value for $this->holderDocument
+     * @param bool            $privateLabel     Initialization value for $this->privateLabel
+     * @param string          $label            Initialization value for $this->label
+     * @param string          $id               Initialization value for $this->id
+     * @param string          $token            Initialization value for $this->token
      */
     public function __construct()
     {
-        switch (func_num_args()) {
-            case 16:
-                $this->number           = func_get_arg(0);
-                $this->holderName       = func_get_arg(1);
-                $this->expMonth         = func_get_arg(2);
-                $this->expYear          = func_get_arg(3);
-                $this->cvv              = func_get_arg(4);
-                $this->billingAddress   = func_get_arg(5);
-                $this->brand            = func_get_arg(6);
-                $this->billingAddressId = func_get_arg(7);
-                $this->metadata         = func_get_arg(8);
-                $this->type             = func_get_arg(9);
-                $this->options          = func_get_arg(10);
-                $this->holderDocument   = func_get_arg(11);
-                $this->privateLabel     = func_get_arg(12);
-                $this->label            = func_get_arg(13);
-                $this->id               = func_get_arg(14);
-                $this->token            = func_get_arg(15);
-                break;
-
-            default:
-                $this->type = 'credit';
-                break;
+        if (16 == func_num_args()) {
+            $this->number           = func_get_arg(0);
+            $this->holderName       = func_get_arg(1);
+            $this->expMonth         = func_get_arg(2);
+            $this->expYear          = func_get_arg(3);
+            $this->cvv              = func_get_arg(4);
+            $this->billingAddress   = func_get_arg(5);
+            $this->brand            = func_get_arg(6);
+            $this->billingAddressId = func_get_arg(7);
+            $this->metadata         = func_get_arg(8);
+            $this->type             = func_get_arg(9);
+            $this->options          = func_get_arg(10);
+            $this->holderDocument   = func_get_arg(11);
+            $this->privateLabel     = func_get_arg(12);
+            $this->label            = func_get_arg(13);
+            $this->id               = func_get_arg(14);
+            $this->token            = func_get_arg(15);
         }
     }
 

@@ -29,9 +29,9 @@ class CreateGooglePayRequest implements JsonSerializable
     public $data;
 
     /**
-     * The GooglePay header request
+     * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\CreateGooglePayHeaderRequest $header public property
+     * @var \MundiAPILib\Models\Header1 $header public property
      */
     public $header;
 
@@ -52,11 +52,11 @@ class CreateGooglePayRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                       $version            Initialization value for $this->version
-     * @param string                       $data               Initialization value for $this->data
-     * @param CreateGooglePayHeaderRequest $header             Initialization value for $this->header
-     * @param string                       $signature          Initialization value for $this->signature
-     * @param string                       $merchantIdentifier Initialization value for $this->merchantIdentifier
+     * @param string  $version            Initialization value for $this->version
+     * @param string  $data               Initialization value for $this->data
+     * @param Header1 $header             Initialization value for $this->header
+     * @param string  $signature          Initialization value for $this->signature
+     * @param string  $merchantIdentifier Initialization value for $this->merchantIdentifier
      */
     public function __construct()
     {

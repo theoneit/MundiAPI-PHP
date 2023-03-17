@@ -100,14 +100,14 @@ class GetTransfer implements JsonSerializable
     /**
      * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\GetTransferSourceResponse $source public property
+     * @var \MundiAPILib\Models\GetWithdrawSourceResponse $source public property
      */
     public $source;
 
     /**
      * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\GetTransferTargetResponse $target public property
+     * @var \MundiAPILib\Models\GetWithdrawTargetResponse $target public property
      */
     public $target;
 
@@ -124,8 +124,8 @@ class GetTransfer implements JsonSerializable
      * @param \DateTime                  $fundingDate          Initialization value for $this->fundingDate
      * @param \DateTime                  $fundingEstimatedDate Initialization value for $this->fundingEstimatedDate
      * @param string                     $type                 Initialization value for $this->type
-     * @param GetTransferSourceResponse  $source               Initialization value for $this->source
-     * @param GetTransferTargetResponse  $target               Initialization value for $this->target
+     * @param GetWithdrawSourceResponse  $source               Initialization value for $this->source
+     * @param GetWithdrawTargetResponse  $target               Initialization value for $this->target
      */
     public function __construct()
     {

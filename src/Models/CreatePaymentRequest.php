@@ -23,22 +23,22 @@ class CreatePaymentRequest implements JsonSerializable
     public $paymentMethod;
 
     /**
-     * Settings for credit card payment
+     * @todo Write general description for this property
      * @maps credit_card
-     * @var \MundiAPILib\Models\CreateCreditCardPaymentRequest|null $creditCard public property
+     * @var \MundiAPILib\Models\CreditCard1|null $creditCard public property
      */
     public $creditCard;
 
     /**
-     * Settings for debit card payment
+     * @todo Write general description for this property
      * @maps debit_card
-     * @var \MundiAPILib\Models\CreateDebitCardPaymentRequest|null $debitCard public property
+     * @var \MundiAPILib\Models\DebitCard1|null $debitCard public property
      */
     public $debitCard;
 
     /**
-     * Settings for boleto payment
-     * @var \MundiAPILib\Models\CreateBoletoPaymentRequest|null $boleto public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Boleto1|null $boleto public property
      */
     public $boleto;
 
@@ -49,8 +49,8 @@ class CreatePaymentRequest implements JsonSerializable
     public $currency;
 
     /**
-     * Settings for voucher payment
-     * @var \MundiAPILib\Models\CreateVoucherPaymentRequest|null $voucher public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Voucher|null $voucher public property
      */
     public $voucher;
 
@@ -61,9 +61,9 @@ class CreatePaymentRequest implements JsonSerializable
     public $split;
 
     /**
-     * Settings for bank transfer payment
+     * @todo Write general description for this property
      * @maps bank_transfer
-     * @var \MundiAPILib\Models\CreateBankTransferPaymentRequest|null $bankTransfer public property
+     * @var \MundiAPILib\Models\BankTransfer1|null $bankTransfer public property
      */
     public $bankTransfer;
 
@@ -81,8 +81,8 @@ class CreatePaymentRequest implements JsonSerializable
     public $amount;
 
     /**
-     * Settings for checkout payment
-     * @var \MundiAPILib\Models\CreateCheckoutPaymentRequest|null $checkout public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Checkout|null $checkout public property
      */
     public $checkout;
 
@@ -94,8 +94,8 @@ class CreatePaymentRequest implements JsonSerializable
     public $customerId;
 
     /**
-     * Customer
-     * @var \MundiAPILib\Models\CreateCustomerRequest|null $customer public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Customer8|null $customer public property
      */
     public $customer;
 
@@ -106,45 +106,44 @@ class CreatePaymentRequest implements JsonSerializable
     public $metadata;
 
     /**
-     * Settings for cash payment
+     * @todo Write general description for this property
      * @var \MundiAPILib\Models\CreateCashPaymentRequest|null $cash public property
      */
     public $cash;
 
     /**
-     * Settings for private label payment
+     * @todo Write general description for this property
      * @required
      * @maps private_label
-     * @var \MundiAPILib\Models\CreatePrivateLabelPaymentRequest $privateLabel public property
+     * @var \MundiAPILib\Models\PrivateLabel $privateLabel public property
      */
     public $privateLabel;
 
     /**
-     * Settings for pix payment
-     * @var \MundiAPILib\Models\CreatePixPaymentRequest|null $pix public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Pix|null $pix public property
      */
     public $pix;
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                           $paymentMethod        Initialization value for $this->paymentMethod
-     * @param CreateCreditCardPaymentRequest   $creditCard           Initialization value for $this->creditCard
-     * @param CreateDebitCardPaymentRequest    $debitCard            Initialization value for $this->debitCard
-     * @param CreateBoletoPaymentRequest       $boleto               Initialization value for $this->boleto
-     * @param string                           $currency             Initialization value for $this->currency
-     * @param CreateVoucherPaymentRequest      $voucher              Initialization value for $this->voucher
-     * @param array                            $split                Initialization value for $this->split
-     * @param CreateBankTransferPaymentRequest $bankTransfer         Initialization value for $this->bankTransfer
-     * @param string                           $gatewayAffiliationId Initialization value for $this-
-     *                                                                 >gatewayAffiliationId
-     * @param integer                          $amount               Initialization value for $this->amount
-     * @param CreateCheckoutPaymentRequest     $checkout             Initialization value for $this->checkout
-     * @param string                           $customerId           Initialization value for $this->customerId
-     * @param CreateCustomerRequest            $customer             Initialization value for $this->customer
-     * @param array                            $metadata             Initialization value for $this->metadata
-     * @param CreateCashPaymentRequest         $cash                 Initialization value for $this->cash
-     * @param CreatePrivateLabelPaymentRequest $privateLabel         Initialization value for $this->privateLabel
-     * @param CreatePixPaymentRequest          $pix                  Initialization value for $this->pix
+     * @param string                   $paymentMethod        Initialization value for $this->paymentMethod
+     * @param CreditCard1              $creditCard           Initialization value for $this->creditCard
+     * @param DebitCard1               $debitCard            Initialization value for $this->debitCard
+     * @param Boleto1                  $boleto               Initialization value for $this->boleto
+     * @param string                   $currency             Initialization value for $this->currency
+     * @param Voucher                  $voucher              Initialization value for $this->voucher
+     * @param array                    $split                Initialization value for $this->split
+     * @param BankTransfer1            $bankTransfer         Initialization value for $this->bankTransfer
+     * @param string                   $gatewayAffiliationId Initialization value for $this->gatewayAffiliationId
+     * @param integer                  $amount               Initialization value for $this->amount
+     * @param Checkout                 $checkout             Initialization value for $this->checkout
+     * @param string                   $customerId           Initialization value for $this->customerId
+     * @param Customer8                $customer             Initialization value for $this->customer
+     * @param array                    $metadata             Initialization value for $this->metadata
+     * @param CreateCashPaymentRequest $cash                 Initialization value for $this->cash
+     * @param PrivateLabel             $privateLabel         Initialization value for $this->privateLabel
+     * @param Pix                      $pix                  Initialization value for $this->pix
      */
     public function __construct()
     {

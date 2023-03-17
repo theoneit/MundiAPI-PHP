@@ -28,8 +28,8 @@ class CreateCheckoutCreditCardPaymentRequest implements JsonSerializable
     public $installments;
 
     /**
-     * Creates payment authentication
-     * @var \MundiAPILib\Models\CreatePaymentAuthenticationRequest|null $authentication public property
+     * @todo Write general description for this property
+     * @var \MundiAPILib\Models\Authentication2|null $authentication public property
      */
     public $authentication;
 
@@ -41,11 +41,10 @@ class CreateCheckoutCreditCardPaymentRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string                             $statementDescriptor Initialization value for $this-
-     *                                                                  >statementDescriptor
-     * @param array                              $installments        Initialization value for $this->installments
-     * @param CreatePaymentAuthenticationRequest $authentication      Initialization value for $this->authentication
-     * @param bool                               $capture             Initialization value for $this->capture
+     * @param string          $statementDescriptor Initialization value for $this->statementDescriptor
+     * @param array           $installments        Initialization value for $this->installments
+     * @param Authentication2 $authentication      Initialization value for $this->authentication
+     * @param bool            $capture             Initialization value for $this->capture
      */
     public function __construct()
     {

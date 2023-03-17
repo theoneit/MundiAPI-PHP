@@ -43,9 +43,9 @@ class CreateCustomerRequest implements JsonSerializable
     public $type;
 
     /**
-     * The customer's address
+     * @todo Write general description for this property
      * @required
-     * @var \MundiAPILib\Models\CreateAddressRequest $address public property
+     * @var \MundiAPILib\Models\Address1 $address public property
      */
     public $address;
 
@@ -85,16 +85,16 @@ class CreateCustomerRequest implements JsonSerializable
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param string               $name         Initialization value for $this->name
-     * @param string               $email        Initialization value for $this->email
-     * @param string               $document     Initialization value for $this->document
-     * @param string               $type         Initialization value for $this->type
-     * @param CreateAddressRequest $address      Initialization value for $this->address
-     * @param array                $metadata     Initialization value for $this->metadata
-     * @param CreatePhonesRequest  $phones       Initialization value for $this->phones
-     * @param string               $code         Initialization value for $this->code
-     * @param string               $gender       Initialization value for $this->gender
-     * @param string               $documentType Initialization value for $this->documentType
+     * @param string              $name         Initialization value for $this->name
+     * @param string              $email        Initialization value for $this->email
+     * @param string              $document     Initialization value for $this->document
+     * @param string              $type         Initialization value for $this->type
+     * @param Address1            $address      Initialization value for $this->address
+     * @param array               $metadata     Initialization value for $this->metadata
+     * @param CreatePhonesRequest $phones       Initialization value for $this->phones
+     * @param string              $code         Initialization value for $this->code
+     * @param string              $gender       Initialization value for $this->gender
+     * @param string              $documentType Initialization value for $this->documentType
      */
     public function __construct()
     {

@@ -22,21 +22,21 @@ class CreateCardPaymentContactlessRequest implements JsonSerializable
     public $type;
 
     /**
-     * The ApplePay encrypted request
+     * @todo Write general description for this property
      * @maps apple_pay
-     * @var \MundiAPILib\Models\CreateApplePayRequest|null $applePay public property
+     * @var \MundiAPILib\Models\ApplePay|null $applePay public property
      */
     public $applePay;
 
     /**
-     * The GooglePay encrypted request
+     * @todo Write general description for this property
      * @maps google_pay
-     * @var \MundiAPILib\Models\CreateGooglePayRequest|null $googlePay public property
+     * @var \MundiAPILib\Models\GooglePay|null $googlePay public property
      */
     public $googlePay;
 
     /**
-     * The Emv encrypted request
+     * @todo Write general description for this property
      * @var \MundiAPILib\Models\CreateEmvDecryptRequest|null $emv public property
      */
     public $emv;
@@ -44,8 +44,8 @@ class CreateCardPaymentContactlessRequest implements JsonSerializable
     /**
      * Constructor to set initial or default values of member properties
      * @param string                  $type      Initialization value for $this->type
-     * @param CreateApplePayRequest   $applePay  Initialization value for $this->applePay
-     * @param CreateGooglePayRequest  $googlePay Initialization value for $this->googlePay
+     * @param ApplePay                $applePay  Initialization value for $this->applePay
+     * @param GooglePay               $googlePay Initialization value for $this->googlePay
      * @param CreateEmvDecryptRequest $emv       Initialization value for $this->emv
      */
     public function __construct()

@@ -45,18 +45,18 @@ class InvoicesController extends BaseController
     /**
      * Create an Invoice
      *
-     * @param string                      $subscriptionId  Subscription Id
-     * @param string                      $cycleId         Cycle Id
-     * @param Models\CreateInvoiceRequest $request         (optional) TODO: type description here
-     * @param string                      $idempotencyKey  (optional) TODO: type description here
+     * @param string                               $subscriptionId  Subscription Id
+     * @param string                               $cycleId         Cycle Id
+     * @param string                               $idempotencyKey  (optional) TODO: type description here
+     * @param Models\SubscriptionsCyclesPayRequest $body            (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createInvoice(
         $subscriptionId,
         $cycleId,
-        $request = null,
-        $idempotencyKey = null
+        $idempotencyKey = null,
+        $body = null
     ) {
 
         //prepare query string for API call
@@ -75,12 +75,12 @@ class InvoicesController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8',
+            'Content-Type'    => 'application/json',
             'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
-        $_bodyJson = Request\Body::Json($request);
+        $_bodyJson = Request\Body::Json($body);
 
         //set HTTP basic auth parameters
         Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
@@ -102,16 +102,41 @@ class InvoicesController extends BaseController
             $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
         //handle errors defined at the API level
         $this->validateResponse($_httpResponse, $_httpContext);
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetInvoiceResponse');
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\SubscriptionsCyclesPayResponse');
     }
 
     /**
-     * @todo Add general description for this endpoint
+     * GetPartialInvoice
      *
      * @param string $subscriptionId  Subscription Id
      * @return mixed response from the API call
@@ -158,26 +183,51 @@ class InvoicesController extends BaseController
             $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
         //handle errors defined at the API level
         $this->validateResponse($_httpResponse, $_httpContext);
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetInvoiceResponse');
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\SubscriptionsPartialInvoiceResponse');
     }
 
     /**
      * Updates the status from an invoice
      *
-     * @param string                            $invoiceId       Invoice Id
-     * @param Models\UpdateInvoiceStatusRequest $request         Request for updating an invoice's status
-     * @param string                            $idempotencyKey  (optional) TODO: type description here
+     * @param string                                 $invoiceId       Invoice Id
+     * @param Models\UpdateCurrentCycleStatusRequest $body            Request for updating an invoice's status
+     * @param string                                 $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function updateInvoiceStatus(
         $invoiceId,
-        $request,
+        $body,
         $idempotencyKey = null
     ) {
 
@@ -196,12 +246,12 @@ class InvoicesController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8',
+            'Content-Type'    => 'application/json',
             'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
-        $_bodyJson = Request\Body::Json($request);
+        $_bodyJson = Request\Body::Json($body);
 
         //set HTTP basic auth parameters
         Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
@@ -223,12 +273,37 @@ class InvoicesController extends BaseController
             $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
         //handle errors defined at the API level
         $this->validateResponse($_httpResponse, $_httpContext);
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetInvoiceResponse');
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\InvoicesStatusResponse');
     }
 
     /**
@@ -279,26 +354,135 @@ class InvoicesController extends BaseController
             $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
         //handle errors defined at the API level
         $this->validateResponse($_httpResponse, $_httpContext);
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetInvoiceResponse');
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\InvoicesResponse');
+    }
+
+    /**
+     * Cancels an invoice
+     *
+     * @param string $invoiceId       Invoice id
+     * @param string $idempotencyKey  (optional) TODO: type description here
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function cancelInvoice(
+        $invoiceId,
+        $idempotencyKey = null
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/invoices/{invoice_id}';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'invoice_id'      => $invoiceId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json',
+            'idempotency-key' => $idempotencyKey
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::delete($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\InvoicesResponse');
     }
 
     /**
      * Updates the metadata from an invoice
      *
-     * @param string                       $invoiceId       The invoice id
-     * @param Models\UpdateMetadataRequest $request         Request for updating the invoice metadata
-     * @param string                       $idempotencyKey  (optional) TODO: type description here
+     * @param string                         $invoiceId       The invoice id
+     * @param Models\InvoicesMetadataRequest $body            Request for updating the invoice metadata
+     * @param string                         $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function updateInvoiceMetadata(
         $invoiceId,
-        $request,
+        $body,
         $idempotencyKey = null
     ) {
 
@@ -317,12 +501,12 @@ class InvoicesController extends BaseController
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
             'Accept'        => 'application/json',
-            'content-type'  => 'application/json; charset=utf-8',
+            'Content-Type'    => 'application/json',
             'idempotency-key' => $idempotencyKey
         );
 
         //json encode body
-        $_bodyJson = Request\Body::Json($request);
+        $_bodyJson = Request\Body::Json($body);
 
         //set HTTP basic auth parameters
         Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
@@ -344,12 +528,37 @@ class InvoicesController extends BaseController
             $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
         //handle errors defined at the API level
         $this->validateResponse($_httpResponse, $_httpContext);
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetInvoiceResponse');
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\InvoicesMetadataResponse');
     }
 
     /**
@@ -430,63 +639,29 @@ class InvoicesController extends BaseController
             $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\ListInvoicesResponse');
-    }
-
-    /**
-     * Cancels an invoice
-     *
-     * @param string $invoiceId       Invoice id
-     * @param string $idempotencyKey  (optional) TODO: type description here
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function cancelInvoice(
-        $invoiceId,
-        $idempotencyKey = null
-    ) {
-
-        //prepare query string for API call
-        $_queryBuilder = '/invoices/{invoice_id}';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'invoice_id'      => $invoiceId,
-            ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json',
-            'idempotency-key' => $idempotencyKey
-        );
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
         }
 
-        //and invoke the API call request to fetch the response
-        $response = Request::delete($_queryUrl, $_headers);
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
 
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
 
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
         }
 
         //handle errors defined at the API level
@@ -494,6 +669,6 @@ class InvoicesController extends BaseController
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\GetInvoiceResponse');
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\InvoicesResponse2');
     }
 }
