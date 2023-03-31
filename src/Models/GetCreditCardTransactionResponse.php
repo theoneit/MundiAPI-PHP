@@ -111,6 +111,14 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
     public $threedAuthenticationUrl;
 
     /**
+     * Identify when a card is prepaid, credit or debit.
+     * @required
+     * @maps funding_source
+     * @var string $fundingSource public property
+     */
+    public $fundingSource;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string  $statementDescriptor     Initialization value for $this->statementDescriptor
      * @param string  $acquirerName            Initialization value for $this->acquirerName
@@ -124,10 +132,11 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
      * @param string  $acquirerReturnCode      Initialization value for $this->acquirerReturnCode
      * @param integer $installments            Initialization value for $this->installments
      * @param string  $threedAuthenticationUrl Initialization value for $this->threedAuthenticationUrl
+     * @param string  $fundingSource           Initialization value for $this->fundingSource
      */
     public function __construct()
     {
-        if (12 == func_num_args()) {
+        if (13 == func_num_args()) {
             $this->statementDescriptor     = func_get_arg(0);
             $this->acquirerName            = func_get_arg(1);
             $this->acquirerAffiliationCode = func_get_arg(2);
@@ -140,6 +149,7 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
             $this->acquirerReturnCode      = func_get_arg(9);
             $this->installments            = func_get_arg(10);
             $this->threedAuthenticationUrl = func_get_arg(11);
+            $this->fundingSource           = func_get_arg(12);
         }
     }
 
@@ -162,6 +172,7 @@ class GetCreditCardTransactionResponse extends GetTransactionResponse implements
         $json['acquirer_return_code']      = $this->acquirerReturnCode;
         $json['installments']              = $this->installments;
         $json['threed_authentication_url'] = $this->threedAuthenticationUrl;
+        $json['funding_source']            = $this->fundingSource;
         $json = array_merge($json, parent::jsonSerialize());
 
         return $json;

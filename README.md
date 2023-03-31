@@ -139,9 +139,9 @@ $client = new MundiAPILib\MundiAPIClient($basicAuthUserName, $basicAuthPassword)
 * [CustomersController](#customers_controller)
 * [ChargesController](#charges_controller)
 * [RecipientsController](#recipients_controller)
+* [TransfersController](#transfers_controller)
 * [TokensController](#tokens_controller)
 * [TransactionsController](#transactions_controller)
-* [TransfersController](#transfers_controller)
 
 ## <a name="subscriptions_controller"></a>![Class: ](https://apidocs.io/img/class.png ".SubscriptionsController") SubscriptionsController
 
@@ -152,52 +152,6 @@ The singleton instance of the ``` SubscriptionsController ``` class can be acces
 ```php
 $subscriptions = $client->getSubscriptions();
 ```
-
-### <a name="create_discount"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.createDiscount") createDiscount
-
-> Creates a discount
-
-
-```php
-function createDiscount(
-        $subscriptionId,
-        $body,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | Subscription id |
-| body |  ``` Required ```  | Request for creating a discount |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$subscriptionId = 'subscription_id';
-$body = new SubscriptionsDiscountsRequest();
-$idempotencyKey = 'idempotency-key';
-
-$result = $subscriptions->createDiscount($subscriptionId, $body, $idempotencyKey);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
 
 ### <a name="get_subscription_item"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getSubscriptionItem") getSubscriptionItem
 
@@ -291,186 +245,6 @@ $result = $subscriptions->updateSubscriptionItem($subscriptionId, $itemId, $body
 
 
 
-### <a name="delete_usage"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.deleteUsage") deleteUsage
-
-> Deletes a usage
-
-
-```php
-function deleteUsage(
-        $subscriptionId,
-        $itemId,
-        $usageId,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | The subscription id |
-| itemId |  ``` Required ```  | The subscription item id |
-| usageId |  ``` Required ```  | The usage id |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$subscriptionId = 'subscription_id';
-$itemId = 'item_id';
-$usageId = 'usage_id';
-$idempotencyKey = 'idempotency-key';
-
-$result = $subscriptions->deleteUsage($subscriptionId, $itemId, $usageId, $idempotencyKey);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="cancel_subscription"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.cancelSubscription") cancelSubscription
-
-> Cancels a subscription
-
-
-```php
-function cancelSubscription(
-        $subscriptionId,
-        $idempotencyKey = null,
-        $body = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | Subscription id |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-| body |  ``` Optional ```  | Request for cancelling a subscription |
-
-
-
-#### Example Usage
-
-```php
-$subscriptionId = 'subscription_id';
-$idempotencyKey = 'idempotency-key';
-$body = new SubscriptionsRequest();
-
-$result = $subscriptions->cancelSubscription($subscriptionId, $idempotencyKey, $body);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="get_subscription"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getSubscription") getSubscription
-
-> Gets a subscription
-
-
-```php
-function getSubscription($subscriptionId)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | Subscription id |
-
-
-
-#### Example Usage
-
-```php
-$subscriptionId = 'subscription_id';
-
-$result = $subscriptions->getSubscription($subscriptionId);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="delete_increment"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.deleteIncrement") deleteIncrement
-
-> Deletes a increment
-
-
-```php
-function deleteIncrement(
-        $subscriptionId,
-        $incrementId,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | Subscription id |
-| incrementId |  ``` Required ```  | Increment id |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$subscriptionId = 'subscription_id';
-$incrementId = 'increment_id';
-$idempotencyKey = 'idempotency-key';
-
-$result = $subscriptions->deleteIncrement($subscriptionId, $incrementId, $idempotencyKey);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
 ### <a name="get_increment_by_id"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getIncrementById") getIncrementById
 
 > GetIncrementById
@@ -541,6 +315,254 @@ $subscriptionId = 'subscription_id';
 $cycleId = 'cycleId';
 
 $result = $subscriptions->getSubscriptionCycleById($subscriptionId, $cycleId);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="update_current_cycle_status"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.updateCurrentCycleStatus") updateCurrentCycleStatus
+
+> UpdateCurrentCycleStatus
+
+
+```php
+function updateCurrentCycleStatus(
+        $subscriptionId,
+        $body,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | Subscription Id |
+| body |  ``` Required ```  | Request for updating the end date of the subscription current status |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+$body = new UpdateCurrentCycleStatusRequest();
+$idempotencyKey = 'idempotency-key';
+
+$subscriptions->updateCurrentCycleStatus($subscriptionId, $body, $idempotencyKey);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="get_usages"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getUsages") getUsages
+
+> Lists all usages from a subscription item
+
+
+```php
+function getUsages(
+        $subscriptionId,
+        $itemId,
+        $page = null,
+        $size = null,
+        $code = null,
+        $group = null,
+        $usedSince = null,
+        $usedUntil = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | The subscription id |
+| itemId |  ``` Required ```  | The subscription item id |
+| page |  ``` Optional ```  | Page number |
+| size |  ``` Optional ```  | Page size |
+| code |  ``` Optional ```  | Identification code in the client system |
+| group |  ``` Optional ```  | Identification group in the client system |
+| usedSince |  ``` Optional ```  | TODO: Add a parameter description |
+| usedUntil |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+$itemId = 'item_id';
+$page = 84;
+$size = 84;
+$code = 'code';
+$group = 'group';
+$usedSince = date("D M d, Y G:i");
+$usedUntil = date("D M d, Y G:i");
+
+$result = $subscriptions->getUsages($subscriptionId, $itemId, $page, $size, $code, $group, $usedSince, $usedUntil);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="update_subscription_affiliation_id"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.updateSubscriptionAffiliationId") updateSubscriptionAffiliationId
+
+> UpdateSubscriptionAffiliationId
+
+
+```php
+function updateSubscriptionAffiliationId(
+        $subscriptionId,
+        $body,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | TODO: Add a parameter description |
+| body |  ``` Required ```  | Request for updating a subscription affiliation id |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+$body = new SubscriptionsGatewayAffiliationIdRequest();
+$idempotencyKey = 'idempotency-key';
+
+$result = $subscriptions->updateSubscriptionAffiliationId($subscriptionId, $body, $idempotencyKey);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="create_discount"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.createDiscount") createDiscount
+
+> Creates a discount
+
+
+```php
+function createDiscount(
+        $subscriptionId,
+        $body,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | Subscription id |
+| body |  ``` Required ```  | Request for creating a discount |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+$body = new SubscriptionsDiscountsRequest();
+$idempotencyKey = 'idempotency-key';
+
+$result = $subscriptions->createDiscount($subscriptionId, $body, $idempotencyKey);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="delete_usage"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.deleteUsage") deleteUsage
+
+> Deletes a usage
+
+
+```php
+function deleteUsage(
+        $subscriptionId,
+        $itemId,
+        $usageId,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | The subscription id |
+| itemId |  ``` Required ```  | The subscription item id |
+| usageId |  ``` Required ```  | The usage id |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+$itemId = 'item_id';
+$usageId = 'usage_id';
+$idempotencyKey = 'idempotency-key';
+
+$result = $subscriptions->deleteUsage($subscriptionId, $itemId, $usageId, $idempotencyKey);
 
 ```
 
@@ -649,16 +671,16 @@ $result = $subscriptions->updateSubscriptionPaymentMethod($subscriptionId, $body
 
 
 
-### <a name="update_current_cycle_status"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.updateCurrentCycleStatus") updateCurrentCycleStatus
+### <a name="get_subscription_cycles"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getSubscriptionCycles") getSubscriptionCycles
 
-> UpdateCurrentCycleStatus
+> GetSubscriptionCycles
 
 
 ```php
-function updateCurrentCycleStatus(
+function getSubscriptionCycles(
         $subscriptionId,
-        $body,
-        $idempotencyKey = null)
+        $page,
+        $size)
 ```
 
 #### Parameters
@@ -666,8 +688,8 @@ function updateCurrentCycleStatus(
 | Parameter | Tags | Description |
 |-----------|------|-------------|
 | subscriptionId |  ``` Required ```  | Subscription Id |
-| body |  ``` Required ```  | Request for updating the end date of the subscription current status |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+| page |  ``` Required ```  | Page number |
+| size |  ``` Required ```  | Page size |
 
 
 
@@ -675,10 +697,10 @@ function updateCurrentCycleStatus(
 
 ```php
 $subscriptionId = 'subscription_id';
-$body = new UpdateCurrentCycleStatusRequest();
-$idempotencyKey = 'idempotency-key';
+$page = 'page';
+$size = 'size';
 
-$subscriptions->updateCurrentCycleStatus($subscriptionId, $body, $idempotencyKey);
+$result = $subscriptions->getSubscriptionCycles($subscriptionId, $page, $size);
 
 ```
 
@@ -695,14 +717,15 @@ $subscriptions->updateCurrentCycleStatus($subscriptionId, $body, $idempotencyKey
 
 
 
-### <a name="create_subscription"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.createSubscription") createSubscription
+### <a name="delete_discount"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.deleteDiscount") deleteDiscount
 
-> Creates a new subscription
+> Deletes a discount
 
 
 ```php
-function createSubscription(
-        $body,
+function deleteDiscount(
+        $subscriptionId,
+        $discountId,
         $idempotencyKey = null)
 ```
 
@@ -710,7 +733,8 @@ function createSubscription(
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| body |  ``` Required ```  | Request for creating a subscription |
+| subscriptionId |  ``` Required ```  | Subscription id |
+| discountId |  ``` Required ```  | Discount Id |
 | idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
 
 
@@ -718,10 +742,57 @@ function createSubscription(
 #### Example Usage
 
 ```php
-$body = new SubscriptionsRequest1();
+$subscriptionId = 'subscription_id';
+$discountId = 'discount_id';
 $idempotencyKey = 'idempotency-key';
 
-$result = $subscriptions->createSubscription($body, $idempotencyKey);
+$result = $subscriptions->deleteDiscount($subscriptionId, $discountId, $idempotencyKey);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="delete_increment"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.deleteIncrement") deleteIncrement
+
+> Deletes a increment
+
+
+```php
+function deleteIncrement(
+        $subscriptionId,
+        $incrementId,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | Subscription id |
+| incrementId |  ``` Required ```  | Increment id |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+$incrementId = 'increment_id';
+$idempotencyKey = 'idempotency-key';
+
+$result = $subscriptions->deleteIncrement($subscriptionId, $incrementId, $idempotencyKey);
 
 ```
 
@@ -781,8 +852,8 @@ function getSubscriptions(
 #### Example Usage
 
 ```php
-$page = 217;
-$size = 217;
+$page = 84;
+$size = 84;
 $code = 'code';
 $billingType = 'billing_type';
 $customerId = 'customer_id';
@@ -844,8 +915,8 @@ function getUsagesDetails(
 ```php
 $subscriptionId = 'subscription_id';
 $cycleId = 'cycle_id';
-$size = 175;
-$page = 175;
+$size = 84;
+$page = 84;
 $itemId = 'item_id';
 $group = 'group';
 
@@ -909,25 +980,25 @@ $result = $subscriptions->renewSubscription($subscriptionId, $idempotencyKey);
 
 
 
-### <a name="get_subscription_cycles"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getSubscriptionCycles") getSubscriptionCycles
+### <a name="get_increments"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getIncrements") getIncrements
 
-> GetSubscriptionCycles
+> GetIncrements
 
 
 ```php
-function getSubscriptionCycles(
+function getIncrements(
         $subscriptionId,
-        $page,
-        $size)
+        $page = null,
+        $size = null)
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | Subscription Id |
-| page |  ``` Required ```  | Page number |
-| size |  ``` Required ```  | Page size |
+| subscriptionId |  ``` Required ```  | The subscription id |
+| page |  ``` Optional ```  | Page number |
+| size |  ``` Optional ```  | Page size |
 
 
 
@@ -935,10 +1006,184 @@ function getSubscriptionCycles(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 'page';
-$size = 'size';
+$page = 84;
+$size = 84;
 
-$result = $subscriptions->getSubscriptionCycles($subscriptionId, $page, $size);
+$result = $subscriptions->getIncrements($subscriptionId, $page, $size);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="update_latest_period_end_at"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.updateLatestPeriodEndAt") updateLatestPeriodEndAt
+
+> UpdateLatestPeriodEndAt
+
+
+```php
+function updateLatestPeriodEndAt(
+        $subscriptionId,
+        $body,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | TODO: Add a parameter description |
+| body |  ``` Required ```  | Request for updating the end date of the current signature cycle |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+$body = new SubscriptionsPeriodsLatestEndAtRequest();
+$idempotencyKey = 'idempotency-key';
+
+$result = $subscriptions->updateLatestPeriodEndAt($subscriptionId, $body, $idempotencyKey);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="cancel_subscription"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.cancelSubscription") cancelSubscription
+
+> Cancels a subscription
+
+
+```php
+function cancelSubscription(
+        $subscriptionId,
+        $idempotencyKey = null,
+        $body = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | Subscription id |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+| body |  ``` Optional ```  | Request for cancelling a subscription |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+$idempotencyKey = 'idempotency-key';
+$body = new SubscriptionsRequest();
+
+$result = $subscriptions->cancelSubscription($subscriptionId, $idempotencyKey, $body);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="get_subscription"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getSubscription") getSubscription
+
+> Gets a subscription
+
+
+```php
+function getSubscription($subscriptionId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | Subscription id |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+
+$result = $subscriptions->getSubscription($subscriptionId);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="create_subscription"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.createSubscription") createSubscription
+
+> Creates a new subscription
+
+
+```php
+function createSubscription(
+        $body,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| body |  ``` Required ```  | Request for creating a subscription |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$body = new SubscriptionsRequest1();
+$idempotencyKey = 'idempotency-key';
+
+$result = $subscriptions->createSubscription($body, $idempotencyKey);
 
 ```
 
@@ -985,159 +1230,6 @@ $itemId = 'item_id';
 $idempotencyKey = 'idempotency-key';
 
 $result = $subscriptions->createAnUsage($subscriptionId, $itemId, $idempotencyKey);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="get_usages"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getUsages") getUsages
-
-> Lists all usages from a subscription item
-
-
-```php
-function getUsages(
-        $subscriptionId,
-        $itemId,
-        $page = null,
-        $size = null,
-        $code = null,
-        $group = null,
-        $usedSince = null,
-        $usedUntil = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | The subscription id |
-| itemId |  ``` Required ```  | The subscription item id |
-| page |  ``` Optional ```  | Page number |
-| size |  ``` Optional ```  | Page size |
-| code |  ``` Optional ```  | Identification code in the client system |
-| group |  ``` Optional ```  | Identification group in the client system |
-| usedSince |  ``` Optional ```  | TODO: Add a parameter description |
-| usedUntil |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$subscriptionId = 'subscription_id';
-$itemId = 'item_id';
-$page = 175;
-$size = 175;
-$code = 'code';
-$group = 'group';
-$usedSince = date("D M d, Y G:i");
-$usedUntil = date("D M d, Y G:i");
-
-$result = $subscriptions->getUsages($subscriptionId, $itemId, $page, $size, $code, $group, $usedSince, $usedUntil);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="delete_discount"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.deleteDiscount") deleteDiscount
-
-> Deletes a discount
-
-
-```php
-function deleteDiscount(
-        $subscriptionId,
-        $discountId,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | Subscription id |
-| discountId |  ``` Required ```  | Discount Id |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$subscriptionId = 'subscription_id';
-$discountId = 'discount_id';
-$idempotencyKey = 'idempotency-key';
-
-$result = $subscriptions->deleteDiscount($subscriptionId, $discountId, $idempotencyKey);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="get_increments"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getIncrements") getIncrements
-
-> GetIncrements
-
-
-```php
-function getIncrements(
-        $subscriptionId,
-        $page = null,
-        $size = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | The subscription id |
-| page |  ``` Optional ```  | Page number |
-| size |  ``` Optional ```  | Page size |
-
-
-
-#### Example Usage
-
-```php
-$subscriptionId = 'subscription_id';
-$page = 175;
-$size = 175;
-
-$result = $subscriptions->getIncrements($subscriptionId, $page, $size);
 
 ```
 
@@ -1238,8 +1330,8 @@ function getSubscriptionItems(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 175;
-$size = 175;
+$page = 84;
+$size = 84;
 $name = 'name';
 $code = 'code';
 $status = 'status';
@@ -1294,98 +1386,6 @@ $body = new SubscriptionsBillingDateRequest();
 $idempotencyKey = 'idempotency-key';
 
 $result = $subscriptions->updateSubscriptionBillingDate($subscriptionId, $body, $idempotencyKey);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="update_latest_period_end_at"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.updateLatestPeriodEndAt") updateLatestPeriodEndAt
-
-> UpdateLatestPeriodEndAt
-
-
-```php
-function updateLatestPeriodEndAt(
-        $subscriptionId,
-        $body,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | TODO: Add a parameter description |
-| body |  ``` Required ```  | Request for updating the end date of the current signature cycle |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$subscriptionId = 'subscription_id';
-$body = new SubscriptionsPeriodsLatestEndAtRequest();
-$idempotencyKey = 'idempotency-key';
-
-$result = $subscriptions->updateLatestPeriodEndAt($subscriptionId, $body, $idempotencyKey);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="update_subscription_affiliation_id"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.updateSubscriptionAffiliationId") updateSubscriptionAffiliationId
-
-> UpdateSubscriptionAffiliationId
-
-
-```php
-function updateSubscriptionAffiliationId(
-        $subscriptionId,
-        $body,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | TODO: Add a parameter description |
-| body |  ``` Required ```  | Request for updating a subscription affiliation id |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$subscriptionId = 'subscription_id';
-$body = new SubscriptionsGatewayAffiliationIdRequest();
-$idempotencyKey = 'idempotency-key';
-
-$result = $subscriptions->updateSubscriptionAffiliationId($subscriptionId, $body, $idempotencyKey);
 
 ```
 
@@ -1494,6 +1494,52 @@ $result = $subscriptions->updateSubscriptionCard($subscriptionId, $body, $idempo
 
 
 
+### <a name="get_discounts"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getDiscounts") getDiscounts
+
+> GetDiscounts
+
+
+```php
+function getDiscounts(
+        $subscriptionId,
+        $page,
+        $size)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | The subscription id |
+| page |  ``` Required ```  | Page number |
+| size |  ``` Required ```  | Page size |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+$page = 84;
+$size = 84;
+
+$result = $subscriptions->getDiscounts($subscriptionId, $page, $size);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
 ### <a name="update_subscription_metadata"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.updateSubscriptionMetadata") updateSubscriptionMetadata
 
 > Updates the metadata from a subscription
@@ -1540,62 +1586,15 @@ $result = $subscriptions->updateSubscriptionMetadata($subscriptionId, $body, $id
 
 
 
-### <a name="update_subscription_due_days"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.updateSubscriptionDueDays") updateSubscriptionDueDays
+### <a name="get_discount_by_id"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getDiscountById") getDiscountById
 
-> Updates the boleto due days from a subscription
+> GetDiscountById
 
 
 ```php
-function updateSubscriptionDueDays(
+function getDiscountById(
         $subscriptionId,
-        $body,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | Subscription Id |
-| body |  ``` Required ```  | TODO: Add a parameter description |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$subscriptionId = 'subscription_id';
-$body = new UpdateSubscriptionDueDaysRequest();
-$idempotencyKey = 'idempotency-key';
-
-$result = $subscriptions->updateSubscriptionDueDays($subscriptionId, $body, $idempotencyKey);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="get_discounts"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getDiscounts") getDiscounts
-
-> GetDiscounts
-
-
-```php
-function getDiscounts(
-        $subscriptionId,
-        $page,
-        $size)
+        $discountId)
 ```
 
 #### Parameters
@@ -1603,8 +1602,7 @@ function getDiscounts(
 | Parameter | Tags | Description |
 |-----------|------|-------------|
 | subscriptionId |  ``` Required ```  | The subscription id |
-| page |  ``` Required ```  | Page number |
-| size |  ``` Required ```  | Page size |
+| discountId |  ``` Required ```  | TODO: Add a parameter description |
 
 
 
@@ -1612,10 +1610,9 @@ function getDiscounts(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 175;
-$size = 175;
+$discountId = 'discountId';
 
-$result = $subscriptions->getDiscounts($subscriptionId, $page, $size);
+$result = $subscriptions->getDiscountById($subscriptionId, $discountId);
 
 ```
 
@@ -1678,49 +1675,6 @@ $result = $subscriptions->createIncrement($subscriptionId, $body, $idempotencyKe
 
 
 
-### <a name="get_discount_by_id"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.getDiscountById") getDiscountById
-
-> GetDiscountById
-
-
-```php
-function getDiscountById(
-        $subscriptionId,
-        $discountId)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| subscriptionId |  ``` Required ```  | The subscription id |
-| discountId |  ``` Required ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$subscriptionId = 'subscription_id';
-$discountId = 'discountId';
-
-$result = $subscriptions->getDiscountById($subscriptionId, $discountId);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
 ### <a name="update_subscription_minium_price"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.updateSubscriptionMiniumPrice") updateSubscriptionMiniumPrice
 
 > Atualização do valor mínimo da assinatura
@@ -1751,6 +1705,52 @@ $body = new SubscriptionsMinimumPriceRequest();
 $idempotencyKey = 'idempotency-key';
 
 $result = $subscriptions->updateSubscriptionMiniumPrice($subscriptionId, $body, $idempotencyKey);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="update_subscription_due_days"></a>![Method: ](https://apidocs.io/img/method.png ".SubscriptionsController.updateSubscriptionDueDays") updateSubscriptionDueDays
+
+> Updates the boleto due days from a subscription
+
+
+```php
+function updateSubscriptionDueDays(
+        $subscriptionId,
+        $body,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| subscriptionId |  ``` Required ```  | Subscription Id |
+| body |  ``` Required ```  | TODO: Add a parameter description |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$subscriptionId = 'subscription_id';
+$body = new UpdateSubscriptionDueDaysRequest();
+$idempotencyKey = 'idempotency-key';
+
+$result = $subscriptions->updateSubscriptionDueDays($subscriptionId, $body, $idempotencyKey);
 
 ```
 
@@ -1865,14 +1865,13 @@ The singleton instance of the ``` OrdersController ``` class can be accessed fro
 $orders = $client->getOrders();
 ```
 
-### <a name="update_order_status"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.updateOrderStatus") updateOrderStatus
+### <a name="create_order"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.createOrder") createOrder
 
-> UpdateOrderStatus
+> Creates a new Order
 
 
 ```php
-function updateOrderStatus(
-        $id,
+function createOrder(
         $body,
         $idempotencyKey = null)
 ```
@@ -1881,8 +1880,7 @@ function updateOrderStatus(
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| id |  ``` Required ```  | Order Id |
-| body |  ``` Required ```  | Update Order Model |
+| body |  ``` Required ```  | Request for creating an order |
 | idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
 
 
@@ -1890,11 +1888,10 @@ function updateOrderStatus(
 #### Example Usage
 
 ```php
-$id = 'id';
-$body = new UpdateOrderStatusRequest();
+$body = new OrdersRequest();
 $idempotencyKey = 'idempotency-key';
 
-$result = $orders->updateOrderStatus($id, $body, $idempotencyKey);
+$result = $orders->createOrder($body, $idempotencyKey);
 
 ```
 
@@ -1911,33 +1908,29 @@ $result = $orders->updateOrderStatus($id, $body, $idempotencyKey);
 
 
 
-### <a name="delete_all_order_items"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.deleteAllOrderItems") deleteAllOrderItems
+### <a name="get_order"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.getOrder") getOrder
 
-> DeleteAllOrderItems
+> Gets an order
 
 
 ```php
-function deleteAllOrderItems(
-        $orderId,
-        $idempotencyKey = null)
+function getOrder($orderId)
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| orderId |  ``` Required ```  | Order Id |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+| orderId |  ``` Required ```  | Order id |
 
 
 
 #### Example Usage
 
 ```php
-$orderId = 'orderId';
-$idempotencyKey = 'idempotency-key';
+$orderId = 'order_id';
 
-$result = $orders->deleteAllOrderItems($orderId, $idempotencyKey);
+$result = $orders->getOrder($orderId);
 
 ```
 
@@ -2000,6 +1993,98 @@ $result = $orders->createOrderItem($orderId, $body, $idempotencyKey);
 
 
 
+### <a name="update_order_item"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.updateOrderItem") updateOrderItem
+
+> UpdateOrderItem
+
+
+```php
+function updateOrderItem(
+        $orderId,
+        $itemId,
+        $body,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| orderId |  ``` Required ```  | Order Id |
+| itemId |  ``` Required ```  | Item Id |
+| body |  ``` Required ```  | Item Model |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$orderId = 'orderId';
+$itemId = 'itemId';
+$body = new OrdersItemsRequest1();
+$idempotencyKey = 'idempotency-key';
+
+$result = $orders->updateOrderItem($orderId, $itemId, $body, $idempotencyKey);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="delete_all_order_items"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.deleteAllOrderItems") deleteAllOrderItems
+
+> DeleteAllOrderItems
+
+
+```php
+function deleteAllOrderItems(
+        $orderId,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| orderId |  ``` Required ```  | Order Id |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$orderId = 'orderId';
+$idempotencyKey = 'idempotency-key';
+
+$result = $orders->deleteAllOrderItems($orderId, $idempotencyKey);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
 ### <a name="update_order_metadata"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.updateOrderMetadata") updateOrderMetadata
 
 > Updates the metadata from an order
@@ -2030,6 +2115,52 @@ $body = new OrdersMetadataRequest();
 $idempotencyKey = 'idempotency-key';
 
 $result = $orders->updateOrderMetadata($orderId, $body, $idempotencyKey);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="update_order_status"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.updateOrderStatus") updateOrderStatus
+
+> UpdateOrderStatus
+
+
+```php
+function updateOrderStatus(
+        $id,
+        $body,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| id |  ``` Required ```  | Order Id |
+| body |  ``` Required ```  | Update Order Model |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$id = 'id';
+$body = new UpdateOrderStatusRequest();
+$idempotencyKey = 'idempotency-key';
+
+$result = $orders->updateOrderStatus($id, $body, $idempotencyKey);
 
 ```
 
@@ -2079,8 +2210,8 @@ function getOrders(
 #### Example Usage
 
 ```php
-$page = 12;
-$size = 12;
+$page = 42;
+$size = 42;
 $code = 'code';
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
@@ -2088,49 +2219,6 @@ $createdUntil = date("D M d, Y G:i");
 $customerId = 'customer_id';
 
 $result = $orders->getOrders($page, $size, $code, $status, $createdSince, $createdUntil, $customerId);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="create_order"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.createOrder") createOrder
-
-> Creates a new Order
-
-
-```php
-function createOrder(
-        $body,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| body |  ``` Required ```  | Request for creating an order |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$body = new OrdersRequest();
-$idempotencyKey = 'idempotency-key';
-
-$result = $orders->createOrder($body, $idempotencyKey);
 
 ```
 
@@ -2236,94 +2324,6 @@ $result = $orders->getOrderItem($orderId, $itemId);
 
 
 
-### <a name="update_order_item"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.updateOrderItem") updateOrderItem
-
-> UpdateOrderItem
-
-
-```php
-function updateOrderItem(
-        $orderId,
-        $itemId,
-        $body,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| orderId |  ``` Required ```  | Order Id |
-| itemId |  ``` Required ```  | Item Id |
-| body |  ``` Required ```  | Item Model |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$orderId = 'orderId';
-$itemId = 'itemId';
-$body = new OrdersItemsRequest1();
-$idempotencyKey = 'idempotency-key';
-
-$result = $orders->updateOrderItem($orderId, $itemId, $body, $idempotencyKey);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="get_order"></a>![Method: ](https://apidocs.io/img/method.png ".OrdersController.getOrder") getOrder
-
-> Gets an order
-
-
-```php
-function getOrder($orderId)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| orderId |  ``` Required ```  | Order id |
-
-
-
-#### Example Usage
-
-```php
-$orderId = 'order_id';
-
-$result = $orders->getOrder($orderId);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
 [Back to List of Controllers](#list_of_controllers)
 
 ## <a name="plans_controller"></a>![Class: ](https://apidocs.io/img/class.png ".PlansController") PlansController
@@ -2335,144 +2335,6 @@ The singleton instance of the ``` PlansController ``` class can be accessed from
 ```php
 $plans = $client->getPlans();
 ```
-
-### <a name="update_plan_item"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.updatePlanItem") updatePlanItem
-
-> Updates a plan item
-
-
-```php
-function updatePlanItem(
-        $planId,
-        $planItemId,
-        $body,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| planId |  ``` Required ```  | Plan id |
-| planItemId |  ``` Required ```  | Plan item id |
-| body |  ``` Required ```  | Request for updating the plan item |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$planId = 'plan_id';
-$planItemId = 'plan_item_id';
-$body = new PlansItemsRequest();
-$idempotencyKey = 'idempotency-key';
-
-$result = $plans->updatePlanItem($planId, $planItemId, $body, $idempotencyKey);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="delete_plan_item"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.deletePlanItem") deletePlanItem
-
-> Removes an item from a plan
-
-
-```php
-function deletePlanItem(
-        $planId,
-        $planItemId,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| planId |  ``` Required ```  | Plan id |
-| planItemId |  ``` Required ```  | Plan item id |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$planId = 'plan_id';
-$planItemId = 'plan_item_id';
-$idempotencyKey = 'idempotency-key';
-
-$result = $plans->deletePlanItem($planId, $planItemId, $idempotencyKey);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="get_plan_item"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.getPlanItem") getPlanItem
-
-> Gets a plan item
-
-
-```php
-function getPlanItem(
-        $planId,
-        $planItemId)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| planId |  ``` Required ```  | Plan id |
-| planItemId |  ``` Required ```  | Plan item id |
-
-
-
-#### Example Usage
-
-```php
-$planId = 'plan_id';
-$planItemId = 'plan_item_id';
-
-$result = $plans->getPlanItem($planId, $planItemId);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
 
 ### <a name="create_plan_item"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.createPlanItem") createPlanItem
 
@@ -2553,8 +2415,8 @@ function getPlans(
 #### Example Usage
 
 ```php
-$page = 12;
-$size = 12;
+$page = 42;
+$size = 42;
 $name = 'name';
 $status = 'status';
 $billingType = 'billing_type';
@@ -2562,6 +2424,91 @@ $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
 
 $result = $plans->getPlans($page, $size, $name, $status, $billingType, $createdSince, $createdUntil);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="get_plan"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.getPlan") getPlan
+
+> Gets a plan
+
+
+```php
+function getPlan($planId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| planId |  ``` Required ```  | Plan id |
+
+
+
+#### Example Usage
+
+```php
+$planId = 'plan_id';
+
+$result = $plans->getPlan($planId);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="delete_plan_item"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.deletePlanItem") deletePlanItem
+
+> Removes an item from a plan
+
+
+```php
+function deletePlanItem(
+        $planId,
+        $planItemId,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| planId |  ``` Required ```  | Plan id |
+| planItemId |  ``` Required ```  | Plan item id |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$planId = 'plan_id';
+$planItemId = 'plan_item_id';
+$idempotencyKey = 'idempotency-key';
+
+$result = $plans->deletePlanItem($planId, $planItemId, $idempotencyKey);
 
 ```
 
@@ -2605,45 +2552,6 @@ $body = new PlansRequest();
 $idempotencyKey = 'idempotency-key';
 
 $result = $plans->createPlan($body, $idempotencyKey);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="get_plan"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.getPlan") getPlan
-
-> Gets a plan
-
-
-```php
-function getPlan($planId)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| planId |  ``` Required ```  | Plan id |
-
-
-
-#### Example Usage
-
-```php
-$planId = 'plan_id';
-
-$result = $plans->getPlan($planId);
 
 ```
 
@@ -2733,6 +2641,98 @@ $planId = 'plan_id';
 $idempotencyKey = 'idempotency-key';
 
 $result = $plans->deletePlan($planId, $idempotencyKey);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="update_plan_item"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.updatePlanItem") updatePlanItem
+
+> Updates a plan item
+
+
+```php
+function updatePlanItem(
+        $planId,
+        $planItemId,
+        $body,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| planId |  ``` Required ```  | Plan id |
+| planItemId |  ``` Required ```  | Plan item id |
+| body |  ``` Required ```  | Request for updating the plan item |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$planId = 'plan_id';
+$planItemId = 'plan_item_id';
+$body = new PlansItemsRequest();
+$idempotencyKey = 'idempotency-key';
+
+$result = $plans->updatePlanItem($planId, $planItemId, $body, $idempotencyKey);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="get_plan_item"></a>![Method: ](https://apidocs.io/img/method.png ".PlansController.getPlanItem") getPlanItem
+
+> Gets a plan item
+
+
+```php
+function getPlanItem(
+        $planId,
+        $planItemId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| planId |  ``` Required ```  | Plan id |
+| planItemId |  ``` Required ```  | Plan item id |
+
+
+
+#### Example Usage
+
+```php
+$planId = 'plan_id';
+$planItemId = 'plan_item_id';
+
+$result = $plans->getPlanItem($planId, $planItemId);
 
 ```
 
@@ -2895,91 +2895,6 @@ $result = $invoices->getPartialInvoice($subscriptionId);
 
 
 
-### <a name="update_invoice_status"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.updateInvoiceStatus") updateInvoiceStatus
-
-> Updates the status from an invoice
-
-
-```php
-function updateInvoiceStatus(
-        $invoiceId,
-        $body,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| invoiceId |  ``` Required ```  | Invoice Id |
-| body |  ``` Required ```  | Request for updating an invoice's status |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$invoiceId = 'invoice_id';
-$body = new UpdateCurrentCycleStatusRequest();
-$idempotencyKey = 'idempotency-key';
-
-$result = $invoices->updateInvoiceStatus($invoiceId, $body, $idempotencyKey);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="get_invoice"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.getInvoice") getInvoice
-
-> Gets an invoice
-
-
-```php
-function getInvoice($invoiceId)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| invoiceId |  ``` Required ```  | Invoice Id |
-
-
-
-#### Example Usage
-
-```php
-$invoiceId = 'invoice_id';
-
-$result = $invoices->getInvoice($invoiceId);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
 ### <a name="cancel_invoice"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.cancelInvoice") cancelInvoice
 
 > Cancels an invoice
@@ -3069,6 +2984,91 @@ $result = $invoices->updateInvoiceMetadata($invoiceId, $body, $idempotencyKey);
 
 
 
+### <a name="update_invoice_status"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.updateInvoiceStatus") updateInvoiceStatus
+
+> Updates the status from an invoice
+
+
+```php
+function updateInvoiceStatus(
+        $invoiceId,
+        $body,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| invoiceId |  ``` Required ```  | Invoice Id |
+| body |  ``` Required ```  | Request for updating an invoice's status |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$invoiceId = 'invoice_id';
+$body = new UpdateCurrentCycleStatusRequest();
+$idempotencyKey = 'idempotency-key';
+
+$result = $invoices->updateInvoiceStatus($invoiceId, $body, $idempotencyKey);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="get_invoice"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.getInvoice") getInvoice
+
+> Gets an invoice
+
+
+```php
+function getInvoice($invoiceId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| invoiceId |  ``` Required ```  | Invoice Id |
+
+
+
+#### Example Usage
+
+```php
+$invoiceId = 'invoice_id';
+
+$result = $invoices->getInvoice($invoiceId);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
 ### <a name="get_invoices"></a>![Method: ](https://apidocs.io/img/method.png ".InvoicesController.getInvoices") getInvoices
 
 > Gets all invoices
@@ -3110,8 +3110,8 @@ function getInvoices(
 #### Example Usage
 
 ```php
-$page = 12;
-$size = 12;
+$page = 42;
+$size = 42;
 $code = 'code';
 $customerId = 'customer_id';
 $subscriptionId = 'subscription_id';
@@ -3150,144 +3150,6 @@ The singleton instance of the ``` CustomersController ``` class can be accessed 
 ```php
 $customers = $client->getCustomers();
 ```
-
-### <a name="create_access_token"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.createAccessToken") createAccessToken
-
-> Creates a access token for a customer
-
-
-```php
-function createAccessToken(
-        $customerId,
-        $body,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| customerId |  ``` Required ```  | Customer Id |
-| body |  ``` Required ```  | Request for creating a access token |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$customerId = 'customer_id';
-$body = new CustomersAccessTokensRequest();
-$idempotencyKey = 'idempotency-key';
-
-$result = $customers->createAccessToken($customerId, $body, $idempotencyKey);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="get_access_tokens"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getAccessTokens") getAccessTokens
-
-> Get all access tokens from a customer
-
-
-```php
-function getAccessTokens(
-        $customerId,
-        $page = null,
-        $size = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| customerId |  ``` Required ```  | Customer Id |
-| page |  ``` Optional ```  | Page number |
-| size |  ``` Optional ```  | Page size |
-
-
-
-#### Example Usage
-
-```php
-$customerId = 'customer_id';
-$page = 103;
-$size = 103;
-
-$result = $customers->getAccessTokens($customerId, $page, $size);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="update_customer"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.updateCustomer") updateCustomer
-
-> Updates a customer
-
-
-```php
-function updateCustomer(
-        $customerId,
-        $body,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| customerId |  ``` Required ```  | Customer id |
-| body |  ``` Required ```  | Request for updating a customer |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$customerId = 'customer_id';
-$body = new CustomersRequest();
-$idempotencyKey = 'idempotency-key';
-
-$result = $customers->updateCustomer($customerId, $body, $idempotencyKey);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
 
 ### <a name="get_customer"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getCustomer") getCustomer
 
@@ -3367,52 +3229,6 @@ $result = $customers->deleteAccessTokens($customerId);
 
 
 
-### <a name="get_addresses"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getAddresses") getAddresses
-
-> Gets all adressess from a customer
-
-
-```php
-function getAddresses(
-        $customerId,
-        $page = null,
-        $size = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| customerId |  ``` Required ```  | Customer id |
-| page |  ``` Optional ```  | Page number |
-| size |  ``` Optional ```  | Page size |
-
-
-
-#### Example Usage
-
-```php
-$customerId = 'customer_id';
-$page = 103;
-$size = 103;
-
-$result = $customers->getAddresses($customerId, $page, $size);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
 ### <a name="create_address"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.createAddress") createAddress
 
 > Creates a new address for a customer
@@ -3443,6 +3259,564 @@ $body = new CustomersAddressesRequest();
 $idempotencyKey = 'idempotency-key';
 
 $result = $customers->createAddress($customerId, $body, $idempotencyKey);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="update_address"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.updateAddress") updateAddress
+
+> Updates an address
+
+
+```php
+function updateAddress(
+        $customerId,
+        $addressId,
+        $body,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| customerId |  ``` Required ```  | Customer Id |
+| addressId |  ``` Required ```  | Address Id |
+| body |  ``` Required ```  | Request for updating an address |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$customerId = 'customer_id';
+$addressId = 'address_id';
+$body = new CustomersAddressesRequest1();
+$idempotencyKey = 'idempotency-key';
+
+$result = $customers->updateAddress($customerId, $addressId, $body, $idempotencyKey);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="get_cards"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getCards") getCards
+
+> Get all cards from a customer
+
+
+```php
+function getCards(
+        $customerId,
+        $page = null,
+        $size = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| customerId |  ``` Required ```  | Customer Id |
+| page |  ``` Optional ```  | Page number |
+| size |  ``` Optional ```  | Page size |
+
+
+
+#### Example Usage
+
+```php
+$customerId = 'customer_id';
+$page = 134;
+$size = 134;
+
+$result = $customers->getCards($customerId, $page, $size);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="create_customer"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.createCustomer") createCustomer
+
+> Creates a new customer
+
+
+```php
+function createCustomer(
+        $body,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| body |  ``` Required ```  | Request for creating a customer |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$body = new CustomersRequest1();
+$idempotencyKey = 'idempotency-key';
+
+$result = $customers->createCustomer($body, $idempotencyKey);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="update_customer_metadata"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.updateCustomerMetadata") updateCustomerMetadata
+
+> Updates the metadata a customer
+
+
+```php
+function updateCustomerMetadata(
+        $customerId,
+        $body,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| customerId |  ``` Required ```  | The customer id |
+| body |  ``` Required ```  | Request for updating the customer metadata |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$customerId = 'customer_id';
+$body = new CustomersMetadataRequest();
+$idempotencyKey = 'idempotency-key';
+
+$result = $customers->updateCustomerMetadata($customerId, $body, $idempotencyKey);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="delete_card"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.deleteCard") deleteCard
+
+> Delete a customer's card
+
+
+```php
+function deleteCard(
+        $customerId,
+        $cardId,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| customerId |  ``` Required ```  | Customer Id |
+| cardId |  ``` Required ```  | Card Id |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$customerId = 'customer_id';
+$cardId = 'card_id';
+$idempotencyKey = 'idempotency-key';
+
+$result = $customers->deleteCard($customerId, $cardId, $idempotencyKey);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="get_card"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getCard") getCard
+
+> Get a customer's card
+
+
+```php
+function getCard(
+        $customerId,
+        $cardId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| customerId |  ``` Required ```  | Customer id |
+| cardId |  ``` Required ```  | Card id |
+
+
+
+#### Example Usage
+
+```php
+$customerId = 'customer_id';
+$cardId = 'card_id';
+
+$result = $customers->getCard($customerId, $cardId);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="get_access_tokens"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getAccessTokens") getAccessTokens
+
+> Get all access tokens from a customer
+
+
+```php
+function getAccessTokens(
+        $customerId,
+        $page = null,
+        $size = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| customerId |  ``` Required ```  | Customer Id |
+| page |  ``` Optional ```  | Page number |
+| size |  ``` Optional ```  | Page size |
+
+
+
+#### Example Usage
+
+```php
+$customerId = 'customer_id';
+$page = 134;
+$size = 134;
+
+$result = $customers->getAccessTokens($customerId, $page, $size);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="update_customer"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.updateCustomer") updateCustomer
+
+> Updates a customer
+
+
+```php
+function updateCustomer(
+        $customerId,
+        $body,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| customerId |  ``` Required ```  | Customer id |
+| body |  ``` Required ```  | Request for updating a customer |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$customerId = 'customer_id';
+$body = new CustomersRequest();
+$idempotencyKey = 'idempotency-key';
+
+$result = $customers->updateCustomer($customerId, $body, $idempotencyKey);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="renew_card"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.renewCard") renewCard
+
+> Renew a card
+
+
+```php
+function renewCard(
+        $customerId,
+        $cardId,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| customerId |  ``` Required ```  | Customer id |
+| cardId |  ``` Required ```  | Card Id |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$customerId = 'customer_id';
+$cardId = 'card_id';
+$idempotencyKey = 'idempotency-key';
+
+$result = $customers->renewCard($customerId, $cardId, $idempotencyKey);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="get_customers"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getCustomers") getCustomers
+
+> Get all Customers
+
+
+```php
+function getCustomers(
+        $name = null,
+        $document = null,
+        $page = 1,
+        $size = 10,
+        $email = null,
+        $code = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| name |  ``` Optional ```  | Name of the Customer |
+| document |  ``` Optional ```  | Document of the Customer |
+| page |  ``` Optional ```  ``` DefaultValue ```  | Current page the the search |
+| size |  ``` Optional ```  ``` DefaultValue ```  | Quantity pages of the search |
+| email |  ``` Optional ```  | Customer's email |
+| code |  ``` Optional ```  | Customer's code |
+
+
+
+#### Example Usage
+
+```php
+$name = 'name';
+$document = 'document';
+$page = 1;
+$size = 10;
+$email = 'email';
+$code = 'Code';
+
+$result = $customers->getCustomers($name, $document, $page, $size, $email, $code);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="create_access_token"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.createAccessToken") createAccessToken
+
+> Creates a access token for a customer
+
+
+```php
+function createAccessToken(
+        $customerId,
+        $body,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| customerId |  ``` Required ```  | Customer Id |
+| body |  ``` Required ```  | Request for creating a access token |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$customerId = 'customer_id';
+$body = new CustomersAccessTokensRequest();
+$idempotencyKey = 'idempotency-key';
+
+$result = $customers->createAccessToken($customerId, $body, $idempotencyKey);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="get_addresses"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getAddresses") getAddresses
+
+> Gets all adressess from a customer
+
+
+```php
+function getAddresses(
+        $customerId,
+        $page = null,
+        $size = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| customerId |  ``` Required ```  | Customer id |
+| page |  ``` Optional ```  | Page number |
+| size |  ``` Optional ```  | Page size |
+
+
+
+#### Example Usage
+
+```php
+$customerId = 'customer_id';
+$page = 134;
+$size = 134;
+
+$result = $customers->getAddresses($customerId, $page, $size);
 
 ```
 
@@ -3591,55 +3965,6 @@ $result = $customers->getAddress($customerId, $addressId);
 
 
 
-### <a name="update_address"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.updateAddress") updateAddress
-
-> Updates an address
-
-
-```php
-function updateAddress(
-        $customerId,
-        $addressId,
-        $body,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| customerId |  ``` Required ```  | Customer Id |
-| addressId |  ``` Required ```  | Address Id |
-| body |  ``` Required ```  | Request for updating an address |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$customerId = 'customer_id';
-$addressId = 'address_id';
-$body = new CustomersAddressesRequest1();
-$idempotencyKey = 'idempotency-key';
-
-$result = $customers->updateAddress($customerId, $addressId, $body, $idempotencyKey);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
 ### <a name="delete_address"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.deleteAddress") deleteAddress
 
 > Delete a Customer's address
@@ -3732,242 +4057,6 @@ $result = $customers->createCard($customerId, $body, $idempotencyKey);
 
 
 
-### <a name="get_cards"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getCards") getCards
-
-> Get all cards from a customer
-
-
-```php
-function getCards(
-        $customerId,
-        $page = null,
-        $size = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| customerId |  ``` Required ```  | Customer Id |
-| page |  ``` Optional ```  | Page number |
-| size |  ``` Optional ```  | Page size |
-
-
-
-#### Example Usage
-
-```php
-$customerId = 'customer_id';
-$page = 103;
-$size = 103;
-
-$result = $customers->getCards($customerId, $page, $size);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="renew_card"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.renewCard") renewCard
-
-> Renew a card
-
-
-```php
-function renewCard(
-        $customerId,
-        $cardId,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| customerId |  ``` Required ```  | Customer id |
-| cardId |  ``` Required ```  | Card Id |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$customerId = 'customer_id';
-$cardId = 'card_id';
-$idempotencyKey = 'idempotency-key';
-
-$result = $customers->renewCard($customerId, $cardId, $idempotencyKey);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="create_customer"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.createCustomer") createCustomer
-
-> Creates a new customer
-
-
-```php
-function createCustomer(
-        $body,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| body |  ``` Required ```  | Request for creating a customer |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$body = new CustomersRequest1();
-$idempotencyKey = 'idempotency-key';
-
-$result = $customers->createCustomer($body, $idempotencyKey);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="get_customers"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getCustomers") getCustomers
-
-> Get all Customers
-
-
-```php
-function getCustomers(
-        $name = null,
-        $document = null,
-        $page = 1,
-        $size = 10,
-        $email = null,
-        $code = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| name |  ``` Optional ```  | Name of the Customer |
-| document |  ``` Optional ```  | Document of the Customer |
-| page |  ``` Optional ```  ``` DefaultValue ```  | Current page the the search |
-| size |  ``` Optional ```  ``` DefaultValue ```  | Quantity pages of the search |
-| email |  ``` Optional ```  | Customer's email |
-| code |  ``` Optional ```  | Customer's code |
-
-
-
-#### Example Usage
-
-```php
-$name = 'name';
-$document = 'document';
-$page = 1;
-$size = 10;
-$email = 'email';
-$code = 'Code';
-
-$result = $customers->getCustomers($name, $document, $page, $size, $email, $code);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="update_customer_metadata"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.updateCustomerMetadata") updateCustomerMetadata
-
-> Updates the metadata a customer
-
-
-```php
-function updateCustomerMetadata(
-        $customerId,
-        $body,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| customerId |  ``` Required ```  | The customer id |
-| body |  ``` Required ```  | Request for updating the customer metadata |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$customerId = 'customer_id';
-$body = new CustomersMetadataRequest();
-$idempotencyKey = 'idempotency-key';
-
-$result = $customers->updateCustomerMetadata($customerId, $body, $idempotencyKey);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
 ### <a name="update_card"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.updateCard") updateCard
 
 > Updates a card
@@ -4017,95 +4106,6 @@ $result = $customers->updateCard($customerId, $cardId, $body, $idempotencyKey);
 
 
 
-### <a name="delete_card"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.deleteCard") deleteCard
-
-> Delete a customer's card
-
-
-```php
-function deleteCard(
-        $customerId,
-        $cardId,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| customerId |  ``` Required ```  | Customer Id |
-| cardId |  ``` Required ```  | Card Id |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$customerId = 'customer_id';
-$cardId = 'card_id';
-$idempotencyKey = 'idempotency-key';
-
-$result = $customers->deleteCard($customerId, $cardId, $idempotencyKey);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="get_card"></a>![Method: ](https://apidocs.io/img/method.png ".CustomersController.getCard") getCard
-
-> Get a customer's card
-
-
-```php
-function getCard(
-        $customerId,
-        $cardId)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| customerId |  ``` Required ```  | Customer id |
-| cardId |  ``` Required ```  | Card id |
-
-
-
-#### Example Usage
-
-```php
-$customerId = 'customer_id';
-$cardId = 'card_id';
-
-$result = $customers->getCard($customerId, $cardId);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
 [Back to List of Controllers](#list_of_controllers)
 
 ## <a name="charges_controller"></a>![Class: ](https://apidocs.io/img/class.png ".ChargesController") ChargesController
@@ -4117,91 +4117,6 @@ The singleton instance of the ``` ChargesController ``` class can be accessed fr
 ```php
 $charges = $client->getCharges();
 ```
-
-### <a name="get_charge"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.getCharge") getCharge
-
-> Get a charge from its id
-
-
-```php
-function getCharge($chargeId)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| chargeId |  ``` Required ```  | Charge id |
-
-
-
-#### Example Usage
-
-```php
-$chargeId = 'charge_id';
-
-$result = $charges->getCharge($chargeId);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="cancel_charge"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.cancelCharge") cancelCharge
-
-> Cancel a charge
-
-
-```php
-function cancelCharge(
-        $chargeId,
-        $idempotencyKey = null,
-        $body = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| chargeId |  ``` Required ```  | Charge id |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-| body |  ``` Optional ```  | Request for cancelling a charge |
-
-
-
-#### Example Usage
-
-```php
-$chargeId = 'charge_id';
-$idempotencyKey = 'idempotency-key';
-$body = new ChargesRequest();
-
-$result = $charges->cancelCharge($chargeId, $idempotencyKey, $body);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
 
 ### <a name="confirm_payment"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.confirmPayment") confirmPayment
 
@@ -4233,52 +4148,6 @@ $idempotencyKey = 'idempotency-key';
 $body = new CreateConfirmPaymentRequest();
 
 $result = $charges->confirmPayment($chargeId, $idempotencyKey, $body);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="update_charge_card"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.updateChargeCard") updateChargeCard
-
-> Updates the card from a charge
-
-
-```php
-function updateChargeCard(
-        $chargeId,
-        $body,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| chargeId |  ``` Required ```  | Charge id |
-| body |  ``` Required ```  | Request for updating a charge's card |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$chargeId = 'charge_id';
-$body = new ChargesCardRequest();
-$idempotencyKey = 'idempotency-key';
-
-$result = $charges->updateChargeCard($chargeId, $body, $idempotencyKey);
 
 ```
 
@@ -4332,8 +4201,8 @@ function getCharges(
 #### Example Usage
 
 ```php
-$page = 103;
-$size = 103;
+$page = 134;
+$size = 134;
 $code = 'code';
 $status = 'status';
 $paymentMethod = 'payment_method';
@@ -4343,95 +4212,6 @@ $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
 
 $result = $charges->getCharges($page, $size, $code, $status, $paymentMethod, $customerId, $orderId, $createdSince, $createdUntil);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="retry_charge"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.retryCharge") retryCharge
-
-> Retries a charge
-
-
-```php
-function retryCharge(
-        $chargeId,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| chargeId |  ``` Required ```  | Charge id |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$chargeId = 'charge_id';
-$idempotencyKey = 'idempotency-key';
-
-$result = $charges->retryCharge($chargeId, $idempotencyKey);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="update_charge_payment_method"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.updateChargePaymentMethod") updateChargePaymentMethod
-
-> Updates a charge's payment method
-
-
-```php
-function updateChargePaymentMethod(
-        $chargeId,
-        $body,
-        $idempotencyKey = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| chargeId |  ``` Required ```  | Charge id |
-| body |  ``` Required ```  | Request for updating the payment method from a charge |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$chargeId = 'charge_id';
-$body = new ChargesPaymentMethodRequest();
-$idempotencyKey = 'idempotency-key';
-
-$result = $charges->updateChargePaymentMethod($chargeId, $body, $idempotencyKey);
 
 ```
 
@@ -4478,52 +4258,6 @@ $body = new ChargesMetadataRequest();
 $idempotencyKey = 'idempotency-key';
 
 $result = $charges->updateChargeMetadata($chargeId, $body, $idempotencyKey);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="capture_charge"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.captureCharge") captureCharge
-
-> Captures a charge
-
-
-```php
-function captureCharge(
-        $chargeId,
-        $idempotencyKey = null,
-        $body = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| chargeId |  ``` Required ```  | Charge id |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
-| body |  ``` Optional ```  | Request for capturing a charge |
-
-
-
-#### Example Usage
-
-```php
-$chargeId = 'charge_id';
-$idempotencyKey = 'idempotency-key';
-$body = new ChargesCaptureRequest();
-
-$result = $charges->captureCharge($chargeId, $idempotencyKey, $body);
 
 ```
 
@@ -4629,6 +4363,49 @@ $result = $charges->createCharge($body, $idempotencyKey);
 
 
 
+### <a name="retry_charge"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.retryCharge") retryCharge
+
+> Retries a charge
+
+
+```php
+function retryCharge(
+        $chargeId,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| chargeId |  ``` Required ```  | Charge id |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$chargeId = 'charge_id';
+$idempotencyKey = 'idempotency-key';
+
+$result = $charges->retryCharge($chargeId, $idempotencyKey);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
 ### <a name="get_charge_transactions"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.getChargeTransactions") getChargeTransactions
 
 > GetChargeTransactions
@@ -4655,8 +4432,8 @@ function getChargeTransactions(
 
 ```php
 $chargeId = 'charge_id';
-$page = 62;
-$size = 62;
+$page = 134;
+$size = 134;
 
 $result = $charges->getChargeTransactions($chargeId, $page, $size);
 
@@ -4705,6 +4482,229 @@ $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
 
 $result = $charges->getChargesSummary($status, $createdSince, $createdUntil);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="capture_charge"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.captureCharge") captureCharge
+
+> Captures a charge
+
+
+```php
+function captureCharge(
+        $chargeId,
+        $idempotencyKey = null,
+        $body = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| chargeId |  ``` Required ```  | Charge id |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+| body |  ``` Optional ```  | Request for capturing a charge |
+
+
+
+#### Example Usage
+
+```php
+$chargeId = 'charge_id';
+$idempotencyKey = 'idempotency-key';
+$body = new ChargesCaptureRequest();
+
+$result = $charges->captureCharge($chargeId, $idempotencyKey, $body);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="get_charge"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.getCharge") getCharge
+
+> Get a charge from its id
+
+
+```php
+function getCharge($chargeId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| chargeId |  ``` Required ```  | Charge id |
+
+
+
+#### Example Usage
+
+```php
+$chargeId = 'charge_id';
+
+$result = $charges->getCharge($chargeId);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="cancel_charge"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.cancelCharge") cancelCharge
+
+> Cancel a charge
+
+
+```php
+function cancelCharge(
+        $chargeId,
+        $idempotencyKey = null,
+        $body = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| chargeId |  ``` Required ```  | Charge id |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+| body |  ``` Optional ```  | Request for cancelling a charge |
+
+
+
+#### Example Usage
+
+```php
+$chargeId = 'charge_id';
+$idempotencyKey = 'idempotency-key';
+$body = new ChargesRequest();
+
+$result = $charges->cancelCharge($chargeId, $idempotencyKey, $body);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="update_charge_card"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.updateChargeCard") updateChargeCard
+
+> Updates the card from a charge
+
+
+```php
+function updateChargeCard(
+        $chargeId,
+        $body,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| chargeId |  ``` Required ```  | Charge id |
+| body |  ``` Required ```  | Request for updating a charge's card |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$chargeId = 'charge_id';
+$body = new ChargesCardRequest();
+$idempotencyKey = 'idempotency-key';
+
+$result = $charges->updateChargeCard($chargeId, $body, $idempotencyKey);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="update_charge_payment_method"></a>![Method: ](https://apidocs.io/img/method.png ".ChargesController.updateChargePaymentMethod") updateChargePaymentMethod
+
+> Updates a charge's payment method
+
+
+```php
+function updateChargePaymentMethod(
+        $chargeId,
+        $body,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| chargeId |  ``` Required ```  | Charge id |
+| body |  ``` Required ```  | Request for updating the payment method from a charge |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$chargeId = 'charge_id';
+$body = new ChargesPaymentMethodRequest();
+$idempotencyKey = 'idempotency-key';
+
+$result = $charges->updateChargePaymentMethod($chargeId, $body, $idempotencyKey);
 
 ```
 
@@ -4825,92 +4825,6 @@ $result = $recipients->updateRecipientTransferSettings($recipientId, $body, $ide
 
 
 
-### <a name="get_anticipation"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getAnticipation") getAnticipation
-
-> Gets an anticipation
-
-
-```php
-function getAnticipation(
-        $recipientId,
-        $anticipationId)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| recipientId |  ``` Required ```  | Recipient id |
-| anticipationId |  ``` Required ```  | Anticipation id |
-
-
-
-#### Example Usage
-
-```php
-$recipientId = 'recipient_id';
-$anticipationId = 'anticipation_id';
-
-$result = $recipients->getAnticipation($recipientId, $anticipationId);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="get_recipients"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getRecipients") getRecipients
-
-> Retrieves paginated recipients information
-
-
-```php
-function getRecipients(
-        $page = null,
-        $size = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| page |  ``` Optional ```  | Page number |
-| size |  ``` Optional ```  | Page size |
-
-
-
-#### Example Usage
-
-```php
-$page = 62;
-$size = 62;
-
-$result = $recipients->getRecipients($page, $size);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
 ### <a name="create_recipient"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.createRecipient") createRecipient
 
 > Creates a new recipient
@@ -4954,59 +4868,17 @@ $result = $recipients->createRecipient($body, $idempotencyKey);
 
 
 
-### <a name="get_balance"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getBalance") getBalance
+### <a name="get_withdrawals"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getWithdrawals") getWithdrawals
 
-> Get balance information for a recipient
-
-
-```php
-function getBalance($recipientId)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| recipientId |  ``` Required ```  | Recipient id |
-
-
-
-#### Example Usage
-
-```php
-$recipientId = 'recipient_id';
-
-$result = $recipients->getBalance($recipientId);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="get_anticipations"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getAnticipations") getAnticipations
-
-> Retrieves a paginated list of anticipations from a recipient
+> Gets a paginated list of transfers for the recipient
 
 
 ```php
-function getAnticipations(
+function getWithdrawals(
         $recipientId,
         $page = null,
         $size = null,
         $status = null,
-        $timeframe = null,
-        $paymentDateSince = null,
-        $paymentDateUntil = null,
         $createdSince = null,
         $createdUntil = null)
 ```
@@ -5015,15 +4887,12 @@ function getAnticipations(
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| recipientId |  ``` Required ```  | Recipient id |
-| page |  ``` Optional ```  | Page number |
-| size |  ``` Optional ```  | Page size |
-| status |  ``` Optional ```  | Filter for anticipation status |
-| timeframe |  ``` Optional ```  | Filter for anticipation timeframe |
-| paymentDateSince |  ``` Optional ```  | Filter for start range for anticipation payment date |
-| paymentDateUntil |  ``` Optional ```  | Filter for end range for anticipation payment date |
-| createdSince |  ``` Optional ```  | Filter for start range for anticipation creation date |
-| createdUntil |  ``` Optional ```  | Filter for end range for anticipation creation date |
+| recipientId |  ``` Required ```  | TODO: Add a parameter description |
+| page |  ``` Optional ```  | TODO: Add a parameter description |
+| size |  ``` Optional ```  | TODO: Add a parameter description |
+| status |  ``` Optional ```  | TODO: Add a parameter description |
+| createdSince |  ``` Optional ```  | TODO: Add a parameter description |
+| createdUntil |  ``` Optional ```  | TODO: Add a parameter description |
 
 
 
@@ -5031,16 +4900,13 @@ function getAnticipations(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 62;
-$size = 62;
+$page = 134;
+$size = 92;
 $status = 'status';
-$timeframe = 'timeframe';
-$paymentDateSince = date("D M d, Y G:i");
-$paymentDateUntil = date("D M d, Y G:i");
 $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
 
-$result = $recipients->getAnticipations($recipientId, $page, $size, $status, $timeframe, $paymentDateSince, $paymentDateUntil, $createdSince, $createdUntil);
+$result = $recipients->getWithdrawals($recipientId, $page, $size, $status, $createdSince, $createdUntil);
 
 ```
 
@@ -5057,13 +4923,13 @@ $result = $recipients->getAnticipations($recipientId, $page, $size, $status, $ti
 
 
 
-### <a name="create_anticipation"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.createAnticipation") createAnticipation
+### <a name="update_automatic_anticipation_settings"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.updateAutomaticAnticipationSettings") updateAutomaticAnticipationSettings
 
-> Creates an anticipation
+> Updates recipient metadata
 
 
 ```php
-function createAnticipation(
+function updateAutomaticAnticipationSettings(
         $recipientId,
         $body,
         $idempotencyKey = null)
@@ -5074,7 +4940,7 @@ function createAnticipation(
 | Parameter | Tags | Description |
 |-----------|------|-------------|
 | recipientId |  ``` Required ```  | Recipient id |
-| body |  ``` Required ```  | Anticipation data |
+| body |  ``` Required ```  | Metadata |
 | idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
 
 
@@ -5083,10 +4949,10 @@ function createAnticipation(
 
 ```php
 $recipientId = 'recipient_id';
-$body = new RecipientsAnticipationsRequest();
+$body = new UpdateAutomaticAnticipationSettingsRequest();
 $idempotencyKey = 'idempotency-key';
 
-$result = $recipients->createAnticipation($recipientId, $body, $idempotencyKey);
+$result = $recipients->updateAutomaticAnticipationSettings($recipientId, $body, $idempotencyKey);
 
 ```
 
@@ -5103,16 +4969,54 @@ $result = $recipients->createAnticipation($recipientId, $body, $idempotencyKey);
 
 
 
-### <a name="update_recipient_default_bank_account"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.updateRecipientDefaultBankAccount") updateRecipientDefaultBankAccount
+### <a name="get_recipient_by_code"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getRecipientByCode") getRecipientByCode
 
-> Updates the default bank account from a recipient
+> Retrieves recipient information
 
 
 ```php
-function updateRecipientDefaultBankAccount(
+function getRecipientByCode($code)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| code |  ``` Required ```  | Recipient code |
+
+
+
+#### Example Usage
+
+```php
+$code = 'code';
+
+$result = $recipients->getRecipientByCode($code);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="get_anticipation"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getAnticipation") getAnticipation
+
+> Gets an anticipation
+
+
+```php
+function getAnticipation(
         $recipientId,
-        $body,
-        $idempotencyKey = null)
+        $anticipationId)
 ```
 
 #### Parameters
@@ -5120,8 +5024,7 @@ function updateRecipientDefaultBankAccount(
 | Parameter | Tags | Description |
 |-----------|------|-------------|
 | recipientId |  ``` Required ```  | Recipient id |
-| body |  ``` Required ```  | Bank account data |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+| anticipationId |  ``` Required ```  | Anticipation id |
 
 
 
@@ -5129,10 +5032,9 @@ function updateRecipientDefaultBankAccount(
 
 ```php
 $recipientId = 'recipient_id';
-$body = new RecipientsDefaultBankAccountRequest();
-$idempotencyKey = 'idempotency-key';
+$anticipationId = 'anticipation_id';
 
-$result = $recipients->updateRecipientDefaultBankAccount($recipientId, $body, $idempotencyKey);
+$result = $recipients->getAnticipation($recipientId, $anticipationId);
 
 ```
 
@@ -5277,6 +5179,137 @@ $result = $recipients->getTransfer($recipientId, $transferId);
 
 
 
+### <a name="get_anticipation_limits"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getAnticipationLimits") getAnticipationLimits
+
+> Gets the anticipation limits for a recipient
+
+
+```php
+function getAnticipationLimits(
+        $recipientId,
+        $timeframe,
+        $paymentDate)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+| timeframe |  ``` Required ```  | Timeframe |
+| paymentDate |  ``` Required ```  | Anticipation payment date |
+
+
+
+#### Example Usage
+
+```php
+$recipientId = 'recipient_id';
+$timeframe = 'timeframe';
+$paymentDate = date("D M d, Y G:i");
+
+$result = $recipients->getAnticipationLimits($recipientId, $timeframe, $paymentDate);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="get_balance"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getBalance") getBalance
+
+> Get balance information for a recipient
+
+
+```php
+function getBalance($recipientId)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+
+
+
+#### Example Usage
+
+```php
+$recipientId = 'recipient_id';
+
+$result = $recipients->getBalance($recipientId);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="create_anticipation"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.createAnticipation") createAnticipation
+
+> Creates an anticipation
+
+
+```php
+function createAnticipation(
+        $recipientId,
+        $body,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+| body |  ``` Required ```  | Anticipation data |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$recipientId = 'recipient_id';
+$body = new RecipientsAnticipationsRequest();
+$idempotencyKey = 'idempotency-key';
+
+$result = $recipients->createAnticipation($recipientId, $body, $idempotencyKey);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
 ### <a name="get_transfers"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getTransfers") getTransfers
 
 > Gets a paginated list of transfers for the recipient
@@ -5309,13 +5342,166 @@ function getTransfers(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 62;
-$size = 62;
+$page = 92;
+$size = 92;
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
 
 $result = $recipients->getTransfers($recipientId, $page, $size, $status, $createdSince, $createdUntil);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="get_recipients"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getRecipients") getRecipients
+
+> Retrieves paginated recipients information
+
+
+```php
+function getRecipients(
+        $page = null,
+        $size = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| page |  ``` Optional ```  | Page number |
+| size |  ``` Optional ```  | Page size |
+
+
+
+#### Example Usage
+
+```php
+$page = 92;
+$size = 92;
+
+$result = $recipients->getRecipients($page, $size);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="get_anticipations"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getAnticipations") getAnticipations
+
+> Retrieves a paginated list of anticipations from a recipient
+
+
+```php
+function getAnticipations(
+        $recipientId,
+        $page = null,
+        $size = null,
+        $status = null,
+        $timeframe = null,
+        $paymentDateSince = null,
+        $paymentDateUntil = null,
+        $createdSince = null,
+        $createdUntil = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+| page |  ``` Optional ```  | Page number |
+| size |  ``` Optional ```  | Page size |
+| status |  ``` Optional ```  | Filter for anticipation status |
+| timeframe |  ``` Optional ```  | Filter for anticipation timeframe |
+| paymentDateSince |  ``` Optional ```  | Filter for start range for anticipation payment date |
+| paymentDateUntil |  ``` Optional ```  | Filter for end range for anticipation payment date |
+| createdSince |  ``` Optional ```  | Filter for start range for anticipation creation date |
+| createdUntil |  ``` Optional ```  | Filter for end range for anticipation creation date |
+
+
+
+#### Example Usage
+
+```php
+$recipientId = 'recipient_id';
+$page = 92;
+$size = 92;
+$status = 'status';
+$timeframe = 'timeframe';
+$paymentDateSince = date("D M d, Y G:i");
+$paymentDateUntil = date("D M d, Y G:i");
+$createdSince = date("D M d, Y G:i");
+$createdUntil = date("D M d, Y G:i");
+
+$result = $recipients->getAnticipations($recipientId, $page, $size, $status, $timeframe, $paymentDateSince, $paymentDateUntil, $createdSince, $createdUntil);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="update_recipient_default_bank_account"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.updateRecipientDefaultBankAccount") updateRecipientDefaultBankAccount
+
+> Updates the default bank account from a recipient
+
+
+```php
+function updateRecipientDefaultBankAccount(
+        $recipientId,
+        $body,
+        $idempotencyKey = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| recipientId |  ``` Required ```  | Recipient id |
+| body |  ``` Required ```  | Bank account data |
+| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+
+
+
+#### Example Usage
+
+```php
+$recipientId = 'recipient_id';
+$body = new RecipientsDefaultBankAccountRequest();
+$idempotencyKey = 'idempotency-key';
+
+$result = $recipients->updateRecipientDefaultBankAccount($recipientId, $body, $idempotencyKey);
 
 ```
 
@@ -5378,52 +5564,6 @@ $result = $recipients->createTransfer($recipientId, $body, $idempotencyKey);
 
 
 
-### <a name="get_anticipation_limits"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getAnticipationLimits") getAnticipationLimits
-
-> Gets the anticipation limits for a recipient
-
-
-```php
-function getAnticipationLimits(
-        $recipientId,
-        $timeframe,
-        $paymentDate)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| recipientId |  ``` Required ```  | Recipient id |
-| timeframe |  ``` Required ```  | Timeframe |
-| paymentDate |  ``` Required ```  | Anticipation payment date |
-
-
-
-#### Example Usage
-
-```php
-$recipientId = 'recipient_id';
-$timeframe = 'timeframe';
-$paymentDate = date("D M d, Y G:i");
-
-$result = $recipients->getAnticipationLimits($recipientId, $timeframe, $paymentDate);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
 ### <a name="create_withdraw"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.createWithdraw") createWithdraw
 
 > CreateWithdraw
@@ -5451,61 +5591,6 @@ $recipientId = 'recipient_id';
 $body = new CreateWithdrawRequest();
 
 $result = $recipients->createWithdraw($recipientId, $body);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="get_withdrawals"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getWithdrawals") getWithdrawals
-
-> Gets a paginated list of transfers for the recipient
-
-
-```php
-function getWithdrawals(
-        $recipientId,
-        $page = null,
-        $size = null,
-        $status = null,
-        $createdSince = null,
-        $createdUntil = null)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| recipientId |  ``` Required ```  | TODO: Add a parameter description |
-| page |  ``` Optional ```  | TODO: Add a parameter description |
-| size |  ``` Optional ```  | TODO: Add a parameter description |
-| status |  ``` Optional ```  | TODO: Add a parameter description |
-| createdSince |  ``` Optional ```  | TODO: Add a parameter description |
-| createdUntil |  ``` Optional ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$recipientId = 'recipient_id';
-$page = 153;
-$size = 153;
-$status = 'status';
-$createdSince = date("D M d, Y G:i");
-$createdUntil = date("D M d, Y G:i");
-
-$result = $recipients->getWithdrawals($recipientId, $page, $size, $status, $createdSince, $createdUntil);
 
 ```
 
@@ -5565,36 +5650,41 @@ $result = $recipients->getWithdrawById($recipientId, $withdrawalId);
 
 
 
-### <a name="update_automatic_anticipation_settings"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.updateAutomaticAnticipationSettings") updateAutomaticAnticipationSettings
+[Back to List of Controllers](#list_of_controllers)
 
-> Updates recipient metadata
+## <a name="transfers_controller"></a>![Class: ](https://apidocs.io/img/class.png ".TransfersController") TransfersController
+
+### Get singleton instance
+
+The singleton instance of the ``` TransfersController ``` class can be accessed from the API Client.
+
+```php
+$transfers = $client->getTransfers();
+```
+
+### <a name="get_transfer_by_id"></a>![Method: ](https://apidocs.io/img/method.png ".TransfersController.getTransferById") getTransferById
+
+> GetTransferById
 
 
 ```php
-function updateAutomaticAnticipationSettings(
-        $recipientId,
-        $body,
-        $idempotencyKey = null)
+function getTransferById($transferId)
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| recipientId |  ``` Required ```  | Recipient id |
-| body |  ``` Required ```  | Metadata |
-| idempotencyKey |  ``` Optional ```  | TODO: Add a parameter description |
+| transferId |  ``` Required ```  | TODO: Add a parameter description |
 
 
 
 #### Example Usage
 
 ```php
-$recipientId = 'recipient_id';
-$body = new UpdateAutomaticAnticipationSettingsRequest();
-$idempotencyKey = 'idempotency-key';
+$transferId = 'transfer_id';
 
-$result = $recipients->updateAutomaticAnticipationSettings($recipientId, $body, $idempotencyKey);
+$result = $transfers->getTransferById($transferId);
 
 ```
 
@@ -5611,29 +5701,59 @@ $result = $recipients->updateAutomaticAnticipationSettings($recipientId, $body, 
 
 
 
-### <a name="get_recipient_by_code"></a>![Method: ](https://apidocs.io/img/method.png ".RecipientsController.getRecipientByCode") getRecipientByCode
+### <a name="post_create_transfer"></a>![Method: ](https://apidocs.io/img/method.png ".TransfersController.postCreateTransfer") postCreateTransfer
 
-> Retrieves recipient information
+> CreateTransfer
 
 
 ```php
-function getRecipientByCode($code)
+function postCreateTransfer($body)
 ```
 
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| code |  ``` Required ```  | Recipient code |
+| body |  ``` Required ```  | TODO: Add a parameter description |
 
 
 
 #### Example Usage
 
 ```php
-$code = 'code';
+$body = new CreateTransfer();
 
-$result = $recipients->getRecipientByCode($code);
+$result = $transfers->postCreateTransfer($body);
+
+```
+
+#### Errors
+
+| Error Code | Error Description |
+|------------|-------------------|
+| 400 | Invalid request |
+| 401 | Invalid API key |
+| 404 | An informed resource was not found |
+| 412 | Business validation error |
+| 422 | Contract validation error |
+| 500 | Internal server error |
+
+
+
+### <a name="get_transfers1"></a>![Method: ](https://apidocs.io/img/method.png ".TransfersController.getTransfers1") getTransfers1
+
+> Gets all transfers
+
+
+```php
+function getTransfers1()
+```
+
+#### Example Usage
+
+```php
+
+$result = $transfers->getTransfers1();
 
 ```
 
@@ -5796,126 +5916,6 @@ function getTransaction($transactionId)
 $transactionId = 'transaction_id';
 
 $result = $transactions->getTransaction($transactionId);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-[Back to List of Controllers](#list_of_controllers)
-
-## <a name="transfers_controller"></a>![Class: ](https://apidocs.io/img/class.png ".TransfersController") TransfersController
-
-### Get singleton instance
-
-The singleton instance of the ``` TransfersController ``` class can be accessed from the API Client.
-
-```php
-$transfers = $client->getTransfers();
-```
-
-### <a name="post_create_transfer"></a>![Method: ](https://apidocs.io/img/method.png ".TransfersController.postCreateTransfer") postCreateTransfer
-
-> CreateTransfer
-
-
-```php
-function postCreateTransfer($body)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| body |  ``` Required ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$body = new CreateTransfer();
-
-$result = $transfers->postCreateTransfer($body);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="get_transfer_by_id"></a>![Method: ](https://apidocs.io/img/method.png ".TransfersController.getTransferById") getTransferById
-
-> GetTransferById
-
-
-```php
-function getTransferById($transferId)
-```
-
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| transferId |  ``` Required ```  | TODO: Add a parameter description |
-
-
-
-#### Example Usage
-
-```php
-$transferId = 'transfer_id';
-
-$result = $transfers->getTransferById($transferId);
-
-```
-
-#### Errors
-
-| Error Code | Error Description |
-|------------|-------------------|
-| 400 | Invalid request |
-| 401 | Invalid API key |
-| 404 | An informed resource was not found |
-| 412 | Business validation error |
-| 422 | Contract validation error |
-| 500 | Internal server error |
-
-
-
-### <a name="get_transfers1"></a>![Method: ](https://apidocs.io/img/method.png ".TransfersController.getTransfers1") getTransfers1
-
-> Gets all transfers
-
-
-```php
-function getTransfers1()
-```
-
-#### Example Usage
-
-```php
-
-$result = $transfers->getTransfers1();
 
 ```
 

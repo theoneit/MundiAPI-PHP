@@ -43,270 +43,6 @@ class PlansController extends BaseController
     }
 
     /**
-     * Updates a plan item
-     *
-     * @param string                   $planId          Plan id
-     * @param string                   $planItemId      Plan item id
-     * @param Models\PlansItemsRequest $body            Request for updating the plan item
-     * @param string                   $idempotencyKey  (optional) TODO: type description here
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function updatePlanItem(
-        $planId,
-        $planItemId,
-        $body,
-        $idempotencyKey = null
-    ) {
-
-        //prepare query string for API call
-        $_queryBuilder = '/plans/{plan_id}/items/{plan_item_id}';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'plan_id'         => $planId,
-            'plan_item_id'    => $planItemId,
-            ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json',
-            'Content-Type'    => 'application/json',
-            'idempotency-key' => $idempotencyKey
-        );
-
-        //json encode body
-        $_bodyJson = Request\Body::Json($body);
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::PUT, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::put($_queryUrl, $_headers, $_bodyJson);
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //Error handling using HTTP status codes
-        if ($response->code == 400) {
-            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
-        }
-
-        if ($response->code == 401) {
-            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
-        }
-
-        if ($response->code == 404) {
-            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
-        }
-
-        if ($response->code == 412) {
-            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
-        }
-
-        if ($response->code == 422) {
-            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
-        }
-
-        if ($response->code == 500) {
-            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\PlansItemsResponse');
-    }
-
-    /**
-     * Removes an item from a plan
-     *
-     * @param string $planId          Plan id
-     * @param string $planItemId      Plan item id
-     * @param string $idempotencyKey  (optional) TODO: type description here
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function deletePlanItem(
-        $planId,
-        $planItemId,
-        $idempotencyKey = null
-    ) {
-
-        //prepare query string for API call
-        $_queryBuilder = '/plans/{plan_id}/items/{plan_item_id}';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'plan_id'         => $planId,
-            'plan_item_id'    => $planItemId,
-            ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json',
-            'idempotency-key' => $idempotencyKey
-        );
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::delete($_queryUrl, $_headers);
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //Error handling using HTTP status codes
-        if ($response->code == 400) {
-            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
-        }
-
-        if ($response->code == 401) {
-            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
-        }
-
-        if ($response->code == 404) {
-            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
-        }
-
-        if ($response->code == 412) {
-            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
-        }
-
-        if ($response->code == 422) {
-            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
-        }
-
-        if ($response->code == 500) {
-            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\PlansItemsResponse');
-    }
-
-    /**
-     * Gets a plan item
-     *
-     * @param string $planId       Plan id
-     * @param string $planItemId   Plan item id
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function getPlanItem(
-        $planId,
-        $planItemId
-    ) {
-
-        //prepare query string for API call
-        $_queryBuilder = '/plans/{plan_id}/items/{plan_item_id}';
-
-        //process optional query parameters
-        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'plan_id'      => $planId,
-            'plan_item_id' => $planItemId,
-            ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json'
-        );
-
-        //set HTTP basic auth parameters
-        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::get($_queryUrl, $_headers);
-
-        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-
-        //call on-after Http callback
-        if ($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
-        }
-
-        //Error handling using HTTP status codes
-        if ($response->code == 400) {
-            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
-        }
-
-        if ($response->code == 401) {
-            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
-        }
-
-        if ($response->code == 404) {
-            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
-        }
-
-        if ($response->code == 412) {
-            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
-        }
-
-        if ($response->code == 422) {
-            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
-        }
-
-        if ($response->code == 500) {
-            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
-        }
-
-        //handle errors defined at the API level
-        $this->validateResponse($_httpResponse, $_httpContext);
-
-        $mapper = $this->getJsonMapper();
-
-        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\PlansItemsResponse');
-    }
-
-    /**
      * Adds a new item to a plan
      *
      * @param string                    $planId          Plan id
@@ -496,20 +232,23 @@ class PlansController extends BaseController
     }
 
     /**
-     * Creates a new plan
+     * Gets a plan
      *
-     * @param Models\PlansRequest $body            Request for creating a plan
-     * @param string              $idempotencyKey  (optional) TODO: type description here
+     * @param string $planId  Plan id
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function createPlan(
-        $body,
-        $idempotencyKey = null
+    public function getPlan(
+        $planId
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = '/plans';
+        $_queryBuilder = '/plans/{plan_id}';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'plan_id' => $planId,
+            ));
 
         //validate and preprocess url
         $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
@@ -517,25 +256,20 @@ class PlansController extends BaseController
         //prepare headers
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json',
-            'Content-Type'    => 'application/json',
-            'idempotency-key' => $idempotencyKey
+            'Accept'        => 'application/json'
         );
-
-        //json encode body
-        $_bodyJson = Request\Body::Json($body);
 
         //set HTTP basic auth parameters
         Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
 
         //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if ($this->getHttpCallBack() != null) {
             $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
-        $response = Request::post($_queryUrl, $_headers, $_bodyJson);
+        $response = Request::get($_queryUrl, $_headers);
 
         $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
         $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
@@ -579,22 +313,27 @@ class PlansController extends BaseController
     }
 
     /**
-     * Gets a plan
+     * Removes an item from a plan
      *
-     * @param string $planId  Plan id
+     * @param string $planId          Plan id
+     * @param string $planItemId      Plan item id
+     * @param string $idempotencyKey  (optional) TODO: type description here
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function getPlan(
-        $planId
+    public function deletePlanItem(
+        $planId,
+        $planItemId,
+        $idempotencyKey = null
     ) {
 
         //prepare query string for API call
-        $_queryBuilder = '/plans/{plan_id}';
+        $_queryBuilder = '/plans/{plan_id}/items/{plan_item_id}';
 
         //process optional query parameters
         $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
-            'plan_id' => $planId,
+            'plan_id'         => $planId,
+            'plan_item_id'    => $planItemId,
             ));
 
         //validate and preprocess url
@@ -603,20 +342,104 @@ class PlansController extends BaseController
         //prepare headers
         $_headers = array (
             'user-agent'    => BaseController::USER_AGENT,
-            'Accept'        => 'application/json'
+            'Accept'        => 'application/json',
+            'idempotency-key' => $idempotencyKey
         );
 
         //set HTTP basic auth parameters
         Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
 
         //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+        $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);
         if ($this->getHttpCallBack() != null) {
             $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
-        $response = Request::get($_queryUrl, $_headers);
+        $response = Request::delete($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\PlansItemsResponse');
+    }
+
+    /**
+     * Creates a new plan
+     *
+     * @param Models\PlansRequest $body            Request for creating a plan
+     * @param string              $idempotencyKey  (optional) TODO: type description here
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function createPlan(
+        $body,
+        $idempotencyKey = null
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/plans';
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json',
+            'Content-Type'    => 'application/json',
+            'idempotency-key' => $idempotencyKey
+        );
+
+        //json encode body
+        $_bodyJson = Request\Body::Json($body);
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::post($_queryUrl, $_headers, $_bodyJson);
 
         $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
         $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
@@ -831,6 +654,183 @@ class PlansController extends BaseController
         $mapper = $this->getJsonMapper();
 
         return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\PlansResponse1');
+    }
+
+    /**
+     * Updates a plan item
+     *
+     * @param string                   $planId          Plan id
+     * @param string                   $planItemId      Plan item id
+     * @param Models\PlansItemsRequest $body            Request for updating the plan item
+     * @param string                   $idempotencyKey  (optional) TODO: type description here
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function updatePlanItem(
+        $planId,
+        $planItemId,
+        $body,
+        $idempotencyKey = null
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/plans/{plan_id}/items/{plan_item_id}';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'plan_id'         => $planId,
+            'plan_item_id'    => $planItemId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json',
+            'Content-Type'    => 'application/json',
+            'idempotency-key' => $idempotencyKey
+        );
+
+        //json encode body
+        $_bodyJson = Request\Body::Json($body);
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::PUT, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::put($_queryUrl, $_headers, $_bodyJson);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\PlansItemsResponse');
+    }
+
+    /**
+     * Gets a plan item
+     *
+     * @param string $planId       Plan id
+     * @param string $planItemId   Plan item id
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function getPlanItem(
+        $planId,
+        $planItemId
+    ) {
+
+        //prepare query string for API call
+        $_queryBuilder = '/plans/{plan_id}/items/{plan_item_id}';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'plan_id'      => $planId,
+            'plan_item_id' => $planItemId,
+            ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl(Configuration::$BASEURI . $_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => BaseController::USER_AGENT,
+            'Accept'        => 'application/json'
+        );
+
+        //set HTTP basic auth parameters
+        Request::auth(Configuration::$basicAuthUserName, Configuration::$basicAuthPassword);
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::get($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if ($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if ($response->code == 400) {
+            throw new Exceptions\ErrorException('Invalid request', $_httpContext);
+        }
+
+        if ($response->code == 401) {
+            throw new Exceptions\ErrorException('Invalid API key', $_httpContext);
+        }
+
+        if ($response->code == 404) {
+            throw new Exceptions\ErrorException('An informed resource was not found', $_httpContext);
+        }
+
+        if ($response->code == 412) {
+            throw new Exceptions\ErrorException('Business validation error', $_httpContext);
+        }
+
+        if ($response->code == 422) {
+            throw new Exceptions\ErrorException('Contract validation error', $_httpContext);
+        }
+
+        if ($response->code == 500) {
+            throw new Exceptions\ErrorException('Internal server error', $_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse, $_httpContext);
+
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapClass($response->body, 'MundiAPILib\\Models\\PlansItemsResponse');
     }
 
     /**
