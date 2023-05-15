@@ -50,21 +50,30 @@ class CreateVoucherPaymentRequest implements JsonSerializable
     public $recurrencyCycle;
 
     /**
+     * Customer business segment code
+     * @maps merchant_category_code
+     * @var integer|null $merchantCategoryCode public property
+     */
+    public $merchantCategoryCode;
+
+    /**
      * Constructor to set initial or default values of member properties
-     * @param string $statementDescriptor Initialization value for $this->statementDescriptor
-     * @param string $cardId              Initialization value for $this->cardId
-     * @param string $cardToken           Initialization value for $this->cardToken
-     * @param Card1  $card                Initialization value for $this->card
-     * @param string $recurrencyCycle     Initialization value for $this->recurrencyCycle
+     * @param string  $statementDescriptor  Initialization value for $this->statementDescriptor
+     * @param string  $cardId               Initialization value for $this->cardId
+     * @param string  $cardToken            Initialization value for $this->cardToken
+     * @param Card1   $card                 Initialization value for $this->card
+     * @param string  $recurrencyCycle      Initialization value for $this->recurrencyCycle
+     * @param integer $merchantCategoryCode Initialization value for $this->merchantCategoryCode
      */
     public function __construct()
     {
-        if (5 == func_num_args()) {
-            $this->statementDescriptor = func_get_arg(0);
-            $this->cardId              = func_get_arg(1);
-            $this->cardToken           = func_get_arg(2);
-            $this->card                = func_get_arg(3);
-            $this->recurrencyCycle     = func_get_arg(4);
+        if (6 == func_num_args()) {
+            $this->statementDescriptor  = func_get_arg(0);
+            $this->cardId               = func_get_arg(1);
+            $this->cardToken            = func_get_arg(2);
+            $this->card                 = func_get_arg(3);
+            $this->recurrencyCycle      = func_get_arg(4);
+            $this->merchantCategoryCode = func_get_arg(5);
         }
     }
 
@@ -75,11 +84,12 @@ class CreateVoucherPaymentRequest implements JsonSerializable
     public function jsonSerialize()
     {
         $json = array();
-        $json['statement_descriptor'] = $this->statementDescriptor;
-        $json['card_id']              = $this->cardId;
-        $json['card_token']           = $this->cardToken;
-        $json['Card']                 = $this->card;
-        $json['recurrency_cycle']     = $this->recurrencyCycle;
+        $json['statement_descriptor']   = $this->statementDescriptor;
+        $json['card_id']                = $this->cardId;
+        $json['card_token']             = $this->cardToken;
+        $json['Card']                   = $this->card;
+        $json['recurrency_cycle']       = $this->recurrencyCycle;
+        $json['merchant_category_code'] = $this->merchantCategoryCode;
 
         return $json;
     }
