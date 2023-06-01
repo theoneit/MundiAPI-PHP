@@ -81,14 +81,6 @@ class MundiAPIClient
         return Controllers\RecipientsController::getInstance();
     }
     /**
-     * Singleton access to Transfers controller
-     * @return Controllers\TransfersController The *Singleton* instance
-     */
-    public function getTransfers()
-    {
-        return Controllers\TransfersController::getInstance();
-    }
-    /**
      * Singleton access to Tokens controller
      * @return Controllers\TokensController The *Singleton* instance
      */
@@ -103,5 +95,13 @@ class MundiAPIClient
     public function getTransactions()
     {
         return Controllers\TransactionsController::getInstance();
+    }
+    /**
+     * Singleton access to Transfers controller
+     * @return Controllers\TransfersController The *Singleton* instance
+     */
+    public function getTransfers()
+    {
+        return Controllers\TransfersController::getInstance();
     }
 }

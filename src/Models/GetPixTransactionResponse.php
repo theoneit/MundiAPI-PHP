@@ -59,21 +59,31 @@ class GetPixTransactionResponse extends GetTransactionResponse implements JsonSe
     public $payer;
 
     /**
+     * Pix provider TID
+     * @required
+     * @maps pix_provider_tid
+     * @var string $pixProviderTid public property
+     */
+    public $pixProviderTid;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param string    $qrCode                Initialization value for $this->qrCode
      * @param string    $qrCodeUrl             Initialization value for $this->qrCodeUrl
      * @param \DateTime $expiresAt             Initialization value for $this->expiresAt
      * @param array     $additionalInformation Initialization value for $this->additionalInformation
      * @param object    $payer                 Initialization value for $this->payer
+     * @param string    $pixProviderTid        Initialization value for $this->pixProviderTid
      */
     public function __construct()
     {
-        if (5 == func_num_args()) {
+        if (6 == func_num_args()) {
             $this->qrCode                = func_get_arg(0);
             $this->qrCodeUrl             = func_get_arg(1);
             $this->expiresAt             = func_get_arg(2);
             $this->additionalInformation = func_get_arg(3);
             $this->payer                 = func_get_arg(4);
+            $this->pixProviderTid        = func_get_arg(5);
         }
     }
 
@@ -89,6 +99,7 @@ class GetPixTransactionResponse extends GetTransactionResponse implements JsonSe
         $json['expires_at']             = DateTimeHelper::toRfc3339DateTime($this->expiresAt);
         $json['additional_information'] = $this->additionalInformation;
         $json['payer']                  = $this->payer;
+        $json['pix_provider_tid']       = $this->pixProviderTid;
         $json = array_merge($json, parent::jsonSerialize());
 
         return $json;

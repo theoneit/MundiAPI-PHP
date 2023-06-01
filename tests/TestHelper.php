@@ -345,11 +345,11 @@ class TestHelper
         $mapper->arChildClasses['MundiAPILib\\Models\\GetTransactionResponse'] = array(
             'MundiAPILib\\Models\\GetBankTransferTransactionResponse', 
             'MundiAPILib\\Models\\GetDebitCardTransactionResponse', 
-            'MundiAPILib\\Models\\GetCreditCardTransactionResponse', 
-            'MundiAPILib\\Models\\GetSafetyPayTransactionResponse', 
             'MundiAPILib\\Models\\GetVoucherTransactionResponse', 
             'MundiAPILib\\Models\\GetBoletoTransactionResponse', 
             'MundiAPILib\\Models\\GetCashTransactionResponse', 
+            'MundiAPILib\\Models\\GetSafetyPayTransactionResponse', 
+            'MundiAPILib\\Models\\GetCreditCardTransactionResponse', 
             'MundiAPILib\\Models\\GetPrivateLabelTransactionResponse', 
             'MundiAPILib\\Models\\GetPixTransactionResponse'
         );
