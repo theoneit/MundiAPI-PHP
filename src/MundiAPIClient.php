@@ -18,9 +18,11 @@ class MundiAPIClient
      * Constructor with authentication and configuration parameters
      */
     public function __construct(
+        $serviceRefererName = null,
         $basicAuthUserName = null,
         $basicAuthPassword = null
     ) {
+        Configuration::$serviceRefererName = $serviceRefererName ? $serviceRefererName : Configuration::$serviceRefererName;
         Configuration::$basicAuthUserName = $basicAuthUserName ? $basicAuthUserName : Configuration::$basicAuthUserName;
         Configuration::$basicAuthPassword = $basicAuthPassword ? $basicAuthPassword : Configuration::$basicAuthPassword;
     }

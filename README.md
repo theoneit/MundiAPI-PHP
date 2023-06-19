@@ -113,6 +113,7 @@ In order to setup authentication and initialization of the API client, you need 
 
 | Parameter | Description |
 |-----------|-------------|
+| serviceRefererName | TODO: add a description |
 | basicAuthUserName | The username to use with basic authentication |
 | basicAuthPassword | The password to use with basic authentication |
 
@@ -121,10 +122,11 @@ In order to setup authentication and initialization of the API client, you need 
 API client can be initialized as following.
 
 ```php
+$serviceRefererName = 'serviceRefererName';
 $basicAuthUserName = 'basicAuthUserName'; // The username to use with basic authentication
 $basicAuthPassword = 'basicAuthPassword'; // The password to use with basic authentication
 
-$client = new MundiAPILib\MundiAPIClient($basicAuthUserName, $basicAuthPassword);
+$client = new MundiAPILib\MundiAPIClient($serviceRefererName, $basicAuthUserName, $basicAuthPassword);
 ```
 
 
@@ -781,8 +783,8 @@ function getSubscriptions(
 #### Example Usage
 
 ```php
-$page = 58;
-$size = 58;
+$page = 83;
+$size = 83;
 $code = 'code';
 $billingType = 'billing_type';
 $customerId = 'customer_id';
@@ -844,8 +846,8 @@ function getUsagesDetails(
 ```php
 $subscriptionId = 'subscription_id';
 $cycleId = 'cycle_id';
-$size = 58;
-$page = 58;
+$size = 83;
+$page = 83;
 $itemId = 'item_id';
 $group = 'group';
 
@@ -1038,8 +1040,8 @@ function getUsages(
 ```php
 $subscriptionId = 'subscription_id';
 $itemId = 'item_id';
-$page = 58;
-$size = 58;
+$page = 83;
+$size = 83;
 $code = 'code';
 $group = 'group';
 $usedSince = date("D M d, Y G:i");
@@ -1134,8 +1136,8 @@ function getIncrements(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 58;
-$size = 58;
+$page = 83;
+$size = 83;
 
 $result = $subscriptions->getIncrements($subscriptionId, $page, $size);
 
@@ -1238,8 +1240,8 @@ function getSubscriptionItems(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 149;
-$size = 149;
+$page = 83;
+$size = 83;
 $name = 'name';
 $code = 'code';
 $status = 'status';
@@ -1612,8 +1614,8 @@ function getDiscounts(
 
 ```php
 $subscriptionId = 'subscription_id';
-$page = 149;
-$size = 149;
+$page = 83;
+$size = 83;
 
 $result = $subscriptions->getDiscounts($subscriptionId, $page, $size);
 
@@ -2079,8 +2081,8 @@ function getOrders(
 #### Example Usage
 
 ```php
-$page = 149;
-$size = 149;
+$page = 175;
+$size = 175;
 $code = 'code';
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
@@ -2553,8 +2555,8 @@ function getPlans(
 #### Example Usage
 
 ```php
-$page = 149;
-$size = 149;
+$page = 175;
+$size = 175;
 $name = 'name';
 $status = 'status';
 $billingType = 'billing_type';
@@ -3110,8 +3112,8 @@ function getInvoices(
 #### Example Usage
 
 ```php
-$page = 108;
-$size = 108;
+$page = 11;
+$size = 11;
 $code = 'code';
 $customerId = 'customer_id';
 $subscriptionId = 'subscription_id';
@@ -3223,8 +3225,8 @@ function getAccessTokens(
 
 ```php
 $customerId = 'customer_id';
-$page = 108;
-$size = 108;
+$page = 11;
+$size = 11;
 
 $result = $customers->getAccessTokens($customerId, $page, $size);
 
@@ -3393,8 +3395,8 @@ function getAddresses(
 
 ```php
 $customerId = 'customer_id';
-$page = 108;
-$size = 108;
+$page = 11;
+$size = 11;
 
 $result = $customers->getAddresses($customerId, $page, $size);
 
@@ -3758,8 +3760,8 @@ function getCards(
 
 ```php
 $customerId = 'customer_id';
-$page = 108;
-$size = 108;
+$page = 225;
+$size = 225;
 
 $result = $customers->getCards($customerId, $page, $size);
 
@@ -4332,8 +4334,8 @@ function getCharges(
 #### Example Usage
 
 ```php
-$page = 108;
-$size = 108;
+$page = 61;
+$size = 61;
 $code = 'code';
 $status = 'status';
 $paymentMethod = 'payment_method';
@@ -4655,8 +4657,8 @@ function getChargeTransactions(
 
 ```php
 $chargeId = 'charge_id';
-$page = 199;
-$size = 199;
+$page = 61;
+$size = 61;
 
 $result = $charges->getChargeTransactions($chargeId, $page, $size);
 
@@ -4891,8 +4893,8 @@ function getRecipients(
 #### Example Usage
 
 ```php
-$page = 199;
-$size = 199;
+$page = 61;
+$size = 61;
 
 $result = $recipients->getRecipients($page, $size);
 
@@ -5031,8 +5033,8 @@ function getAnticipations(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 199;
-$size = 199;
+$page = 153;
+$size = 153;
 $status = 'status';
 $timeframe = 'timeframe';
 $paymentDateSince = date("D M d, Y G:i");
@@ -5309,8 +5311,8 @@ function getTransfers(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 199;
-$size = 199;
+$page = 153;
+$size = 153;
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
@@ -5499,8 +5501,8 @@ function getWithdrawals(
 
 ```php
 $recipientId = 'recipient_id';
-$page = 199;
-$size = 199;
+$page = 153;
+$size = 153;
 $status = 'status';
 $createdSince = date("D M d, Y G:i");
 $createdUntil = date("D M d, Y G:i");
