@@ -76,6 +76,14 @@ class CreateBoletoPaymentRequest implements JsonSerializable
     public $documentNumber;
 
     /**
+     * Boleto type
+     * @required
+     * @maps type
+     * @var string $type public property
+     */
+    public $type;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param integer               $retries          Initialization value for $this->retries
      * @param string                $bank             Initialization value for $this->bank
@@ -85,6 +93,7 @@ class CreateBoletoPaymentRequest implements JsonSerializable
      * @param string                $billingAddressId Initialization value for $this->billingAddressId
      * @param string                $nossoNumero      Initialization value for $this->nossoNumero
      * @param string                $documentNumber   Initialization value for $this->documentNumber
+     * @param string                $type             Initialization value for $this->type
      */
     public function __construct()
     {
@@ -97,6 +106,7 @@ class CreateBoletoPaymentRequest implements JsonSerializable
             $this->billingAddressId = func_get_arg(5);
             $this->nossoNumero      = func_get_arg(6);
             $this->documentNumber   = func_get_arg(7);
+            $this->type             = func_get_arg(8);
         }
     }
 
@@ -116,6 +126,7 @@ class CreateBoletoPaymentRequest implements JsonSerializable
         $json['billing_address_id'] = $this->billingAddressId;
         $json['nosso_numero']       = $this->nossoNumero;
         $json['document_number']    = $this->documentNumber;
+        $json['type']               = $this->type;
 
         return $json;
     }
